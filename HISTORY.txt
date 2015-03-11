@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  23rd May 2009
+; Updated:  16th June 2009
 
 ============================================================================
+
+
+16th June 2009 - 1.9.85 released
+--------------------------------
+
+ * added merge() and swap() to stlsoft::frequence_map class template
+ * winstl::listview_sequence::value_type::string_type (aka lvs_string_t) is now overrideable via the preprocessor, in preparation for future expansion of flexibility
 
 
 23rd May 2009 - 1.9.84 released

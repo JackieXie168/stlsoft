@@ -4,11 +4,11 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     22nd September 2008
+ * Updated:     29th May 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 11
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     20
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,6 +72,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
 # include <stlsoft/meta/is_integral_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 
 #ifndef STLSOFT_INCL_MAP
 # define STLSOFT_INCL_MAP
@@ -100,7 +103,12 @@ namespace stlsoft
  * \param N The count integer type. Defaults to uint32_t
  */
 template<   ss_typename_param_k T
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1300
+        ,   ss_typename_param_k N = unsigned int
+#else
         ,   ss_typename_param_k N = uint32_t
+#endif
         >
 class frequency_map
     : public stl_collection_tag
@@ -108,6 +116,8 @@ class frequency_map
 private: /// Member Types
     typedef stlsoft_ns_qual_std(map)<T, N>                  map_type_;
 public:
+    /// This type
+    typedef frequency_map<T, N>                             class_type;
     /// The value type
     typedef ss_typename_param_k map_type_::value_type       value_type;
     /// The non-mutating (const) iterator type
@@ -175,6 +185,27 @@ public: /// Modifiers
         m_map.clear();
     }
 
+    /// Merges in all entries from the given map
+    class_type& merge(class_type const& rhs)
+    {
+        class_type  t(*this);
+
+        { for(const_iterator i = rhs.begin(); i != rhs.end(); ++i)
+        {
+            t.m_map[(*i).first] += (*i).second;
+        }}
+
+        t.swap(*this);
+
+        return *this;
+    }
+
+    /// Swaps the state of the given instance with this instance
+    void swap(class_type& rhs) stlsoft_throw_0()
+    {
+        std_swap(m_map, rhs.m_map);
+    }
+
 public: /// Search
     /// Returns an iterator for the entry representing the given key, or
     /// <code>end()</code> if no such entry exists.
@@ -231,6 +262,24 @@ public: /// Iteration
 private: /// Member Variables
     map_type_   m_map;
 };
+
+/* /////////////////////////////////////////////////////////////////////////
+ * swapping
+ */
+
+#if !defined(STLSOFT_COMPILER_IS_WATCOM)
+
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k N
+        >
+inline void swap(
+    frequency_map<T, N>& lhs
+,   frequency_map<T, N>& rhs
+)
+{
+    lhs.swap(rhs);
+}
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
