@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    3
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     17
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,6 +111,8 @@ public:
     typedef HANDLE          synch_handle_type;
     typedef ws_bool_t       bool_type;
     typedef ws_size_t       count_type;
+
+    typedef HANDLE          resource_type;
 
 public:
     enum

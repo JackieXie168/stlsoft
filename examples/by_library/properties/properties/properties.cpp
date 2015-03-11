@@ -6,11 +6,11 @@
  *              method_property_getset_external components.
  *
  * Created:     10th June 2006
- * Updated:     13th March 2007
+ * Updated:     11th April 2007
  *
  * www:         http://www.stlsoft.org/
  *
- * License:     Copyright (c) 2006, Synesis Software Pty Ltd.
+ * License:     Copyright (c) 2006-2007, Synesis Software Pty Ltd.
  *              All rights reserved.
  *
  *              (Licensed under the Synesis Software Open License)

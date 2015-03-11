@@ -4,7 +4,7 @@
  * Purpose:     proxy_iterator template class.
  *
  * Created:     28th June 2004
- * Updated:     22nd March 2007
+ * Updated:     8th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MAJOR      3
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       49
+# define STLSOFT_VER_STLSOFT_OBSOLETE_HPP_PROXY_ITERATOR_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -238,7 +238,7 @@ public:
     {
         return m_begin;
     }
-    /// The proxy iterator end-point
+    /// The proxy iterator endpoint
     ///
     /// \return A pointer to the end point of the proxy iterator
     element_type    *end()
@@ -252,7 +252,7 @@ public:
     {
         return m_begin;
     }
-    /// The proxy iterator end-point
+    /// The proxy iterator endpoint
     ///
     /// \return A pointer to the end point of the proxy iterator
     element_type const  *end() const

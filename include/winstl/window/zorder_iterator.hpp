@@ -4,7 +4,7 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     22nd March 2007
+ * Updated:     8th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MAJOR     2
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_MINOR     0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_REVISION  2
-# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      35
+# define WINSTL_VER_WINSTL_WINDOW_HPP_ZORDER_ITERATOR_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -438,7 +438,7 @@ inline ss_typename_type_k zorder_iterator_tmpl<T>::value_type zorder_iterator_tm
 template <ss_typename_param_k T>
 inline bool zorder_iterator_tmpl<T>::equal(ss_typename_type_k zorder_iterator_tmpl<T>::class_type const& rhs) const
 {
-    WINSTL_MESSAGE_ASSERT("Iterators are not end-point iterators, and refer to different collections", NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
+    WINSTL_MESSAGE_ASSERT("Iterators are not endpoint iterators, and refer to different collections", NULL == m_hwndRoot || NULL == rhs.m_hwndRoot || (rhs.m_hwndRoot == m_hwndRoot));
 
     return m_hwndCurrent == rhs.m_hwndCurrent;
 }

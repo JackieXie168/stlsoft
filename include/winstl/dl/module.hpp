@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      4
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      5
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       223
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       224
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -130,6 +130,8 @@ public:
 private:
     typedef void        (*degenerate_feedback_proc_type)();
     typedef void        (*untyped_feedback_proc_type)(void const*, handle_type, void*);
+public:
+    typedef handle_type resource_type;
 
 /// \name Construction
 /// @{

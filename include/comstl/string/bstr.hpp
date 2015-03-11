@@ -4,7 +4,7 @@
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     30th March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       4
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       5
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    1
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        49
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,6 +147,8 @@ public:
                                                     ,   difference_type
                                                     >       const_reverse_iterator;
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+
+    typedef BSTR                                            resource_type;
 /// @}
 
 /// \name Construction

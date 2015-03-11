@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     22nd March 2007
+ * Updated:     7th April 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   6
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       43
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      3
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,7 +105,9 @@ class guid
 /// \name Types
 /// @{
 public:
-    typedef guid    class_type;
+    typedef guid            class_type;
+
+    typedef GUID const&     resource_type;
 /// @}
 
 /// \name Construction
@@ -188,7 +190,7 @@ public:
 /// \name Accessors
 /// @{
 public:
-    GUID const  &get() const;
+    GUID const& get() const;
 /// @}
 
 /// \name Comparison
