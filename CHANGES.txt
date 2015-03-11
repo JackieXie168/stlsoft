@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  14th September 2008
+; Updated:  15th September 2008
 
 ============================================================================
 
@@ -16,6 +16,38 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.54 (15th September 2008)
+
+Summary:
+========
+
+ * added stlsoft::exception_string::truncate() method
+ * removed dependency of UDATE for to_FILETIME() and to_SYSTEMTIME() shim
+   overloads for DATE type
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/util/exception_string.hpp:
+     + added truncate() method
+
+
+ WinSTL:
+ -------
+
+  ~ winstl/shims/conversion/to_FILETIME.hpp:
+  ~ winstl/shims/conversion/to_FILETIME/DATE.hpp:
+     ~ removed dependency of to_FILETIME(DATE const&) on UDATE
+
+  ~ winstl/shims/conversion/to_SYSTEMTIME.hpp:
+  ~ winstl/shims/conversion/to_SYSTEMTIME/DATE.hpp:
+     ~ removed dependency of to_SYSTEMTIME(DATE const&) on UDATE
 
 ============================================================================
 
@@ -37,7 +69,6 @@ Changes:
   ~ stlsoft/stlsoft.h:
      ~ changed definition of STLSOFT_STATIC_CAST() for GCC, since GCC allows
        an array dimension of -1
-
 
  WinSTL:
  -------

@@ -4,11 +4,11 @@
  * Purpose:     Includes all winstl::to_FILETIME conversion shims.
  *
  * Created:     15th December 2006
- * Updated:     21st January 2007
+ * Updated:     15th September 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,19 +50,17 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MAJOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MINOR       1
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_REVISION    2
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        5
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_REVISION    3
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#ifdef WINSTL_UDATE_DEFINED
-# ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_DATE
-#  include <winstl/shims/conversion/to_FILETIME/DATE.hpp>
-# endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_DATE */
-#endif /* WINSTL_UDATE_DEFINED */
+#ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_DATE
+# include <winstl/shims/conversion/to_FILETIME/DATE.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_DATE */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME
 # include <winstl/shims/conversion/to_FILETIME/FILETIME.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_TO_FILETIME_HPP_FILETIME */

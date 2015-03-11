@@ -2,10 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  14th September 2008
+; Updated:  15th September 2008
 
 ============================================================================
 
+
+15th September 2008 - 1.9.54 released
+-------------------------------------
+
+ * added stlsoft::exception_string::truncate() method
+ * removed dependency of UDATE for to_FILETIME() and to_SYSTEMTIME() shim
+   overloads for DATE type
 
 14th September 2008 - 1.9.53 released
 -------------------------------------

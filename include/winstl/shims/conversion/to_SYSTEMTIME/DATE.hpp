@@ -4,11 +4,11 @@
  * Purpose:     winstl::to_SYSTEMTIME(DATE const&) overload.
  *
  * Created:     15th January 2007
- * Updated:     6th November 2007
+ * Updated:     15th September 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MAJOR    1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_MINOR    0
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 3
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     5
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_REVISION 4
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_TO_SYSTEMTIME_HPP_DATE_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,9 +72,6 @@ STLSOFT_COMPILER_IS_GCC:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_UDATE_DEFINED
-# error UDATE is not defined. If you are certain that your compiler's Windows header files define this type, #define the symbol WINSTL_FORCE_UDATE
-#endif /* !WINSTL_UDATE_DEFINED */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef WINSTL_INCL_WINSTL_ERROR_HPP_CONVERSION_ERROR
 #  include <winstl/error/conversion_error.hpp>
@@ -124,19 +121,18 @@ namespace winstl_project
  */
 inline const SYSTEMTIME to_SYSTEMTIME(DATE const& rhs)
 {
-    UDATE   ud;
-    HRESULT hr;
+	SYSTEMTIME	st;
 
-    if(FAILED(hr = ::VarUdateFromDate(rhs, 0, &ud)))
-    {
+	if(!::VariantTimeToSystemTime(rhs, &st))
+	{
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(conversion_error("failed to convert time value", DWORD(hr)));
+        STLSOFT_THROW_X(conversion_error("failed to convert time value", ::GetLastError()));
 #else /* STLSOFT_CF_EXCEPTION_SUPPORT */
         zero_struct(ud);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-    }
+	}
 
-    return ud.st;
+    return st;
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
