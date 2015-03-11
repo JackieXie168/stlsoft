@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  15th February 2010
+; Updated:  5th March 2010
 
 ============================================================================
 
@@ -16,6 +16,31 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.94 (5th March 2010)
+
+Summary:
+========
+
+ * corrected omission of inline from swap for unixstl::memory_mapped_file
+ * corrected omission of inline from swap for winstl::memory_mapped_file
+
+Changes:
+========
+
+ UNIXSTL:
+ ========
+
+ ~ include/unixstl/filesystem/memory_mapped_file.hpp:
+    ~ corrected omission of inline from swap for unixstl::memory_mapped_file
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/memory_mapped_file.hpp:
+    ~ corrected omission of inline from swap for winstl::memory_mapped_file
 
 ============================================================================
 

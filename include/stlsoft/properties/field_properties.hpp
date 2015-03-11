@@ -4,11 +4,11 @@
  * Purpose:     Field-based properties.
  *
  * Created:     6th October 2003
- * Updated:     10th August 2009
+ * Updated:     3rd March 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MAJOR      4
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_MINOR      0
 # define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_REVISION   3
-# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       31
+# define STLSOFT_VER_STLSOFT_PROPERTIES_HPP_FIELD_PROPERTIES_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,15 +103,15 @@ public: // Member Types
 
 public: // Construction
   ClassWithReadOnlyProp(char const* instanceName, index_type instanceIndex)
-    : name(instanceName)  // Property value can be initialised inside encloding class
-    , index(1)            // Property value can be initialised inside encloding class
+    : name(instanceName)  // Property value can be initialised inside enclosing class
+    , index(1)            // Property value can be initialised inside enclosing class
   {}
 
 public: // Operations
   void ReBadge(char const* newInstanceName, index_type newInstanceIndex)
   {
-    name  = newInstanceName;  // Property value can be assigned inside encloding class
-    index = newInstanceIndex; // Property value can be assigned inside encloding class
+    name  = newInstanceName;  // Property value can be assigned inside enclosing class
+    index = newInstanceIndex; // Property value can be assigned inside enclosing class
   }
 
 public: // Properties
