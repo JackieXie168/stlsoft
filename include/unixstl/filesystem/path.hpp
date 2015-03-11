@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     27th July 2010
+ * Updated:     29th November 2010
  *
  * Thanks to:   Pablo Aguilar for reporting defect in push_ext() (which
  *              doesn't work for wide-string builds).
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       235
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       236
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -193,7 +193,7 @@ public:
     {
         m_len = stlsoft_ns_qual(c_str_len)(s);
 
-        traits_type::str_n_copy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), m_len);
+        traits_type::char_copy(&m_buffer[0], stlsoft_ns_qual(c_str_data)(s), m_len);
         m_buffer[m_len] = '\0';
     }
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -356,8 +356,7 @@ private:
     class_type&             operator_equal_(char_type const* path);
 
     void                    swap(class_type& rhs);
-    class_type&             concat_(char_type const* rhs);
-    class_type&             concat_(class_type const& rhs);
+    class_type&             concat_(char_type const* rhs, size_type cch);
 
     static char_type const  *next_slash_or_end(char_type const* p);
     static char_type        path_name_separator_alt();
@@ -827,20 +826,16 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(ss_typename_param_k basic_path<C, T, A>::char_type const* rhs)
+inline
+ss_typename_param_k basic_path<C, T, A>::class_type&
+basic_path<C, T, A>::concat_(
+    ss_typename_param_k basic_path<C, T, A>::char_type const*   rhs
+,   ss_typename_param_k basic_path<C, T, A>::size_type          cch
+)
 {
-    m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs));
-
-    return *this;
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        ,   ss_typename_param_k A
-        >
-inline ss_typename_param_k basic_path<C, T, A>::class_type& basic_path<C, T, A>::concat_(basic_path<C, T, A> const& rhs)
-{
-    m_len = traits_type::str_len(traits_type::str_cat(&m_buffer[0], rhs.c_str()));
+    traits_type::char_copy(&m_buffer[0] + m_len, rhs, cch);
+    m_len += cch;
+    m_buffer[m_len] = '\0';
 
     return *this;
 }
@@ -983,7 +978,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push(char_type const* rhs, us_b
             class_type  newPath(*this);
 
             newPath.push_sep();
-            newPath.concat_(rhs);
+            newPath.concat_(rhs, traits_type::str_len(rhs));
             if(bAddPathNameSeparator)
             {
                 newPath.push_sep();
@@ -1021,9 +1016,9 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push_ext(char_type const* rhs, 
     {
         static char_type const s_dot[] = { '.', '\0' };
 
-        newPath.concat_('.', 1u);
+        newPath.concat_(&s_dot[0], 1u);
     }
-    newPath.concat_(rhs);
+    newPath.concat_(rhs, traits_type::str_len(rhs));
     if(bAddPathNameSeparator)
     {
         newPath.push_sep();
@@ -1409,7 +1404,7 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::canonicalise(us_bool_t bRemoveT
 
         for(i = 0; i < parts.size(); ++i)
         {
-            traits_type::str_n_copy(dest, parts[i].p, parts[i].len);
+            traits_type::char_copy(dest, parts[i].p, parts[i].len);
 
             dest += parts[i].len;
         }

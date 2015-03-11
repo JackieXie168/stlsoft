@@ -4,7 +4,7 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     22nd March 2010
+ * Updated:     21st December 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     93
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -245,7 +245,17 @@ public:
 /// \name Not to be implemented
 /// @{
 private:
+# if defined(STLSOFT_COMPILER_IS_GCC)
+public:
+    multibyte2wide(multibyte2wide const& rhs)
+        : parent_class_type(rhs.parent_class_type::size())
+    {
+        ::memcpy(this->parent_class_type::data(), rhs.parent_class_type::data(), this->parent_class_type::size());
+    }
+private:
+# else /* compiler */
     multibyte2wide(multibyte2wide const&);
+# endif /* compiler */
     multibyte2wide& operator =(multibyte2wide const&);
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -370,10 +380,22 @@ public:
     }
 /// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
+# if defined(STLSOFT_COMPILER_IS_GCC)
+public:
+    wide2multibyte(wide2multibyte const& rhs)
+        : parent_class_type(rhs.parent_class_type::size())
+    {
+        ::memcpy(this->parent_class_type::data(), rhs.parent_class_type::data(), this->parent_class_type::size());
+    }
+private:
+# else /* compiler */
     wide2multibyte(wide2multibyte const&);
+# endif /* compiler */
     wide2multibyte& operator =(wide2multibyte const&);
+/// @}
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 };
 

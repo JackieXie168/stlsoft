@@ -4,7 +4,7 @@
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     22nd November 2010
+ * Updated:     29th November 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       2
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    4
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        40
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    5
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -196,6 +196,8 @@ public:
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         STLSOFT_THROW_X(conversion_error(message, err));
+#else /* ?STLSOFT_CF_EXCEPTION_SUPPORT */
+        STLSOFT_SUPPRESS_UNUSED(message);
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
         return err;

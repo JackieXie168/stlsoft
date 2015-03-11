@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the unique elements it contains.
  *
  * Created:     1st October 2005
- * Updated:     6th May 2010
+ * Updated:     12th December 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MAJOR    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_MINOR    3
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     23
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FREQUENCY_MAP_EDIT     25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -141,8 +141,12 @@ public:
 public: // Construction
     /// Creates an instance of the map
     frequency_map()
+        : m_map()
+        , m_total(0)
     {
         STLSOFT_STATIC_ASSERT(0 != stlsoft::is_integral_type<N>::value);
+
+        STLSOFT_ASSERT(is_valid());
     }
 
 public: // Modifiers
@@ -156,7 +160,9 @@ public: // Modifiers
     ///   entry cannot be added,
     count_type push(key_type const& key)
     {
-        return ++m_map[key];
+        STLSOFT_ASSERT(is_valid());
+
+        count_type r = ++m_map[key];
 
 #if 0
         // NOTE: Because the count type N must be an integer, the code above
@@ -177,33 +183,59 @@ public: // Modifiers
             return ++(*it).second;
         }
 #endif /* 0 */
+
+        ++m_total;
+
+        STLSOFT_ASSERT(is_valid());
+
+        return r;
     }
 
     /// Removes all entries from the map
     void clear()
     {
+        STLSOFT_ASSERT(is_valid());
+
         m_map.clear();
+        m_total = 0u;
+
+        STLSOFT_ASSERT(is_valid());
     }
 
     /// Merges in all entries from the given map
     class_type& merge(class_type const& rhs)
     {
-        class_type  t(*this);
+        STLSOFT_ASSERT(is_valid());
+
+        class_type t(*this);
 
         { for(const_iterator i = rhs.begin(); i != rhs.end(); ++i)
         {
             t.m_map[(*i).first] += (*i).second;
         }}
+        t.m_total += rhs.m_total;
 
         t.swap(*this);
 
+        STLSOFT_ASSERT(is_valid());
+
         return *this;
+    }
+
+    class_type& operator +=(class_type const& rhs)
+    {
+        return merge(rhs);
     }
 
     /// Swaps the state of the given instance with this instance
     void swap(class_type& rhs) stlsoft_throw_0()
     {
+        STLSOFT_ASSERT(is_valid());
+
         std_swap(m_map, rhs.m_map);
+        std_swap(m_total, rhs.m_total);
+
+        STLSOFT_ASSERT(is_valid());
     }
 
 public: // Search
@@ -211,6 +243,8 @@ public: // Search
     /// <code>end()</code> if no such entry exists.
     const_iterator find(key_type const& key) const
     {
+        STLSOFT_ASSERT(is_valid());
+
         return m_map.find(key);
     }
 
@@ -219,6 +253,8 @@ public: // Element Access
     /// key, or 0 if no such entry exists.
     count_type operator [](key_type const& key) const
     {
+        STLSOFT_ASSERT(is_valid());
+
         return count(key);
     }
 
@@ -226,6 +262,8 @@ public: // Element Access
     /// key, or 0 if no such entry exists.
     count_type count(key_type const& key) const
     {
+        STLSOFT_ASSERT(is_valid());
+
         const_iterator it = m_map.find(key);
 
         return (m_map.end() != it) ? (*it).second : 0;
@@ -235,36 +273,81 @@ public: // Size
     /// Indicates whether the map is empty
     bool_type empty() const
     {
+        STLSOFT_ASSERT(is_valid());
+
         return m_map.empty();
     }
 
-    /// The number of entries in the map
+    /// The number of unique entries in the map
     ///
     /// \remarks This may not be the same as the number of calls to
     ///   <code>push()</code>
     size_type size() const
     {
+        STLSOFT_ASSERT(is_valid());
+
         return m_map.size();
+    }
+
+    /// The number of non-unique entries in the map
+    ///
+    /// \remarks This may not be the same as the number of calls to
+    ///   <code>push()</code>
+    count_type total() const
+    {
+        STLSOFT_ASSERT(is_valid());
+
+        return m_total;
     }
 
 public: // Iteration
     /// A non-mutating (const) iterator representing the start of the sequence
     const_iterator begin() const
     {
+        STLSOFT_ASSERT(is_valid());
+
         return m_map.begin();
     }
     /// A non-mutating (const) iterator representing the end-point of the sequence
     const_iterator end() const
     {
+        STLSOFT_ASSERT(is_valid());
+
         return m_map.end();
+    }
+
+private:
+    bool is_valid() const
+    {
+        return m_map.empty() == (0u == m_total);
     }
 
 private: // Member Variables
     map_type_   m_map;
+    count_type  m_total;
 };
 
 /* /////////////////////////////////////////////////////////////////////////
- * swapping
+ * Operators
+ */
+
+template<   ss_typename_param_k T
+        ,   ss_typename_param_k N
+        >
+inline frequency_map<T, N> operator +(
+    frequency_map<T, N> const& lhs
+,   frequency_map<T, N> const& rhs
+)
+{
+    frequency_map<T, N> r(lhs);
+
+    r += rhs;
+
+    return r;
+}
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Swapping
  */
 
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
@@ -279,6 +362,7 @@ inline void swap(
 {
     lhs.swap(rhs);
 }
+
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////

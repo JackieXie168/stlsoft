@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     30th August 2010
+ * Updated:     21st December 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       12
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        183
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    4
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -145,12 +145,13 @@
 # define _WINSTL_VER_1_11_1     0x010b01ff  /*!< Version 1.11.1 (with STLSoft 1.9.93) */
 # define _WINSTL_VER_1_11_2     0x010b02ff  /*!< Version 1.11.2 (with STLSoft 1.9.100) */
 # define _WINSTL_VER_1_11_3     0x010b03ff  /*!< Version 1.11.3 (with STLSoft 1.9.101) */
+# define _WINSTL_VER_1_11_4     0x010b04ff  /*!< Version 1.11.3 (with STLSoft 1.9.105) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       11
-#define _WINSTL_VER_REVISION    3
-#define _WINSTL_VER             _WINSTL_VER_1_11_3
+#define _WINSTL_VER_REVISION    4
+#define _WINSTL_VER             _WINSTL_VER_1_11_4
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -221,8 +222,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x010965ff
-# error This version of the WinSTL libraries requires STLSoft version 1.9.101, or later
+    _STLSOFT_VER < 0x010969ff
+# error This version of the WinSTL libraries requires STLSoft version 1.9.105, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -237,7 +238,13 @@
 # undef WINSTL_OS_IS_WIN64
 #endif /* WINSTL_OS_IS_WIN64 */
 
-#if defined(WIN64)
+#if defined(WIN64) || \
+    defined(_WIN64)
+# if !defined(WIN64)
+#  ifdef _STLSOFT_COMPILE_VERBOSE
+#   pragma message("Win64 platform targeted, as indicated by definition of _WIN64, but WIN64 is not defined: adjust your project/make settings to define WIN64")
+#  endif /* _STLSOFT_COMPILE_VERBOSE */
+# endif /* !WIN64 */
 # define WINSTL_OS_IS_WIN64
 #elif defined(WIN32)
 # define WINSTL_OS_IS_WIN32

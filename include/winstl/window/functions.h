@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  10
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      66
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  11
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -250,7 +250,21 @@ STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
     const int index = GWL_HINSTANCE;
 #endif /* width */
 
+    /* When compiling for Win32 with -Wp64, the conversion that we've catered
+     * for - by the use of winstl__get_window_sptrint_(), and by the above
+     * discrimination - is mistakenly reported as a truncation, so we need to
+     * suppress the warning nonetheless.
+     */
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    defined(_Wp64)
+# pragma warning(push)
+# pragma warning(disable : 4312)
+#endif
     return stlsoft_reinterpret_cast(HINSTANCE, winstl__get_window_sptrint_(hwnd, index));
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    defined(_Wp64)
+# pragma warning(pop)
+#endif
 }
 
 #endif /* !NOWINOFFSETS */
