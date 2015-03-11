@@ -5,7 +5,9 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     8th December 2006
+ * Updated:     27th December 2006
+ *
+ * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    1
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     651
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     652
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,12 +103,20 @@ private:
     typedef void    (STLSOFT_CDECL *degenerate_function_type)();    // C++-98; 5.2.10;6
 public:
     typedef R       (STLSOFT_CDECL *function_type)(H);
+    typedef R       (STLSOFT_CDECL *indirect_function_type)(H*);
 
     static void translate(H h, degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
         fn(h);
+    }
+
+    static void translate_indirect(H h, degenerate_function_type pv)
+    {
+        indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
+
+        fn(&h);
     }
 };
 
@@ -120,12 +130,20 @@ private:
     typedef void    (STLSOFT_CDECL *degenerate_function_type)();
 public:
     typedef R       (STLSOFT_FASTCALL *function_type)(H);
+    typedef R       (STLSOFT_FASTCALL *indirect_function_type)(H*);
 
     static void translate(H h, degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
         fn(h);
+    }
+
+    static void translate_indirect(H h, degenerate_function_type pv)
+    {
+        indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
+
+        fn(&h);
     }
 };
 # endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
@@ -140,12 +158,20 @@ private:
     typedef void    (STLSOFT_CDECL *degenerate_function_type)();
 public:
     typedef R       (STLSOFT_STDCALL *function_type)(H);
+    typedef R       (STLSOFT_STDCALL *indirect_function_type)(H*);
 
     static void translate(H h, degenerate_function_type pv)
     {
         function_type   fn  =   reinterpret_cast<function_type>(pv);
 
         fn(h);
+    }
+
+    static void translate_indirect(H h, degenerate_function_type pv)
+    {
+        indirect_function_type  fn  =   reinterpret_cast<indirect_function_type>(pv);
+
+        fn(&h);
     }
 };
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
@@ -293,6 +319,16 @@ public:
         , m_tfn(&function_translator_cdecl<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
+
+    /// \brief Construct from a resource handle and an indirect clean-up function with void return type
+    scoped_handle(  resource_type   h
+                ,   void            (STLSOFT_CDECL *f)(resource_type*)
+                ,   resource_type   hNull = 0)
+        : m_h(h)
+        , m_hNull(hNull)
+        , m_tfn(&function_translator_cdecl<H, void>::translate_indirect)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
 #endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 #if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -304,6 +340,16 @@ public:
         : m_h(h)
         , m_hNull(hNull)
         , m_tfn(&function_translator_cdecl<H, R>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+    /// \brief Construct from a resource handle and an indirect clean-up function with non-void return type
+    template <ss_typename_param_k R>
+    scoped_handle(  resource_type   h
+                ,   R               (STLSOFT_CDECL *f)(resource_type*)
+                ,   resource_type   hNull = 0)
+        : m_h(h)
+        , m_hNull(hNull)
+        , m_tfn(&function_translator_cdecl<H, R>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -320,6 +366,15 @@ public:
         , m_tfn(&function_translator_fastcall<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
+    /// \brief Construct from a resource handle and an indirect clean-up "fastcall" function with void return type
+    scoped_handle(  resource_type   h
+                ,   void            (STLSOFT_FASTCALL *f)(resource_type *)
+                ,   resource_type   hNull = 0)
+        : m_h(h)
+        , m_hNull(hNull)
+        , m_tfn(&function_translator_fastcall<H, void>::translate_indirect)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -331,6 +386,16 @@ public:
         : m_h(h)
         , m_hNull(hNull)
         , m_tfn(&function_translator_fastcall<H, R>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+    /// \brief Construct from a resource handle and an indirect clean-up "fastcall" function with non-void return type
+    template <ss_typename_param_k R>
+    scoped_handle(  resource_type   h
+                ,   R               (STLSOFT_FASTCALL *f)(resource_type*)
+                ,   resource_type   hNull = 0)
+        : m_h(h)
+        , m_hNull(hNull)
+        , m_tfn(&function_translator_fastcall<H, R>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -349,6 +414,15 @@ public:
         , m_tfn(&function_translator_stdcall<H, void>::translate)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
+    /// \brief Construct from a resource handle and an indirect clean-up "stdcall" function with void return type
+    scoped_handle(  resource_type   h
+                ,   void            (STLSOFT_STDCALL *f)(resource_type*)
+                ,   resource_type   hNull = 0)
+        : m_h(h)
+        , m_hNull(hNull)
+        , m_tfn(&function_translator_stdcall<H, void>::translate_indirect)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
 # endif /* !STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT || STLSOFT_CF_MEMBER_TEMPLATE_CTOR_OVERLOAD_DISCRIMINATED */
 
 # if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
@@ -360,6 +434,16 @@ public:
         : m_h(h)
         , m_hNull(hNull)
         , m_tfn(&function_translator_stdcall<H, R>::translate)
+        , m_fn(reinterpret_cast<degenerate_function_type>(f))
+    {}
+    /// \brief Construct from a resource handle and an indirect clean-up "stdcall" function with non-void return type
+    template <ss_typename_param_k R>
+    scoped_handle(  resource_type   h
+                ,   R               (STLSOFT_STDCALL *f)(resource_type*)
+                ,   resource_type   hNull = 0)
+        : m_h(h)
+        , m_hNull(hNull)
+        , m_tfn(&function_translator_stdcall<H, R>::translate_indirect)
         , m_fn(reinterpret_cast<degenerate_function_type>(f))
     {}
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
@@ -459,10 +543,12 @@ private:
     degenerate_function_type    m_fn;                                   //!< The actual resource release function
 /// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     scoped_handle(class_type const &);
     class_type &operator =(class_type const &);
+/// @}
 };
 
 
@@ -624,10 +710,12 @@ private:
     degenerate_function_type    m_fn;                               //!< The actual resource release function
 /// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 private:
     scoped_handle(class_type const &);
     class_type &operator =(class_type const &);
+/// @}
 };
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
