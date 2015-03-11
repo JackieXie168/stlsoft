@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     9th March 2008
+ * Updated:     25th April 2008
  *
  * Thanks to:   Neal Becker for suggesting the uninitialised mode.
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  7
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      183
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     4
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  1
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      184
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -244,7 +244,7 @@ public:
                                         ,   const_reference
                                         >::type             const_iterator;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -258,7 +258,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 //protected:
@@ -299,12 +299,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -382,7 +382,7 @@ public:
                                         ,   const_reference
                                         >::type             const_iterator;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -396,7 +396,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 //protected:
@@ -445,12 +445,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -531,7 +531,7 @@ public:
                                         ,   const_reference
                                         >::type             const_iterator;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -545,7 +545,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 //protected:
@@ -595,12 +595,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -683,7 +683,7 @@ public:
                                         ,   const_reference
                                         >::type             const_iterator;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     typedef reverse_iterator_base       <   iterator
                                         ,   value_type
                                         ,   reference
@@ -697,7 +697,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Construction
 //protected:
@@ -748,12 +748,12 @@ public:
     const_iterator          begin() const;
     const_iterator          end() const;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     reverse_iterator        rbegin();
     reverse_iterator        rend();
     const_reverse_iterator  rbegin() const;
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 // Access
 public:
@@ -963,7 +963,7 @@ inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_iterator stati
     return m_data + size();
 }
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::reverse_iterator static_array_1d<T, N0, P, M>::rbegin()
 {
@@ -987,7 +987,7 @@ inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::const_reverse_iterat
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_1d<T, N0, P, M>::value_type const* static_array_1d<T, N0, P, M>::data() const
@@ -1223,7 +1223,7 @@ inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_iterator s
     return m_data + size();
 }
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::reverse_iterator static_array_2d<T, N0, N1, P, M>::rbegin()
 {
@@ -1247,7 +1247,7 @@ inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::const_reverse_it
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_2d<T, N0, N1, P, M>::value_type const* static_array_2d<T, N0, N1, P, M>::data() const
@@ -1489,7 +1489,7 @@ inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_iterat
     return m_data + size();
 }
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::reverse_iterator static_array_3d<T, N0, N1, N2, P, M>::rbegin()
 {
@@ -1513,7 +1513,7 @@ inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::const_revers
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_3d<T, N0, N1, N2, P, M>::value_type const* static_array_3d<T, N0, N1, N2, P, M>::data() const
@@ -1765,7 +1765,7 @@ inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_it
     return m_data + size();
 }
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::reverse_iterator static_array_4d<T, N0, N1, N2, N3, P, M>::rbegin()
 {
@@ -1789,7 +1789,7 @@ inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::const_re
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 template <ss_typename_param_k T, ss_size_t N0, ss_size_t N1, ss_size_t N2, ss_size_t N3, ss_typename_param_k P, ss_typename_param_k M>
 inline ss_typename_type_ret_k static_array_4d<T, N0, N1, N2, N3, P, M>::value_type const* static_array_4d<T, N0, N1, N2, N3, P, M>::data() const

@@ -29,10 +29,10 @@ namespace unittest
 				lbds.max_size();
 				lbds.begin();
 				lbds.end();
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 				lbds.rbegin();
 				lbds.rend();
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 				lbds[1];
 			}
 

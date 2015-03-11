@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     17th February 2008
+ * Updated:     25th April 2008
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        87
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ public:
                                         ,   const_reference
                                         >::type             const_iterator;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 #if 0
     /// The reverse iterator type
     typedef reverse_iterator_base       <   iterator
@@ -215,7 +215,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /// \name Construction
 /// @{
@@ -387,7 +387,7 @@ public:
     iterator                end();
 #endif /* 0 */
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return A non-mutable (const) iterator representing the start of the reverse sequence
@@ -406,7 +406,7 @@ public:
     /// \return An iterator representing the end of the reverse sequence
     reverse_iterator        rend();
 #endif /* 0 */
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Invariant
@@ -484,10 +484,10 @@ struct string_traits<basic_string_view<C, T, A> >
     typedef ss_typename_type_k string_type::const_pointer           const_pointer;
 //    typedef ss_typename_type_k string_type::iterator                iterator;
     typedef ss_typename_type_k string_type::const_iterator          const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 //    typedef ss_typename_type_k string_type::reverse_iterator        reverse_iterator;
     typedef ss_typename_type_k string_type::const_reverse_iterator  const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false
@@ -527,10 +527,10 @@ struct string_traits<string_view>
     typedef string_type::const_pointer                      const_pointer;
 //    typedef string_type::iterator                           iterator;
     typedef string_type::const_iterator                     const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 //    typedef string_type::reverse_iterator                   reverse_iterator;
     typedef string_type::const_reverse_iterator             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false
@@ -570,10 +570,10 @@ struct string_traits<wstring_view>
     typedef string_type::const_pointer                      const_pointer;
 //    typedef string_type::iterator                           iterator;
     typedef string_type::const_iterator                     const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 //    typedef string_type::reverse_iterator                   reverse_iterator;
     typedef string_type::const_reverse_iterator             const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     enum
     {
             is_pointer          =   false
@@ -1675,7 +1675,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::iterator basic_string_
 }
 #endif /* 0 */
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -1721,7 +1721,7 @@ inline ss_typename_type_ret_k basic_string_view<C, T, A>::reverse_iterator basic
     return reverse_iterator(begin());
 }
 #endif /* 0 */
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 

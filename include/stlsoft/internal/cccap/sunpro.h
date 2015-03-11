@@ -4,9 +4,9 @@
  * Purpose:     Compiler feature discrimination for SunPro C / SunPro C++.
  *
  * Created:     24th April 2008
- * Updated:     24th April 2008
+ * Updated:     25th April 2008
  *
- * Thanks:		To Jonathan Wakeley and Lars Ivar Igesund for help with
+ * Thanks:      To Jonathan Wakeley and Lars Ivar Igesund for help with
  *              getting STLSoft (and Pantheios) compatible with Solaris.
  *
  * Home:        http://stlsoft.org/
@@ -60,8 +60,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MINOR      0
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,16 +117,21 @@
 /* #define STLSOFT_CF_FUNCTION_SYMBOL_SUPPORT */
 
 /* Variadic Macros
+ *
+ * Feature was buggy at one point, require 5.5 to be safe.
  */
 
-#define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+#if _STLSOFT_SUNPRO_VER_ > 0x0550
+# define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+#endif /* _STLSOFT_SUNPRO_VER_ */
 
 /* ///////////////////////////////////////////////
  * Types
  */
 
 /* bool */
-#ifdef __cplusplus
+#if defined(__cplusplus) && \
+    defined(_BOOL)
 # define STLSOFT_CF_NATIVE_BOOL_SUPPORT
 #endif /* __cplusplus */
 
@@ -134,8 +139,9 @@
 /* #define STLSOFT_CF_CHAR_IS_UNSIGNED */
 
 /* wchar_t */
-
-#define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#ifdef _WCHAR_T
+# define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#endif
 
 /* /////////////////////////////////////
  * Integral types
@@ -159,6 +165,24 @@
  * which indicate that a given type is not used in the size-specific types.
  */
 
+
+#if defined(_LP64) || \
+    defined(__LP64__)
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (8)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#else /* ? data model */
+# define _STLSOFT_SIZEOF_CHAR           (1)
+# define _STLSOFT_SIZEOF_SHORT          (2)
+# define _STLSOFT_SIZEOF_INT            (4)
+# define _STLSOFT_SIZEOF_LONG           (4)
+# define _STLSOFT_SIZEOF_LONG_LONG      (8)
+#endif /* data model */
+
+
+#if 0
 #if defined(__sparcv9)
 # error Use of Sun Pro has not yet been verified on 64-bit Sparc. Please contact Synesis Software
 #elif defined(__amd64)
@@ -181,28 +205,29 @@
 #else /* ? data model */
 # error Use of Sun Pro has not been verified on any operation system other than x86, x64 and Sparc. Please contact Synesis Software
 #endif /* data model */
+#endif /* 0 */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT
-#define STLSOFT_SI08_T_BASE_TYPE    signed      char
-#define STLSOFT_UI08_T_BASE_TYPE    unsigned    char
+#define STLSOFT_SI08_T_BASE_TYPE        signed      char
+#define STLSOFT_UI08_T_BASE_TYPE        unsigned    char
 
 /* 16-bit integer */
 #define STLSOFT_CF_16BIT_INT_SUPPORT
-#define STLSOFT_SI16_T_BASE_TYPE    signed      short
-#define STLSOFT_UI16_T_BASE_TYPE    unsigned    short
+#define STLSOFT_SI16_T_BASE_TYPE        signed      short
+#define STLSOFT_UI16_T_BASE_TYPE        unsigned    short
 
 /* 32-bit integer */
 #define STLSOFT_CF_32BIT_INT_SUPPORT
-#define STLSOFT_SI32_T_BASE_TYPE    signed      int
-#define STLSOFT_UI32_T_BASE_TYPE    unsigned    int
+#define STLSOFT_SI32_T_BASE_TYPE        signed      int
+#define STLSOFT_UI32_T_BASE_TYPE        unsigned    int
 #define STLSOFT_CF_LONG_DISTINCT_INT_TYPE
 
 /* 64-bit integer */
 #define STLSOFT_CF_64BIT_INT_SUPPORT
 #define STLSOFT_CF_64BIT_INT_IS_long_long
-#define STLSOFT_SI64_T_BASE_TYPE    signed      long long
-#define STLSOFT_UI64_T_BASE_TYPE    unsigned    long long
+#define STLSOFT_SI64_T_BASE_TYPE        signed      long long
+#define STLSOFT_UI64_T_BASE_TYPE        unsigned    long long
 
 /* ///////////////////////////////////////////////
  * Language features
@@ -306,7 +331,7 @@
 
 /* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
 
-/* !!! Assumed. Not yet verified !!! */ /* #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
 
 /* !!! Assumed. Not yet verified !!! */ #define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
 
@@ -394,6 +419,19 @@
  */
 
 #define STLSOFT_CF_C99_INLINE
+
+/* /////////////////////////////////////////////////////////////////////////
+ * If <cwchar> gets included after <stdio.h> or <cstdio> then it fails to
+ * declare mbstate_t and various wchar functions, so include it now to try
+ * and reduce problem (too late if <stdio.h> has already been included.)
+ * http://forum.java.sun.com/thread.jspa?messageID=10035724
+ */
+
+#ifdef STLSOFT_LINUX_STDIO_ORDER_BUG
+# ifdef __cplusplus
+#  include <cwchar>
+# endif /* __cplusplus */
+#endif /* STLSOFT_LINUX_STDIO_ORDER_BUG */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Compiler warning suppression

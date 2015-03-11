@@ -4,7 +4,7 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     9th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      0
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   3
-# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       41
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      1
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   1
+# define ATLSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ namespace atlstl_project
  * \return The HWND corresponding to the given CWindow instance \c w
  *
  */
-inline HWND get_hwnd(CWindow const& w)
+inline HWND get_HWND(CWindow const& w)
 {
     return w.m_hWnd;
 }

@@ -4,11 +4,11 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR       4
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR       0
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION    2
-# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT        41
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR       1
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION    1
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ namespace mfcstl_project
  * \return The HWND corresponding to the given CWnd instance \c w
  *
  */
-inline HWND get_hwnd(CWnd const& w)
+inline HWND get_HWND(CWnd const& w)
 {
     return w.m_hWnd;
 }
@@ -122,7 +122,7 @@ inline HWND get_hwnd(CWnd const& w)
  * \return The HWND corresponding to the given CWnd instance \c w
  *
  */
-inline HWND get_hwnd(CWnd const* w)
+inline HWND get_HWND(CWnd const* w)
 {
     return w->GetSafeHwnd();
 }
@@ -150,14 +150,14 @@ inline HWND get_hwnd(CWnd const* w)
 #   if defined(_STLSOFT_NO_NAMESPACE)
 namespace winstl
 {
-    using ::mfcstl::get_hwnd;
+    using ::mfcstl::get_HWND;
 } // namespace winstl
 #   else /* ? _STLSOFT_NO_NAMESPACE */
 namespace stlsoft
 {
 namespace winstl_project
 {
-    using ::mfcstl::get_hwnd;
+    using ::mfcstl::get_HWND;
 } // namespace winstl_project
 } // namespace stlsoft
 #   endif /* _STLSOFT_NO_NAMESPACE */

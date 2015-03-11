@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     24th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      94
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,11 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
 # include <stlsoft/collections/util/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
-#include <algorithm>
+
+#ifndef STLSOFT_INCL_ALGORITHM
+# define STLSOFT_INCL_ALGORITHM
+# include <algorithm>
+#endif /* !STLSOFT_INCL_ALGORITHM */
 
 #ifndef STLSOFT_UNITTEST
 # include <winstl/registry/reg_key.hpp>
@@ -156,7 +160,7 @@ public:
     typedef ws_size_t                                       size_type;
     /// \brief The difference type
     typedef ws_ptrdiff_t                                    difference_type;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// \brief The non-mutating (const) reverse iterator type
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
@@ -164,7 +168,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Construction
@@ -204,7 +208,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// \brief Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -213,7 +217,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Members
@@ -498,12 +502,21 @@ inline /* static */ ss_typename_type_ret_k basic_reg_value<C, T, A>::hkey_type b
     else
     {
         result_type res;
-        HKEY        hkeyDup =   traits_type::key_dup(hkey, accessMask, &res);
+        HKEY        hkeyDup = traits_type::key_dup(hkey, accessMask, &res);
 
         if(ERROR_SUCCESS != res)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(registry_exception("Could not duplicate key", res));
+            static const char message[] = "could not duplicate key";
+
+            if(ERROR_ACCESS_DENIED == res)
+            {
+                STLSOFT_THROW_X(access_denied_exception(message, res));
+            }
+            else
+            {
+                STLSOFT_THROW_X(key_not_duplicated_exception(message, res));
+            }
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             hkeyDup = NULL;
@@ -553,6 +566,22 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
         }
     }
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+    if(ERROR_SUCCESS != res)
+    {
+        static const char message[] = "could not elicit string value";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
+    }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     return ret;
 }
 
@@ -560,17 +589,37 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_value<C, T, A>::value_expand_sz() const
 {
     // Does expand environment strings
-    string_type  ret = value_sz();
+    string_type ret = value_sz();
 
     if( ret.length() > 0 &&
         REG_EXPAND_SZ == get_type_())
     {
-        size_type           size    =   traits_type::expand_environment_strings(ret.c_str(), NULL, 0);
-        char_buffer_type_   buffer(1 + size);
+        size_type size = traits_type::expand_environment_strings(ret.c_str(), NULL, 0);
 
-        if(traits_type::expand_environment_strings(ret.c_str(), &buffer[0], size) != 0)
+        if(0 != size)
         {
-            ret = &buffer[0];
+            char_buffer_type_ buffer(1 + size);
+
+            if(0 == traits_type::expand_environment_strings(ret.c_str(), &buffer[0], size))
+            {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                static const char   message[]   =   "could not expand environment strings";
+                DWORD               res         =   ::GetLastError();
+
+                if(ERROR_ACCESS_DENIED == res)
+                {
+                    STLSOFT_THROW_X(access_denied_exception(message, res));
+                }
+                else
+                {
+                    STLSOFT_THROW_X(registry_exception(message, res));
+                }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            }
+            else
+            {
+                ret.assign(buffer.data(), size);
+            }
         }
     }
 
@@ -587,7 +636,20 @@ inline ws_dword_t basic_reg_value<C, T, A>::value_dword() const
 
     if(ERROR_SUCCESS != res)
     {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+        static const char message[] = "could not query value";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         dwValue = 0;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     return dwValue;
@@ -610,7 +672,25 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::blob_type basic_reg_valu
     ws_dword_t  dw;
     ws_long_t   res =   traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, NULL, data_size);
 
-    if(ERROR_SUCCESS == res)
+    if(ERROR_SUCCESS != res)
+    {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
+query_failed:
+
+        static const char message[] = "could not elicit binary value";
+
+        if(ERROR_ACCESS_DENIED == res)
+        {
+            STLSOFT_THROW_X(access_denied_exception(message, res));
+        }
+        else
+        {
+            STLSOFT_THROW_X(registry_exception(message, res));
+        }
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+    }
+    else
     {
         WINSTL_MESSAGE_ASSERT("queried registry value is not binary", dw == REG_BINARY);
 
@@ -621,7 +701,13 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::blob_type basic_reg_valu
             data_size = buffer.size();
             res = traits_type::reg_query_value(m_hkey, m_name.c_str(), dw, buffer.data(), data_size);
 
-            if(ERROR_SUCCESS == res)
+            if(ERROR_SUCCESS != res)
+            {
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                goto query_failed;
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            }
+            else
             {
                 return blob_type(buffer.data(), buffer.size());
             }
@@ -680,7 +766,7 @@ inline ss_typename_type_ret_k reg_blob<A>::const_iterator reg_blob<A>::end() con
     return m_buffer.end();
 }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 template<ss_typename_param_k A>
 inline ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rbegin() const
 {
@@ -692,7 +778,7 @@ inline ss_typename_type_ret_k reg_blob<A>::const_reverse_iterator reg_blob<A>::r
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

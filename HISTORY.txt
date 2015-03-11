@@ -8,18 +8,26 @@ STLSoft - History
 
 
 
+26th April 2008 - 1.9.34 released
+---------------------------------
+
+ * renamed winstl::get_hwnd attribute shim to winstl::get_HWND
+ * minor adjustments to Sun Pro support
+ * library feature discrimination symbol cleanup
+ * refactored error/exception handling in Windows Registry library
+
 25th April 2008 - 1.9.33 released
 ---------------------------------
 
-  * added support for the SunPro C and C++ compilers
-  * various mods to ensure headers are self-contained when used with
+ * added support for the SunPro C and C++ compilers
+ * various mods to ensure headers are self-contained when used with
     Windows "lean and mean" suppression symbols
 
 22nd April 2008 - 1.9.32 released
 ---------------------------------
 
-  * fix for VC++ 8/9 linker error in the allocator_selector
-  * refactoring of string access shim headers for lightweight compilation
+ * fix for VC++ 8/9 linker error in the allocator_selector
+ * refactoring of string access shim headers for lightweight compilation
 
 13th April 2008 - 1.9.31 released
 ---------------------------------

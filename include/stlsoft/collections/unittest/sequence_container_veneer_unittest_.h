@@ -1,5 +1,5 @@
 
-// Updated: 12th March 2007
+// Updated: 25th April 2008
 
 #if !defined(STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER)
 # error This file cannot be directly included, and should only be included within stlsoft/collections/sequence_container_veneer.hpp
@@ -54,13 +54,13 @@ namespace unittest
 				bSuccess = false;
 			}
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 			if(stlsoft_ns_qual_std(accumulate)(l.rbegin(), l.rend(), static_cast<long>(0)) != total)
 			{
 				r->report("sequence_container_veneer<list> contents (forward iteration) test failed", __LINE__);
 				bSuccess = false;
 			}
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 			if(stlsoft_ns_qual_std(accumulate)(v.begin(), v.end(), static_cast<long>(0)) != total)
 			{
@@ -68,13 +68,13 @@ namespace unittest
 				bSuccess = false;
 			}
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 			if(stlsoft_ns_qual_std(accumulate)(v.rbegin(), v.rend(), static_cast<long>(0)) != total)
 			{
 				r->report("sequence_container_veneer<vector> contents (forward iteration) test failed", __LINE__);
 				bSuccess = false;
 			}
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 			return bSuccess;
 		}

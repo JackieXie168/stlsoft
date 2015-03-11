@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to controls.
  *
  * Created:     8th October 2002
- * Updated:     24th March 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MAJOR    4
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 5
-# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     75
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_MINOR    2
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_REVISION 1
+# define WINSTL_VER_WINSTL_CONTROL_HPP_FUNCTIONALS_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -171,7 +171,7 @@ public:
     template <ss_typename_param_k W>
     void operator ()(W &wnd) const
     {
-        check_(winstl_ns_qual(get_hwnd)(wnd), m_nCheck);
+        check_(winstl_ns_qual(get_HWND)(wnd), m_nCheck);
     }
 private:
     static void check_(HWND hwnd, int nCheck)
@@ -213,7 +213,7 @@ public:
     template <ss_typename_param_k W>
     BOOL operator ()(W &wnd) const
     {
-        return is_checked_(winstl_ns_qual(get_hwnd)(wnd));
+        return is_checked_(winstl_ns_qual(get_HWND)(wnd));
     }
 private:
     BOOL is_checked_(HWND hwnd) const
@@ -287,7 +287,7 @@ public:
     template <ss_typename_param_k W>
     BOOL operator ()(W &wnd) const
     {
-        return is_class_(winstl_ns_qual(get_hwnd)(wnd));
+        return is_class_(winstl_ns_qual(get_HWND)(wnd));
     }
 private:
     BOOL is_class_(HWND hwnd) const

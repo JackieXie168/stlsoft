@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     9th March 2008
+ * Updated:     25th April 2008
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  11
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      139
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      140
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -310,7 +310,7 @@ public:
                                              ,   const_reference
                                              >::type                        const_iterator;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// \brief The type of the const (non-mutating) reverse iterator
     typedef stlsoft_ns_qual(reverse_iterator_base)  <   const_iterator
                                                     ,   value_type
@@ -318,7 +318,7 @@ public:
                                                     ,   const_pointer
                                                     ,   difference_type
                                                     >                       const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Member Constants
@@ -525,7 +525,7 @@ public:
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// \brief Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -534,7 +534,7 @@ public:
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Implementation
@@ -681,7 +681,7 @@ inline glob_sequence::const_iterator glob_sequence::end() const
     return m_base + m_cItems;
 }
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 inline glob_sequence::const_reverse_iterator glob_sequence::rbegin() const
 {
     return const_reverse_iterator(end());
@@ -691,7 +691,7 @@ inline glob_sequence::const_reverse_iterator glob_sequence::rend() const
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 inline us_bool_t glob_sequence::is_valid() const
 {

@@ -1,5 +1,5 @@
 
-// Updated: 21st January 2007
+// Updated: 25th April 2008
 
 #if !defined(STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW)
 # error This file cannot be directly included, and should only be included within stlsoft/collections/array_view.hpp
@@ -34,10 +34,10 @@ namespace unittest
 
 				av.begin();
 				av.end();
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 				av.rbegin();
 				av.rend();
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 			}
 
 

@@ -5,11 +5,11 @@
  *              class templates.
  *
  * Created:     1st October 2002
- * Updated:     6th December 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MAJOR       4
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       0
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    11
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        85
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_MINOR       1
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_REVISION    1
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CSTRING_ADAPTORS_EDIT        86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -158,12 +158,12 @@ public:
     typedef ms_size_t                                       size_type;
     /// The difference type
     typedef ms_ptrdiff_t                                    difference_type;
-#if !defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if !defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The mutating iterator type
     typedef LPTSTR                                          iterator;
     /// The non-mutating (const) iterator type
     typedef LPCTSTR                                         const_iterator;
-#else /* ? !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#else /* ? !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -198,7 +198,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The Boolean type
     typedef ms_bool_t                                       bool_type;
 /// @}
@@ -274,7 +274,7 @@ public:
     ///
     /// \return A non-mutating (const) iterator representing the end of the sequence
     const_iterator          end() const;
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
     /// Begins the iteration
     ///
     /// \return A mutating (non-const) reverse iterator representing the start of the sequence
@@ -291,7 +291,7 @@ public:
     ///
     /// \return A non-mutating (const) reverse iterator representing the end of the sequence
     const_reverse_iterator  rend() const;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Element Access
@@ -1385,7 +1385,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::const_iterator CString_ad
     return this->begin() + this->size();
 }
 
-#ifdef STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT
+#ifdef STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT
 template<ss_typename_param_k I>
 inline ss_typename_type_ret_k CString_adaptor_base<I>::reverse_iterator CString_adaptor_base<I>::rbegin()
 {
@@ -1406,7 +1406,7 @@ inline ss_typename_type_ret_k CString_adaptor_base<I>::const_reverse_iterator CS
 {
     return const_reverse_iterator(begin());
 }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 
 

@@ -4,11 +4,11 @@
  * Purpose:     Window messaging function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     6th November 2007
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2001-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2001-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MAJOR     4
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     0
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  2
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      36
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_MINOR     1
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_REVISION  1
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_MESSAGE_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@ public:
     template <ss_typename_param_k W>
     void operator ()(W &wnd) const
     {
-        send_(winstl_ns_qual(get_hwnd)(wnd));
+        send_(winstl_ns_qual(get_HWND)(wnd));
     }
 
 private:
@@ -174,7 +174,7 @@ public:
     template <ss_typename_param_k W>
     void operator ()(W &wnd) const
     {
-        post_(winstl_ns_qual(get_hwnd)(wnd));
+        post_(winstl_ns_qual(get_HWND)(wnd));
     }
 
 private:

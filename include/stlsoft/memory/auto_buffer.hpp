@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     24th April 2008
+ * Updated:     25th April 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        155
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       2
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    1
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        157
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,11 +90,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3
 #  pragma message("_STLSOFT_AUTO_BUFFER_ALLOW_UDT is deprecated. Use _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD instead")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_UDT */
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
-#  include <stlsoft/util/std/iterator_helper.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
 # ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 #  include <stlsoft/util/constraints.hpp>
@@ -106,9 +104,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3
 
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>
-# if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+# if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 #  include <numeric>
-# endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 # include <stdio.h>
 #endif /* STLSOFT_UNITTEST */
 
@@ -126,8 +124,8 @@ namespace stlsoft
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-#  if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
-      !defined(STLSOFT_COMPILER_IS_DMC)
+# if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
+     !defined(STLSOFT_COMPILER_IS_DMC)
 
 struct auto_buffer_internal_default
 {
@@ -439,12 +437,12 @@ public:
     typedef ss_size_t                                           size_type;
     /// The difference type
     typedef ss_ptrdiff_t                                        difference_type;
-#if !defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if !defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// The iterator type
     typedef value_type                                          *iterator;
     /// The non-mutable (const) iterator type
     typedef value_type const                                    *const_iterator;
-#else /* ? !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#else /* ? !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
     /// The iterator type
     typedef
 # if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -479,7 +477,7 @@ public:
                                         ,   const_pointer
                                         ,   difference_type
                                         >                   const_reverse_iterator;
-#endif /* !STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* !STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Implementation
@@ -502,15 +500,7 @@ private:
 
     pointer allocate_(size_type cItems)
     {
-#ifdef STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
-# ifdef STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW
-        return static_cast<pointer>(get_allocator().allocate(cItems, NULL));
-# else /* ? STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
-        return get_allocator().allocate(cItems, NULL);
-# endif /* STLSOFT_CF_STD_LIBRARY_IS_SUNPRO_RW */
-#else /* ? STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
-        return get_allocator().allocate(cItems);
-#endif /* STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT */
+        return allocate_(cItems, NULL);
     }
 
     void deallocate_(pointer p, size_type cItems)
@@ -996,7 +986,7 @@ public:
         return m_buffer + m_cItems;
     }
 
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
@@ -1033,7 +1023,7 @@ public:
 
         return reverse_iterator(begin());
     }
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 /// @}
 
@@ -1150,9 +1140,9 @@ private:
         {
             if(m_buffer == &m_internal[0])
             {
-# ifdef STLSOFT_UNITTEST
+#ifdef STLSOFT_UNITTEST
                 printf("auto_buffer is in external domain, but buffer refers to internal array\n");
-# endif /* STLSOFT_UNITTEST */
+#endif /* STLSOFT_UNITTEST */
 
                 bRet = false;
             }
@@ -1161,9 +1151,9 @@ private:
         {
             if(m_buffer != &m_internal[0])
             {
-# ifdef STLSOFT_UNITTEST
+#ifdef STLSOFT_UNITTEST
                 printf("auto_buffer is in internal domain, but buffer does not refer to internal array\n");
-# endif /* STLSOFT_UNITTEST */
+#endif /* STLSOFT_UNITTEST */
 
                 bRet = false;
             }
@@ -1192,37 +1182,37 @@ private:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template<   ss_typename_param_k T
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k A = ss_typename_type_def_k allocator_selector<T>::allocator_type
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         ,   ss_typename_param_k A
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
+# ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT
 #  if !defined(STLSOFT_COMPILER_IS_BORLAND) && \
       !defined(STLSOFT_COMPILER_IS_DMC)
         ,   ss_size_t           SPACE   =   auto_buffer_internal_size_calculator<T>::value
-# else /* ? compiler */
+#  else /* ? compiler */
         ,   ss_size_t           SPACE   =   256
-# endif /* compiler */
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+#  endif /* compiler */
+# else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         ,   ss_size_t           SPACE /* = auto_buffer_internal_size_calculator<T>::value */
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_FUNDAMENTAL_ARGUMENT_SUPPORT */
         >
 class auto_buffer_old
-#if defined(STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS)
+# if defined(STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS)
     : public auto_buffer<T, A, SPACE>
-#else /* ? STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
+# else /* ? STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
     : public auto_buffer<T, SPACE, A>
-#endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
+# endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
 {
 /// \name Member Types
 /// @{
 private:
-#if defined(STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS)
+# if defined(STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS)
     typedef auto_buffer<T, A, SPACE>                                        parent_class_type;
-#else /* ? STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
+# else /* ? STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
     typedef auto_buffer<T, SPACE, A>                                        parent_class_type;
-#endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
+# endif /* STLSOFT_AUTO_BUFFER_USE_PRE_1_9_CHARACTERISTICS */
     typedef auto_buffer_old<T, A, SPACE>                                    class_type;
 
 public:
@@ -1236,10 +1226,10 @@ public:
     typedef ss_typename_type_k parent_class_type::difference_type           difference_type;
     typedef ss_typename_type_k parent_class_type::iterator                  iterator;
     typedef ss_typename_type_k parent_class_type::const_iterator            const_iterator;
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+# if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef ss_typename_type_k parent_class_type::reverse_iterator          reverse_iterator;
     typedef ss_typename_type_k parent_class_type::const_reverse_iterator    const_reverse_iterator;
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+# endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 /// @}
 
 /// \name Construction

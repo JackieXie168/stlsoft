@@ -65,12 +65,12 @@ namespace unittest
 			v2.begin();
 			v1.end();
 			v2.end();
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
+#if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
 			v1.rbegin();
 			v2.rbegin();
 			v1.rend();
 			v2.rend();
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
+#endif /* STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 
 			v1.size();
 			v2.capacity();
