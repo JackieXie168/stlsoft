@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  19th January 2010
+; Updated:  21st January 2010
 
 ============================================================================
+
+
+21st January 2010 - 1.9.90 released
+-----------------------------------
+
+ * fixed defect in unixstl::filesystem_traits<>::get_full_path_name() when passed "."
+ * header ordering workaround for GCC 3.4's strange COM headers on Windows
 
 
 19th January 2010 - 1.9.89 released
