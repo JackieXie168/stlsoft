@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     12th August 2010
+ * Updated:     10th September 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,11 +46,11 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 6
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     23
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 9
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file platformstl/filesystem/memory_mapped_file.hpp
+/** \file platformstl/filesystem/file_lines.hpp
  *
  * \brief [C++ only] Definition of the platformstl::file_lines type
  *   (\ref group__library__filesystem "File System" Library).
@@ -71,9 +71,11 @@
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE
 # include <platformstl/filesystem/memory_mapped_file.hpp>
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE */
-#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
-# include <stlsoft/conversion/truncation_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST
+#  include <stlsoft/conversion/truncation_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_TRUNCATION_CAST */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD
 # include <stlsoft/shims/access/string/fwd.h>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_STRING_H_FWD */
@@ -91,6 +93,10 @@
 # define STLSOFT_INCL_ALGORITHM
 # include <algorithm>
 #endif /* !STLSOFT_INCL_ALGORITHM */
+#ifndef STLSOFT_INCL_UTILITY
+# define STLSOFT_INCL_UTILITY
+# include <utility>
+#endif /* !STLSOFT_INCL_UTILITY */
 #ifndef STLSOFT_INCL_VECTOR
 # define STLSOFT_INCL_VECTOR
 # include <vector>
@@ -137,8 +143,10 @@ public:
     typedef basic_file_lines<C, V, B>                           class_type;
     typedef C                                                   char_type;
 private:
+    typedef V                                                   value_string_type_;
     typedef B                                                   base_string_type_;
     typedef std::vector<V>                                      strings_type_;
+    typedef memory_mapped_file                                  mmf_type_;
 public:
     typedef ss_typename_type_k strings_type_::value_type        value_type;
     typedef ss_typename_type_k strings_type_::size_type         size_type;
@@ -156,21 +164,28 @@ public:
         , m_contents()
         , m_strings()
     {
-        m_mmf = (new memory_mapped_file(stlsoft_ns_qual(c_str_ptr)(path))); // See comment above for why we initialise intra-body
-
+        create_(new mmf_type_(stlsoft_ns_qual(c_str_ptr)(path))); // See comment above for why we initialise intra-body
+    }
+private:
+    void create_(mmf_type_* pmmf)
+    {
 #ifdef STLSOFT_CF_THROW_BAD_ALLOC
-        STLSOFT_ASSERT(NULL != m_mmf);
+        STLSOFT_ASSERT(NULL != pmmf);
 #else /* ? STLSOFT_CF_THROW_BAD_ALLOC */
-        if(NULL != m_mmf)
+        if(NULL != pmmf)
 #endif /* STLSOFT_CF_THROW_BAD_ALLOC */
         {
-            memory_mapped_file& mmf = *m_mmf;
+            stlsoft_ns_qual_std(auto_ptr)<mmf_type_> scoper(pmmf);
 
+            mmf_type_ const&        mmf     =   *pmmf;
+            char_type const* const  base    =   static_cast<char_type const*>(mmf.memory());
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            m_strings.reserve(stlsoft_ns_qual(truncation_cast)<size_type>(mmf.size() / 40));
+            size_type const         cch     =   stlsoft_ns_qual(truncation_cast)<size_type>(mmf.size() / sizeof(char_type));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            m_strings.reserve(static_cast<size_type>(mmf.size() / 40));
+            size_type const         cch     =   static_cast<size_type>(mmf.size() / sizeof(char_type));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+            m_strings.reserve(cch / 40);
 
 #if defined(PLATFORMSTL_OS_IS_WINDOWS) || \
     (   defined(PLATFORMSTL_OS_IS_UNIX) && \
@@ -200,11 +215,7 @@ public:
 # error Platform not discriminated
 #endif /* OS */
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            m_contents = base_string_type_(static_cast<C const*>(mmf.memory()), stlsoft_ns_qual(truncation_cast)<size_type>(mmf.size()));
-#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            m_contents = base_string_type_(static_cast<C const*>(mmf.memory()), static_cast<size_type>(mmf.size()));
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+            m_contents = base_string_type_(base, cch);
 
             tokeniser_t_ lines(m_contents.data(), m_contents.size(), sep);
 
@@ -215,14 +226,14 @@ public:
             //  - there are no lines, or
             //  - the string type copies. This is determined by checking whether
             //    the first non-empty string's contents point within the mapping.
-            bool canDeleteMapping = false;
+            bool canDiscardMapping = false;
 
-            if(!canDeleteMapping)
+            if(!canDiscardMapping)
             {
-                canDeleteMapping = m_strings.empty();
+                canDiscardMapping = m_strings.empty();
             }
 
-            if(!canDeleteMapping)
+            if(!canDiscardMapping)
             {
                 { for(ss_typename_type_k strings_type_::const_iterator i = m_strings.begin(); i != m_strings.end(); ++i)
                 {
@@ -234,24 +245,22 @@ public:
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
                         void const* end     =   ptr_byte_offset(base, static_cast<ss_ptrdiff_t>(mmf.size()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
-
                         void const* p       =   (*i).data();
 
-                        canDeleteMapping = p < base || p >= end;
+                        canDiscardMapping   =   p < base || p >= end;
 
                         break;
                     }
                 }}
             }
 
-            if(canDeleteMapping)
+            if(!canDiscardMapping)
             {
-                delete m_mmf;
-                m_mmf = NULL;
+                m_mmf = scoper.release();
             }
         }
     }
-
+public:
     ~basic_file_lines() stlsoft_throw_0()
     {
         delete m_mmf;
@@ -325,7 +334,7 @@ public:
 /// \name Member Variables
 /// @{
 private:
-    memory_mapped_file* m_mmf;
+    mmf_type_*          m_mmf;
     base_string_type_   m_contents;
     strings_type_       m_strings;
 /// @}

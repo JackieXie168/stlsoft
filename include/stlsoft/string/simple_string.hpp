@@ -4,11 +4,11 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     10th August 2009
+ * Updated:     6th September 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     246
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 6
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     248
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -696,8 +696,14 @@ typedef basic_simple_string<ss_char_w_t
 /** Specialisation for stlsoft::basic_simple_string<>
  */
 # ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-template <ss_typename_param_k C>
-struct string_traits<basic_simple_string<C> >
+template<
+    ss_typename_param_k C
+,   ss_typename_param_k T
+,   ss_typename_param_k A
+>
+struct string_traits<
+   basic_simple_string<C, T, A>
+>
 {
     // NOTE: Originally, what is string_type_ was defined as value_type, but
     // Borland objects to value_type::value_type.
@@ -1427,7 +1433,7 @@ inline /* static */ ss_typename_type_ret_k basic_simple_string<C, T, A>::member_
     }
     else
     {
-        size_type   len =   traits_type::length(s);
+        size_type len = traits_type::length(s);
 
         res = alloc_buffer_(s, len, len);
     }
@@ -1528,7 +1534,7 @@ inline ss_bool_t basic_simple_string<C, T, A>::is_valid() const
         }
         else
         {
-            size_type   len =   traits_type::length(buffer->contents);
+            size_type len = traits_type::length(buffer->contents);
 
             if(buffer->length < len)
             {
@@ -2151,8 +2157,10 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(   ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
-                                                                                                        ,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch)
+inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_simple_string<C, T, A>::assign(
+    ss_typename_type_k basic_simple_string<C, T, A>::char_type const* s
+,   ss_typename_type_k basic_simple_string<C, T, A>::size_type cch
+)
 {
     STLSOFT_ASSERT(is_valid());
 
@@ -2181,18 +2189,15 @@ inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_si
             // buffer if its capacity is sufficient for our purposes
 
             string_buffer*  buffer  =   string_buffer_from_member_pointer_(m_buffer);
-            size_type       len     =   traits_type::length(s);
 
-#if 0
-            if(len < cch)
-            {
-                cch = len;
-            }
-#endif /* 0 */
+            // If:
+            //
+            // - the required size fits, AND
+            // - the source string is not within the existing buffer
 
             if( cch < buffer->capacity &&
                 (   s < &buffer->contents[0] ||
-                    s > &buffer->contents[len]))
+                    s > &buffer->contents[cch]))
             {
                 traits_type::copy(buffer->contents, s, cch);
                 buffer->contents[cch] = 0;
@@ -2200,7 +2205,7 @@ inline ss_typename_type_ret_k basic_simple_string<C, T, A>::class_type& basic_si
             }
             else
             {
-                member_pointer  new_buffer =   alloc_buffer_(s, cch, cch);
+                member_pointer new_buffer = alloc_buffer_(s, cch, cch);
 
                 destroy_buffer_(m_buffer);
                 m_buffer = new_buffer;

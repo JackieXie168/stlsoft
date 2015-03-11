@@ -4,7 +4,7 @@
  * Purpose:     Console functions.
  *
  * Created:     3rd December 2005
- * Updated:     29th July 2010
+ * Updated:     9th September 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MAJOR     2
 # define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_MINOR     2
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      18
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_REVISION  2
+# define WINSTL_VER_WINSTL_SYSTEM_H_CONSOLE_FUNCTIONS_EDIT      19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,14 +110,21 @@ namespace winstl_project
  */
 STLSOFT_INLINE ws_size_t winstl_C_get_console_width(void)
 {
-    CONSOLE_SCREEN_BUFFER_INFO  csbi;
+    HANDLE hStdOut = STLSOFT_NS_GLOBAL(GetStdHandle)(STD_OUTPUT_HANDLE);
 
-    /* csbi.dwSize = sizeof(csbi); */
-
-    if(GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi))
+    if(INVALID_HANDLE_VALUE != hStdOut)
     {
-        return csbi.dwMaximumWindowSize.X;
+        CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+        if(STLSOFT_NS_GLOBAL(GetConsoleScreenBufferInfo)(hStdOut, &csbi))
+        {
+            return csbi.dwMaximumWindowSize.X;
+        }
     }
+
+#ifdef _DEBUG
+    STLSOFT_NS_GLOBAL(GetLastError)();
+#endif /* _DEBUG */
 
     return ~stlsoft_static_cast(ws_size_t, 0);
 }

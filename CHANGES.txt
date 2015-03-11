@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  12th August 2010
+; Updated:  30th September 2010
 
 ============================================================================
 
@@ -15,6 +15,64 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.101 (30th September 2010)
+
+Summary:
+========
+
+ * stlsoft::transform_iterator can now support transformation to types that do not support default construction
+ * fixed defect in stlsoft::transform_iterator
+ * platformstl::basic_file_lines refactored, and exception-safety enhanced
+ * winstl::memory_mapped_file refactored in preparation for substantial enhancement in 1.10; also no longer supports compilers that do not have native 64-bit integers
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/iterators/transform_iterator.hpp:
+    + can now support transformation to types that do not support default construction
+    ~ fixed nasty as anything defect in decrement operator
+
+ ~ stlsoft/string/cstring_functions.hpp:
+    ~ string_dup now responds robustly when out of memory used with a compiler that doesn't throw bad_alloc
+
+ ~ stlsoft/string/simple_string.hpp:
+    ~ string_traits<> specialisation for basic_simple_string now works with any basic_simple_string<C, T, A> specialisation permutation, rather than just basic_simple_string<C>
+    ~ fix to defect in assign(cc*, size_t)
+
+ PlatformSTL:
+ ============
+
+ ~ platformstl/filesystem/file_lines.hpp:
+    ~ trivial changes, ready for 1.10 changes
+    ~ simplified refactoring, readying for 1.10
+    ~ exception-safety correction
+    ~ getting ready for major refactoring in 1.10
+
+ WinSTL:
+ =======
+
+ ~ winstl/error/error_functions.h:
+    + added character-encoding independent symbols
+    ~ conversion of deprecated winstl__??? form to winstl_C_??? form
+
+ ~ winstl/filesystem/memory_mapped_file.hpp:
+    - no longer supports compilers that do not have native 64-bit integers
+    ~ final refactoring, ready for splitting in STLSoft 1.10
+    ~ now allows for offset+requestSize for both 32-bit and 64-bit operation
+    ~ benign change of casting syntax, in order to support forthcoming separation into (C) source files in STLSoft 1.10
+
+ ~ winstl/system/console_functions.h:
+    ~ benign changes to winstl_C_get_console_width() to aid debugging
+
+ ~ winstl/winstl.h:
+    + added INVALID_SET_FILE_POINTER
 
 
 ============================================================================
@@ -32,7 +90,7 @@ Summary:
  * string_tokeniser iterator dereference operator changed to disallow return of mutable instance
  * string_view has improved comparison algorithm
  * added 3-, 4-, and 5-parameter overloads of stlsoft::minimum() and stlsoft::maximum()
- * various fixes and enhancements to platformstl::file_lines 
+ * various fixes and enhancements to platformstl::file_lines
  * added size() and empty() methods to winstl::environment_variable
  * implemented winstl::system_traits::str_n_compare_no_case()
 
@@ -249,7 +307,7 @@ Summary:
  * separated UNIXSTL's atomic types into separate file unixstl/synch/atomic_types.h
  * separated WinSTL's atomic types into separate file winstl/synch/atomic_types.h
  * fixed winstl::memory_mapped_file to handle case where an offset is specified but there are 0 remaining bytes in the file to be mapped at that location: constructs an instance with 0 size
- * fixed potential memory leak of format-message-string if windows_exception creation throws an exception 
+ * fixed potential memory leak of format-message-string if windows_exception creation throws an exception
  * moved COMSTL_CCH_GUID to comstl/comstl.h from comstl/shims/access/string/guid.hpp
  * adjusted winstl::drophandle_sequence for Win64 compatibility
  * adjusted winstl::version_info for Win64 compatibility
@@ -1805,7 +1863,7 @@ Changes:
  -------
 
   ~ atlsoft/automation/property_method_helpers.hpp:
-     ~ fixed infinite loop defect in put_MemberValue(..., CComVariant const&, ...); 
+     ~ fixed infinite loop defect in put_MemberValue(..., CComVariant const&, ...);
        now assigns directly and handles case whereby assignment fail
 
  COMSTL:

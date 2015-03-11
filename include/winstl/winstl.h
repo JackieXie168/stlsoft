@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     26th July 2010
+ * Updated:     30th August 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       12
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        181
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    3
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        183
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -144,12 +144,13 @@
 # define _WINSTL_VER_1_10_7     0x010a07ff  /*!< Version 1.10.7 (with STLSoft 1.9.91) */
 # define _WINSTL_VER_1_11_1     0x010b01ff  /*!< Version 1.11.1 (with STLSoft 1.9.93) */
 # define _WINSTL_VER_1_11_2     0x010b02ff  /*!< Version 1.11.2 (with STLSoft 1.9.100) */
+# define _WINSTL_VER_1_11_3     0x010b03ff  /*!< Version 1.11.3 (with STLSoft 1.9.101) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       11
-#define _WINSTL_VER_REVISION    1
-#define _WINSTL_VER             _WINSTL_VER_1_11_1
+#define _WINSTL_VER_REVISION    3
+#define _WINSTL_VER             _WINSTL_VER_1_11_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -220,8 +221,8 @@
  */
 
 #if !defined(_STLSOFT_VER) || \
-    _STLSOFT_VER < 0x01095dff
-# error This version of the WinSTL libraries requires STLSoft version 1.9.93, or later
+    _STLSOFT_VER < 0x010965ff
+# error This version of the WinSTL libraries requires STLSoft version 1.9.101, or later
 #endif /* _STLSOFT_VER */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -340,6 +341,24 @@
  */
 # undef     INVALID_FILE_SIZE
 # define    INVALID_FILE_SIZE           static_cast<DWORD>(0xFFFFFFFF)
+
+
+/** \def INVALID_SET_FILE_POINTER
+ * \brief A C++-only redefinition of this \#define which uses C++ cast operators to
+ *  avoid C-style cast warnings.
+ */
+# undef     INVALID_SET_FILE_POINTER
+# define    INVALID_SET_FILE_POINTER    static_cast<DWORD>(0xFFFFFFFF)
+
+#else /* ? __cplusplus */ 
+
+# ifndef INVALID_SET_FILE_POINTER
+#  define INVALID_SET_FILE_POINTER      stlsoft_c_cast(DWORD, -1)
+# endif /* !INVALID_SET_FILE_POINTER */
+
+# ifndef INVALID_FILE_ATTRIBUTES
+#  define INVALID_FILE_ATTRIBUTES       stlsoft_c_cast(DWORD, -1)
+# endif /* !INVALID_FILE_ATTRIBUTES */
 
 #endif /* __cplusplus */
 

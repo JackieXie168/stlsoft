@@ -2,7 +2,7 @@
 STLSoft - FAQ
 
 ; Created:  29th March 2002
-; Updated:  7th June 2010
+; Updated:  30th September 2010
 
 ============================================================================
 
@@ -76,7 +76,7 @@ A6:
   STLSoft 1.10 alpha-delta archive and extract it directly over the STLSoft
   1.9 directory.
 
-  (2) Include Interposition
+  (2) Include Path Interposition
 
   You download and install STLSoft 1.9 as per A2. You then download the
   STLSoft 1.10 alpha-delta archive and extract it to a separate directory,
@@ -85,7 +85,7 @@ A6:
   reverse order, as in:
 
     * -I$STLSOFT_1_10/include -I$STLSOFT/include (if you're on UNIX), OR
-    * -I%STLSOFT_1_10%/include (if you're on Windows)
+    * -I%STLSOFT_1_10%/include -I%STLSOFT%/include (if you're on Windows)
 
 
   We strongly recommend using method (2).

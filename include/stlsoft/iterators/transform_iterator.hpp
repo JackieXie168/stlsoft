@@ -6,11 +6,11 @@
  *              sequence.
  *
  * Created:     6th February 1999
- * Updated:     10th August 2009
+ * Updated:     2nd September 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  16
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      117
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     1
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  1
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,10 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
 # include <stlsoft/util/std/iterator_helper.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR
+# include <stlsoft/smartptr/shared_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR */
 
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>
@@ -208,14 +212,16 @@ public:
     transform_iterator(iterator_type it, transform_function_type pr)
         : m_it(it)
         , m_transformer(pr)
+        , m_current()
     {}
     transform_iterator()
         : m_it()
         , m_transformer()
+        , m_current()
     {}
 
     /// \brief A copy of the base iterator
-    iterator_type  base() const
+    iterator_type base() const
     {
         return m_it;
     }
@@ -253,15 +259,15 @@ public:
 public:
     effective_reference         operator *()
     {
-        m_current = m_transformer(*m_it);
+        get_current_();
 
-        return m_current;
+        return *m_current;
     }
     effective_const_reference   operator *() const
     {
-        m_current = m_transformer(*m_it);
+        get_current_();
 
-        return m_current;
+        return *m_current;
     }
 /// @}
 
@@ -271,12 +277,13 @@ public:
     class_type& operator ++()
     {
         ++m_it;
+        invalidate_current_();
 
         return *this;
     }
     class_type operator ++(int)
     {
-        class_type  ret(*this);
+        class_type ret(*this);
 
         operator ++();
 
@@ -289,13 +296,14 @@ public:
 public:
     class_type& operator --()
     {
-        ++m_it;
+        --m_it;
+        invalidate_current_();
 
         return *this;
     }
     class_type operator --(int)
     {
-        class_type  ret(*this);
+        class_type ret(*this);
 
         operator --();
 
@@ -361,16 +369,30 @@ public:
 #endif /* !STLSOFT_ITER_TXFM_ITER_OLD_DW */
 /// @}
 
+/// \name Implementation
+/// @{
+private:
+    void get_current_()
+    {
+        if(NULL == m_current.get())
+        {
+            m_current = value_type_ptr_type_(new value_type(m_transformer(*m_it)));
+        }
+    }
+    void invalidate_current_()
+    {
+        m_current.close();
+    }
+/// @}
+
 /// \name Members
 /// @{
 private:
-#if 0
-public:
-#endif /* 0 */
+    typedef shared_ptr<value_type>    value_type_ptr_type_;
+
     iterator_type           m_it;
-private:
     transform_function_type m_transformer;
-    value_type              m_current;
+    value_type_ptr_type_    m_current;
 /// @}
 
 /// \name Not to be implemented
