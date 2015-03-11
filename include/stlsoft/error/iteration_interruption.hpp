@@ -4,7 +4,7 @@
  * Purpose:     An exception thrown when an active end iterator is exhausted.
  *
  * Created:     30th November 2005
- * Updated:     16th July 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_MINOR     0
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_REVISION  1
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_EDIT      9
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_REVISION  2
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_ITERATION_INTERRUPTION_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -134,9 +134,18 @@ public:
         return message;
     }
 
-    virtual long errorCode() const throw()
+    /// The error code associated with the exception
+    virtual long get_error_code() const throw()
     {
         return m_errorCode;
+    }
+
+    /// [DEPRECATED] The error code associated with the exception
+    ///
+    /// \deprecated Use get_error_code() instead.
+    virtual long errorCode() const throw()
+    {
+        return get_error_code();
     }
 /// @}
 

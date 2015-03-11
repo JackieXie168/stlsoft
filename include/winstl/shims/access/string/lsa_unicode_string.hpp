@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file winstl/shims/access/string/lsa_unicode_string.hpp
  *
- * \brief [C, C++] Definition of the string access shims for
+ * \brief [C++] Definition of the string access shims for
  *   <code>LSA_UNICODE_STRING</code>.
  *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MAJOR     4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     0
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      102
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

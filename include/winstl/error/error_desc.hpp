@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     13th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        65
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -552,9 +552,9 @@ inline ws_size_t c_str_len_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> co
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/** \brief \ref group__concept__shim__pointer_attribute__get_ptr for winstl::basic_error_desc
+/** [DEPRECATED] \ref group__concept__shim__pointer_attribute__get_ptr for winstl::basic_error_desc
  *
- * \ingroup group__concept__shim__pointer_attribute
+ * \deprecated get_ptr is for pointers and "smart pointers".
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T

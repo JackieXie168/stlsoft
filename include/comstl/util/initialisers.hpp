@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     13th December 2006
+ * Updated:     24th December 2006
  *
  * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -53,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MAJOR       3
 # define COMSTL_VER_COMSTL_HPP_INITIALISERS_MINOR       2
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    2
-# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        69
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_REVISION    4
+# define COMSTL_VER_COMSTL_HPP_INITIALISERS_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,7 +154,7 @@ public:
     /// \param hr The HRESULT that caused the error
     void operator ()(HRESULT hr)
     {
-        throw_x(com_initialisation_exception(hr));
+        STLSOFT_THROW_X(com_initialisation_exception(hr));
     }
 /// @}
 };

@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        55
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    4
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -434,7 +434,7 @@ private:
     {
         if(!(index < size()))
         {
-            throw_x(stlsoft_ns_qual_std(out_of_range)("array view index out of range"));
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("array view index out of range"));
         }
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */

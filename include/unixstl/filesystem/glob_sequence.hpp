@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      124
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -913,7 +913,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const *direc
         if(GLOB_NOMATCH != gr)
 # endif /* GLOB_NOMATCH */
         {
-            throw_x(glob_sequence_exception(gr, 0));
+            STLSOFT_THROW_X(glob_sequence_exception(gr, 0));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 

@@ -4,7 +4,7 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     9th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        33
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    5
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -256,34 +256,17 @@ public:
     /// Function call operator, taking no parameters
     void operator ()() const
     {
-        throw_exception_(thrown_type(::GetLastError()));
+        STLSOFT_THROW_X(thrown_type(::GetLastError()));
     }
     /// Function call operator, taking one parameter
     void operator ()(HRESULT hr) const
     {
-        throw_exception_(thrown_type(hr));
+        STLSOFT_THROW_X(thrown_type(hr));
     }
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, HRESULT hr) const
     {
-        throw_exception_(thrown_type(reason, hr));
-    }
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X2>
-    static void throw_exception_(X2 const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
+        STLSOFT_THROW_X(thrown_type(reason, hr));
     }
 /// @}
 };

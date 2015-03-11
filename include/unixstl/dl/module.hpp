@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     12th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     207
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     208
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,7 +153,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
         {
-            throw_x(unix_exception("Cannot load module", errno));
+            STLSOFT_THROW_X(unix_exception("Cannot load module", errno));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -300,7 +300,7 @@ inline module::module(us_char_a_t const *moduleName, int mode)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw_x(unix_exception("Cannot load module", errno));
+        STLSOFT_THROW_X(unix_exception("Cannot load module", errno));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -311,7 +311,7 @@ inline module::module(us_char_w_t const *moduleName, int mode)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw_x(unix_exception("Cannot load module", errno));
+        STLSOFT_THROW_X(unix_exception("Cannot load module", errno));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
@@ -322,7 +322,7 @@ inline module::module(module::module_handle_type hmodule)
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(NULL == m_hmodule)
     {
-        throw_x(unix_exception("Cannot load module", errno));
+        STLSOFT_THROW_X(unix_exception("Cannot load module", errno));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }

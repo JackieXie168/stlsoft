@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     12th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     87
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 5
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     89
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -311,7 +311,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                 COMSTL_ASSERT(is_valid());
 
-                throw_x(com_exception("the enumerator does not provide the requested interface", hr));
+                STLSOFT_THROW_X(com_exception("the enumerator does not provide the requested interface", hr));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
@@ -320,7 +320,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             COMSTL_ASSERT(is_valid());
 
-            throw_x(com_exception("enumerator could not be elicited from the collection", hr));
+            STLSOFT_THROW_X(com_exception("enumerator could not be elicited from the collection", hr));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 

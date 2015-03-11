@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class for VC++ 5.
  *
  * Created:     16th October 2006
- * Updated:     21st October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5__MAJOR      1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_VC5_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ public:
         if(NULL == (m_buffer = static_cast<char_type*>(::malloc(sizeof(char_type) * (1 + n)))))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(stlsoft_ns_qual_std(bad_alloc)());
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(bad_alloc)());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
@@ -129,7 +129,7 @@ public:
         if(NULL == (m_buffer = static_cast<char_type*>(::malloc(sizeof(char_type) * (1 + n)))))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(stlsoft_ns_qual_std(bad_alloc)());
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(bad_alloc)());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
@@ -156,7 +156,7 @@ public:
         if(NULL == (m_buffer = static_cast<char_type*>(::malloc(sizeof(char_type) * (1 + n)))))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(stlsoft_ns_qual_std(bad_alloc)());
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(bad_alloc)());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else
@@ -175,7 +175,7 @@ public:
         if(NULL == (m_buffer = static_cast<char_type*>(::malloc(sizeof(char_type) * (1 + rhs.size())))))
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(stlsoft_ns_qual_std(bad_alloc)());
+            STLSOFT_THROW_X(stlsoft_ns_qual_std(bad_alloc)());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
         else

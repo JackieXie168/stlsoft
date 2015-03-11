@@ -4,7 +4,7 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback for Mac
  *              builds
@@ -43,7 +43,7 @@
 
 /** \file stlsoft/shims/access/string/std/dirent.hpp
  *
- * \brief [C, C++] Definition of the string access shims for
+ * \brief [C++] Definition of the string access shims for
  *   <code>struct dirent</code>.
  *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
@@ -55,7 +55,7 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_MINOR       0
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        47
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_STRING_HPP_DIRENT_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

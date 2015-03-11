@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     12th December 2006
+ * Updated:     19th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      0
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      1
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   1
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       485
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       487
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -179,22 +179,26 @@ inline void swap(interface_ptr<T> &lhs, interface_ptr<T> &rhs)
     lhs.swap(rhs);
 }
 
-////////////////////////////////////////////////////////////////////////////
-// Shims
-
-/** \brief Indicates whether the
- *    \link comstl::interface_ptr interface_ptr\endlink instance is empty.
- *
- * \ingroup group__concept__shim__collection_attribute
+/* /////////////////////////////////////////////////////////////////////////
+ * Deprecated Shims
  */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 template <ss_typename_param_k T>
 inline cs_bool_t is_empty(interface_ptr<T> const &p)
 {
     return NULL == p.get_interface_ptr();
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Shims
+ */
+
 /** \brief 
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
 inline T const *get_ptr(interface_ptr<T> const &p)
@@ -203,7 +207,7 @@ inline T const *get_ptr(interface_ptr<T> const &p)
 }
 
 /** \brief 
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
 inline T *get_ptr(interface_ptr<T> &p)
@@ -368,7 +372,11 @@ namespace stlsoft
 
 using ::comstl::get_ptr;
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 using ::comstl::is_empty;
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

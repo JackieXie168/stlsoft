@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 8
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     11
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 9
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -382,9 +382,9 @@ public:
     /// \param hwndParent [in] Handle to a window to act as the parent for
     ///  the dialog(s) of the applet(s) contained in the module
     ///
-    /// \exception control_panel_exception Thrown if the applet module
+    /// \exception winstl::control_panel_exception Thrown if the applet module
     ///  initialisation fails.
-    /// \exception resource_exception Thrown if the icon cannot be loaded
+    /// \exception winstl::resource_exception Thrown if the icon cannot be loaded
     ///  for a given applet, and
     ///  \link applet_module::load_flags ignoreIconLoadFailures\endlink.
     ss_explicit_k applet_module(TCHAR const *path, int flags = ignoreIconLoadFailures, HWND hwndParent = NULL);
@@ -489,7 +489,7 @@ inline applet::applet(applet_module_base *module, applet::index_type index)
         0 == (m_module->m_flags & applet_module::dontExpectNonZeroInit))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(control_panel_exception("Applet initialisation failed", ::GetLastError()));
+        STLSOFT_THROW_X(control_panel_exception("Applet initialisation failed", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(ERROR_DLL_INIT_FAILED);
 
@@ -514,7 +514,7 @@ inline applet::applet(applet_module_base *module, applet::index_type index)
                     applet_module::ignoreIconLoadFailures == (m_module->m_flags & applet_module::ignoreIconLoadFailures))
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    throw_x(resource_exception("Could not load the applet icon", ::GetLastError(), MAKEINTRESOURCE(info.idIcon), RT_ICON));
+                    STLSOFT_THROW_X(resource_exception("Could not load the applet icon", ::GetLastError(), MAKEINTRESOURCE(info.idIcon), RT_ICON));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
             }
@@ -720,7 +720,7 @@ inline void applet_module::init_(int flags, HWND hwndParent)
     if(NULL == m_module.get_symbol("CPlApplet", m_pfn))
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(control_panel_exception("Control panel entry point not found", ::GetLastError()));
+        STLSOFT_THROW_X(control_panel_exception("Control panel entry point not found", ::GetLastError()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     else

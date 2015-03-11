@@ -4,7 +4,7 @@
  * Purpose:     Contains the is_empty access shim.
  *
  * Created:     26th July 2006
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,9 +40,9 @@
 
 /** \file acestl/shims/attribute/is_empty.hpp
  *
- * \brief [C, C++] Primary include file for is_empty attribute shims
+ * \brief [C++] Primary include file for is_empty attribute shims
  *   for ACE types.
- *  (\ref group__concept__shim__collection_attribute "Collection Attribute Shims" Concept.)
+ *  (\ref group__concept__shim__collection_attribute__is_empty "is_empty Collection Attribute Shim".)
  */
 
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY
@@ -50,9 +50,9 @@
 
 #ifndef ACESTL_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MAJOR       1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MINOR       0
+# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MINOR       1
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_REVISION    1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_EDIT        3
+# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_EDIT        4
 #endif /* !ACESTL_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,6 +65,9 @@
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE
 # include <acestl/shims/attribute/is_empty/message_queue.hpp>
 #endif /* !ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_MESSAGE_QUEUE */
+#ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE
+# include <acestl/shims/attribute/is_empty/string_base.hpp>
+#endif /* !ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_IS_EMPTY_HPP_STRING_BASE */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

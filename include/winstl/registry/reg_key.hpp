@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     13th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        107
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    3
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -209,7 +209,7 @@ public:
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -231,7 +231,7 @@ public:
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -254,7 +254,7 @@ public:
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -276,7 +276,7 @@ public:
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -296,7 +296,7 @@ public:
      * \note The instance will hold a <i>different</i> handle to the
      *  <i>same</i> registry key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -311,7 +311,7 @@ public:
      * \note The instance will hold a <i>different</i> handle to the
      *  <i>same</i> registry key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be opened. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -386,7 +386,7 @@ public:
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be created. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -401,7 +401,7 @@ public:
      * \param accessMask A mask of <code>KEY_*</code> flags that define the
      *  required access to the key.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown indicating why the given key could not be created. If not,
      *  then the instance constructed will be empty, as denoted by a <code>NULL</code>
@@ -425,7 +425,7 @@ public:
      *  then false will also be returned for any other reason, and the
      *  reason will be available via <code>::GetLastError()</code>.)
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the sub-key exists but cannot be deleted.
      */
@@ -442,7 +442,7 @@ public:
      *  then false will also be returned for any other reason, and the
      *  reason will be available via <code>::GetLastError()</code>.)
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the sub-key exists but cannot be deleted.
      */
@@ -472,7 +472,7 @@ public:
 public:
     /** \brief Sets the named value to the value of the given 32-bit integer.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -480,7 +480,7 @@ public:
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /** \brief Sets the named value to the value of the given 64-bit integer.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -492,7 +492,7 @@ public:
     /// \param value The value of the value
     /// \param type The type of the value. Must be one of REG_SZ, REG_EXPAND_SZ or REG_MULTI_SZ.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -503,14 +503,14 @@ public:
     /// \param values The string array.
     /// \param numValues Number of elements in the string array.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
     bool_type   set_value(char_type const *valueName, char_type const **values, size_type numValues);
     /** \brief Sets the named value to the given binary value.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -519,7 +519,7 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /** \brief Sets the named value to the value of the given 32-bit integer.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -533,7 +533,7 @@ public:
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /** \brief Sets the named value to the value of the given 64-bit integer.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -551,7 +551,7 @@ public:
     /// \param value The value of the value
     /// \param type The type of the value. Must be one of REG_SZ, REG_EXPAND_SZ or REG_MULTI_SZ.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -568,7 +568,7 @@ public:
     /// \param values The string array.
     /// \param numValues Number of elements in the string array.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -581,7 +581,7 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     /** \brief Sets the named value to the given binary value.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -596,7 +596,7 @@ public:
     /// \note This method is provided solely to disambiguate between the DWORD and ws_uint64_t overloads
     /// when using integer literals.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -607,7 +607,7 @@ public:
     /// \note This method is provided solely to disambiguate between the DWORD and ws_uint64_t overloads
     /// when using integer literals.
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value cannot be set.
      */
@@ -628,7 +628,7 @@ public:
      *  then false will also be returned for any other reason, and the
      *  reason will be available via <code>::GetLastError()</code>.)
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value exists but cannot be deleted.
      */
@@ -645,7 +645,7 @@ public:
      *  then false will also be returned for any other reason, and the
      *  reason will be available via <code>::GetLastError()</code>.)
      *
-     * \exception registry_exception If \ref page__exception_agnostic "exception handling is enabled",
+     * \exception winstl::registry_exception If \ref page__exception_agnostic "exception handling is enabled",
      *  an instance of \link winstl::registry_exception registry_exception\endlink
      *  will be thrown if the value exists but cannot be deleted.
      */
@@ -807,7 +807,7 @@ inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_r
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Could not open key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("Could not open key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         hkey = NULL;
@@ -830,7 +830,7 @@ inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_r
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Could not duplicate key", res));
+        STLSOFT_THROW_X(registry_exception("Could not duplicate key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         hkeyDup = NULL;
@@ -997,7 +997,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T,
     if(ERROR_SUCCESS != res)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(registry_exception("Could not create sub-key", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("Could not create sub-key", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         ::SetLastError(res);
         return class_type();
@@ -1024,7 +1024,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, 
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(registry_exception("Could not delete sub-key", res));
+            STLSOFT_THROW_X(registry_exception("Could not delete sub-key", res));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through
@@ -1096,7 +1096,7 @@ inline /* static */ ss_typename_type_k basic_reg_key<C, T, A>::result_type basic
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(ERROR_SUCCESS != res)
     {
-        throw_x(registry_exception("Could not create value", static_cast<DWORD>(res)));
+        STLSOFT_THROW_X(registry_exception("Could not create value", static_cast<DWORD>(res)));
     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -1212,7 +1212,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::bool_type basic_reg_key<C, T, 
             return true;
         default:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(registry_exception("Could not delete value", static_cast<DWORD>(res)));
+            STLSOFT_THROW_X(registry_exception("Could not delete value", static_cast<DWORD>(res)));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::SetLastError(res);
             // Fall through

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     16th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     107
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -629,6 +629,8 @@ private:
  * Implementation
  */
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline /* static */ FILETIME fixed_file_info::calc_FileDateTime_(VS_FIXEDFILEINFO const *ffi)
 {
     FILETIME    ft = {  ffi->dwFileDateLS, ffi->dwFileDateMS };
@@ -1076,7 +1078,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
         if(NULL == hinst)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(version_info_exception("Could not elicit version information from module", ::GetLastError()));
+            STLSOFT_THROW_X(version_info_exception("Could not elicit version information from module", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             return NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1111,7 +1113,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
         allocator.deallocate(static_cast<ws_byte_t*>(pv), cb);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(version_info_exception("Could not elicit version information from module", ::GetLastError()));
+        STLSOFT_THROW_X(version_info_exception("Could not elicit version information from module", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1149,7 +1151,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
         if(NULL == hinst)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(version_info_exception("Could not elicit version information from module", ::GetLastError()));
+            STLSOFT_THROW_X(version_info_exception("Could not elicit version information from module", ::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             return NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1178,7 +1180,7 @@ inline /* static */ VS_VERSIONINFO_hdr const *version_info::retrieve_module_info
         allocator.deallocate(static_cast<ws_byte_t*>(pv), cb);
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x((version_info_exception("Could not elicit version information from module", ::GetLastError())));
+        STLSOFT_THROW_X((version_info_exception("Could not elicit version information from module", ::GetLastError())));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         pv = NULL;
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1338,6 +1340,8 @@ inline void version_info::init_()
     STLSOFT_SUPPRESS_UNUSED(b);
 #endif /* _DEBUG */
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

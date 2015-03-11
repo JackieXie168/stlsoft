@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta33
+File:     STLSoft-ReleaseNotes-1.9.1-beta34
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  13th December 2006
+Updated:  24th December 2006
 
 ============================================================================
 
@@ -25,6 +25,160 @@ Updated:  13th December 2006
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 34 (24th December 2006):
+
+Changes:
+========
+
+ general
+ -------
+
+ - replacement of all per-component exception throwing mechanisms with
+   stlsoft::throw_x() utility function
+
+ STLSoft
+ -------
+
+ - deprecation of stlsoft::cwd_stack::is_empty() method
+ - removal of stlsoft::is_empty attribute shim for stlsoft::searchspec_sequence
+
+ ACESTL
+ ------
+
+ ~ corrected bug in acestl::message_queue_sequence::empty()
+ ~ corrections to stlsoft::is_empty attribute shim for ACE_Message_Queue
+
+ ATLSTL
+ ------
+
+ ~ corrections to #includes in atlstl/window/window.hpp
+
+Removals:
+=========
+
+ COMSTL
+ ------
+
+ - deprecation of stlsoft::is_empty attribute shim for interface casts
+ - deprecation of stlsoft::is_empty attribute shim for comstl::interface_ptr
+
+ InetSTL
+ -------
+
+ - removal of stlsoft::is_empty attribute shim for inetstl::basic_findfile_sequence
+ - removal of stlsoft::is_empty attribute shim for inetstl::searchspec_sequence
+
+ WinSTL
+ ------
+
+ - deprecation of stlsoft::is_empty attribute shim for winstl::basic_findfile_sequence
+ - deprecation of stlsoft::is_empty attribute shim for winstl::basic_findvolume_sequence
+
+
+Additions:
+==========
+
+ ACESTL
+ ------
+
+ + stlsoft::is_empty attribute shim overloads for ACE_String_Base
+
+ MFCSTL
+ ------
+
+ + stlsoft::is_empty attribute shim overloads for MFC array containers
+ + stlsoft::is_empty attribute shim overloads for MFC list containers
+ + stlsoft::is_empty attribute shim overloads for MFC CString
+
+ STLSoft
+ -------
+
+ + stlsoft::cwd_stack::empty() method
+ + stlsoft::get_ptr attribute shim overloads for stlsoft::ptr_proxy
+ + stlsoft::conversion_error exception class
+ + stlsoft::wide2multibyte and stlsoft::multibyte2wide now throw an instance
+   of stlsoft::conversion_error exception if the conversion fails (when
+   exception handling support is on).
+ + stlsoft::is_empty attribute shim overload for standard containers
+
+ WinSTL
+ ------
+
+ + winstl::conversion_error exception class
+ + winstl::wide2multibyte and winstl::multibyte2wide now throw an instance
+   of winstl::conversion_error exception if the conversion fails (when
+   exception handling support is on).
+ + winstl::to_FILETIME conversion shim
+ + winstl::to_SYSTEMTIME conversion shim
+
+Diffs:
+======
+
+  root-dir-1: H:\3Pty\STLSoft\1.9.1-beta33
+  root-dir-2: H:\3Pty\STLSoft\1.9.1-beta34
+Items unchanged from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34:             1415
+Items changed from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34:               73
+Items changed (major) from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34:       0
+Items changed (minor) from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34:       13
+  include\acestl\shims\attribute\is_empty.hpp                                   1.0.1.3      => 1.1.1.4     ; 12th December 2006  => 18th December 2006 
+  include\comstl\conversion\interface_cast.hpp                                  5.1.3.103    => 5.2.1.105   ; 13th December 2006  => 19th December 2006 
+  include\comstl\smartptr\interface_ptr.hpp                                     7.0.1.485    => 7.1.1.487   ; 12th December 2006  => 19th December 2006 
+  include\inetstl\error\exceptions.hpp                                          4.0.1.31     => 4.1.1.33    ; 15th September 2006 => 18th December 2006 
+  include\inetstl\filesystem\searchspec_sequence.hpp                            5.0.1.42     => 5.1.1.43    ; 16th July 2006      => 19th December 2006 
+  include\platformstl\filesystem\cwd_stack.hpp                                  2.0.1.14     => 2.1.1.16    ; 16th July 2006      => 18th December 2006 
+  include\stlsoft\filesystem\searchspec_sequence.hpp                            4.0.2.42     => 4.1.1.44    ; 7th July 2006       => 19th December 2006 
+  include\stlsoft\ptr_proxy.hpp                                                 3.0.2.58     => 3.1.1.60    ; 7th July 2006       => 18th December 2006 
+  include\unixstl\error\exceptions.hpp                                          4.1.1.39     => 4.2.1.42    ; 16th September 2006 => 18th December 2006 
+  include\winstl\conversion\char_conversions.hpp                                5.0.2.76     => 5.1.1.78    ; 12th December 2006  => 18th December 2006 
+  include\winstl\error\exceptions.hpp                                           4.2.1.43     => 4.3.1.46    ; 15th September 2006 => 18th December 2006 
+  include\winstl\filesystem\findfile_sequence.hpp                               4.4.3.189    => 4.5.1.190   ; 13th December 2006  => 19th December 2006 
+  include\winstl\filesystem\findvolume_sequence.hpp                             4.2.1.96     => 4.3.1.97    ; 13th December 2006  => 19th December 2006 
+Items changed (revision) from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34:    21
+  include\acestl\collections\message_queue_sequence.hpp                         2.1.3.41     => 2.1.4.43    ; 27th November 2006  => 18th December 2006 
+  include\acestl\shims\attribute\is_empty\message_queue.hpp                     2.0.1.16     => 2.0.3.19    ; 12th December 2006  => 20th December 2006 
+  include\atlstl\window\window.hpp                                              1.0.1.1      => 1.0.2.2     ; 25th November 2006  => 16th December 2006 
+  include\comstl\error\exceptions.hpp                                           2.0.2.33     => 2.0.3.34    ; 9th December 2006   => 15th December 2006 
+  include\comstl\string\bstr_functions.h                                        4.2.1.70     => 4.2.2.71    ; 9th December 2006   => 23rd December 2006 
+  include\inetstl\filesystem\findfile_sequence.hpp                              3.0.2.118    => 3.0.3.120   ; 13th December 2006  => 18th December 2006 
+  include\mfcstl\collections\cstring_adaptors.hpp                               4.0.3.72     => 4.0.4.73    ; 18th October 2006   => 15th December 2006 
+  include\stlsoft\container_access.hpp                                          1.3.3.24     => 1.3.4.25    ; 18th October 2006   => 15th December 2006 
+  include\stlsoft\containers\frequency_map.hpp                                  2.0.3.9      => 2.0.4.10    ; 18th October 2006   => 15th December 2006 
+  include\stlsoft\conversion\char_conversions.hpp                               5.0.2.76     => 5.0.3.77    ; 12th December 2006  => 18th December 2006 
+  include\stlsoft\conversion\ptr_cast.hpp                                       4.0.3.26     => 4.0.4.27    ; 11th December 2006  => 15th December 2006 
+  include\stlsoft\error\exceptions.hpp                                          4.0.1.41     => 4.0.2.42    ; 15th September 2006 => 15th December 2006 
+  include\stlsoft\error\iteration_interruption.hpp                              2.0.1.9      => 2.0.2.10    ; 16th July 2006      => 18th December 2006 
+  include\unixstl\dl\dl_call.hpp                                                2.3.2.28     => 2.3.3.29    ; 18th October 2006   => 15th December 2006 
+  include\unixstl\filesystem\path.hpp                                           6.4.2.213    => 6.4.3.214   ; 13th December 2006  => 15th December 2006 
+  include\unixstl\synch\process_mutex.hpp                                       4.4.3.58     => 4.4.4.59    ; 12th December 2006  => 17th December 2006 
+  include\unixstl\synch\thread_mutex.hpp                                        4.1.2.40     => 4.1.3.41    ; 12th December 2006  => 17th December 2006 
+  include\winstl\dl\dl_call.hpp                                                 2.3.2.29     => 2.3.3.30    ; 17th October 2006   => 15th December 2006 
+  include\winstl\filesystem\file_functions.hpp                                  2.3.2.38     => 2.3.3.39    ; 18th October 2006   => 15th December 2006 
+  include\winstl\filesystem\path.hpp                                            6.4.2.222    => 6.4.3.223   ; 13th December 2006  => 15th December 2006 
+  include\winstl\synch\tss_index.hpp                                            4.0.1.28     => 4.0.2.29    ; 16th September 2006 => 15th December 2006 
+Items changed (edit) from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34:        39
+Items changed (unversioned) from H:\3Pty\STLSoft\1.9.1-beta33 to H:\3Pty\STLSoft\1.9.1-beta34: 0
+Items deleted from H:\3Pty\STLSoft\1.9.1-beta33:                                               0
+Items added to H:\3Pty\STLSoft\1.9.1-beta34:                                                   16
+  H:\3Pty\STLSoft\1.9.1-beta34\include\acestl\shims\attribute\is_empty\string_base.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\mfcstl\shims\attribute\is_empty.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\mfcstl\shims\attribute\is_empty\arrays.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\mfcstl\shims\attribute\is_empty\cstring.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\mfcstl\shims\attribute\is_empty\lists.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\stlsoft\error\conversion_error.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\stlsoft\shims\attribute\is_empty.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\stlsoft\shims\attribute\is_empty\std\container.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\stlsoft\shims\attribute\is_empty\util\features.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\error\conversion_error.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\shims\conversion\to_FILETIME.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\shims\conversion\to_FILETIME\FILETIME.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\shims\conversion\to_FILETIME\SYSTEMTIME.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\shims\conversion\to_SYSTEMTIME.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\shims\conversion\to_SYSTEMTIME\FILETIME.hpp
+  H:\3Pty\STLSoft\1.9.1-beta34\include\winstl\shims\conversion\to_SYSTEMTIME\SYSTEMTIME.hpp
 
 
 ============================================================================

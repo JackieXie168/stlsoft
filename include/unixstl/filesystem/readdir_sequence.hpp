@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       109
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       110
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -511,7 +511,7 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
         if(0 == n)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_x(readdir_sequence_exception("Failed to enumerate directory", errno));
+            STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             traits_type::str_n_copy(&path[0], directory, path.size());
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -536,7 +536,7 @@ inline readdir_sequence::const_iterator readdir_sequence::begin() const
     if(NULL == dir)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        throw_x(readdir_sequence_exception("Failed to enumerate directory", errno));
+        STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return const_iterator();
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -678,7 +678,7 @@ inline readdir_sequence::const_iterator::class_type &readdir_sequence::const_ite
             if(0 != errno)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                throw_x(readdir_sequence_exception("Partial failure of directory enumeration", errno));
+                STLSOFT_THROW_X(readdir_sequence_exception("Partial failure of directory enumeration", errno));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }

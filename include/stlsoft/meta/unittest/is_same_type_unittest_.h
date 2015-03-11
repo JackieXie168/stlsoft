@@ -1,5 +1,5 @@
 
-// Updated: 10th November 2006
+// Updated: 24th December 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE)
 # error This file cannot be directly included, and should only be included within stlsoft/meta/is_same_type.hpp
@@ -44,7 +44,7 @@ namespace unittest
 			// Same type
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<void, void>::type()));
+			void(sizeof(test_yn_type_(is_same_type<void, void>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<void, void>::value)
@@ -56,7 +56,7 @@ namespace unittest
 			}
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<int, int>::type()));
+			void(sizeof(test_yn_type_(is_same_type<int, int>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<int, int>::value)
@@ -68,7 +68,7 @@ namespace unittest
 			}
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<short, short>::type()));
+			void(sizeof(test_yn_type_(is_same_type<short, short>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<short, short>::value)
@@ -80,7 +80,7 @@ namespace unittest
 			}
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<double, double>::type()));
+			void(sizeof(test_yn_type_(is_same_type<double, double>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<double, double>::value)
@@ -92,7 +92,7 @@ namespace unittest
 			}
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<int*, int*>::type()));
+			void(sizeof(test_yn_type_(is_same_type<int*, int*>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<int*, int*>::value)
@@ -104,7 +104,7 @@ namespace unittest
 			}
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<ist_Parent, ist_Parent>::type()));
+			void(sizeof(test_yn_type_(is_same_type<ist_Parent, ist_Parent>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<ist_Parent, ist_Parent>::value)
@@ -116,7 +116,7 @@ namespace unittest
 			}
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
-			sizeof(test_yn_type_(is_same_type<ist_Child, ist_Child>::type()));
+			void(sizeof(test_yn_type_(is_same_type<ist_Child, ist_Child>::type())));
 #endif /* !compiler */
 
 			if(0 == is_same_type<ist_Child, ist_Child>::value)

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     13th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    6
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     289
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 2
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     290
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -170,10 +170,11 @@
 # define _STLSOFT_VER_1_9_1_B31 0x0109011f  /*!< Version 1.9.1 beta 31 (6th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B32 0x01090120  /*!< Version 1.9.1 beta 32 (6th Dec 2006) */
 # define _STLSOFT_VER_1_9_1_B33 0x01090121  /*!< Version 1.9.1 beta 33 (13th Dec 2006) */
+# define _STLSOFT_VER_1_9_1_B34 0x01090122  /*!< Version 1.9.1 beta 34 (24th Dec 2006) */
 # define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (??? ??? 2006) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B33
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_1_B34
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -1566,20 +1567,38 @@ private:
  *        (which only took me six years to discover!) is to apply *& to the
  *        instance.
  */
+# if defined(STLSOFT_COMPILER_IS_BORLAND)
+
+template <ss_typename_param_k X>
+inline void throw_x(X const &x) /* throw(X) */
+{
+    X	x2(x);
+
+	throw x2;
+}
+
+#  define STLSOFT_THROW_X(x)	stlsoft_ns_qual(throw_x)(x)
+
+# else 
+
 template <ss_typename_param_k X>
 inline void throw_x(X const &x)
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
+#  if   defined(STLSOFT_COMPILER_IS_MSVC) && \
+        _MSC_VER < 1200
 {
     X const *px =   &x;
 
     throw *px;
 }
-#else /* ? compiler */
+#  else /* ? compiler */
 {
     throw x;
 }
-#endif /* compiler */
+#  endif /* compiler */
+
+#  define STLSOFT_THROW_X(x)	stlsoft_ns_qual(throw_x)(x)
+
+# endif /* compiler */
 
 #endif /* __cplusplus */
 

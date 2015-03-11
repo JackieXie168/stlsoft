@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     13th December 2006
+ * Updated:     19th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MAJOR     4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_MINOR     3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      96
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDVOLUME_SEQUENCE_EDIT      97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -497,12 +497,19 @@ inline C const *c_str_ptr_null(winstl_ns_qual(basic_findvolume_sequence_value_ty
 }
 
 
+/* /////////////////////////////////////////////////////////////////////////
+ * Deprecated Shims
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C, ss_typename_param_k T>
 inline ws_bool_t is_empty(winstl_ns_qual(basic_findvolume_sequence_value_type)<C, T> const &v)
 {
     return '\0' == v[0];
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -761,7 +768,11 @@ using ::winstl::c_str_ptr_null;
 //using ::winstl::c_str_ptr_null_a;
 //using ::winstl::c_str_ptr_null_w;
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 using ::winstl::is_empty;
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

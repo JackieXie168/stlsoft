@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     15th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       2
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        43
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,14 +114,14 @@ namespace winstl_project
  *
  */
 class windows_exception
-    : public os_exception
+    : public stlsoft_ns_qual(os_exception)
 {
 /// \name Member Types
 /// @{
 protected:
     typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
-    typedef os_exception                        parent_class_type;
+    typedef stlsoft_ns_qual(os_exception)       parent_class_type;
     typedef ws_dword_t                          error_code_type;
     typedef windows_exception                   class_type;
 /// @}
@@ -186,14 +186,18 @@ public:
         }
     }
 
+    /// The error code associated with the exception
     error_code_type get_error_code() const
     {
         return m_errorCode;
     }
 
+    /// [DEPRECATED] The error code associated with the exception
+    ///
+    /// \deprecated Use get_error_code() instead.
     error_code_type last_error() const
     {
-        return m_errorCode;
+        return get_error_code();
     }
 
     char const *strerror() const
@@ -348,34 +352,17 @@ public:
     /// Function call operator, taking no parameters
     void operator ()() const
     {
-        throw_exception_(thrown_type(::GetLastError()));
+        STLSOFT_THROW_X(thrown_type(::GetLastError()));
     }
     /// Function call operator, taking one parameter
     void operator ()(error_code_type err) const
     {
-        throw_exception_(thrown_type(err));
+        STLSOFT_THROW_X(thrown_type(err));
     }
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, error_code_type err) const
     {
-        throw_exception_(thrown_type(reason, err));
-    }
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X>
-    static void throw_exception_(X const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
+        STLSOFT_THROW_X(thrown_type(reason, err));
     }
 /// @}
 };
@@ -402,34 +389,17 @@ public:
     /// Function call operator, taking two parameters
     void operator ()(char const *reason, error_code_type err) const
     {
-        throw_exception_(thrown_type(reason, err));
+        STLSOFT_THROW_X(thrown_type(reason, err));
     }
     /// Function call operator, taking three parameters
     void operator ()(char const *reason, error_code_type err, LPCTSTR resourceId) const
     {
-        throw_exception_(thrown_type(reason, err, resourceId));
+        STLSOFT_THROW_X(thrown_type(reason, err, resourceId));
     }
     /// Function call operator, taking four parameters
     void operator ()(char const *reason, error_code_type err, LPCTSTR resourceId, LPCTSTR resourceType) const
     {
-        throw_exception_(thrown_type(reason, err, resourceId, resourceType));
-    }
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X>
-    static void throw_exception_(X const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
+        STLSOFT_THROW_X(thrown_type(reason, err, resourceId, resourceType));
     }
 /// @}
 };

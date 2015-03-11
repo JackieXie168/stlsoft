@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file acestl/shims/access/string/inet_addr.hpp
  *
- * \brief [C, C++] Definition of the string access shims for
+ * \brief [C++] Definition of the string access shims for
  *   <code>ACE_INET_Addr</code>.
  *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MAJOR      2
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_MINOR      0
 # define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_REVISION   1
-# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       29
+# define ACESTL_VER_ACESTL_SHIMS_ACCESS_STRING_HPP_INET_ADDR_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

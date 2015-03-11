@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -44,7 +44,7 @@
 
 /** \file stlsoft/shims/access/string/std/basic_string.hpp
  *
- * \brief [C, C++] Definition of the string access shims for
+ * \brief [C++] Definition of the string access shims for
  *   std::basic_string (and its related compiler/library-dependent forms).
  *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      85
+# define STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_BASIC_STRING_EDIT      86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

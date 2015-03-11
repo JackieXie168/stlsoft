@@ -4,7 +4,7 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     27th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 6
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     226
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_REVISION 7
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SIMPLE_STRING_EDIT     227
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1879,7 +1879,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::reference basic_simple_s
 
     if(index >= size())
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -1897,7 +1897,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::const_reference basic_si
 
     if(index > size())
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -1915,7 +1915,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::class_type basic_simple_
 
     if(pos > size())
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());
@@ -1938,7 +1938,7 @@ inline ss_typename_type_k basic_simple_string<C, T, A>::class_type basic_simple_
 
     if(pos > size())
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("index out of range"));
     }
 
     STLSOFT_ASSERT(is_valid());

@@ -4,7 +4,7 @@
  * Purpose:     Contains string_traits for ATL.
  *
  * Created:     28th April 2005
- * Updated:     7th July 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file atlstl/string/string_traits.hpp
  *
- * \brief [C, C++] Specialisation of the stlsoft::string_traits traits class
+ * \brief [C++] Specialisation of the stlsoft::string_traits traits class
  *   for ATL types.
  *  (\ref group__library__string "String" Library.)
  */
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_MINOR      0
 # define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_REVISION   1
-# define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_EDIT       13
+# define ATLSTL_VER_ATLSTL_STRING_HPP_STRING_TRAITS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

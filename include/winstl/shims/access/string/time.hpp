@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Thanks to:   David Wang, for spotting an error in one of the shim
  *              functions.
@@ -43,7 +43,7 @@
 
 /** \file winstl/shims/access/string/time.hpp
  *
- * \brief [C, C++] Definition of the string access shims for
+ * \brief [C++] Definition of the string access shims for
  *   <code>FILETIME</code> and <code>SYSTEMTIME</code>.
  *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MAJOR       2
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_REVISION    2
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        35
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_TIME_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

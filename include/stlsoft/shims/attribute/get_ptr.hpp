@@ -4,7 +4,7 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,9 +40,9 @@
 
 /** \file stlsoft/shims/access/get_ptr.hpp
  *
- * \brief [C, C++] Primary include file for pointer attribute shims
+ * \brief [C++] Primary include file for pointer attribute shims
  *   representing built-in and standard smart pointer class types.
- *  (\ref group__concept__shim__pointer_attribute "Pointer Attribute Shims".)
+ *  (\ref group__concept__shim__pointer_attribute__get_ptr "Pointer Attribute Shims".)
  */
 
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_MAJOR      4
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_MINOR      0
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_REVISION   1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_EDIT       39
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_HPP_GET_PTR_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

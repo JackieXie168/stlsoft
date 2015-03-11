@@ -4,7 +4,7 @@
  * Purpose:     Safe interface casting functions.
  *
  * Created:     25th June 2002
- * Updated:     13th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MAJOR      5
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   3
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       103
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_MINOR      2
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_REVISION   2
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_INTERFACE_CAST_EDIT       106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,7 @@ public:
     /// \param riid The REFIID that could not be acquired
     void operator ()(HRESULT hr, REFIID riid) stlsoft_throw_1(bad_interface_cast)
     {
-        throw_x(bad_interface_cast(riid, hr));
+        STLSOFT_THROW_X(bad_interface_cast(riid, hr));
     }
 };
 
@@ -305,6 +305,8 @@ template<   ss_typename_param_k I
         >
 class interface_cast_base
 {
+/// \name Member Types
+/// @{
 public:
     /// The interface pointer type
     typedef I                                                               interface_pointer_type;
@@ -320,18 +322,30 @@ public:
     typedef ss_typename_type_k exception_policy_type::thrown_type           thrown_type;
     /// The type of the current parameterisation
     typedef interface_cast_base<I, R, X>                                    class_type;
+/// @}
 
-// Construction
+/// \name Member Constants
+/// @{
+protected:
+    enum NullThrowPermission
+    {
+            allowNull
+        ,   throwOnNull
+    };
+/// @}
+
+/// \name Construction
+/// @{
 protected:
     /// Constructor that attempts the speculative cast
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
-    ss_explicit_k interface_cast_base(J &j)
-        : m_pi(do_cast(simple_interface_cast(j)))
+    ss_explicit_k interface_cast_base(J &j, NullThrowPermission permission)
+        : m_pi(do_cast(simple_interface_cast(j), permission))
     {}
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
-    ss_explicit_k interface_cast_base(LPUNKNOWN punk)
-        : m_pi(do_cast(punk))
+    ss_explicit_k interface_cast_base(LPUNKNOWN punk, NullThrowPermission permission)
+        : m_pi(do_cast(punk, permission))
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
@@ -342,7 +356,6 @@ protected:
         addref(m_pi);
     }
 
-protected:
     /// Releases the acquired interface pointer according to the \c release_type policy
     ~interface_cast_base() stlsoft_throw_0()
     {
@@ -351,20 +364,29 @@ protected:
             release_type()(m_pi);
         }
     }
+/// @}
 
-// Implementation
-protected:
+/// \name Implementation
+/// @{
+private:
     /// Perform the cast, throwing the \c exception_policy_type's \c thrown_type if the
     /// requested interface cannot be acquired.
     ///
     /// \param punk The interface pointer to cast
     /// \return The converted interface pointer
-    static interface_pointer_type do_cast(LPUNKNOWN punk) stlsoft_throw_1(thrown_type)
+    static interface_pointer_type do_cast(LPUNKNOWN punk, NullThrowPermission permission) stlsoft_throw_1(thrown_type)
     {
         interface_pointer_type  pi;
 
         if(NULL == punk)
         {
+            if(throwOnNull == permission)
+            {
+                exception_policy_type()(E_INVALIDARG, IID_traits<interface_pointer_type>().iid());
+
+                COMSTL_MESSAGE_ASSERT("The derived class does not support null pointers, but the exception policy failed to throw an exception: the program's behaviour will be undefined!", 0);
+            }
+
             pi = NULL;
         }
         else
@@ -382,7 +404,11 @@ protected:
 
         return pi;
     }
+/// @}
 
+/// \name Accessors
+/// @{
+protected:
     /// Returns a non-mutating reference to the acquired interface pointer
     interface_pointer_type const &get_pointer_()
     {
@@ -394,16 +420,21 @@ protected:
     {
         return m_pi;
     }
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     interface_pointer_type const    m_pi;
+/// @}
 
-// Not to be implemented
+/// \name Not to be implemented
+/// @{
 protected:
     interface_cast_base(class_type const &rhs);
 private:
     class_type const &operator =(class_type const &rhs);
+/// @}
 };
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
@@ -447,18 +478,24 @@ public:
 # ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_noaddref(J &j)
-        : parent_class_type(j)
-    {}
+        : parent_class_type(j, parent_class_type::throwOnNull)
+    {
+        COMSTL_MESSAGE_ASSERT("Cannot initialise with a null pointer. Program behaviour will be undefined when it this instance is dereference", NULL != this->parent_class_type::get_pointer_());
+    }
 # else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_noaddref(LPUNKNOWN punk)
-        : parent_class_type(punk)
-    {}
+        : parent_class_type(punk, parent_class_type::throwOnNull)
+    {
+        COMSTL_MESSAGE_ASSERT("Cannot initialise with a null pointer. Program behaviour will be undefined when it this instance is dereference", NULL != this->parent_class_type::get_pointer_());
+    }
 # endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_noaddref(interface_pointer_type pi)
-        : parent_class_type(pi)
-    {}
+        : parent_class_type(pi, parent_class_type::throwOnNull)
+    {
+        COMSTL_MESSAGE_ASSERT("Cannot initialise with a null pointer. Program behaviour will be undefined when it this instance is dereference", NULL != this->parent_class_type::get_pointer_());
+    }
 
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     ~interface_cast_noaddref() stlsoft_throw_0()
@@ -517,17 +554,17 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_addref(J j)
-        : parent_class_type(j)
+        : parent_class_type(j, parent_class_type::allowNull)
     {}
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_addref(LPUNKNOWN punk)
-        : parent_class_type(punk)
+        : parent_class_type(punk, parent_class_type::allowNull)
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_addref(interface_pointer_type pi)
-        : parent_class_type(pi)
+        : parent_class_type(pi, parent_class_type::allowNull)
     {}
 
 // Accessors
@@ -578,17 +615,17 @@ public:
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     template <ss_typename_param_k J>
     ss_explicit_k interface_cast_tester(J &j)
-        : parent_class_type(j)
+        : parent_class_type(j, parent_class_type::allowNull)
     {}
 #else /* ? STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     ss_explicit_k interface_cast_tester(LPUNKNOWN punk)
-        : parent_class_type(punk)
+        : parent_class_type(punk, parent_class_type::allowNull)
     {}
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
 
     /// Constructor that directly casts (without calling QueryInterface())
     ss_explicit_k interface_cast_tester(interface_pointer_type pi)
-        : parent_class_type(pi)
+        : parent_class_type(pi, parent_class_type::allowNull)
     {}
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -694,7 +731,14 @@ inline cs_bool_t interface_cast_test(ISrc *src)
 template<   ss_typename_param_k IDest
         ,   ss_typename_param_k ISrc
         >
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1300
+// This workaround is required to stop the poor dear from instantiating
+// interface_cast_tester on ISrc rather than IDest.
+inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src, IDest * = NULL)
+#else /* ? compiler */
 inline cs_bool_t interface_cast_test(stlsoft_ns_qual(ref_ptr)<ISrc> &src)
+#endif /* compiler */
 {
     return interface_cast_test<IDest*>(src.get());
 }
@@ -724,9 +768,9 @@ template<   ss_typename_param_k IDest
         >
 inline stlsoft_ns_qual(ref_ptr)<IDest> interface_cast(ISrc *src)
 {
-    interface_cast_noaddref<IDest*> ptr(src);   // This has to be separate, otherwise G++ has a spit
+    interface_cast_addref<IDest*, throw_bad_interface_cast_exception> ptr(src);   // This has to be separate, otherwise G++ has a spit
 
-    return stlsoft_ns_qual(ref_ptr)<IDest>(stlsoft_ns_qual(get_ptr)(ptr), true);
+    return stlsoft_ns_qual(ref_ptr)<IDest>(static_cast<IDest*>(ptr), true);
 }
 
 /** \brief Casts between instances of wrapped instances
@@ -788,7 +832,7 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> try_interface_cast(ISrc *src)
 {
     interface_cast_addref<IDest*>   ptr(src);  // This has to be separate, otherwise G++ has a spit
 
-    return stlsoft_ns_qual(ref_ptr)<IDest>(stlsoft_ns_qual(get_ptr)(ptr), true);
+    return stlsoft_ns_qual(ref_ptr)<IDest>(static_cast<IDest*>(ptr), true);
 }
 
 /** \brief Attempts to cast between instances of wrapped instances
@@ -820,7 +864,7 @@ inline stlsoft_ns_qual(ref_ptr)<IDest> try_interface_cast(stlsoft_ns_qual(ref_pt
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  *
  * \param p The cast instance
  */
@@ -835,7 +879,7 @@ inline I get_ptr(comstl_ns_qual(interface_cast_noaddref)<I, X> &p)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  *
  * \param p The cast instance
  */
@@ -851,7 +895,7 @@ inline I get_ptr(comstl_ns_qual(interface_cast_noaddref)<I, X> const &p)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  *
  * \param p The cast instance
  */
@@ -865,7 +909,7 @@ inline I get_ptr(comstl_ns_qual(interface_cast_addref)<I, X> &p)
 
 /** \brief Attribute shim to retrieve the interface pointer of the given cast instance
  *
- * \ingroup group__concept__shim__pointer_attribute
+ * \ingroup group__concept__shim__pointer_attribute__get_ptr
  *
  * \param p The cast instance
  */
@@ -877,14 +921,14 @@ inline I const get_ptr(comstl_ns_qual(interface_cast_addref)<I, X> const &p)
     return p;
 }
 
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-
-/** \brief Attribute shim to determine whether the interface pointer is empty, or not
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param p The cast instance
+/* /////////////////////////////////////////////////////////////////////////
+ * Deprecated Shims
  */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+
 template<   ss_typename_param_k I
         ,   ss_typename_param_k X
         >
@@ -893,14 +937,8 @@ inline cs_bool_t is_empty(comstl_ns_qual(interface_cast_noaddref)<I, X> const &p
     return NULL != get_ptr(p);
 }
 
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-/** \brief Attribute shim to determine whether the interface pointer is empty, or not
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- *
- * \param p The cast instance
- */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k X
         >
@@ -908,6 +946,8 @@ inline cs_bool_t is_empty(comstl_ns_qual(interface_cast_addref)<I, X> const &p)
 {
     return NULL != get_ptr(p);
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -947,7 +987,11 @@ namespace stlsoft
 
 using ::comstl::get_ptr;
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 using ::comstl::is_empty;
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

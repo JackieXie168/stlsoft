@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     12th December 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,7 +40,7 @@
 
 /** \file atlstl/shims/access/string.hpp
  *
- * \brief [C, C++] Primary include file for string access shims representing
+ * \brief [C++] Primary include file for string access shims representing
  *   ATL string types.
  *  (\ref group__concept__shim__string_access "String Access Shims" Concept.)
  */
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_MAJOR      4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_MINOR      0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_REVISION   1
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_EDIT       91
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_HPP_STRING_EDIT       92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

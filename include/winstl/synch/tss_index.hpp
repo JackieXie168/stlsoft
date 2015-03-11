@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     16th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     28
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 3
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -207,7 +207,7 @@ private:
         if(0xFFFFFFFF == key)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            throw_exception_(tss_exception(::GetLastError()));
+            STLSOFT_THROW_X(tss_exception(::GetLastError()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             ::OutputDebugStringA("Fatal: Could not allocate a TSS key!\n");
             ::RaiseException(STATUS_NO_MEMORY, EXCEPTION_NONCONTINUABLE, 0, 0);
@@ -237,23 +237,6 @@ private:
 /// @{
 private:
     key_type    m_index;
-/// @}
-
-/// \name Implementation
-/// @{
-private:
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
-    template <ss_typename_param_k X>
-    static void throw_exception_(X const &x)
-#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
-      _MSC_VER < 1200
-    static void throw_exception_(std::exception const &x)
-#else /* ? feature / compiler */
-    static void throw_exception_(thrown_type const &x)
-#endif /* feature / compiler */
-    {
-        throw x;
-    }
 /// @}
 
 /// \name Not to be implemented

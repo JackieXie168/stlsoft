@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     15th September 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_MAJOR    4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_MINOR    0
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_EDIT     124
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ARRAY_POLICIES_EDIT     125
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
 # include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
-#include <string.h>     // for memcpy()
+#include <string.h>     // for memcpy(), memset()
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -238,7 +238,7 @@ template<   ss_typename_param_k T
 void do_construct_1(A &/* ator */, T *p, ss_size_t n, no_type)
 {
 #if 1
-    memset(p, 0, n * sizeof(T));
+    ::memset(p, 0, n * sizeof(T));
 #else /* ? 0 */
     stlsoft_ns_qual_std(fill_n)(p, n, 0);
 #endif /* 0 */
@@ -266,7 +266,7 @@ void do_construct_2(A &ator, T *p, ss_size_t n, T const &value, no_type)
 {
     for(T *e = p + n; p != e; ++p)
     {
-        memcpy(p, &value, sizeof(T));
+        ::memcpy(p, &value, sizeof(T));
     }
 }
 
@@ -288,7 +288,7 @@ void do_copy_construct_1(A &/* ator */, T *p, T const *src, ss_size_t n, no_type
 {
     for(T *e = p + n; p != e; ++p, ++src)
     {
-        memcpy(p, src, sizeof(T));
+        ::memcpy(p, src, sizeof(T));
     }
 }
 

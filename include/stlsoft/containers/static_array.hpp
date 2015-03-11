@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  3
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      170
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  5
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      172
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -793,7 +793,7 @@ inline void static_array_1d<T, N0, P, M>::range_check_(ss_typename_type_k static
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < N0))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
@@ -1008,7 +1008,7 @@ inline void static_array_2d<T, N0, N1, P, M>::range_check_(ss_typename_type_k st
     if( !(i0 < N0) ||
         !(i1 < N1))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1);
@@ -1023,7 +1023,7 @@ inline void static_array_2d<T, N0, N1, P, M>::range_check_(ss_typename_type_k st
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < N0))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
@@ -1268,7 +1268,7 @@ inline void static_array_3d<T, N0, N1, N2, P, M>::range_check_(ss_typename_type_
         !(i1 < N1) ||
         !(i2 < N2))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1 && i2 < N2);
@@ -1283,7 +1283,7 @@ inline void static_array_3d<T, N0, N1, N2, P, M>::range_check_(ss_typename_type_
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < N0))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);
@@ -1535,7 +1535,7 @@ inline void static_array_4d<T, N0, N1, N2, N3, P, M>::range_check_(ss_typename_t
         !(i2 < N2) ||
         !(i3 < N3))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0 && i1 < N1 && i2 < N2 && i3 < N3);
@@ -1550,7 +1550,7 @@ inline void static_array_4d<T, N0, N1, N2, N3, P, M>::range_check_(ss_typename_t
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
     if(!(i0 < N0))
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("static array index out of range"));
     }
 #else
     STLSOFT_MESSAGE_ASSERT("static array index out of range", i0 < N0);

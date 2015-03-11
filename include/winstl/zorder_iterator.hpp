@@ -4,7 +4,7 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     30th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MINOR    6
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     28
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 4
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ inline /* static */ HWND zorder_iterator_tmpl<T>::get_next_window_(HWND hwnd, HW
 //        if(ERROR_INVALID_WINDOW_HANDLE == dwErr)
         if(ERROR_SUCCESS != dwErr)
         {
-            throw_x(stlsoft_ns_qual(external_iterator_invalidation)("z-order search failed: window has been destroyed", static_cast<long>(dwErr)));
+            STLSOFT_THROW_X(stlsoft_ns_qual(external_iterator_invalidation)("z-order search failed: window has been destroyed", static_cast<long>(dwErr)));
         }
     }
 

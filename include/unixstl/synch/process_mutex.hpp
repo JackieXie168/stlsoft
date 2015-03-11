@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     12th December 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      4
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       58
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   6
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
-#  include <unixstl/error/exceptions.hpp>
-# endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
+# ifndef UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS
+#  include <unixstl/synch/exceptions.hpp>
+# endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
 # include <stlsoft/smartptr/scoped_handle.hpp>
@@ -200,8 +200,8 @@ public:
 public:
     /// \brief Acquires a lock on the mutex, pending the thread until the lock is aquired
     ///
-    /// \exception When compiling with exception support, this will throw
-    /// unixstl::unix_exception if the lock cannot be acquired. When
+    /// \exception unixstl::synchronisation_exception When compiling with exception support, this will throw
+    /// unixstl::synchronisation_exception if the lock cannot be acquired. When
     /// compiling absent exception support, failure to acquire the lock
     /// will be reflected in a non-zero return from get_error().
     void lock()
@@ -211,7 +211,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(0 != m_error)
         {
-            throw_x(unix_exception("Mutex lock failed", m_error));
+            STLSOFT_THROW_X(synchronisation_exception("Mutex lock failed", m_error));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -219,8 +219,8 @@ public:
     ///
     /// \return <b>true</b> if the mutex was aquired, or <b>false</b> if not.
     ///
-    /// \exception When compiling with exception support, this will throw
-    /// unixstl::unix_exception if the lock cannot be acquired for a reason
+    /// \exception unixstl::synchronisation_exception When compiling with exception support, this will throw
+    /// unixstl::synchronisation_exception if the lock cannot be acquired for a reason
     /// other than a timeout (<code>EBUSY</code>). When compiling absent
     /// exception support, failure to acquire the lock (for any other
     /// reason) will be reflected in a non-zero return from get_error().
@@ -237,7 +237,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             if(EBUSY != m_error)
             {
-                throw_x(unix_exception("Mutex try-lock failed", m_error));
+                STLSOFT_THROW_X(synchronisation_exception("Mutex try-lock failed", m_error));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
@@ -246,8 +246,8 @@ public:
     }
     /// \brief Releases an aquired lock on the mutex
     ///
-    /// \exception When compiling with exception support, this will throw
-    /// unixstl::unix_exception if the lock cannot be released. When
+    /// \exception unixstl::synchronisation_exception When compiling with exception support, this will throw
+    /// unixstl::synchronisation_exception if the lock cannot be released. When
     /// compiling absent exception support, failure to release the lock
     /// will be reflected in a non-zero return from get_error().
     void unlock()
@@ -257,7 +257,7 @@ public:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(0 != m_error)
         {
-            throw_x(unix_exception("Mutex unlock failed", m_error));
+            STLSOFT_THROW_X(synchronisation_exception("Mutex unlock failed", m_error));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
@@ -303,7 +303,7 @@ private:
                 if(0 != (res = ::pthread_mutexattr_setpshared(&attr, pshared)))
                 {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                    throw_x(unix_exception("Failed to set process-sharing attribute for PTHREADS mutex", res));
+                    STLSOFT_THROW_X(synchronisation_exception("Failed to set process-sharing attribute for PTHREADS mutex", res));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
                 else
@@ -317,7 +317,7 @@ private:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
                     else
                     {
-                        throw_x(unix_exception("Failed to set initialise PTHREADS mutex", res));
+                        STLSOFT_THROW_X(synchronisation_exception("Failed to set initialise PTHREADS mutex", res));
                     }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
                 }
@@ -325,14 +325,14 @@ private:
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
             else
             {
-                throw_x(unix_exception("Failed to set recursive attribute to PTHREADS mutex", res));
+                STLSOFT_THROW_X(synchronisation_exception("Failed to set recursive attribute to PTHREADS mutex", res));
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         else
         {
-            throw_x(unix_exception("Failed to initialise PTHREADS mutex attributes", res));
+            STLSOFT_THROW_X(synchronisation_exception("Failed to initialise PTHREADS mutex attributes", res));
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 

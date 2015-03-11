@@ -4,7 +4,7 @@
  * Purpose:     Container accessor functions.
  *
  * Created:     11th November 2004
- * Updated:     18th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_MINOR     3
-# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_REVISION  3
-# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_EDIT      24
+# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_REVISION  6
+# define STLSOFT_VER_STLSOFT_HPP_CONTAINER_ACCESS_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -133,7 +133,7 @@ inline ss_typename_type_k M::mapped_type &lookup(M &m, K const &key)
 
     if(m.end() == it)
     {
-        throw_x(stlsoft_ns_qual_std(out_of_range)("invalid key"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("invalid key"));
     }
 
     return (*it).second;
@@ -166,7 +166,7 @@ inline ss_typename_type_k M::mapped_type const &lookup(M const &m, K const &key)
 
     if(m.end() == it)
     {
-        throw_x(std::out_of_range("invalid key"));
+        STLSOFT_THROW_X(stlsoft_ns_qual_std(out_of_range)("invalid key"));
     }
 
     return (*it).second;

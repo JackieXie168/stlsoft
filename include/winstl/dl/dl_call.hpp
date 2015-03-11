@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     17th October 2006
+ * Updated:     24th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      29
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  4
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -487,7 +487,7 @@ inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_h
 
     if(NULL == fp)
     {
-        throw_x(winstl::missing_entry_point_exception(functionName, ::GetLastError()));
+        STLSOFT_THROW_X(missing_entry_point_exception(functionName, ::GetLastError()));
     }
 
     return fp;
@@ -525,7 +525,7 @@ inline calling_convention::calling_convention determine_calling_convention_(C co
 #endif // STLSOFT_CF_STDCALL_SUPPORTED
         else
         {
-            throw_x(winstl::invalid_calling_convention_exception(s0.c_str()));
+            STLSOFT_THROW_X(invalid_calling_convention_exception(s0.c_str()));
         }
 
         functionName = s1.base();

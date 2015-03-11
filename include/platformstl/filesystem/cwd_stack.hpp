@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the filesystem_traits components.
  *
  * Created:     16th July 2006
- * Updated:     16th July 2006
+ * Updated:     18th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MAJOR     2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     0
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_MINOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_REVISION  1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      14
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_CWD_STACK_EDIT      16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,13 @@ public:
     bool_type           try_pop();
 
 public:
+    /// Indicates whether the stack is empty
+    bool_type   empty() const;
+    /// [DEPRECATED] Indicates whether the stack is empty
+    ///
+    /// \deprecated Use empty() instead
     bool_type   is_empty() const;
+    /// Indicates the number of directories in the stack
     size_type   size() const;
 
 private:
@@ -197,9 +203,15 @@ inline ss_typename_type_k basic_cwd_stack<C, XP>::size_type basic_cwd_stack<C, X
 }
 
 template <typename C, typename XP>
-inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::is_empty() const
+inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::empty() const
 {
     return 0 == size();
+}
+
+template <typename C, typename XP>
+inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::is_empty() const
+{
+    return empty();
 }
 
 template <typename C, typename XP>
@@ -226,7 +238,7 @@ inline void basic_cwd_stack<C, XP>::push(ss_typename_type_k basic_cwd_stack<C, X
 template <typename C, typename XP>
 inline void basic_cwd_stack<C, XP>::pop()
 {
-    STLSOFT_ASSERT(!is_empty());
+    STLSOFT_ASSERT(!empty());
 
     const string_type directory =   m_stack.top();
 
@@ -243,7 +255,7 @@ inline void basic_cwd_stack<C, XP>::pop()
 template <typename C, typename XP>
 inline ss_typename_type_k basic_cwd_stack<C, XP>::bool_type basic_cwd_stack<C, XP>::try_pop()
 {
-    STLSOFT_ASSERT(!is_empty());
+    STLSOFT_ASSERT(!empty());
 
     string_type const   &directory  =   m_stack.top();
 
