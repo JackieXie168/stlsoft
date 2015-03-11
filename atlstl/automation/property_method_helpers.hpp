@@ -5,7 +5,7 @@
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     7th July 2006
+ * Updated:     18th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,9 +39,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file atlstl/automation/property_method_helpers.hpp
-///
-/// Contains functions for assisting in the implementation of property methods of ATL COM server classes.
+/** \file atlstl/automation/property_method_helpers.hpp
+ * \brief [C++ only; requires ATL library] Definition of the
+ *  atlstl::get_MemberValue(), atlstl::put_MemberValue() and
+ *  atlstl::get_ConstantValue() function suites, which simplify the
+ *  definition of property methods in ATL COM servers.
+ * (\ref group__library__automation "COM Automation" Library.)
+ */
 
 #ifndef ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS
 #define ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_PROPERTY_METHOD_HELPERS

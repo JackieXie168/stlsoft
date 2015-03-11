@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing token information.
  *
  * Created:     20th June 2003
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MAJOR     4
-# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MINOR     0
-# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_REVISION  2
-# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      46
+# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_MINOR     1
+# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_REVISION  1
+# define WINSTL_VER_WINSTL_SECURITY_HPP_TOKEN_INFORMATION_EDIT      47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,9 @@
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-# include <stlsoft/exceptions.hpp>            // for stlsoft::null_exception_policy
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+# include <stlsoft/error/exceptions.hpp>      // for null_exception_policy
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE
 # include <winstl/error/last_error_scope.hpp>
 #endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_LAST_ERROR_SCOPE */

@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     105
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
 # if defined(UNICODE) || \

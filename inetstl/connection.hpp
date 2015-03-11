@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_connection class.
  *
  * Created:     30th April 1999
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_MAJOR       4
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       3
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_MINOR       4
 # define INETSTL_VER_INETSTL_HPP_CONNECTION_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        57
+# define INETSTL_VER_INETSTL_HPP_CONNECTION_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,17 +62,17 @@
 #ifndef INETSTL_INCL_INETSTL_HPP_SESSION
 # include <inetstl/session.hpp>
 #endif /* !INETSTL_INCL_INETSTL_HPP_SESSION */
-#ifndef INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS
-# include <inetstl/filesystem_traits.hpp>
-#endif /* !INETSTL_INCL_INETSTL_HPP_FILESYSTEM_TRAITS */
+#ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
+# include <inetstl/filesystem/filesystem_traits.hpp>
+#endif /* !INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef INETSTL_INCL_INETSTL_HPP_EXCEPTIONS
-#  include <inetstl/exceptions.hpp>           // for throw_internet_exception_policy
-# endif /* !INETSTL_INCL_INETSTL_HPP_EXCEPTIONS */
+# ifndef INETSTL_INCL_INETSTL_ERROR_HPP_EXCEPTIONS
+#  include <inetstl/error/exceptions.hpp>           // for throw_internet_exception_policy
+# endif /* !INETSTL_INCL_INETSTL_ERROR_HPP_EXCEPTIONS */
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-#  include <stlsoft/exceptions.hpp>           // for stlsoft::null_exception_policy
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+# ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+#  include <stlsoft/error/exceptions.hpp>           // for stlsoft::null_exception_policy
+# endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////

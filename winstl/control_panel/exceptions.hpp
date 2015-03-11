@@ -4,7 +4,7 @@
  * Purpose:     Control Panel Library exception classes.
  *
  * Created:     1st April 2006
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MAJOR       1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        7
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MINOR       1
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION    1
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

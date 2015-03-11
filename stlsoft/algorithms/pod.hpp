@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,18 +38,20 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/algorithms/pod.hpp
-///
-/// Contains various simple self-contained algorithms.
+/** \file stlsoft/algorithms/pod.hpp
+ *
+ * \brief [C++ only] Algorithms for use with POD types.
+ * (\ref group__library__algorithms "Algorithms" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 #define STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_POD
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       3
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        75
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       4
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    2
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +61,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM
-# include <stlsoft/util/std/algorithm.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ALGORITHM */
+#ifndef STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT
+# include <stlsoft/algorithms/std/alt.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT */
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #  include <stlsoft/meta/base_type_traits.hpp>
@@ -80,9 +82,9 @@
 #endif /* compiler */
 
 #ifdef STLSOFT_UNITTEST
-# ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
-#  include <stlsoft/exceptions.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+# ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS
+#  include <stlsoft/error/exceptions.hpp>      // for null_exception_policy
+# endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXCEPTIONS */
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,31 +96,13 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/** \brief \weakgroup algorithms Algorithms
- * \brief STL-compatible algorithms
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-
-/** \brief \weakgroup utilities Utilities
- * \brief Utility functions and constructs used throughout the STLSoft libraries
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-
-/** \brief \weakgroup pod_algorithms POD Algorithms
- * \brief Algorithms for manipulating POD types
- * \ingroup algorithms
- * @{
- */
-
 /* /////////////////////////////////////////////////////////////////////////
  * Algorithms
  */
 
-/** Copies one range of POD (Plain Old Data) entities to another
+/** \brief Copies one range of POD (Plain Old Data) entities to another
+ *
+ * \ingroup group__library__algorithms
  *
  * This algorithm has the same semantics as std::copy(), but it uses
  * ::memcpy() to copy elements en bloc, rather than copy assignment of one element
@@ -148,6 +132,7 @@ namespace stlsoft
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         >
+// [[synesis:function:algorithm: pod_copy(T<I> *first, T<I> *last, T<O> *dest)]]
 inline void pod_copy(I *first, I *last, O *dest)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -172,7 +157,9 @@ inline void pod_copy(I *first, I *last, O *dest)
 #endif /* compiler */
 }
 
-/** Copies one range of POD (Plain Old Data) entities to another
+/** \brief Copies one range of POD (Plain Old Data) entities to another
+ *
+ * \ingroup group__library__algorithms
  *
  * This algorithm uses ::memcpy() to copy elements en bloc, rather than
  * copy assignment of one element at a time.
@@ -201,6 +188,7 @@ inline void pod_copy(I *first, I *last, O *dest)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         >
+// [[synesis:function:algorithm: pod_copy_n(T<O> *dest, T<I> *src, size_t n)]]
 inline void pod_copy_n(O *dest, I *src, ss_size_t n)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -223,8 +211,10 @@ inline void pod_copy_n(O *dest, I *src, ss_size_t n)
 #endif /* compiler */
 }
 
-/** Copies one range of POD (Plain Old Data) entities to another, where the two
+/** \brief Copies one range of POD (Plain Old Data) entities to another, where the two
  * may potentially overlap
+ *
+ * \ingroup group__library__algorithms
  *
  * This algorithm has the same semantics as std::copy(), but it uses
  * ::memmove() to copy elements en bloc, rather than copy assignment of one element
@@ -243,6 +233,7 @@ inline void pod_copy_n(O *dest, I *src, ss_size_t n)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         >
+// [[synesis:function:algorithm: pod_move(T<I> *first, T<I> *last, T<O> *dest)]]
 inline void pod_move(I *first, I *last, O *dest)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -267,8 +258,10 @@ inline void pod_move(I *first, I *last, O *dest)
 #endif /* compiler */
 }
 
-/** Copies one range of POD (Plain Old Data) entities to another, where the two
+/** \brief Copies one range of POD (Plain Old Data) entities to another, where the two
  * may potentially overlap
+ *
+ * \ingroup group__library__algorithms
  *
  * \note This algorithm uses ::memmove() to copy elements en bloc, rather than
  * copy assignment of one element at a time.
@@ -286,6 +279,7 @@ inline void pod_move(I *first, I *last, O *dest)
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         >
+// [[synesis:function:algorithm: pod_move_n(T<O> *dest, T<I> *src, size_t n)]]
 inline void pod_move_n(O *dest, I *src, ss_size_t n)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -309,7 +303,9 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
 }
 
 
-/** Sets all the elements in a range of POD (Plain Old Data) to a given value
+/** \brief Sets all the elements in a range of POD (Plain Old Data) to a given value
+ *
+ * \ingroup group__library__algorithms
  *
  * This algorithm has the same semantics as std::fill_n(), but it uses
  * ::memset() for some types to set the range of elements, rather than copy
@@ -338,6 +334,7 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
 template<   ss_typename_param_k T
         ,   ss_typename_param_k V
         >
+// [[synesis:function:algorithm: pod_fill_n(T<T> *dest, T<V> const &value)]]
 inline void pod_fill_n(T *dest, ss_size_t n, V const &value)
 {
     // Constrain to POD type:
@@ -351,26 +348,22 @@ inline void pod_fill_n(T *dest, ss_size_t n, V const &value)
 }
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+// [[synesis:function:algorithm: pod_fill_n(char *dest, int value)]]
 inline void pod_fill_n(char *dest, ss_size_t n, int value)
 {
     ::memset(dest, value, n);
 }
+// [[synesis:function:algorithm: pod_fill_n(signed char *dest, int value)]]
 inline void pod_fill_n(signed char *dest, ss_size_t n, int value)
 {
     ::memset(dest, value, n);
 }
+// [[synesis:function:algorithm: pod_fill_n(unsigned char *dest, int value)]]
 inline void pod_fill_n(unsigned char *dest, ss_size_t n, int value)
 {
     ::memset(dest, value, n);
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-////////////////////////////////////////////////////////////////////////////
-
-/** \brief @} // end of group pod_algorithms
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

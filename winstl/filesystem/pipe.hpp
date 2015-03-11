@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     27
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
 # include <winstl/functions.h>      // for CloseHandleSetNull()
 #endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */

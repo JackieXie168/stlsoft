@@ -18,7 +18,7 @@
  *              ownership issues described in the article.
  *
  * Created:     15th January 2002
- * Updated:     14th July 2006
+ * Updated:     17th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -64,9 +64,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        185
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR       4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT        187
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,9 +102,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 # include <winstl/system/system_version.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_VERSION */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-#  include <winstl/exceptions.hpp>
-# endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+# ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+#  include <winstl/error/exceptions.hpp>
+# endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
@@ -727,12 +727,12 @@ inline ws_bool_t operator != (  C const *lhs, basic_findfile_sequence_value_type
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_data(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
+inline ws_char_a_t const *c_str_data_a(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
 {
     return v.get_path();
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_data(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
+inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
 {
     return v.get_path();
 }
@@ -781,12 +781,12 @@ inline ws_size_t c_str_len(winstl_ns_qual(basic_findfile_sequence_value_type)<C,
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_ptr(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
+inline ws_char_a_t const *c_str_ptr_a(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_a_t, T> const &v)
 {
     return v.get_path();
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_ptr(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
+inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(basic_findfile_sequence_value_type)<ws_char_w_t, T> const &v)
 {
     return v.get_path();
 }

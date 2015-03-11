@@ -1,14 +1,10 @@
-#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
-# include <stlsoft/stlsoft.h>
-#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#include <stlsoft/stlsoft.h>
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/exceptions/unrecoverable.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/error/unrecoverable.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE
-# include <stlsoft/exceptions/unrecoverable.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_UNRECOVERABLE */
+#include <stlsoft/error/unrecoverable.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

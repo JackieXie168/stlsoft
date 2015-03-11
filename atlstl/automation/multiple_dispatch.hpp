@@ -5,7 +5,7 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     7th July 2006
+ * Updated:     18th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,11 +41,10 @@
 
 /** \file atlstl/automation/multiple_dispatch.hpp
  * \brief [C++ only; requires ATL library] Definition of the
- *  \link atlstl::IDispatchImpl2 IDispatchImpl2\endlink
- *  and
- *  \link atlstl::IDispatchImpl3 IDispatchImpl3\endlink
+ *  atlstl::IDispatchImpl2 and atlstl::IDispatchImpl3
  *  class templates, which make the methods and properties exhibited through
  *  multiple IDispatch interfaces visible to scripting clients.
+ * (\ref group__library__automation "COM Automation" Library.)
  */
 
 #ifndef ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH
@@ -103,6 +102,8 @@ namespace atlstl_project
 
 /** \brief Class template that enables the methods and properties exhibited
  * through two IDispatch interfaces to be visible to scripting clients.
+ *
+ * \ingroup group__library__automation
  *
  * The class template is used in place of ATL's IDispatchImpl class in the
  * parent class list of a class template that support two dispinterfaces.
@@ -185,8 +186,6 @@ namespace atlstl_project
  * Note that the class also handles the case where the dispinterfaces have
  * members/properties with the same dispids. (See GetIDsOfNames() and
  * Invoke() for details of the mechanism.)
- * \ingroup group__library__automation
- *
  */
 template<   ss_typename_param_k I0
         ,   IID const           *IID0
@@ -328,11 +327,11 @@ protected:
 /** \brief Class template that enables the methods and properties exhibited
  * through three IDispatch interfaces to be visible to scripting clients.
  *
+ * \ingroup group__library__automation
+ *
  * IDispatchImpl3 is used (and operates) in exactly the same way as
  * IDispatchImpl2, except that it supports three dispinterfaces, rather than
  * two.
- * \ingroup group__library__automation
- *
  */
 template<   ss_typename_param_k I0
         ,   IID const           *IID0

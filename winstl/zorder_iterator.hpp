@@ -4,7 +4,7 @@
  * Purpose:     Z-order iteration.
  *
  * Created:     11th July 2005
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MAJOR    1
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MINOR    5
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     25
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_MINOR    6
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_REVISION 1
+# define WINSTL_VER_WINSTL_HPP_ZORDER_ITERATOR_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION
-# include <stlsoft/exceptions/external_iterator_invalidation.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION
+# include <stlsoft/error/external_iterator_invalidation.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

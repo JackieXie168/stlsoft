@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     13
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,9 +86,9 @@
 #ifndef WINSTL_INCL_WINSTL_DL_HPP_DL_CALL
 # include <winstl/dl/dl_call.hpp>
 #endif /* !WINSTL_INCL_WINSTL_DL_HPP_DL_CALL */
-#ifndef STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION
-# include <stlsoft/exceptions/external_iterator_invalidation.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
+#ifndef STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION
+# include <stlsoft/error/external_iterator_invalidation.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ERROR_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

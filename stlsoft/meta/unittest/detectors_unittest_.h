@@ -1,5 +1,5 @@
 
-// Updated:	15th July 2006
+// Updated: 15th July 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_META_HPP_DETECTORS)
 # error This file cannot be directly included, and should only be included within stlsoft/meta/detectors.hpp

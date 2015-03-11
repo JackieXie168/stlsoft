@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       2
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    1
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        25
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,9 +61,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#ifndef UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS
-# include <unixstl/exceptions.hpp>
-#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_EXCEPTIONS */
+#ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
+# include <unixstl/error/exceptions.hpp>
+#endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
 # include <unixstl/dl/module.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_D:_HPP_MODULE */

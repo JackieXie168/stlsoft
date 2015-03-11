@@ -4,7 +4,7 @@
  * Purpose:     Exceptions used by the Registry library.
  *
  * Created:     8th February 2006
- * Updated:     7th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MAJOR    1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MINOR    0
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_REVISION 4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_EDIT     8
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_MINOR    1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_REVISION 1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_EXCEPTIONS_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,9 +58,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace

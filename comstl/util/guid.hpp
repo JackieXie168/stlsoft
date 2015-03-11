@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      1
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       31
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 # include <comstl/shims/access/string.hpp>
 #endif /* !COMSTL_INCL_COMSTL_SHIMS_ACCESS_HPP_STRING */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-# ifndef COMSTL_INCL_COMSTL_HPP_EXCEPTIONS
-#  include <comstl/exceptions.hpp>
-# endif /* !COMSTL_INCL_COMSTL_HPP_EXCEPTIONS */
+# ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
+#  include <comstl/error/exceptions.hpp>
+# endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS */
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////

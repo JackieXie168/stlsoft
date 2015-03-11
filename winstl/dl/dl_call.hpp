@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     2
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     3
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      26
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
 #ifndef WINSTL_INCL_WINSTL_DL_HPP_MODULE
 # include <winstl/dl/module.hpp>
 #endif /* !WINSTL_INCL_WINSTL_DL_HPP_MODULE */

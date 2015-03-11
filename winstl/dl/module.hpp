@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     14th July 2006
+ * Updated:     16th July 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      2
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      3
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       213
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       214
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,12 +70,12 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_HPP_EXCEPTIONS
-# include <winstl/exceptions.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
-# include <winstl/shims/access/string.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
+#ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
+# include <winstl/error/exceptions.hpp>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 # ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 #  include <winstl/filesystem/file_path_buffer.hpp>
 # endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
