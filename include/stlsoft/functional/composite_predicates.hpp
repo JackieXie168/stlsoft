@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft::composite_predicates predicate class.
  *
  * Created:     27th March 2007
- * Updated:     28th March 2007
+ * Updated:     3rd July 2007
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2007, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MAJOR      1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MINOR      0
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_MINOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_REVISION   1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_EDIT       1
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_COMPOSITE_PREDICATES_EDIT       2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -124,6 +124,25 @@ inline any_of_tester<P1, P2> any_of(P1 p1, P2 p2)
     return any_of_tester<P1, P2>(p1, p2);
 }
 
+template<   ss_typename_param_k P1
+        ,   ss_typename_param_k P2
+        ,   ss_typename_param_k P3
+        >
+inline any_of_tester<P1, any_of_tester<P2, P3> > any_of(P1 p1, P2 p2, P3 p3)
+{
+    return any_of(p1, any_of(p2, p3));
+}
+
+template<   ss_typename_param_k P1
+        ,   ss_typename_param_k P2
+        ,   ss_typename_param_k P3
+        ,   ss_typename_param_k P4
+        >
+inline any_of_tester<any_of_tester<P1, P2>, any_of_tester<P3, P4> > any_of(P1 p1, P2 p2, P3 p3, P4 p4)
+{
+    return any_of(any_of(p1, p2), any_of(p3, p4));
+}
+
 /** \brief Composite predicate providing logical AND for two individual
  *    predicate types.
  *
@@ -166,6 +185,25 @@ template<   ss_typename_param_k P1
 inline all_of_tester<P1, P2> all_of(P1 p1, P2 p2)
 {
     return all_of_tester<P1, P2>(p1, p2);
+}
+
+template<   ss_typename_param_k P1
+        ,   ss_typename_param_k P2
+        ,   ss_typename_param_k P3
+        >
+inline all_of_tester<P1, all_of_tester<P2, P3> > all_of(P1 p1, P2 p2, P3 p3)
+{
+    return all_of(p1, all_of(p2, p3));
+}
+
+template<   ss_typename_param_k P1
+        ,   ss_typename_param_k P2
+        ,   ss_typename_param_k P3
+        ,   ss_typename_param_k P4
+        >
+inline all_of_tester<all_of_tester<P1, P2>, all_of_tester<P3, P4> > all_of(P1 p1, P2 p2, P3 p3, P4 p4)
+{
+    return all_of(all_of(p1, p2), all_of(p3, p4));
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

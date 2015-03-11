@@ -60,7 +60,7 @@
 
 /*
 [Incompatibilies-start]
-STLSOFT_COMPILER_IS_DMC:    __DMC__<0x0850
+STLSOFT_COMPILER_IS_DMC:	__DMC__<0x0850
 STLSOFT_COMPILER_IS_GCC:  __GNUC__<3
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 [Incompatibilies-end]
@@ -311,7 +311,7 @@ private:
 // [[synesis:class:unary-functor: listbox_front_inserter]]
 struct listbox_front_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ > 0x0850
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_front_inserter>
 #endif /* compiler */
 {
@@ -386,7 +386,7 @@ private:
 // [[synesis:class:unary-functor: listbox_add_inserter]]
 struct listbox_add_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ > 0x0850
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_add_inserter>
 #endif /* compiler */
 {
@@ -461,7 +461,7 @@ private:
 // [[synesis:class:unary-functor: listbox_back_inserter]]
 struct listbox_back_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ > 0x0850
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<listbox_back_inserter>
 #endif /* compiler */
 {
@@ -538,7 +538,7 @@ private:
 // [[synesis:class:unary-functor: combobox_front_inserter]]
 struct combobox_front_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ > 0x0850
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_front_inserter>
 #endif /* compiler */
 {
@@ -613,7 +613,7 @@ private:
 // [[synesis:class:unary-functor: combobox_add_inserter]]
 struct combobox_add_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ > 0x0850
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_add_inserter>
 #endif /* compiler */
 {
@@ -688,7 +688,7 @@ private:
 // [[synesis:class:unary-functor: combobox_back_inserter]]
 struct combobox_back_inserter
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-        __DMC__ > 0x0850
+		__DMC__ > 0x0850
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<combobox_back_inserter>
 #endif /* compiler */
 {

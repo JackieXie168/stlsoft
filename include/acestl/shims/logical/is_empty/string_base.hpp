@@ -84,26 +84,26 @@ namespace stlsoft
 
 STLSOFT_OPEN_WORKER_NS_(is_empty_ns)
 
-    no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const*, ACE_String_Base<ss_char_a_t> const*)
-    {
-        return no_type();
-    }
+	no_type is_empty_helper_assistant(ACE_String_Base<ss_char_a_t> const*, ACE_String_Base<ss_char_a_t> const*)
+	{
+		return no_type();
+	}
 
-    inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type)
-    {
-        return 0 != s.length();
-    }
+	inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_a_t> const& s, no_type)
+	{
+		return 0 != s.length();
+	}
 
 
-    no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const*, ACE_String_Base<ss_char_w_t> const*)
-    {
-        return no_type();
-    }
+	no_type is_empty_helper_assistant(ACE_String_Base<ss_char_w_t> const*, ACE_String_Base<ss_char_w_t> const*)
+	{
+		return no_type();
+	}
 
-    inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type)
-    {
-        return 0 != s.length();
-    }
+	inline ss_bool_t is_empty_helper(ACE_String_Base<ss_char_w_t> const& s, no_type)
+	{
+		return 0 != s.length();
+	}
 
 STLSOFT_CLOSE_WORKER_NS_(is_empty_ns)
 

@@ -128,117 +128,117 @@ public:
 
 /// Conversion
 public:
-    /** Default constructor
-     *
-     * Initialises the instance
-     *
-     * \post <code>assert(VT_EMPTY == this->vt)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Default constructor
+	 *
+	 * Initialises the instance
+	 *
+	 * \post <code>assert(VT_EMPTY == this->vt)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant();
 
-    /** Copying constructor
-     *
-     * Initialises the instance with a copy of the given \c VARIANT
-     *
-     * \post <code>assert(rhs == *this)</code>
-     *
-     * \exception comstl::com_exception If the copy fails
-     */
+	/** Copying constructor
+	 *
+	 * Initialises the instance with a copy of the given \c VARIANT
+	 *
+	 * \post <code>assert(rhs == *this)</code>
+	 *
+	 * \exception comstl::com_exception If the copy fails
+	 */
     variant(VARIANT const& rhs);
 
-    /** Copy constructor
-     *
-     * \post <code>assert(rhs == *this)</code>
-     *
-     * \exception comstl::com_exception If the copy fails
-     */
+	/** Copy constructor
+	 *
+	 * \post <code>assert(rhs == *this)</code>
+	 *
+	 * \exception comstl::com_exception If the copy fails
+	 */
     variant(class_type const& rhs);
 
-    /** Copy assignment operator
-     *
-     * \post <code>assert(rhs == *this)</code>
-     *
-     * \exception comstl::com_exception If the copy fails
-     */
+	/** Copy assignment operator
+	 *
+	 * \post <code>assert(rhs == *this)</code>
+	 *
+	 * \exception comstl::com_exception If the copy fails
+	 */
     class_type& operator =(class_type const& rhs);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given boolean value
-     *
-     * \post <code>assert(VT_BOOL == this->vt)</code>
-     * \post <code>assert(b == (VARIANT_TRUE == this->boolVal))</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given boolean value
+	 *
+	 * \post <code>assert(VT_BOOL == this->vt)</code>
+	 * \post <code>assert(b == (VARIANT_TRUE == this->boolVal))</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(bool b);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given short value
-     *
-     * \post <code>assert(VT_I2 == this->vt)</code>
-     * \post <code>assert(i == this->iVal)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given short value
+	 *
+	 * \post <code>assert(VT_I2 == this->vt)</code>
+	 * \post <code>assert(i == this->iVal)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(short i);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given int value
-     *
-     * \post <code>assert(VT_I4 == this->vt)</code>
-     * \post <code>assert(i == this->lVal)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given int value
+	 *
+	 * \post <code>assert(VT_I4 == this->vt)</code>
+	 * \post <code>assert(i == this->lVal)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(int i);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given long value
-     *
-     * \post <code>assert(VT_I4 == this->vt)</code>
-     * \post <code>assert(i == this->lVal)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given long value
+	 *
+	 * \post <code>assert(VT_I4 == this->vt)</code>
+	 * \post <code>assert(i == this->lVal)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(long i);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given float value
-     *
-     * \post <code>assert(VT_R4 == this->vt)</code>
-     * \post <code>assert(r == this->fltVal)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given float value
+	 *
+	 * \post <code>assert(VT_R4 == this->vt)</code>
+	 * \post <code>assert(r == this->fltVal)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(float r);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given double value
-     *
-     * \post <code>assert(VT_R8 == this->vt)</code>
-     * \post <code>assert(r == this->dblVal)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given double value
+	 *
+	 * \post <code>assert(VT_R8 == this->vt)</code>
+	 * \post <code>assert(r == this->dblVal)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(double r);
 
-    /** Conversion constructor
-     *
-     * Initialises the instance with the given currency (CY) value
-     *
-     * \post <code>assert(VT_CY == this->vt)</code>
-     * \post <code>assert(r == this->cyVal)</code>
-     *
-     * \exception - Does not throw an exception
-     */
+	/** Conversion constructor
+	 *
+	 * Initialises the instance with the given currency (CY) value
+	 *
+	 * \post <code>assert(VT_CY == this->vt)</code>
+	 * \post <code>assert(r == this->cyVal)</code>
+	 *
+	 * \exception - Does not throw an exception
+	 */
     variant(CY cy);
     variant(LPUNKNOWN punk, bool_type bAddRef);
     variant(LPDISPATCH pdisp, bool_type bAddRef);
@@ -592,15 +592,15 @@ inline variant::class_type &variant::convert(VARTYPE vt)
 
 inline HRESULT variant::QueryInterface(REFIID riid, void **ppv) const
 {
-    COMSTL_ASSERT(NULL != ppv);
+	COMSTL_ASSERT(NULL != ppv);
 
-    if( VT_UNKNOWN == this->vt ||
-        VT_DISPATCH == this->vt)
-    {
-        return (NULL == this->punkVal) ? E_POINTER : this->punkVal->QueryInterface(riid, ppv);
-    }
+	if( VT_UNKNOWN == this->vt ||
+		VT_DISPATCH == this->vt)
+	{
+		return (NULL == this->punkVal) ? E_POINTER : this->punkVal->QueryInterface(riid, ppv);
+	}
 
-    return DISP_E_BADVARTYPE;
+	return DISP_E_BADVARTYPE;
 }
 
 

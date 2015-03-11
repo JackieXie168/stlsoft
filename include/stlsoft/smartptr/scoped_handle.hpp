@@ -134,8 +134,8 @@ public:
 /// @}
 
 private:
-    H_holder(H_holder const&);
-    H_holder& operator =(H_holder const&);
+	H_holder(H_holder const&);
+	H_holder& operator =(H_holder const&);
 };
 
 template<   ss_typename_param_k H

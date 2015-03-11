@@ -123,7 +123,7 @@ namespace winstl_project
  */
 inline const FILETIME to_FILETIME(UDATE const& rhs)
 {
-    return to_FILETIME(rhs.st);
+	return to_FILETIME(rhs.st);
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

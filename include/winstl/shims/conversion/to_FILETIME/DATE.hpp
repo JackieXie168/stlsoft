@@ -122,7 +122,7 @@ namespace winstl_project
  */
 inline const FILETIME to_FILETIME(DATE const& rhs)
 {
-    return to_FILETIME(to_SYSTEMTIME(rhs));
+	return to_FILETIME(to_SYSTEMTIME(rhs));
 }
 
 /* ////////////////////////////////////////////////////////////////////// */
