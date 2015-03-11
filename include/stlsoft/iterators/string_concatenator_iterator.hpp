@@ -4,11 +4,11 @@
  * Purpose:     string_concatenator_iterator class template.
  *
  * Created:     12th May 1998
- * Updated:     10th August 2009
+ * Updated:     31st July 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MAJOR       2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        41
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_MINOR       4
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_REVISION    1
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_STRING_CONCATENATOR_ITERATOR_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,6 +72,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS
+# include <stlsoft/iterators/common/string_concatenation_flags.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_COMMON_HPP_STRING_CONCATENATION_FLAGS */
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
@@ -141,14 +144,24 @@ private:
     _MSC_VER < 1310
 public:
 #endif /* compiler */
-    string_concatenator_iterator(string_type* s, delimiter_type const* delim)
+    string_concatenator_iterator(
+        string_type*            s
+    ,   delimiter_type const*   delim
+    ,   int                     flags
+    )
         : m_s(s)
         , m_delim(delim)
+        , m_flags(flags)
+        , m_count(0)
     {}
 public:
-    static class_type create(string_type& s, delimiter_type const& delim)
+    static class_type create(
+        string_type&            s
+    ,   delimiter_type const&   delim
+    ,   int                     flags
+    )
     {
-        return class_type(&s, &delim);
+        return class_type(&s, &delim, flags);
     }
 private:
     class deref_proxy;
@@ -220,7 +233,7 @@ private:
     template <ss_typename_param_k C2>
     void invoke_(C2 const* value)
     {
-          this->invoke_(value, *value);
+        this->invoke_(value, *value);
     }
 #endif /* ? compiler */
 
@@ -245,12 +258,34 @@ private:
         STLSOFT_ASSERT(NULL != m_s);
         STLSOFT_ASSERT(NULL != m_delim);
 
-        if(0 != c_str_len(*m_s))
+        bool const valueEmpty = (0u == c_str_len(value));
+
+        if( valueEmpty &&
+            0 == (string_concatenation_flags::AlwaysSeparate & m_flags))
         {
-            // NOTE: Use +=, as it's the most general
-            *m_s += c_str_ptr_a(*m_delim);
+            ;
         }
-        *m_s += c_str_ptr_a(value);
+        else
+        {
+            bool const stringEmpty = (0u == c_str_len(*m_s));
+
+            if(stringEmpty)
+            {
+                if( 0 != m_count &&
+                    0 != (string_concatenation_flags::AlwaysSeparate & m_flags))
+                {
+                  *m_s += c_str_ptr_a(*m_delim);
+                }
+            }
+            else
+            {
+                // NOTE: Use +=, as it's the most general
+                *m_s += c_str_ptr_a(*m_delim);
+            }
+            *m_s += c_str_ptr_a(value);
+        }
+
+        ++m_count;
     }
     template <ss_typename_param_k S3>
     void invoke_(S3 const& value, ss_char_w_t)
@@ -258,12 +293,34 @@ private:
         STLSOFT_ASSERT(NULL != m_s);
         STLSOFT_ASSERT(NULL != m_delim);
 
-        if(0 != c_str_len(*m_s))
+        bool const valueEmpty = (0u == c_str_len(value));
+
+        if( valueEmpty &&
+            0 == (string_concatenation_flags::AlwaysSeparate & m_flags))
         {
-            // NOTE: Use +=, as it's the most general
-            *m_s += c_str_ptr_w(*m_delim);
+            ;
         }
-        *m_s += c_str_ptr_w(value);
+        else
+        {
+            bool const stringEmpty = (0u == c_str_len(*m_s));
+
+            if(stringEmpty)
+            {
+                if( 0 != m_count &&
+                    0 != (string_concatenation_flags::AlwaysSeparate & m_flags))
+                {
+                  *m_s += c_str_ptr_w(*m_delim);
+                }
+            }
+            else
+            {
+                // NOTE: Use +=, as it's the most general
+                *m_s += c_str_ptr_w(*m_delim);
+            }
+            *m_s += c_str_ptr_w(value);
+        }
+
+        ++m_count;
     }
 #endif /* 0 */
 /// @}
@@ -271,8 +328,10 @@ private:
 /// \name Member Variables
 /// @{
 private:
-    string_type             *m_s;
-    delimiter_type const    *m_delim;
+    string_type*            m_s;
+    delimiter_type const*   m_delim;
+    int                     m_flags;
+    unsigned                m_count;
 /// @}
 };
 
@@ -292,9 +351,14 @@ private:
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
         >
-inline string_concatenator_iterator<S, D> make_string_concatenator_iterator(S& s, D const& delim)
+inline string_concatenator_iterator<S, D>
+make_string_concatenator_iterator(
+    S&          s
+,   D const&    delim
+,   int         flags = 0
+)             
 {
-    return string_concatenator_iterator<S, D>::create(s, delim);
+    return string_concatenator_iterator<S, D>::create(s, delim, flags);
 }
 
 /** \brief Creator function for string_concatenator_iterator
@@ -311,13 +375,18 @@ inline string_concatenator_iterator<S, D> make_string_concatenator_iterator(S& s
 template<   ss_typename_param_k S
         ,   ss_typename_param_k D
         >
-inline string_concatenator_iterator<S, D> string_concatenator(S& s, D const& delim)
+inline string_concatenator_iterator<S, D>
+string_concatenator(
+    S&          s
+,   D const&    delim
+,   int         flags = 0
+)
 {
 #if defined(STLSOFT_COMPILER_IS_INTEL) || \
     defined(STLSOFT_COMPILER_IS_MSVC)
-    return string_concatenator_iterator<S, D>::create(s, delim);
+    return string_concatenator_iterator<S, D>::create(s, delim, flags);
 #else /* ? compiler */
-    return make_string_concatenator_iterator(s, delim);
+    return make_string_concatenator_iterator(s, delim, flags);
 #endif /* compiler */
 }
 

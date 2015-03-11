@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     10th August 2009
+ * Updated:     10th August 2010
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        92
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1217,7 +1217,7 @@ inline ss_bool_t basic_string_view<C, T, A>::equal(ss_typename_type_k basic_stri
 {
     STLSOFT_ASSERT(is_valid());
 
-    return (m_length == rhs.m_length) && ((m_base == rhs.m_base) || 0 == compare(rhs));
+    return (m_length == rhs.m_length) && ((m_base == rhs.m_base) || 0 == traits_type::compare(m_base, rhs.m_base, m_length));
 }
 
 template<   ss_typename_param_k C
@@ -1329,14 +1329,16 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
                                                     ,   ss_typename_type_k basic_string_view<C, T, A>::size_type          cchRhs) const stlsoft_throw_0()
 {
     STLSOFT_ASSERT(is_valid());
+    STLSOFT_ASSERT(pos <= length());
+    STLSOFT_ASSERT(posRhs <= rhs.length());
 
-    size_type   lhs_len =   length();
+    size_type lhs_len = length();
 
-    if(!(pos < lhs_len))
+    if(pos == lhs_len)
     {
-        pos = lhs_len;
+        lhs_len = 0u;
     }
-    else
+    else if(pos + cch > lhs_len)
     {
         lhs_len -= pos;
     }
@@ -1346,13 +1348,13 @@ inline ss_sint_t basic_string_view<C, T, A>::compare(   ss_typename_type_k basic
         lhs_len = cch;
     }
 
-    size_type   rhs_len =   rhs.length();
+    size_type rhs_len = rhs.length();
 
-    if(!(posRhs < rhs_len))
+    if(posRhs == rhs_len)
     {
-        posRhs = rhs_len;
+        rhs_len = 0u;
     }
-    else
+    else if(posRhs + cchRhs > rhs_len)
     {
         rhs_len -= posRhs;
     }

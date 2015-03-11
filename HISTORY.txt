@@ -2,22 +2,38 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  21st June 2010
+; Updated:  12th August 2010
 
 ============================================================================
+
+
+12th August 2010 - 1.9.100 released
+-----------------------------------
+
+ * added stlsoft/iterators/common/string_concatenation_flags.hpp
+ * string_concatenator_iterator now strictly skips separator insertion for empty elements if no flags are specified, and always inserts separator if string_concatenation_flags::AlwaysSeparate is specified
+ * added performance_counter_init::get_period_and_restart() method
+ * added STLSOFT_CC_CDECL_VALUE, STLSOFT_CC_FASTCALL_VALUE, STLSOFT_CC_STDCALL_VALUE
+ * special_string_instance now uses atomic_int_type
+ * string_tokeniser iterator dereference operator changed to disallow return of mutable instance
+ * string_view has improved comparison algorithm
+ * added 3-, 4-, and 5-parameter overloads of stlsoft::minimum() and stlsoft::maximum()
+ * various fixes and enhancements to platformstl::file_lines 
+ * added size() and empty() methods to winstl::environment_variable
+ * implemented winstl::system_traits::str_n_compare_no_case()
 
 
 21st June 2010 - 1.9.99 released
 --------------------------------
 
-	* added filesystem_traits::str_fs_compare() (UNIXSTL & WinSTL)
-	* added filesystem_traits::str_fs_n_compare() (UNIXSTL & WinSTL)
-	* added str_n_compare_no_case declaration to system_traits (UNIXSTL & WinSTL)
+ * added filesystem_traits::str_fs_compare() (UNIXSTL & WinSTL)
+ * added filesystem_traits::str_fs_n_compare() (UNIXSTL & WinSTL)
+ * added str_n_compare_no_case declaration to system_traits (UNIXSTL & WinSTL)
  * added assoc_select_first() and assoc_select_second() creator functions for associative_select_iterator
  * incorporated Manfred Ehrhart's fixes for associative_select_iterator
  * Borland/GCC-compatibility fixes
  * GCC-compatibility fixes
-	* nullptr support correction for VC++
+ * nullptr support correction for VC++
  * various minor fixes
 
 

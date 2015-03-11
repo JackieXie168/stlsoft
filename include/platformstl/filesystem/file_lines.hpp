@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the file_lines components.
  *
  * Created:     25th October 2007
- * Updated:     16th May 2010
+ * Updated:     12th August 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_MINOR    4
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     18
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_REVISION 6
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_LINES_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp
@@ -125,9 +125,9 @@ namespace platformstl_project
 
 /** Maps a text file's contents and presents them as a vector of lines
  */
-template<   typename C
-        ,   typename V = stlsoft::basic_string_view<C>
-        ,   typename B = stlsoft::basic_simple_string<C>
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k V = stlsoft::basic_string_view<C>
+        ,   ss_typename_param_k B = stlsoft::basic_simple_string<C>
         >
 class basic_file_lines
 {
@@ -150,8 +150,8 @@ public:
 /// \name Construction
 /// @{
 public:
-    template <typename S>
-    basic_file_lines(S const& path)
+    template <ss_typename_param_k S>
+    ss_explicit_k basic_file_lines(S const& path)
         : m_mmf(NULL) /* NOTE: can't initialise m_mmf here, as Borland causes the MMF ctor to fail with Access Denied. Go figure! */
         , m_contents()
         , m_strings()
@@ -201,9 +201,9 @@ public:
 #endif /* OS */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            m_contents.assign(static_cast<C const*>(mmf.memory()), stlsoft_ns_qual(truncation_cast)<size_type>(mmf.size()));
+            m_contents = base_string_type_(static_cast<C const*>(mmf.memory()), stlsoft_ns_qual(truncation_cast)<size_type>(mmf.size()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
-            m_contents.assign(static_cast<C const*>(mmf.memory()), static_cast<size_type>(mmf.size()));
+            m_contents = base_string_type_(static_cast<C const*>(mmf.memory()), static_cast<size_type>(mmf.size()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
             tokeniser_t_ lines(m_contents.data(), m_contents.size(), sep);
@@ -214,9 +214,37 @@ public:
             // is ok if:
             //  - there are no lines, or
             //  - the string type copies. This is determined by checking whether
-            //    the first string's contents point to the base of the mapping.
-            if( m_strings.empty() ||
-                m_strings.front().data() != static_cast<C const*>(mmf.memory()))
+            //    the first non-empty string's contents point within the mapping.
+            bool canDeleteMapping = false;
+
+            if(!canDeleteMapping)
+            {
+                canDeleteMapping = m_strings.empty();
+            }
+
+            if(!canDeleteMapping)
+            {
+                { for(ss_typename_type_k strings_type_::const_iterator i = m_strings.begin(); i != m_strings.end(); ++i)
+                {
+                    if(0u != (*i).size())
+                    {
+                        void const* base    =   mmf.memory();
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+                        void const* end     =   ptr_byte_offset(base, stlsoft_ns_qual(truncation_cast)<ss_ptrdiff_t>(mmf.size()));
+#else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
+                        void const* end     =   ptr_byte_offset(base, static_cast<ss_ptrdiff_t>(mmf.size()));
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
+                        void const* p       =   (*i).data();
+
+                        canDeleteMapping = p < base || p >= end;
+
+                        break;
+                    }
+                }}
+            }
+
+            if(canDeleteMapping)
             {
                 delete m_mmf;
                 m_mmf = NULL;
@@ -307,6 +335,15 @@ private:
 private:
     basic_file_lines(class_type const& );
     class_type& operator =(class_type const& );
+
+    // Prevents the conversion constructor from being invoked on an instance
+    // of a different specialisation
+    template<
+        ss_typename_param_k C2
+    ,   ss_typename_param_k V2
+    ,   ss_typename_param_k B2
+    >
+    basic_file_lines(basic_file_lines<C2, V2, B2> const& );
 /// @}
 };
 

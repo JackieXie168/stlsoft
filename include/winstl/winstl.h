@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     15th February 2010
+ * Updated:     26th July 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       11
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       12
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        180
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        181
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -143,6 +143,7 @@
 # define _WINSTL_VER_1_10_6     0x010a06ff  /*!< Version 1.10.6 (with STLSoft 1.9.90) */
 # define _WINSTL_VER_1_10_7     0x010a07ff  /*!< Version 1.10.7 (with STLSoft 1.9.91) */
 # define _WINSTL_VER_1_11_1     0x010b01ff  /*!< Version 1.11.1 (with STLSoft 1.9.93) */
+# define _WINSTL_VER_1_11_2     0x010b02ff  /*!< Version 1.11.2 (with STLSoft 1.9.100) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
@@ -757,10 +758,19 @@ typedef stlsoft_ns_qual(ss_int32_t)         ws_int32_t;     /**!< 32-bit integer
 typedef stlsoft_ns_qual(ss_sint32_t)        ws_sint32_t;    /**!< 32-bit signed integer. */
 typedef stlsoft_ns_qual(ss_uint32_t)        ws_uint32_t;    /**!< 32-bit unsigned integer. */
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef stlsoft_ns_qual(ss_int64_t)        ws_int64_t;     /**!< 64-bit integer. */
- typedef stlsoft_ns_qual(ss_sint64_t)       ws_sint64_t;    /**!< 64-bit signed integer. */
- typedef stlsoft_ns_qual(ss_uint64_t)       ws_uint64_t;    /**!< 64-bit unsigned integer. */
+typedef stlsoft_ns_qual(ss_int64_t)         ws_int64_t;     /**!< 64-bit integer. */
+typedef stlsoft_ns_qual(ss_sint64_t)        ws_sint64_t;    /**!< 64-bit signed integer. */
+typedef stlsoft_ns_qual(ss_uint64_t)        ws_uint64_t;    /**!< 64-bit unsigned integer. */
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+# ifdef _WIN64
+typedef LONG_PTR                            ws_intptr_t;    /**!< integer capable of holding pointer without loss */
+typedef LONG_PTR                            ws_sintptr_t;   /**!< signed integer capable of holding pointer without loss */
+typedef ULONG_PTR                           ws_uintptr_t;   /**!< unsigned integer capable of holding pointer without loss */
+# else /* ? _WIN64 */
+typedef LONG                                ws_intptr_t;    /**!< integer capable of holding pointer without loss */
+typedef LONG                                ws_sintptr_t;   /**!< signed integer capable of holding pointer without loss */
+typedef ULONG                               ws_uintptr_t;   /**!< unsigned integer capable of holding pointer without loss */
+# endif /* _WIN64 */
 typedef stlsoft_ns_qual(ss_int_t)           ws_int_t;       /**!< integer. */
 typedef stlsoft_ns_qual(ss_sint_t)          ws_sint_t;      /**!< signed integer. */
 typedef stlsoft_ns_qual(ss_uint_t)          ws_uint_t;      /**!< unsigned integer. */
@@ -797,9 +807,9 @@ typedef ws_int32_t          int32_t;            /**!< 32-bit integer. */
 typedef ws_sint32_t         sint32_t;           /**!< 32-bit signed integer. */
 typedef ws_uint32_t         uint32_t;           /**!< 32-bit unsigned integer. */
 # ifdef STLSOFT_CF_64BIT_INT_SUPPORT
- typedef ws_int64_t         int64_t;            /**!< 64-bit integer. */
- typedef ws_sint64_t        sint64_t;           /**!< 64-bit signed integer. */
- typedef ws_uint64_t        uint64_t;           /**!< 64-bit unsigned integer. */
+typedef ws_int64_t          int64_t;            /**!< 64-bit integer. */
+typedef ws_sint64_t         sint64_t;           /**!< 64-bit signed integer. */
+typedef ws_uint64_t         uint64_t;           /**!< 64-bit unsigned integer. */
 # endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /* typedef ws_short_t          short_t; */            /**!< short integer. */
 typedef ws_int_t            int_t;              /**!< integer. */

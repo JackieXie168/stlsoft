@@ -5,11 +5,11 @@
  *              module filename.
  *
  * Created:     31st March 2002
- * Updated:     10th August 2009
+ * Updated:     12th August 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MAJOR     4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MINOR     1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_REVISION  2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      72
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_MINOR     2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_REVISION  1
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_MODULE_FILENAME_EDIT      73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,6 +139,7 @@ public:
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
     // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
     typedef winstl::spin_mutex          spin_mutex_type;
+    typedef winstl::atomic_int_t        atomic_int_type;
 #endif /* compiler */
 /// @}
 

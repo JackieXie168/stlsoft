@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     21st June 2010
+ * Updated:     11th August 2010
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
  *              broke GCC -pedantic
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      111
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -219,11 +219,7 @@ public:
 
     enum
     {
-#ifdef _WIN32
-        pathComparisonIsCaseSensitive   =   false
-#else
         pathComparisonIsCaseSensitive   =   true
-#endif
     };
 /// @}
 #endif /* PATH_MAX */
@@ -442,6 +438,15 @@ public:
         maxPathLength   =   1 + PATH_MAX    //!< The maximum length of a path for the current file system
     };
 #endif /* PATH_MAX */
+
+    enum
+    {
+#ifdef _WIN32
+        pathComparisonIsCaseSensitive   =   false
+#else
+        pathComparisonIsCaseSensitive   =   true
+#endif
+    };
 
 public:
     static int_type str_fs_compare(char_type const* s1, char_type const* s2)
@@ -1087,6 +1092,7 @@ public:
     {
 #if defined(_WIN32) && \
     (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_GCC) || \
         defined(STLSOFT_COMPILER_IS_MSVC))
 
         STLSOFT_SUPPRESS_UNUSED(permissions);
@@ -1198,6 +1204,15 @@ public:
         maxPathLength   =   1 + PATH_MAX    //!< The maximum length of a path for the current file system
     };
 #endif /* PATH_MAX */
+
+    enum
+    {
+#ifdef _WIN32
+        pathComparisonIsCaseSensitive   =   false
+#else
+        pathComparisonIsCaseSensitive   =   true
+#endif
+    };
 
 public:
     static int_type str_fs_compare(char_type const* s1, char_type const* s2)

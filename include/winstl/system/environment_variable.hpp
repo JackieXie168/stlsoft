@@ -4,11 +4,13 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     10th August 2009
+ * Updated:     11th August 2010
+ *
+ * Thanks to:   Pablo Aguilar for requesting size() and empty().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    2
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    3
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     64
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -147,6 +149,8 @@ public:
     typedef ws_size_t                           size_type;
     /// The difference type
     typedef ws_ptrdiff_t                        difference_type;
+    /// The Boolean type
+    typedef ws_bool_t                           bool_type;
 
 // Construction
 public:
@@ -205,7 +209,16 @@ public:
     /// Returns the length of the variable
     size_type length() const
     {
+        return size();
+    }
+    /// Returns the length of the variable
+    size_type size() const
+    {
         return m_buffer.size() - 1;
+    }
+    bool_type empty() const
+    {
+        return 0u == size();
     }
 
 // Members

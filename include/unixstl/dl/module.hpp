@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     30th March 2010
+ * Updated:     12th August 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MAJOR    6
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    2
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 5
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     218
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_MINOR    3
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_REVISION 1
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_MODULE_EDIT     220
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_ERROR_UNIX_EXCEPTIONS
 # include <unixstl/error/exceptions.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_ERROR_HPP_UNIX_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
+# include <stlsoft/shims/access/string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
 #ifndef UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING
 # include <unixstl/shims/access/string.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING */
@@ -119,10 +122,17 @@ class module
 public:
     /// \brief The handle type
     typedef void*       module_handle_type;
+    /// \brief The handle type
+    ///
+    /// \note This member type is required to make it compatible with
+    ///  the STLSoft get_module_handle access shim
+    typedef void*       handle_type;
     /// \brief The class type
     typedef module      class_type;
     /// \brief The entry point type
     typedef void*       proc_pointer_type;
+public:
+    typedef handle_type resource_type;
 
 /// \name Construction
 /// @{
@@ -145,6 +155,7 @@ public:
     ///  \link unixstl::unix_exception unix_exception\endlink
     ///  if the module cannot be loaded
     ss_explicit_k module(us_char_w_t const* moduleName, int mode = RTLD_NOW);
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT)
     /// \brief Constructs by loading the named module
     ///
     /// \param moduleName The file name of the executable module to be
@@ -160,13 +171,14 @@ public:
     ss_explicit_k module(S const& moduleName, int mode = RTLD_NOW)
         : m_hmodule(load(moduleName, mode))
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         if(NULL == m_hmodule)
         {
             STLSOFT_THROW_X(unix_exception("Cannot load module", errno));
         }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// \brief Constructs by taking ownership of the given handle
     ///
     /// \note If exception-handling is being used, then this throws a
@@ -196,6 +208,7 @@ public:
     ///
     /// \return The module handle, or NULL if no matching module found.
     static module_handle_type   load(us_char_w_t const* moduleName, int mode = RTLD_NOW);
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     /// \brief Loads the named module, returning its handle, which the
     ///   caller must close with unload().
     ///
@@ -211,12 +224,14 @@ public:
     {
         return class_type::load(stlsoft_ns_qual(c_str_ptr)(moduleName), mode);
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
     /// \brief Closes the given module handle
-    static void                 unload(module_handle_type hmodule);
+    static void                 unload(module_handle_type hmodule) stlsoft_throw_0();
     /// \brief Looks up the named symbol from the given module
     ///
     /// \return A pointer to the named symbol, or NULL if not found
     static proc_pointer_type    get_symbol(module_handle_type hmodule, us_char_a_t const* symbolName);
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     /// \brief Looks up a named symbol from the given module into a typed function pointer variable.
     ///
     /// \return A pointer to the named symbol, or NULL if not found.
@@ -229,13 +244,14 @@ public:
 
         return proc;
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 /// @}
 
 /// \name Operations
 /// @{
 public:
     /// \brief Closes the module handle
-    void unload();
+    void unload() stlsoft_throw_0();
 
     /// \brief Yields the module handle to the caller
     module_handle_type detach();
@@ -248,6 +264,7 @@ public:
     ///
     /// \return A pointer to the named symbol, or NULL if not found
     proc_pointer_type   get_symbol(us_char_a_t const* symbolName);
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
     /// \brief Looks up a named symbol into a typed function pointer variable.
     ///
     /// \return A pointer to the named symbol, or NULL if not found.
@@ -256,6 +273,7 @@ public:
     {
         return class_type::get_symbol(m_hmodule, symbolName, f);
     }
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 /// @}
 
 /// \name Accessors
@@ -270,7 +288,7 @@ public:
 private:
 /// @}
 
-/// \name Members
+/// \name Member Variables
 /// @{
 private:
     module_handle_type  m_hmodule;
@@ -349,7 +367,7 @@ inline module::~module() stlsoft_throw_0()
     unload(m_hmodule);
 }
 
-inline void module::unload()
+inline void module::unload() stlsoft_throw_0()
 {
     if(NULL != m_hmodule)
     {
@@ -373,7 +391,7 @@ inline /* static */ module::module_handle_type module::load(us_char_a_t const* m
     return ::dlopen(moduleName, mode);
 }
 
-inline /* static */ void module::unload(module::module_handle_type hmodule)
+inline /* static */ void module::unload(module::module_handle_type hmodule) stlsoft_throw_0()
 {
     if(NULL != hmodule)
     {

@@ -4,7 +4,7 @@
  * Purpose:     COM ROT (Running Object Table) functions.
  *
  * Created:     21st October 1998
- * Updated:     12th January 2010
+ * Updated:     29th July 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MAJOR       5
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_MINOR       1
 # define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_REVISION    3
-# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        64
+# define COMSTL_VER_COMSTL_UTIL_H_ROT_FUNCTIONS_EDIT        65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -287,6 +287,16 @@ STLSOFT_INLINE HRESULT comstl_C_Rot_EnumRunning(IEnumMoniker** ppenumMoniker)
 
     return hr;
 }
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Obsolete symbols
+ *
+ * NOTE: these are only defined if:
+ *
+ * - we're generating documentation, or
+ * - STLSOFT_OBSOLETE is specified, or
+ * - it's STLSoft 1.9 (or earlier)
+ */
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION) || \
     defined(STLSOFT_OBSOLETE) || \

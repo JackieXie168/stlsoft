@@ -4,7 +4,10 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     30th January 2010
+ * Updated:     27th July 2010
+ *
+ * Thanks to:   Pablo Aguilar for reporting defect in push_ext() (which
+ *              doesn't work for wide-string builds).
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       234
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   3
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       235
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1016,7 +1019,9 @@ inline basic_path<C, T, A>& basic_path<C, T, A>::push_ext(char_type const* rhs, 
     newPath.pop_sep();
     if('.' != *rhs)
     {
-        newPath.concat_(".");
+        static char_type const s_dot[] = { '.', '\0' };
+
+        newPath.concat_('.', 1u);
     }
     newPath.concat_(rhs);
     if(bAddPathNameSeparator)

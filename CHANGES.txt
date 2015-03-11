@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  21st June 2010
+; Updated:  12th August 2010
 
 ============================================================================
 
@@ -19,19 +19,158 @@ STLSoft - Changes
 
 ============================================================================
 
+Changes for 1.9.100 (12th August 2010)
+
+Summary:
+========
+
+ * added stlsoft/iterators/common/string_concatenation_flags.hpp
+ * string_concatenator_iterator now strictly skips separator insertion for empty elements if no flags are specified, and always inserts separator if string_concatenation_flags::AlwaysSeparate is specified
+ * added performance_counter_init::get_period_and_restart() method
+ * added STLSOFT_CC_CDECL_VALUE, STLSOFT_CC_FASTCALL_VALUE, STLSOFT_CC_STDCALL_VALUE
+ * special_string_instance now uses atomic_int_type
+ * string_tokeniser iterator dereference operator changed to disallow return of mutable instance
+ * string_view has improved comparison algorithm
+ * added 3-, 4-, and 5-parameter overloads of stlsoft::minimum() and stlsoft::maximum()
+ * various fixes and enhancements to platformstl::file_lines 
+ * added size() and empty() methods to winstl::environment_variable
+ * implemented winstl::system_traits::str_n_compare_no_case()
+
+Changes:
+========
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/algorithms/pod.hpp:
+    ~ refactored, to remove inappropriate constraints
+
+ + stlsoft/iterators/common/string_concatenation_flags.hpp:
+    + added stlsoft/iterators/common/string_concatenation_flags.hpp
+
+ ~ stlsoft/iterators/string_concatenator_iterator.hpp:
+    ~ now strictly skips separator insertion for empty elements if no flags are specified, and always inserts separator if string_concatenation_flags::AlwaysSeparate is specified
+
+ ~ stlsoft/performance/performance_counter_init.hpp:
+    + added get_period_and_restart() method
+
+ ~ stlsoft/stlsoft.h:
+    + added STLSOFT_CC_CDECL_VALUE
+    + added STLSOFT_CC_FASTCALL_VALUE
+    + added STLSOFT_CC_STDCALL_VALUE
+
+ ~ stlsoft/string/special_string_instance.hpp:
+    ~ special_string_instance now uses atomic_int_type
+    ~ minor change to avoid possible undefined-behaviour
+
+ ~ stlsoft/string/string_tokeniser.hpp:
+    ~ iterator dereference operator changed to disallow return of mutable instance
+
+ ~ stlsoft/string/string_view.hpp:
+    ~ improved comparison algorithm
+    ~ performance improvement in equal(class_type const&) method
+
+ ~ stlsoft/util/constraints.hpp:
+    ~ compiler compatibility
+    ~ compatibility
+    ~ workaround for pedantic warnings
+
+ ~ stlsoft/util/minmax.hpp:
+    + 3-, 4-, and 5-parameter overloads
+
+ COMSTL:
+ =======
+
+ ~ comstl/util/rot_functions.h:
+    ~ trivial commenting changes
+
+ PlatformSTL:
+ ============
+
+ ~ platformstl/filesystem/file_lines.hpp:
+    ~ 64-bit compatibility
+    ~ corrects the determination of whether to discard the mapping to work on the first non-empty string, since it will fault if the first line in a mapped file is empty but any others are not
+    + conversion constructor is now explicit
+    + added private declaration of constructor template to prevents the conversion constructor from being invoked on an instance of a different specialisation
+    ~ allows wider range of string types to be used, in particular those that are copy-constructible but do not provide assign() methods
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/dl/module.hpp:
+    ~ includes STLSoft's main shims header, to at least allow GCC to see std::string arguments without hassle
+    + added typedefs to make compatible with get_module_handle() shim (not yet complete for UNIXSTL)
+    ~ surrounding template methods with #ifdefs
+    ~ throw() for unload() method(s)
+
+ ~ unixstl/filesystem/filesystem_traits.hpp:
+    ~ GCC (on Windows) compatibility
+    + added missing member constant pathComparisonIsCaseSensitive to specialisations
+
+ ~ unixstl/filesystem/path.hpp:
+    ~ ensures push_ext() is wide-string compatible
+
+ WinSTL:
+ =======
+
+ ~ winstl/dl/module.hpp:
+    ~ documentation markup
+
+ ~ winstl/filesystem/absolute_path.hpp:
+ ~ winstl/filesystem/current_directory.hpp:
+ ~ winstl/system/module_directory.hpp:
+ ~ winstl/system/module_filename.hpp:
+    ~ special_string_instance now uses atomic_int_type
+
+ ~ winstl/filesystem/filesystem_traits.hpp:
+    + added missing member constant pathComparisonIsCaseSensitive to specialisations
+
+ ~ winstl/filesystem/path.hpp:
+    ~ ensures push_ext() is wide-string compatible
+
+ ~ winstl/system/console_functions.h:
+    ~ winstl__get_console_width() => winstl_C_get_console_width()
+    ~ winstl__get_console_window() => winstl_C_get_console_window()
+    ~ minor improvements to use of casts
+
+ ~ winstl/system/environment_variable.hpp:
+    + added size() method
+    + added empty() method
+
+ ~ winstl/system/searchpath_sequence.hpp:
+    ~ 64-bit compatibility
+
+ ~ winstl/system/system_directory.hpp:
+    + added atomic_int_type
+
+ ~ winstl/system/system_traits.hpp:
+    ~ implementation(s) of str_n_compare_no_case()
+
+ ~ winstl/system/windows_directory.hpp:
+    + added atomic_int_type
+
+ ~ winstl/winstl.h:
+    + added ws_intptr_t
+    + added ws_sintptr_t
+    + added ws_uintptr_t
+
+
+
+============================================================================
+
 Changes for 1.9.99 (21st June 2010)
 
 Summary:
 ========
 
-	* added filesystem_traits::str_fs_compare() (UNIXSTL & WinSTL)
-	* added filesystem_traits::str_fs_n_compare() (UNIXSTL & WinSTL)
-	* added str_n_compare_no_case declaration to system_traits (UNIXSTL & WinSTL)
+ * added filesystem_traits::str_fs_compare() (UNIXSTL & WinSTL)
+ * added filesystem_traits::str_fs_n_compare() (UNIXSTL & WinSTL)
+ * added str_n_compare_no_case declaration to system_traits (UNIXSTL & WinSTL)
  * added assoc_select_first() and assoc_select_second() creator functions for associative_select_iterator
  * incorporated Manfred Ehrhart's fixes for associative_select_iterator
  * Borland/GCC-compatibility fixes
  * GCC-compatibility fixes
-	* nullptr support correction for VC++
+ * nullptr support correction for VC++
  * various minor fixes
 
 Changes:

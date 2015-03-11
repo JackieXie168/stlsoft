@@ -4,13 +4,13 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     10th August 2009
+ * Updated:     12th August 2010
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      5
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       225
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       228
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,9 +76,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING
 # include <stlsoft/shims/access/string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_ACCESS_HPP_STRING */
-# ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
-#  include <winstl/filesystem/file_path_buffer.hpp>
-# endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
+#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
+# include <winstl/filesystem/file_path_buffer.hpp>
+#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
 # include <winstl/system/system_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
@@ -161,7 +161,7 @@ public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
     ss_explicit_k module(ws_char_w_t const* moduleName, void (*pfn)(ws_char_w_t const*, handle_type, void*), void* param);
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-#if defined(STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT) && \
+#if defined(STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER >= 1200)
     /// \brief Constructs by loading the named module
@@ -187,7 +187,7 @@ public:
         }
 # endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// \brief Constructs by taking ownership of the given handle
     ///
     /// \note If exception-handling is being used, then this throws a
@@ -208,10 +208,14 @@ public:
     /// \brief Loads the named module, returning its handle, which the
     ///   caller must close with unload().
     ///
+    /// \param moduleName The file name of the executable module to be loaded.
+    ///
     /// \return The module handle, or NULL if no matching module found.
     static module_handle_type   load(ws_char_a_t const* moduleName);
     /// \brief Loads the named module, returning its handle, which the
     ///   caller must close with unload().
+    ///
+    /// \param moduleName The file name of the executable module to be loaded.
     ///
     /// \return The module handle, or NULL if no matching module found.
     static module_handle_type   load(ws_char_w_t const* moduleName);

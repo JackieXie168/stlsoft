@@ -4,11 +4,11 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     10th August 2009
+ * Updated:     11th August 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       5
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        88
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    3
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        90
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,14 +64,21 @@
 #ifndef STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT
 # include <stlsoft/algorithms/std/alt.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHM_STD_HPP_ALT */
-#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
-#  include <stlsoft/meta/base_type_traits.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
-# ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
-#  include <stlsoft/util/constraints.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
-#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
+# include <stlsoft/util/constraints.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
+# include <stlsoft/meta/is_integral_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
+# include <stlsoft/meta/is_pointer_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+# include <stlsoft/meta/is_same_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
+# include <stlsoft/meta/yesno.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_INTEL) || \
@@ -95,6 +102,97 @@
 namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Helper functions
+ */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+struct ximpl_stlsoft_algorithm_pod_helper_
+{
+
+    // Same-type operations
+
+    template<
+        ss_typename_param_k T
+    >
+    static void pod_copy_n_(
+        T*          dest
+    ,   T const*    src
+    ,   ss_size_t   n
+    ,   yes_type
+    )
+    {
+        ::memcpy(dest, src, n * sizeof(*dest));
+    }
+
+    template<
+        ss_typename_param_k T
+    >
+    static void pod_move_n_(
+        T*          dest
+    ,   T const*    src
+    ,   ss_size_t   n
+    ,   yes_type
+    )
+    {
+        ::memmove(dest, src, n * sizeof(*dest));
+    }
+
+
+    // Different-type operations
+    //
+    // - ptr-to-ptr is fine
+    // - int-to-int is fine
+
+    template<
+        ss_typename_param_k O
+    ,   ss_typename_param_k I
+    >
+    static void pod_copy_n_(
+        O*          dest
+    ,   I const*    src
+    ,   ss_size_t   n
+    ,   no_type
+    )
+    {
+        enum { O_IS_INTEGRAL_TYPE   =   (0 != is_integral_type<O>::value)   };
+        enum { I_IS_INTEGRAL_TYPE   =   (0 != is_integral_type<I>::value)   };
+        enum { O_IS_POINTER_TYPE    =   (0 != is_pointer_type<O>::value)    };
+        enum { I_IS_POINTER_TYPE    =   (0 != is_pointer_type<I>::value)    };
+
+        STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
+        STLSOFT_STATIC_ASSERT(int(O_IS_INTEGRAL_TYPE) == int(I_IS_INTEGRAL_TYPE));
+        STLSOFT_STATIC_ASSERT(int(O_IS_POINTER_TYPE) == int(I_IS_POINTER_TYPE));
+
+        ::memcpy(dest, src, n * sizeof(*dest));
+    }
+
+    template<
+        ss_typename_param_k O
+    ,   ss_typename_param_k I
+    >
+    static void pod_move_n_(
+        O*          dest
+    ,   I const*    src
+    ,   ss_size_t   n
+    ,   no_type
+    )
+    {
+        enum { O_IS_INTEGRAL_TYPE   =   (0 != is_integral_type<O>::value)   };
+        enum { I_IS_INTEGRAL_TYPE   =   (0 != is_integral_type<I>::value)   };
+        enum { O_IS_POINTER_TYPE    =   (0 != is_pointer_type<O>::value)    };
+        enum { I_IS_POINTER_TYPE    =   (0 != is_pointer_type<I>::value)    };
+
+        STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
+        STLSOFT_STATIC_ASSERT(int(O_IS_INTEGRAL_TYPE) == int(I_IS_INTEGRAL_TYPE));
+        STLSOFT_STATIC_ASSERT(int(O_IS_POINTER_TYPE) == int(I_IS_POINTER_TYPE));
+
+        ::memmove(dest, src, n * sizeof(*dest));
+    }
+
+};
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Algorithms
@@ -134,26 +232,23 @@ inline void pod_copy(I* first, I* last, O* dest)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
-    std_copy(&first[0], &last[0], &dest[0]);
-#else /* ? compiler */
-    STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
-# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-        // Both must be non-pointers, or must point to POD types
-    typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
-    typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
 
-#  ifndef _STLSOFT_POD_COPY_ALLOW_NON_POD
-    stlsoft_constraint_must_be_pod(i_base_type);
-    stlsoft_constraint_must_be_pod(o_base_type);
-#  endif /* !_STLSOFT_POD_COPY_ALLOW_NON_POD */
-# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    std_copy(&first[0], &last[0], &dest[0]);
+
+#else /* ? compiler */
+
+    STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
+    stlsoft_constraint_must_be_pod(O);
+    stlsoft_constraint_must_be_pod(I);
+
+    enum { TYPES_ARE_SAME = is_same_type<I, O>::value };
+
+    typedef ss_typename_type_k value_to_yesno_type<TYPES_ARE_SAME>::type    yesno_t;
 
     ss_size_t n = static_cast<ss_size_t>(last - first);
 
-    if(0 != n)
-    {
-        ::memcpy(&dest[0], &first[0], n * sizeof(*first));
-    }
+    ximpl_stlsoft_algorithm_pod_helper_::pod_copy_n_(dest, first, n, yesno_t());
+
 #endif /* compiler */
 }
 
@@ -190,24 +285,21 @@ inline void pod_copy_n(O *dest, I *src, ss_size_t n)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
+
     std_copy(&src[0], &src[n], &dest[0]);
+
 #else /* ? compiler */
+
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
-# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-        // Both must be non-pointers, or must point to POD types
-    typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
-    typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
+    stlsoft_constraint_must_be_pod(O);
+    stlsoft_constraint_must_be_pod(I);
 
-#  ifndef _STLSOFT_POD_COPY_N_ALLOW_NON_POD
-    stlsoft_constraint_must_be_pod(i_base_type);
-    stlsoft_constraint_must_be_pod(o_base_type);
-#  endif /* !_STLSOFT_POD_COPY_N_ALLOW_NON_POD */
-# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    enum { TYPES_ARE_SAME = is_same_type<I, O>::value };
 
-    if(0 != n)
-    {
-        ::memcpy(&dest[0], &src[0], n * sizeof(*dest));
-    }
+    typedef ss_typename_type_k value_to_yesno_type<TYPES_ARE_SAME>::type    yesno_t;
+
+    ximpl_stlsoft_algorithm_pod_helper_::pod_copy_n_(dest, src, n, yesno_t());
+
 #endif /* compiler */
 }
 
@@ -238,26 +330,23 @@ inline void pod_move(I* first, I* last, O* dest)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
-    std_copy(&first[0], &last[0], &dest[0]);
-#else /* ? compiler */
-    STLSOFT_STATIC_ASSERT(sizeof(*first) == sizeof(*dest));
-# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-        // Both must be non-pointers, or must point to POD types
-    typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
-    typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
 
-#  ifndef _STLSOFT_POD_MOVE_ALLOW_NON_POD
-    stlsoft_constraint_must_be_pod(i_base_type);
-    stlsoft_constraint_must_be_pod(o_base_type);
-#  endif /* !_STLSOFT_POD_MOVE_ALLOW_NON_POD */
-# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    std_copy(&first[0], &last[0], &dest[0]);
+
+#else /* ? compiler */
+
+    STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*first));
+    stlsoft_constraint_must_be_pod(O);
+    stlsoft_constraint_must_be_pod(I);
+
+    enum { TYPES_ARE_SAME = is_same_type<I, O>::value };
+
+    typedef ss_typename_type_k value_to_yesno_type<TYPES_ARE_SAME>::type    yesno_t;
 
     ss_size_t n = static_cast<ss_size_t>(last - first);
 
-    if(0 != n)
-    {
-        ::memmove(dest, first, n * sizeof(*first));
-    }
+    ximpl_stlsoft_algorithm_pod_helper_::pod_move_n_(dest, first, n, yesno_t());
+
 #endif /* compiler */
 }
 
@@ -287,24 +376,21 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
 {
 #if defined(STLSOFT_COMPILER_IS_BORLAND) || \
     defined(STLSOFT_COMPILER_IS_DMC)
+
     std_copy(&src[0], &src[n], &dest[0]);
+
 #else /* ? compiler */
+
     STLSOFT_STATIC_ASSERT(sizeof(*dest) == sizeof(*src));
-# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-        // Both must be non-pointers, or must point to POD types
-    typedef ss_typename_type_k base_type_traits<I>::base_type   i_base_type;
-    typedef ss_typename_type_k base_type_traits<O>::base_type   o_base_type;
+    stlsoft_constraint_must_be_pod(O);
+    stlsoft_constraint_must_be_pod(I);
 
-#  ifndef _STLSOFT_POD_MOVE_N_ALLOW_NON_POD
-    stlsoft_constraint_must_be_pod(i_base_type);
-    stlsoft_constraint_must_be_pod(o_base_type);
-#  endif /* !_STLSOFT_POD_MOVE_N_ALLOW_NON_POD */
-# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    enum { TYPES_ARE_SAME = is_same_type<I, O>::value };
 
-    if(0 != n)
-    {
-        ::memmove(&dest[0], &src[0], n * sizeof(*dest));
-    }
+    typedef ss_typename_type_k value_to_yesno_type<TYPES_ARE_SAME>::type    yesno_t;
+
+    ximpl_stlsoft_algorithm_pod_helper_::pod_move_n_(dest, src, n, yesno_t());
+
 #endif /* compiler */
 }
 
@@ -341,13 +427,7 @@ template<   ss_typename_param_k T
 inline void pod_fill_n(T *dest, ss_size_t n, V const& value)
 {
     // Constrain to POD type:
-# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-    typedef ss_typename_type_k base_type_traits<T>::base_type   base_type;
-
-#  ifndef _STLSOFT_POD_FILL_N_ALLOW_NON_POD
-    stlsoft_constraint_must_be_pod(base_type);
-#  endif /* !_STLSOFT_POD_FILL_N_ALLOW_NON_POD */
-# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+    stlsoft_constraint_must_be_pod(T);
 
     std_fill_n(dest, n, value);
 }

@@ -153,8 +153,8 @@ public:
     typedef ss_typename_type_k parent_class_type::size_type                         size_type;
     /// The pointer type
     typedef ss_typename_type_k parent_class_type::pointer                           pointer;
-	/// This type
-	typedef multibyte2wide<CCH>														class_type;
+    /// This type
+    typedef multibyte2wide<CCH>                                                     class_type;
 /// @}
 
 /// \name Construction
@@ -176,10 +176,10 @@ public:
     multibyte2wide(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-		char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* p = &static_cast<parent_class_type&>(*this)[0];
 
-		::memcpy(p, s, sizeof(char_type) * (1u + s.size()));
-		STLSOFT_ASSERT('\0' == (*this)[s.size()]);
+        ::memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -302,8 +302,8 @@ public:
     typedef ss_typename_type_k parent_class_type::size_type                         size_type;
     /// The pointer type
     typedef ss_typename_type_k parent_class_type::pointer                           pointer;
-	/// This type
-	typedef wide2multibyte<CCH>														class_type;
+    /// This type
+    typedef wide2multibyte<CCH>                                                     class_type;
 /// @}
 
 /// \name Construction
@@ -325,10 +325,10 @@ public:
     wide2multibyte(class_type const& s)
         : parent_class_type(s.size() + 1)
     {
-		char_type* p = &static_cast<parent_class_type&>(*this)[0];
+        char_type* p = &static_cast<parent_class_type&>(*this)[0];
 
-		::memcpy(p, s, sizeof(char_type) * (1u + s.size()));
-		STLSOFT_ASSERT('\0' == (*this)[s.size()]);
+        ::memcpy(p, s, sizeof(char_type) * (1u + s.size()));
+        STLSOFT_ASSERT('\0' == (*this)[s.size()]);
     }
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
