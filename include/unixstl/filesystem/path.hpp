@@ -4,11 +4,11 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     10th August 2009
+ * Updated:     5th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MAJOR      6
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   7
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       232
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_MINOR      6
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_PATH_EDIT       233
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -296,6 +296,8 @@ public:
     ///
     /// \remarks Equivalent to length()
     size_type       size() const;
+    /// The maximum possible length of a path
+    static size_type  max_size();
     /// Determines whether the path is empty
     bool_type       empty() const;
     /// Conversion to a non-mutable (const) pointer to the path
@@ -1471,6 +1473,16 @@ template<   ss_typename_param_k C
 inline ss_typename_type_ret_k basic_path<C, T, A>::size_type basic_path<C, T, A>::size() const
 {
     return length();
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k T
+        ,   ss_typename_param_k A
+        >
+inline ss_typename_type_ret_k basic_path<C, T, A>::size_type
+/* static */ basic_path<C, T, A>::max_size()
+{
+    return buffer_type_::max_size() - 1u;
 }
 
 template<   ss_typename_param_k C

@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st July 2009
+ * Updated:     6th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       9
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       10
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        174
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        177
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -139,12 +139,13 @@
 # define _WINSTL_VER_1_10_2     0x010a02ff  /*!< Version 1.10.2 (with STLSoft 1.9.42) */
 # define _WINSTL_VER_1_10_3     0x010a03ff  /*!< Version 1.10.3 (with STLSoft 1.9.82) */
 # define _WINSTL_VER_1_10_4     0x010a04ff  /*!< Version 1.10.4 (with STLSoft 1.9.84) */
+# define _WINSTL_VER_1_10_5     0x010a05ff  /*!< Version 1.10.4 (with STLSoft 1.9.88) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
 #define _WINSTL_VER_MINOR       10
-#define _WINSTL_VER_REVISION    4
-#define _WINSTL_VER             _WINSTL_VER_1_10_4
+#define _WINSTL_VER_REVISION    5
+#define _WINSTL_VER             _WINSTL_VER_1_10_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -168,6 +169,21 @@
     _MSC_VER == 1100
 # include <wtypes.h>    /* This is here to fix a thoroughly inexplicable VC 5 bug */
 #endif /* compiler */
+
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+	defined(_WIN32) && \
+	(	defined(WIN32) || \
+		defined(WIN64))
+# ifndef STLSOFT_INCL_H_OLEAUTO
+#  define STLSOFT_INCL_H_OLEAUTO
+#  include <oleauto.h>
+# endif /* !STLSOFT_INCL_H_OLEAUTO */
+# ifndef STLSOFT_INCL_H_OAIDL
+#  define STLSOFT_INCL_H_OAIDL
+#  include <oaidl.h>
+# endif /* !STLSOFT_INCL_H_OAIDL */
+#endif /* compiler */
+
 #ifndef STLSOFT_INCL_H_WINDOWS
 # define STLSOFT_INCL_H_WINDOWS
 # include <windows.h>   /* Windows base header */
@@ -252,6 +268,30 @@
 # else /* ? compiler */
 #  define   INVALID_HANDLE_VALUE        reinterpret_cast<HANDLE>(-1)
 # endif /* compiler */
+
+/** \def MAKEINTRESOURCEA
+ * \brief A C++-only redefinition of this \#define which uses C++ cast operators to
+ *  avoid C-style cast warnings.
+ */
+# undef     MAKEINTRESOURCEA
+# if defined(_WIN64) || \
+     defined(_Wp64)
+#  define   MAKEINTRESOURCEA(i)         reinterpret_cast<LPSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
+# else /* ? width */
+#  define   MAKEINTRESOURCEA(i)         reinterpret_cast<LPSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+# endif /* width */
+
+/** \def MAKEINTRESOURCEW
+ * \brief A C++-only redefinition of this \#define which uses C++ cast operators to
+ *  avoid C-style cast warnings.
+ */
+# undef     MAKEINTRESOURCEW
+# if defined(_WIN64) || \
+     defined(_Wp64)
+#  define   MAKEINTRESOURCEW(i)         reinterpret_cast<LPWSTR>(static_cast<ULONG_PTR>(static_cast<WORD>(i)))
+# else /* ? width */
+#  define   MAKEINTRESOURCEW(i)         reinterpret_cast<LPWSTR>(static_cast<ULONG>(static_cast<WORD>(i)))
+# endif /* width */
 
 /** \def MAKEINTRESOURCE
  * \brief A C++-only redefinition of this \#define which uses C++ cast operators to

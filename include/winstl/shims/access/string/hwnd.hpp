@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     10th August 2009
+ * Updated:     22nd December 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MAJOR       4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_REVISION    1
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        112
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_HWND_EDIT        113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,7 +114,7 @@ namespace winstl_project
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline ws_size_t GetWindowTextLength__t(HWND hwnd, int (WINAPI *pfn)(HWND ))
+inline ws_size_t GetWindowTextLength_T_(HWND hwnd, int (WINAPI *pfn)(HWND ))
 {
     WINSTL_ASSERT(NULL != pfn);
 
@@ -161,17 +161,17 @@ inline ws_size_t GetWindowTextLength__t(HWND hwnd, int (WINAPI *pfn)(HWND ))
     return static_cast<ws_size_t>(pfn(hwnd));
 }
 
-inline ws_size_t GetWindowTextLength__(HWND hwnd)
+inline ws_size_t GetWindowTextLength_T_(HWND hwnd)
 {
-    return GetWindowTextLength__t(hwnd, ::GetWindowTextLength);
+    return GetWindowTextLength_T_(hwnd, ::GetWindowTextLength);
 }
-inline ws_size_t GetWindowTextLength__A(HWND hwnd)
+inline ws_size_t GetWindowTextLength_A_(HWND hwnd)
 {
-    return GetWindowTextLength__t(hwnd, ::GetWindowTextLengthA);
+    return GetWindowTextLength_T_(hwnd, ::GetWindowTextLengthA);
 }
-inline ws_size_t GetWindowTextLength__W(HWND hwnd)
+inline ws_size_t GetWindowTextLength_W_(HWND hwnd)
 {
-    return GetWindowTextLength__t(hwnd, ::GetWindowTextLengthW);
+    return GetWindowTextLength_T_(hwnd, ::GetWindowTextLengthW);
 }
 
 template <ss_typename_param_k C>
@@ -182,7 +182,7 @@ struct WindowTextLength_traits<ws_char_a_t>
 {
     static ws_size_t get_length(HWND hwnd)
     {
-        return GetWindowTextLength__A(hwnd);
+        return GetWindowTextLength_A_(hwnd);
     }
 };
 
@@ -191,15 +191,15 @@ struct WindowTextLength_traits<ws_char_w_t>
 {
     static ws_size_t get_length(HWND hwnd)
     {
-        return GetWindowTextLength__W(hwnd);
+        return GetWindowTextLength_W_(hwnd);
     }
 };
 
-inline ws_size_t GetWindowTextA__(HWND hwnd, ws_char_a_t *buffer, ws_size_t cchBuffer)
+inline ws_size_t GetWindowText_A_(HWND hwnd, ws_char_a_t *buffer, ws_size_t cchBuffer)
 {
     WindowIdent ident   =   GetWindowIdent(hwnd);
     int         sel;
-    ws_size_t      cch;
+    ws_size_t   cch;
 
     switch(ident)
     {
@@ -238,7 +238,7 @@ inline ws_size_t GetWindowTextA__(HWND hwnd, ws_char_a_t *buffer, ws_size_t cchB
     return static_cast<ws_size_t>(::GetWindowTextA(hwnd, buffer, static_cast<int>(cchBuffer)));
 }
 
-inline ws_size_t GetWindowTextW__(HWND hwnd, ws_char_w_t *buffer, ws_size_t cchBuffer)
+inline ws_size_t GetWindowText_W_(HWND hwnd, ws_char_w_t *buffer, ws_size_t cchBuffer)
 {
     WindowIdent ident   =   GetWindowIdent(hwnd);
     int         sel;
@@ -380,13 +380,13 @@ private:
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ws_size_t c_str_ptr_null_HWND_proxy<ws_char_a_t>::get_window_text(HWND h, ws_char_a_t *buffer, ws_size_t cchBuffer)
 {
-    return GetWindowTextA__(h, buffer, cchBuffer);
+    return GetWindowText_A_(h, buffer, cchBuffer);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ws_size_t c_str_ptr_null_HWND_proxy<ws_char_w_t>::get_window_text(HWND h, ws_char_w_t *buffer, ws_size_t cchBuffer)
 {
-    return GetWindowTextW__(h, buffer, cchBuffer);
+    return GetWindowText_W_(h, buffer, cchBuffer);
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -481,13 +481,13 @@ private:
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ws_size_t c_str_ptr_HWND_proxy<ws_char_a_t>::get_window_text(HWND h, ws_char_a_t *buffer, ws_size_t cchBuffer)
 {
-    return GetWindowTextA__(h, buffer, cchBuffer);
+    return GetWindowText_A_(h, buffer, cchBuffer);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ws_size_t c_str_ptr_HWND_proxy<ws_char_w_t>::get_window_text(HWND h, ws_char_w_t *buffer, ws_size_t cchBuffer)
 {
-    return GetWindowTextW__(h, buffer, cchBuffer);
+    return GetWindowText_W_(h, buffer, cchBuffer);
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -560,11 +560,11 @@ inline c_str_ptr_HWND_proxy<TCHAR> c_str_data(HWND h)
 
 inline ws_size_t c_str_len_a(HWND h)
 {
-    return GetWindowTextLength__A(h);
+    return GetWindowTextLength_A_(h);
 }
 inline ws_size_t c_str_len_w(HWND h)
 {
-    return GetWindowTextLength__W(h);
+    return GetWindowTextLength_W_(h);
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -576,7 +576,7 @@ inline ws_size_t c_str_len_w(HWND h)
  */
 inline ws_size_t c_str_len(HWND h)
 {
-    return GetWindowTextLength__(h);
+    return GetWindowTextLength_T_(h);
 }
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     6th June 2006
- * Updated:     10th August 2009
+ * Updated:     5th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       14
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,7 +104,7 @@ namespace winstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 template <ss_typename_param_k C>
-ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size_t cchBuffer)
+ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C* buffer, ws_size_t cchBuffer)
 {
     typedef C                       char_t;
     typedef filesystem_traits<C>    traits_t;
@@ -116,8 +116,8 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size
     else if(0 != cchBuffer)
     {
         basic_path<char_t>  p(path, pathLen);
-        char_t const        *file_ptr   =   p.get_file();
-        char_t const        *path_ptr   =   p.c_str();
+        char_t const*		file_ptr   =   p.get_file();
+        char_t const*		path_ptr   =   p.c_str();
         const ws_size_t     fileLen     =   p.size() - (file_ptr - path_ptr);
 
         if(cchBuffer > pathLen)
@@ -235,13 +235,13 @@ ws_size_t path_squeeze_impl(C const* path, ws_size_t pathLen, C *buffer, ws_size
 }
 
 template<ss_typename_param_k S>
-ws_size_t path_squeeze_impl2(S const& path, ws_char_a_t *buffer, ws_size_t cchBuffer)
+ws_size_t path_squeeze_impl2(S const& path, ws_char_a_t* buffer, ws_size_t cchBuffer)
 {
     return path_squeeze_impl(stlsoft_ns_qual(c_str_ptr_a)(path), stlsoft_ns_qual(c_str_len)(path), buffer, cchBuffer);
 }
 
 template<ss_typename_param_k S>
-ws_size_t path_squeeze_impl2(S const& path, ws_char_w_t *buffer, ws_size_t cchBuffer)
+ws_size_t path_squeeze_impl2(S const& path, ws_char_w_t* buffer, ws_size_t cchBuffer)
 {
     return path_squeeze_impl(stlsoft_ns_qual(c_str_ptr_w)(path), stlsoft_ns_qual(c_str_len)(path), buffer, cchBuffer);
 }
@@ -250,7 +250,7 @@ ws_size_t path_squeeze_impl2(S const& path, ws_char_w_t *buffer, ws_size_t cchBu
 
 #if 0
 template <ss_typename_param_k C>
-ws_size_t path_squeeze(C const* path, C *buffer, ws_size_t cchBuffer)
+ws_size_t path_squeeze(C const* path, C* buffer, ws_size_t cchBuffer)
 {
     typedef filesystem_traits<C> traits_t;
 
@@ -287,7 +287,7 @@ ws_size_t path_squeeze(C const* path, C *buffer, ws_size_t cchBuffer)
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
-ws_size_t path_squeeze(S const& path, C *buffer, ws_size_t cchBuffer)
+ws_size_t path_squeeze(S const& path, C* buffer, ws_size_t cchBuffer)
 {
     return path_squeeze_impl2(path, buffer, cchBuffer);
 }

@@ -4,11 +4,11 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     10th August 2009
+ * Updated:     11th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      44
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -249,12 +249,14 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                                 ,   allocator_t
                                 >   file_path_buffer_t;
 #else /* ? _ATL_MIN_CRT */
-    typedef basic_file_path_buffer<char_type>   file_path_buffer_t;
+    typedef basic_file_path_buffer<char_type>                                           file_path_buffer_t;
 #endif /* _ATL_MIN_CRT */
-    ws_dword_t                                  dwRet = static_cast<ws_dword_t>(E_FAIL);
+
+    ws_dword_t dwRet = static_cast<ws_dword_t>(E_FAIL);
 
     if(NULL != pfn)
     {
+        // starting: { param, dir, NULL, ~0 }
         (void)(*pfn)(param, dir, NULL, ~static_cast<ws_dword_t>(0)); // Entering
     }
 
@@ -265,6 +267,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
         if(NULL != pfn)
         {
+            // failed: { param, dir, NULL, error-code }
             (void)(*pfn)(param, dir, NULL, dwRet);
         }
     }
@@ -279,6 +282,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
             if(NULL != pfn)
             {
+                // failed: { param, dir, NULL, error-code }
                 (void)(*pfn)(param, dir, NULL, dwRet);
             }
         }
@@ -291,6 +295,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
                 if(NULL != pfn)
                 {
+                    // failed: { param, dir, NULL, error-code }
                     (void)(*pfn)(param, dir, NULL, dwRet);
                 }
             }
@@ -303,12 +308,13 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
                     if(NULL != pfn)
                     {
+                        // succeeded: { param, dir, NULL, ERROR_SUCCESS }
                         (void)(*pfn)(param, dir, NULL, dwRet); // Deleted
                     }
                 }
                 else
                 {
-                    const DWORD removeError =   traits_t::get_last_error();
+                    const DWORD removeError = traits_t::get_last_error();
 
                     if( ERROR_DIR_NOT_EMPTY != removeError &&
                         ERROR_SHARING_VIOLATION != removeError)
@@ -317,6 +323,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
                         if(NULL != pfn)
                         {
+                            // failed: { param, dir, NULL, error-code }
                             (void)(*pfn)(param, dir, NULL, dwRet);
                         }
                     }
@@ -332,6 +339,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                         traits_t::str_copy(&sz[0], dir);
                         traits_t::ensure_dir_end(&sz[0]);
                         n = traits_t::str_len(sz.c_str());
+                        WINSTL_ASSERT(n + traits_t::str_len(traits_t::pattern_all()) < traits_t::maxPathLength);
                         traits_t::str_cat(&sz[0], traits_t::pattern_all());
 
                         hSrch = traits_t::find_first_file(sz.c_str(), &st);
@@ -353,7 +361,8 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                                     {
                                         // If it's a file, the pfn must be consulted, otherwise
                                         // it's an automatic failure
-                                        ws_int_t    r   =   0;
+
+                                        ws_int_t r = 0;
 
                                         if( NULL == pfn ||
                                             0 == (r = (*pfn)(param, dir, &st, ERROR_SUCCESS)))
@@ -362,6 +371,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
                                             if(NULL != pfn)
                                             {
+                                                // failed: { param, dir, &entry, error-code }
                                                 (void)(*pfn)(param, dir, &st, dwRet);
                                             }
 
@@ -377,6 +387,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
                                                     if(NULL != pfn)
                                                     {
+                                                        // failed: { param, dir, &entry, error-code }
                                                         (void)(*pfn)(param, dir, &st, dwRet);
                                                     }
 
@@ -387,7 +398,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                                     }
                                     else
                                     {
-                                        ws_int_t    r   =   1;
+                                        ws_int_t r = 1;
 
                                         // If it's a directory, then pfn is consulted, otherwise
                                         // it's an automatic attempt to recursively delete
@@ -398,6 +409,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
 
                                             if(NULL != pfn)
                                             {
+                                                // failed: { param, dir, &entry, error-code }
                                                 (void)(*pfn)(param, dir, &st, dwRet);
                                             }
 
@@ -423,6 +435,7 @@ inline ws_dword_t remove_directory_recurse_impl(C const* dir, ws_int_t (*pfn)(vo
                                 {
                                     if(NULL != pfn)
                                     {
+                                        // succeeded: { param, dir, NULL, ERROR_SUCCESS }
                                         (void)(*pfn)(param, dir, NULL, ERROR_SUCCESS); // Deleted
                                     }
                                 }
@@ -501,29 +514,29 @@ inline ws_bool_t create_directory_recurse(S const& dir, LPSECURITY_ATTRIBUTES lp
  *        files, a function must be
  *
  * \note The semantics of the callback function's parameters are as follows:
- * \par If the err param is ~0 (-1 on UNIX), then the dir param specifies
- *       the name of the current directory being traversed. All other params
- *       are unspecified. The return value is ignored.
- * \par If the err param is 0 and the st param is NULL, then dir specifies
- *       the name of a directory that has been successfully removed. All
- *       other params are unspecified. The return value is ignored.
- * \par If the err param is 0 and the st param is not NULL, then dir specifies
- *       the name of the currently traversing directory, st specifies the
- *       stat information and the name of the entry within directory dir that
- *       is a candidate for removal. Return >0 to enable removal of this
- *       entry, or 0 to prevent removal and cancel the overall operation, or
- *       <0 to prevent removal and continue.
- *       All other params are unspecified. The return value is ignored.
- * \par If the err param is any other value, and the st param is NULL, then
- *       the dir param specifies the name of a directory that could not be
- *       deleted and err specifies the errno value associated with the failure.
- *       All other params are unspecified. The return value is ignored.
- * \par If the err param is any other value, and the st param is not NULL, then
- *       the dir param specifies the name of a directory within which an entry
- *       could not be deleted, st specifies the stat information and the name
- *       of the entry that could not be deleted, and err specifies the errno
- *       value associated with the failure. All other params are unspecified.
- *       The return value is ignored.
+ * \li If the err param is ~0 (-1 on UNIX), then the dir param specifies
+ *      the name of the current directory being traversed. All other params
+ *      are unspecified. The return value is ignored.
+ * \li If the err param is 0 and the st param is NULL, then dir specifies
+ *      the name of a directory that has been successfully removed. All
+ *      other params are unspecified. The return value is ignored.
+ * \li If the err param is 0 and the st param is not NULL, then dir specifies
+ *      the name of the currently traversing directory, st specifies the
+ *      stat information and the name of the entry within directory dir that
+ *      is a candidate for removal. Return >0 to enable removal of this
+ *      entry, or 0 to prevent removal and cancel the overall operation, or
+ *      <0 to prevent removal and continue.
+ *      All other params are unspecified. The return value is ignored.
+ * \li If the err param is any other value, and the st param is NULL, then
+ *      the dir param specifies the name of a directory that could not be
+ *      deleted and err specifies the errno value associated with the failure.
+ *      All other params are unspecified. The return value is ignored.
+ * \li If the err param is any other value, and the st param is not NULL, then
+ *      the dir param specifies the name of a directory within which an entry
+ *      could not be deleted, st specifies the stat information and the name
+ *      of the entry that could not be deleted, and err specifies the errno
+ *      value associated with the failure. All other params are unspecified.
+ *      The return value is ignored.
  */
 inline ws_bool_t remove_directory_recurse(  ws_char_a_t const*  dir
                                         ,   ws_int_t            (*pfn)(void* param, ws_char_a_t const* subDir, WIN32_FIND_DATAA const* st, DWORD err)

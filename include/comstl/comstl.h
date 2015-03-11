@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th August 2009
+ * Updated:     6th January 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_H_COMSTL_MAJOR       3
 # define COMSTL_VER_COMSTL_H_COMSTL_MINOR       7
-# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    3
-# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        112
+# define COMSTL_VER_COMSTL_H_COMSTL_REVISION    4
+# define COMSTL_VER_COMSTL_H_COMSTL_EDIT        113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file comstl/comstl.h
@@ -145,12 +145,13 @@
 # define _COMSTL_VER_1_8_2      0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.57) */
 # define _COMSTL_VER_1_8_3      0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.59) */
 # define _COMSTL_VER_1_8_4      0x010804ff  /*!< Version 1.8.4 (with STLSoft 1.9.84) */
+# define _COMSTL_VER_1_8_5      0x010805ff  /*!< Version 1.8.5 (with STLSoft 1.9.88) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _COMSTL_VER_MAJOR       1
 #define _COMSTL_VER_MINOR       8
-#define _COMSTL_VER_REVISION    4
-#define _COMSTL_VER             _COMSTL_VER_1_8_4
+#define _COMSTL_VER_REVISION    5
+#define _COMSTL_VER             _COMSTL_VER_1_8_5
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -164,6 +165,20 @@
 # define STLSOFT_INCL_H_OBJBASE
 # include <objbase.h>
 #endif /* !STLSOFT_INCL_H_OBJBASE */
+
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+	defined(_WIN32) && \
+	(	defined(WIN32) || \
+		defined(WIN64))
+# ifndef STLSOFT_INCL_H_OLEAUTO
+#  define STLSOFT_INCL_H_OLEAUTO
+#  include <oleauto.h>
+# endif /* !STLSOFT_INCL_H_OLEAUTO */
+# ifndef STLSOFT_INCL_H_OAIDL
+#  define STLSOFT_INCL_H_OAIDL
+#  include <oaidl.h>
+# endif /* !STLSOFT_INCL_H_OAIDL */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility

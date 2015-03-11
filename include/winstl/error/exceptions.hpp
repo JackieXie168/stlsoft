@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     10th August 2009
+ * Updated:     22nd November 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    6
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        57
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       4
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    1
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -310,7 +310,7 @@ public:
                     ,   error_code_type     err
                     ,   LPCTSTR             resourceId      =   NULL
                     ,   LPCTSTR             resourceType    =   NULL)
-        : windows_exception(reason, err)
+        : parent_class_type(reason, err)
         , m_resourceId(resourceId)
         , m_resourceType(resourceType)
     {}
@@ -334,6 +334,40 @@ public:
 private:
     const LPCTSTR   m_resourceId;
     const LPCTSTR   m_resourceType;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    class_type& operator =(class_type const&);
+/// @}
+};
+
+/** \brief Indicates that a access condition was encountered.
+ *
+ * \ingroup group__library__error
+ */
+class access_exception
+    : public windows_exception
+{
+/// \name Member Types
+/// @{
+public:
+    typedef windows_exception                   parent_class_type;
+    typedef access_exception                    class_type;
+    typedef parent_class_type::error_code_type  error_code_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    access_exception(   char const          *reason
+                    ,   error_code_type     err)
+        : parent_class_type(reason, err)
+    {}
+    access_exception(error_code_type err)
+        : parent_class_type(err)
+    {}
 /// @}
 
 /// \name Not to be implemented

@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     22nd November 2009
  *
  * Thanks:      To Sam Fisher for spotting the defect in the set_value_()
  *              overload for REG_MULTI_SZ values (widestring only).
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MAJOR       3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_MINOR       9
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_REVISION    7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        133
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_EDIT        134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -970,7 +970,7 @@ inline /* static */ ss_typename_type_ret_k basic_reg_key<C, T, A>::hkey_type bas
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_key<C, T, A>::basic_reg_key()
     : m_name()
-	, m_hkey(NULL)
+    , m_hkey(NULL)
     , m_accessMask(KEY_READ)
 {}
 
