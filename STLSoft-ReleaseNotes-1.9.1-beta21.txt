@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta20
+File:     STLSoft-ReleaseNotes-1.9.1-beta21
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,10 +11,20 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  2nd September 2006
+Updated:  7th September 2006
 
 ============================================================================
 
+
+============================================================================
+
+Changes for 1.9.1 beta 21 (7th September 2006):
+
+Changes:
+========
+
+~ fix bug in stlsoft::member_selector_iterator (which crops up when
+  compiling Pantheios with Visual C++ 8)
 
 ============================================================================
 

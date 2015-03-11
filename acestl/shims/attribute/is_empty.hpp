@@ -4,7 +4,7 @@
  * Purpose:     Contains the is_empty access shim.
  *
  * Created:     26th July 2006
- * Updated:     26th July 2006
+ * Updated:     3rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,11 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file acestl/shims/access/is_empty.hpp
+/** \file acestl/shims/attribute/is_empty.hpp
  *
  * \brief [C, C++] Primary include file for is_empty attribute shims
  *   for ACE types.
- *  (\ref group__concept__shims__attribute "Attribute Shims" Concept.)
+ *  (\ref group__concept__shims__collection_attribute "Collection Attribute Shims" Concept.)
  */
 
 #ifndef ACESTL_INCL_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MAJOR       1
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_MINOR       0
 # define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_REVISION    1
-# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_EDIT        1
+# define ACESTL_VER_ACESTL_SHIMS_ATTRIBUTE_HPP_IS_EMPTY_EDIT        2
 #endif /* !ACESTL_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

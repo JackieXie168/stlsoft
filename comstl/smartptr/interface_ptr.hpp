@@ -4,7 +4,7 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     7th July 2006
+ * Updated:     3rd September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      6
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      0
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   4
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       480
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       481
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -183,6 +183,11 @@ inline void swap(interface_ptr<T> &lhs, interface_ptr<T> &rhs)
 ////////////////////////////////////////////////////////////////////////////
 // Shims
 
+/** \brief Indicates whether the
+ *    \link comstl::interface_ptr interface_ptr\endlink instance is empty.
+ *
+ * \ingroup group__concept__shims__collection_attribute.
+ */
 template <ss_typename_param_k T>
 inline cs_bool_t is_empty(interface_ptr<T> const &p)
 {

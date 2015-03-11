@@ -71,6 +71,35 @@ namespace unittest
 				}
 			}
 
+			{
+				MSI_Thing_len_const_iterator_t	it3(&aci[0], &MSI_Thing::n);
+				MSI_Thing_len_const_iterator_t	it4 = it3 + 1;
+
+				if(it4 < it3)
+				{
+					r->report("member_selector_iterator < comparison failed", __LINE__);
+					bSuccess = false;
+				}
+
+				if(it4 <= it3)
+				{
+					r->report("member_selector_iterator <= comparison failed", __LINE__);
+					bSuccess = false;
+				}
+
+				if(it3 > it4)
+				{
+					r->report("member_selector_iterator > comparison failed", __LINE__);
+					bSuccess = false;
+				}
+
+				if(it3 >= it4)
+				{
+					r->report("member_selector_iterator >= comparison failed", __LINE__);
+					bSuccess = false;
+				}
+			}
+
 			STLSOFT_SUPPRESS_UNUSED(ai);
 #else
 			STLSOFT_SUPPRESS_UNUSED(bSuccess);

@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     7th July 2006
+ * Updated:     6th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    6
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        41
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -211,13 +211,13 @@ public:
         , m_member(member)
     {}
 
-    /// Copy constructor
+    /// \brief Copy constructor
     member_selector_iterator(class_type const &rhs)
         : m_it(rhs.m_it)
         , m_member(rhs.m_member)
     {}
 
-    /// Destructor
+    /// \brief Destructor
     ~member_selector_iterator() stlsoft_throw_0()
     {
         void    (*p)()  =   constraints;
@@ -265,7 +265,7 @@ public:
 /// \name Input Iterator methods
 /// @{
 public:
-    /// Pre-increment iterator
+    /// \brief Pre-increment iterator
     ///
     /// \note Increments the base iterator
     class_type &operator ++()
@@ -274,7 +274,7 @@ public:
 
         return *this;
     }
-    /// Post-increment iterator
+    /// \brief Post-increment iterator
     ///
     /// \note Increments the base iterator
     class_type operator ++(int)
@@ -287,13 +287,13 @@ public:
     }
 # if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
      !defined(STLSOFT_COMPILER_IS_BORLAND)
-    /// Returns a mutating (non-const) reference to the selected member of the base iterators current value
+    /// \brief Returns a mutating (non-const) reference to the selected member of the base iterators current value
     reference operator *()
     {
         return (*m_it).*m_member;
     }
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !STLSOFT_COMPILER_IS_BORLAND */
-    /// Returns a non-mutating (const) reference to the selected member of the base iterators current value
+    /// \brief Returns a non-mutating (const) reference to the selected member of the base iterators current value
     const_reference operator *() const
     {
         return (*m_it).*m_member;
@@ -311,7 +311,7 @@ public:
 /// \name Bidirectional Iterator methods
 /// @{
 public:
-    /// Pre-decrement iterator
+    /// \brief Pre-decrement iterator
     ///
     /// \note Decrements the base iterator
     class_type &operator --()
@@ -320,7 +320,7 @@ public:
 
         return *this;
     }
-    /// Post-decrement iterator
+    /// \brief Post-decrement iterator
     ///
     /// \note Decrements the base iterator
     class_type operator --(int)
@@ -336,7 +336,7 @@ public:
 /// \name Random-Access Iterator methods
 /// @{
 public:
-    /// Moves the iterator forward
+    /// \brief Moves the iterator forward
     ///
     /// \param n The amount by which to increment the iterator's current position
     class_type &operator +=(difference_type n)
@@ -346,7 +346,7 @@ public:
         return *this;
     }
 
-    /// Moves the iterator backward
+    /// \brief Moves the iterator backward
     ///
     /// \param n The amount by which to decrement the iterator's current position
     class_type &operator -=(difference_type n)
@@ -356,7 +356,7 @@ public:
         return *this;
     }
 
-    /// Access the element at the given index
+    /// \brief Access the element at the given index
     ///
     /// \param index The required offset from the iterator's position
     value_type &operator [](difference_type index)
@@ -364,7 +364,7 @@ public:
         return m_it[index];
     }
 
-    /// Access the element at the given index
+    /// \brief Access the element at the given index
     ///
     /// \param index The required offset from the iterator's position
     value_type const &operator [](difference_type index) const
@@ -372,7 +372,7 @@ public:
         return m_it[index];
     }
 
-    /// Calculate the distance between \c this and \c rhs
+    /// \brief Calculate the distance between \c this and \c rhs
     difference_type distance(class_type const &rhs) const
     {
         return m_it - rhs.m_it;
@@ -680,6 +680,43 @@ template<   ss_typename_param_k I
 inline ss_ptrdiff_t operator -(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
 {
     return lhs.distance(rhs);
+}
+
+
+template<   ss_typename_param_k I
+        ,   class               C
+        ,   ss_typename_param_k M
+        >
+inline bool operator <(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return lhs.distance(rhs) < 0;
+}
+
+template<   ss_typename_param_k I
+        ,   class               C
+        ,   ss_typename_param_k M
+        >
+inline bool operator <=(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return lhs.distance(rhs) <= 0;
+}
+
+template<   ss_typename_param_k I
+        ,   class               C
+        ,   ss_typename_param_k M
+        >
+inline bool operator >(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return lhs.distance(rhs) > 0;
+}
+
+template<   ss_typename_param_k I
+        ,   class               C
+        ,   ss_typename_param_k M
+        >
+inline bool operator >=(member_selector_iterator<I, C, M> const &lhs, member_selector_iterator<I, C, M> const &rhs)
+{
+    return lhs.distance(rhs) >= 0;
 }
 
 /* /////////////////////////////////////////////////////////////////////////

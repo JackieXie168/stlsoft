@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     31st August 2006
+ * Updated:     4th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      69
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +120,7 @@ namespace constants
 
 /** \brief Provides an indexable sequence of digit characters
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  */
 template <ss_typename_param_k C>
 #ifdef STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
@@ -170,7 +170,7 @@ inline C const *get_digit_character()
 
 /** \brief Highly efficient conversion of unsigned integers to string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  *
  * \note The function does not check that cchBuf is sufficient for conversion
  * of the particular integer type, except for a debug version
@@ -221,7 +221,7 @@ inline C const *unsigned_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 
 /** \brief Highly efficient conversion of unsigned integers to string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  *
  * \note The function does not check that cchBuf is sufficient for conversion
  * of the particular integer type, except for a debug version
@@ -249,7 +249,7 @@ inline C const *unsigned_integer_to_string(C *buf, ss_size_t cchBuf, I i, ss_siz
 
 /** \brief Highly efficient conversion of signed integers to string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  *
  * \note The function does not check that cchBuf is sufficient for conversion
  * of the particular integer type, except for a debug version
@@ -370,7 +370,7 @@ inline C const *signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 
 /** \brief Highly efficient conversion of signed integers to string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__conversion
  *
  * \note The function does not check that cchBuf is sufficient for conversion
  * of the particular integer type, except for a debug version
