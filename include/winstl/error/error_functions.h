@@ -4,11 +4,11 @@
  * Purpose:     Error functions.
  *
  * Created:     7th May 2000
- * Updated:     23rd February 2011
+ * Updated:     3rd February 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MAJOR     4
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     3
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_MINOR     4
 # define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      66
+# define WINSTL_VER_WINSTL_ERROR_H_ERROR_FUNCTIONS_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,6 +101,34 @@ namespace winstl_project
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+
+
+/**
+ *
+ * \ingroup group__library__error
+ */
+STLSOFT_INLINE
+ws_char_a_t const*
+winstl_C_fmtmsg_empty_reason_unknown_a()
+{
+    static ws_char_a_t const s_reason_unknown[] = "reason unknown";
+
+    return s_reason_unknown;
+}
+
+/**
+ *
+ * \ingroup group__library__error
+ */
+STLSOFT_INLINE
+ws_char_a_t const*
+winstl_C_fmtmsg_empty_string_a()
+{
+    static ws_char_a_t const s_empty[1] = { '\0' };
+
+    return s_empty;
+}
 
 /**
  *
@@ -799,6 +827,54 @@ STLSOFT_INLINE ws_dword_t winstl_C_format_message_alloc_w(
     return res;
 }
 
+/** Functional equivalent to the C standard library 
+ *   function <code>strerror()</code> for the Windows API, except that the
+ *   returned pointer must be freed
+ *   (by <code>winstl_C_format_message_free_buff_a()</code>) to avoid
+ *   a memory leak.
+ *
+ * 
+ * \return Always a non-NULL pointer to a nul-terminated multibyte string.
+ *
+ * \note The returned pointer must be released by a call 
+ *   to <code>winstl_C_format_message_free_buff_a()</code>
+ */
+STLSOFT_INLINE
+ws_char_a_t*
+winstl_C_format_message_strerror_a(
+    DWORD           code
+)
+{
+    ws_char_a_t*    p;
+    DWORD const     n = winstl_C_format_message_from_module_to_allocated_buffer_a(0, NULL, code, &p, WINSTL_ERROR_FUNCTIONS_ELIDE_DOT | WINSTL_ERROR_FUNCTIONS_ELIDE_DOT_IF_LAST_ONLY);
+
+    if(0 == n)
+    {
+        /* If nothing was retrieved, we try to write a number into it */
+
+        WINSTL_ASSERT(NULL == p);
+
+        p = stlsoft_static_cast(ws_char_a_t*, STLSOFT_NS_GLOBAL(LocalAlloc)(LMEM_FIXED, sizeof(ws_char_a_t) * 21));
+
+        if(NULL == p)
+        {
+            return stlsoft_const_cast(ws_char_a_t*, winstl_C_fmtmsg_empty_reason_unknown_a());
+        }
+        else
+        {
+            wsprintfA(p, "%lu", stlsoft_static_cast(unsigned long, code));
+        }
+    }
+    else
+    {
+        WINSTL_ASSERT(NULL != p);
+    }
+
+    return p;
+}
+
+
+
 /**
  *
  * \ingroup group__library__error
@@ -807,6 +883,15 @@ STLSOFT_INLINE
 void
 winstl_C_format_message_free_buff_a(ws_char_a_t* buffer)
 {
+    if(winstl_C_fmtmsg_empty_reason_unknown_a() == buffer)
+    {
+        return;
+    }
+    if(winstl_C_fmtmsg_empty_reason_unknown_a() == buffer)
+    {
+        return;
+    }
+
     winstl_C_fmtmsg_LocalFree__(buffer);
 }
 

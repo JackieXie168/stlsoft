@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  30th November 2011
+; Updated:  7th February 2012
 
 ============================================================================
 
@@ -15,6 +15,38 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+============================================================================
+
+Changes for 1.9.112 (7th February 2012)
+
+Summary:
+========
+
+ * added winstl_C_format_message_strerror_a(), an analogue of strerror() for Windows API "error" codes
+ * adjusted discrimination of exception-support macros, based on presence of GCC compiler's __EXCEPTIONS symbol
+ * minor VC++ compatibility fix for stlsoft/shims/access/string/std/exception.hpp
+    
+Changes:
+========
+
+
+ STLSoft:
+ ========
+
+ ~ stlsoft/internal/cccap/gcc.h:
+    ~ adjusted discrimination of exception-support macros, based on presence of GCC compiler's __EXCEPTIONS symbol
+
+ ~ stlsoft/shims/access/string/std/exception.hpp:
+    ~ VC++-compatibility
+
+ WinSTL:
+ =======
+
+ ~ winstl/error/error_functions.h:
+    + added winstl_C_format_message_strerror_a(), an analogue of strerror() for Windows API "error" codes
+
+
 
 ============================================================================
 

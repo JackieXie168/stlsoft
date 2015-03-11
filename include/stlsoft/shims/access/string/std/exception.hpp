@@ -4,11 +4,11 @@
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     29th November 2010
+ * Updated:     5th February 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       2
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    5
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        41
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    6
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -187,6 +187,15 @@ public:
 #endif /* STLSOFT_USING_SAFE_STR_FUNCTIONS */
     }
 
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(push)
+#   pragma warning(disable : 4702)
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
     static
     int
     throw_conversion_error_or_return_(
@@ -202,6 +211,15 @@ public:
 
         return err;
     }
+
+#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# if defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(pop)
+#  endif /* _MSC_VER */
+# endif /* compiler */
+#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -317,9 +335,9 @@ c_str_len_w(stlsoft_ns_qual_std(exception) const& x)
 
     if(0 != err)
     {
-        ximpl_stlsoft_shims_access_string_std_exception_::throw_conversion_error_or_return_(err, "failed to elicit length of multibyte string");
-
         len = 0;
+
+        ximpl_stlsoft_shims_access_string_std_exception_::throw_conversion_error_or_return_(err, "failed to elicit length of multibyte string");
     }
 
     return len;

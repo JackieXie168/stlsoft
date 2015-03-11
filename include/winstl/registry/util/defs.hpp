@@ -4,11 +4,11 @@
  * Purpose:     Contains common type and feature discriminations for the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     3rd February 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MAJOR     4
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_MINOR     0
 # define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_REVISION  1
-# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      56
+# define WINSTL_VER_WINSTL_REGISTRY_UTIL_HPP_DEFS_EDIT      57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -131,7 +131,7 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
- * All the following typedefs may be overriden by use of the pre-processor.
+ * All the following typedefs may be overriden by use of the preprocessor.
  */
 
 /** \def _WINSTL_REG_STRING_STRING_A_DEFINED

@@ -2,9 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  30th November 2011
+; Updated:  7th February 2012
 
 ============================================================================
+
+
+7th February 2012 - 1.9.112 released
+------------------------------------
+
+ * added winstl_C_format_message_strerror_a(), an analogue of strerror() for Windows API "error" codes
+ * adjusted discrimination of exception-support macros, based on presence of GCC compiler's __EXCEPTIONS symbol
+ * minor VC++ compatibility fix for stlsoft/shims/access/string/std/exception.hpp
 
 
 30th November 2011 - 1.9.111 released
