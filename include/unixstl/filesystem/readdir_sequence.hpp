@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     4th June 2012
+ * Updated:     17th August 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       133
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -482,14 +482,22 @@ private:
 ////////////////////////////////////////////////////////////////////////////
 // Operators
 
-inline us_bool_t operator ==(   readdir_sequence::const_iterator const& lhs
-                            ,   readdir_sequence::const_iterator const& rhs)
+inline
+us_bool_t
+operator ==(
+    readdir_sequence::const_iterator const& lhs
+,   readdir_sequence::const_iterator const& rhs
+)
 {
     return lhs.equal(rhs);
 }
 
-inline us_bool_t operator !=(   readdir_sequence::const_iterator const& lhs
-                            ,   readdir_sequence::const_iterator const& rhs)
+inline
+us_bool_t
+operator !=(
+    readdir_sequence::const_iterator const& lhs
+,   readdir_sequence::const_iterator const& rhs
+)
 {
     return !lhs.equal(rhs);
 }
@@ -509,7 +517,12 @@ inline us_bool_t operator !=(   readdir_sequence::const_iterator const& lhs
 
 // readdir_sequence
 
-inline /* static */ readdir_sequence::flags_type readdir_sequence::validate_flags_(readdir_sequence::flags_type flags)
+inline
+/* static */
+readdir_sequence::flags_type
+readdir_sequence::validate_flags_(
+        readdir_sequence::flags_type flags
+)
 {
     const flags_type    validFlags  =   0
                                     |   includeDots
@@ -532,7 +545,13 @@ inline /* static */ readdir_sequence::flags_type readdir_sequence::validate_flag
     return flags;
 }
 
-inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_directory_(char_type const* directory, readdir_sequence::flags_type flags)
+inline
+/* static */
+readdir_sequence::string_type
+readdir_sequence::prepare_directory_(
+    char_type const*                directory
+,   readdir_sequence::flags_type    flags
+)
 {
     if( NULL == directory ||
         '\0' == *directory)
@@ -574,7 +593,9 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
     return directory;
 }
 
-inline readdir_sequence::const_iterator readdir_sequence::begin() const
+inline
+readdir_sequence::const_iterator
+readdir_sequence::begin() const
 {
     DIR* dir = ::opendir(m_directory.c_str());
 
@@ -603,22 +624,30 @@ inline readdir_sequence::const_iterator readdir_sequence::begin() const
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 }
 
-inline readdir_sequence::const_iterator readdir_sequence::end() const
+inline
+readdir_sequence::const_iterator
+readdir_sequence::end() const
 {
     return const_iterator();
 }
 
-inline us_bool_t readdir_sequence::empty() const
+inline
+us_bool_t
+readdir_sequence::empty() const
 {
     return begin() != end();
 }
 
-inline readdir_sequence::string_type const& readdir_sequence::get_directory() const
+inline
+readdir_sequence::string_type const&
+readdir_sequence::get_directory() const
 {
     return m_directory;
 }
 
-inline readdir_sequence::flags_type readdir_sequence::get_flags() const
+inline
+readdir_sequence::flags_type
+readdir_sequence::get_flags() const
 {
     return m_flags;
 }
@@ -626,7 +655,12 @@ inline readdir_sequence::flags_type readdir_sequence::get_flags() const
 
 // readdir_sequence::const_iterator;
 
-inline readdir_sequence::const_iterator::const_iterator(DIR* dir, readdir_sequence::string_type const& directory, readdir_sequence::flags_type flags)
+inline
+readdir_sequence::const_iterator::const_iterator(
+    DIR*                                    dir
+,   readdir_sequence::string_type const&    directory
+,   readdir_sequence::flags_type            flags
+)
     : m_handle(new shared_handle(dir))
     , m_entry(NULL)
     , m_flags(flags)
@@ -645,7 +679,8 @@ inline readdir_sequence::const_iterator::const_iterator(DIR* dir, readdir_sequen
     }
 }
 
-inline readdir_sequence::const_iterator::const_iterator()
+inline
+readdir_sequence::const_iterator::const_iterator()
     : m_handle(NULL)
     , m_entry(NULL)
     , m_flags(0)
@@ -653,7 +688,10 @@ inline readdir_sequence::const_iterator::const_iterator()
     , m_dirLen(0)
 {}
 
-inline readdir_sequence::const_iterator::const_iterator(class_type const& rhs)
+inline
+readdir_sequence::const_iterator::const_iterator(
+    class_type const& rhs
+)
     : m_handle(rhs.m_handle)
     , m_entry(rhs.m_entry)
     , m_flags(rhs.m_flags)
@@ -666,7 +704,8 @@ inline readdir_sequence::const_iterator::const_iterator(class_type const& rhs)
     }
 }
 
-inline readdir_sequence::const_iterator::~const_iterator() stlsoft_throw_0()
+inline
+readdir_sequence::const_iterator::~const_iterator() stlsoft_throw_0()
 {
     if(NULL != m_handle)
     {
@@ -674,7 +713,11 @@ inline readdir_sequence::const_iterator::~const_iterator() stlsoft_throw_0()
     }
 }
 
-inline readdir_sequence::const_iterator::class_type const& readdir_sequence::const_iterator::operator =(readdir_sequence::const_iterator::class_type const& rhs)
+inline
+readdir_sequence::const_iterator::class_type const&
+readdir_sequence::const_iterator::operator =(
+    readdir_sequence::const_iterator::class_type const& rhs
+)
 {
     shared_handle* this_handle = m_handle;
 
@@ -697,7 +740,9 @@ inline readdir_sequence::const_iterator::class_type const& readdir_sequence::con
     return *this;
 }
 
-inline readdir_sequence::const_iterator::value_type readdir_sequence::const_iterator::operator *() const
+inline
+readdir_sequence::const_iterator::value_type
+readdir_sequence::const_iterator::operator *() const
 {
     UNIXSTL_MESSAGE_ASSERT( "Dereferencing invalid iterator", NULL != m_entry);
 
@@ -708,7 +753,9 @@ inline readdir_sequence::const_iterator::value_type readdir_sequence::const_iter
 #endif /* UNIXSTL_READDIR_SEQUENCE_OLD_VALUE_TYPE */
 }
 
-inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_iterator::operator ++()
+inline
+readdir_sequence::const_iterator::class_type&
+readdir_sequence::const_iterator::operator ++()
 {
     UNIXSTL_MESSAGE_ASSERT( "Incrementing invalid iterator", NULL != m_handle);
 
@@ -820,7 +867,9 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
     return *this;
 }
 
-inline readdir_sequence::const_iterator::class_type readdir_sequence::const_iterator::operator ++(int)
+inline
+readdir_sequence::const_iterator::class_type
+readdir_sequence::const_iterator::operator ++(int)
 {
     class_type ret(*this);
 
@@ -829,7 +878,11 @@ inline readdir_sequence::const_iterator::class_type readdir_sequence::const_iter
     return ret;
 }
 
-inline bool readdir_sequence::const_iterator::equal(readdir_sequence::const_iterator::class_type const& rhs) const
+inline
+bool
+readdir_sequence::const_iterator::equal(
+    readdir_sequence::const_iterator::class_type const& rhs
+) const
 {
     UNIXSTL_ASSERT(NULL == m_handle || NULL == rhs.m_handle || m_handle->m_dir == rhs.m_handle->m_dir);
 

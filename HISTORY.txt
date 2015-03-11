@@ -2,9 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  31st July 2012
+; Updated:  19th August 2012
 
 ============================================================================
+
+
+19th August 2012 - 1.9.116 released
+-----------------------------------
+
+ * fixed defect in winstl::pipe::close_write()
+ * various other minor warning suppression and reformatting
 
 
 31st July 2012 - 1.9.115 released
