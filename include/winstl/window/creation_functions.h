@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/window/creation_functions.h (originally winstl_functions.h; originally MWBase.h, ::SynesisWin)
+ * File:        winstl/window/creation_functions.h (originally MWBase.h, ::SynesisWin)
  *
  * Purpose:     Window creation functions.
  *
  * Created:     7th May 2000
- * Updated:     16th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MAJOR    2
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_REVISION 1
-# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     11
+# define WINSTL_VER_WINSTL_WINDOW_H_CREATION_FUNCTIONS_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/error/exceptions.hpp (originally stlsoft_exceptions.h)
+ * File:        stlsoft/error/exceptions.hpp
  *
  * Purpose:     Basic exception classes.
  *
  * Created:     19th January 2002
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_REVISION  3
-# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      43
+# define STLSOFT_VER_STLSOFT_ERROR_HPP_EXCEPTIONS_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

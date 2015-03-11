@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/error/error_desc.hpp (originally winstl_error_desc.h)
+ * File:        winstl/error/error_desc.hpp
  *
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     18th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       3
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        66
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       4
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,15 +70,18 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-#ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
-# include <winstl/functions.h>              // for winstl::FormatMessage()
-#endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS
+# include <winstl/error/error_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_ERROR_H_ERROR_FUNCTIONS */
 #ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
 # include <winstl/system/system_traits.hpp>    // for load_library()
 #endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING
 # include <winstl/shims/access/string.hpp>
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_ACCESS_HPP_STRING */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS
+# include <stlsoft/string/char_alt_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_ALT_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -146,6 +149,12 @@ class basic_error_desc
 {
 /// \name Types
 /// @{
+private:
+    typedef 
+#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+      ss_typename_type_k 
+#endif /* compiler */
+        stlsoft_ns_qual(char_alt_traits)<C>::alt_char_type  alt_char_type;
 public:
     /// \brief The character type
     typedef C                       char_type;
@@ -171,6 +180,12 @@ public:
     /// system libraries will be searched
     ss_explicit_k basic_error_desc(error_type error = GetLastError(), char_type const *modulePath = NULL);
 
+private:
+    /// This method is defined to remind users that using a different
+    /// character encoding to specify the module path is not allowed
+    basic_error_desc(error_type error, alt_char_type const *modulePath);
+public:
+
     /// \brief Loads the error string associated with the given code.
     ///
     /// \param hr The COM error whose string equivalent will be searched
@@ -179,6 +194,13 @@ public:
     /// \note If the error string is not found in the given module, the standard
     /// system libraries will be searched
     basic_error_desc(HRESULT hr, char_type const *modulePath = NULL);
+
+
+private:
+    /// This method is defined to remind users that using a different
+    /// character encoding to specify the module path is not allowed
+    basic_error_desc(HRESULT error, alt_char_type const *modulePath);
+public:
 
     /// \brief Loads the error string associated with the given code from
     ///  the first module in the given container of paths that contains a
@@ -309,14 +331,14 @@ inline ss_typename_type_k basic_error_desc<C, T>::char_type *basic_error_desc<C,
 
         if(NULL != hinstSource)
         {
-            cch =   FormatMessage(error, hinstSource, &message);
+            cch = format_message(error, hinstSource, &message);
 
             traits_type::free_library(hinstSource);
         }
     }
     else
     {
-        cch = FormatMessage(error, NULL, &message);
+        cch = format_message(error, NULL, &message);
     }
 
     if(0 == cch)
@@ -339,7 +361,7 @@ inline basic_error_desc<C, T>::basic_error_desc(ss_typename_type_k basic_error_d
 {
     if(NULL == m_message)
     {
-        if(0 == FormatMessage(error, NULL, &m_message))
+        if(0 == format_message(error, NULL, &m_message))
         {
             m_message = NULL;
         }
@@ -355,7 +377,7 @@ inline basic_error_desc<C, T>::basic_error_desc(HRESULT hr, char_type const *mod
 {
     if(NULL == m_message)
     {
-        if(0 == FormatMessage(static_cast<DWORD>(hr), NULL, &m_message))
+        if(0 == format_message(static_cast<DWORD>(hr), NULL, &m_message))
         {
             m_message = NULL;
         }

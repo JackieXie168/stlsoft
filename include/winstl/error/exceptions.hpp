@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/error/exceptions.hpp (originally winstl_exceptions.h)
+ * File:        winstl/error/exceptions.hpp
  *
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        47
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

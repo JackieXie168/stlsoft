@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/associative_adaptor_sequences.hpp (originally stlsoft/associative_adaptor_sequences.hpp)
+ * File:        stlsoft/collections/associative_adaptor_sequences.hpp
  *
- * Purpose:     Associative container adaptor sequences.
+ * Purpose:     Include file for all associative sequences.
  *
  * Created:     28th January 2005
- * Updated:     6th July 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/collections/associative_adaptor_sequences.hpp
-///
-/// Associative container adaptor sequences
+/** \file stlsoft/collections/associative_adaptor_sequences.hpp
+ *
+ * \brief [C++ only] Include file for all associative sequences.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES
 #define STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MAJOR    2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_REVISION 2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     11
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

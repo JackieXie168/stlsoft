@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/mfcstl.hpp (formerly mfcstl.h)
+ * File:        mfcstl/mfcstl.hpp
  *
  * Purpose:     Root header for the MFCSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     12th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  2
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      83
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp \brief [C++ only; requires MFC library] The root header for the \ref group__project__mfcstl "MFCSTL" project. */

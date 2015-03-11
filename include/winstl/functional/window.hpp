@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/functional/window.hpp (originally winstl_window_functionals.h)
+ * File:        winstl/functional/window.hpp
  *
  * Purpose:     Window function objects and predicates.
  *
  * Created:     19th January 2001
- * Updated:     16th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      0
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       32
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

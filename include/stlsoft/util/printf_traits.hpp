@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/printf_traits.hpp (originally stlsoft_printf_traits.h)
+ * File:        stlsoft/util/printf_traits.hpp
  *
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     13th September 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/printf_traits.hpp
-///
-/// printf_traits classes.
+/** \file stlsoft/util/printf_traits.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::printf_traits class
+ *   template.
+ *  (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     51
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

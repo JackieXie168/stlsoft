@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        wtlstl/wtlstl.hpp (formerly wtlstl.h)
+ * File:        wtlstl/wtlstl.hpp
  *
  * Purpose:     Root header for the WTLSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     12th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MAJOR    2
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_MINOR    3
 # define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_REVISION 2
-# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     34
+# define _WTLSTL_VER_WTLSTL_HPP_WTLSTL_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file wtlstl/wtlstl.hpp \brief [C++ only; requires WTL library] The root header for the \ref group__project__wtlstl "WTLSTL" project. */

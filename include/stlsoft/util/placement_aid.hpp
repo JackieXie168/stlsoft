@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/placement_aid.hpp (originally stlsoft_placement_aid.h)
+ * File:        stlsoft/util/placement_aid.hpp
  *
  * Purpose:     A scoping class to aid in placement new-ing.
  *
  * Created:     9th January 2002
- * Updated:     13th September 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     27
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PLACEMENT_AID_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

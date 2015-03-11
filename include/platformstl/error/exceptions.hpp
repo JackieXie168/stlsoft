@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/error/exceptions.hpp (originally platformstl/platform_exceptions.hpp)
+ * File:        platformstl/error/exceptions.hpp
  *
  * Purpose:     Platform header for the platform_exceptions components.
  *
  * Created:     20th March 2005
- * Updated:     16th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_EDIT       14
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_EXCEPTIONS_EDIT       15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/error/exceptions.hpp Platform header for the platform_exceptions components */

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/path.hpp (formerly winstl_path.h; originally MLPath.h, ::SynesisStd)
+ * File:        winstl/filesystem/path.hpp
  *
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     224
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     225
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

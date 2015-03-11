@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta36
+File:     STLSoft-ReleaseNotes-1.9.1-beta37
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,7 +11,7 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  28th December 2006
+Updated:  30th December 2006
 
 ============================================================================
 
@@ -25,6 +25,72 @@ Updated:  28th December 2006
     *  *  means a general bullet-point *
     *                                  *
     ************************************
+
+
+============================================================================
+
+Changes for 1.9.1 beta 37 (30th December 2006):
+
+Summary:
+  This includes the final removal of all code from files in the root
+  directory and from the immediate project-specific directories. In other
+  words, this is the final 1.9 structure. (That's not to say it's perfect,
+  but any subsequent changes can wait until 1.10)
+
+
+
+Removals:
+=========
+
+ - stlsoft::equal_handle function class - this is dead and gone
+
+ - stlsoft/container_veneers.hpp - this is obsolete; it points to correct #include
+
+ - stlsoft/handle_access.hpp - this is dead and gone
+
+ - stlsoft/skip_iterator.hpp - this is going into research section; maybe 1.10
+
+ - mfcstl/cstring_veneer.hpp - this is obsolete; it points to correct #include
+
+ - winstl/handle_access.hpp - this is dead and gone
+
+ - winstl/windows.hpp - this is going into a research section; maybe 1.10
+
+Additions:
+==========
+
+
+Changes:
+========
+
+ ~ fixed bug in stlsoft::scoped_handle<void>::detach()
+
+ ~ stlsoft/container_access.hpp => stlsoft/collections/functions.hpp
+
+ ~ stlsoft/c_str_ptr_inserter.hpp => stlsoft/iterators/c_str_inserter.hpp
+
+ ~ stlsoft/iterator.hpp => stlsoft/util/std/iterator_helper.hpp
+
+ ~ stlsoft/ptr_proxy.hpp => stlsoft/smartptr/ptr_proxy.hpp
+
+ ~ stlsoft/unary_function_output_iterator_adaptor.hpp => stlsoft/iterators/unary_function_output_iterator_adaptor.hpp
+
+ ~ stlsoft/unittest.hpp => unittest/unittest.hpp
+
+ ~ stlsoft/collections/collections.hpp renamed to stlsoft/collections/util/collections.hpp
+
+ ~ stlsoft/functional/access_predicates.hpp renamed to stlsoft/functional/equal_ptr.hpp
+
+ ~ winstl/functions.h => winstl/obsolete/functions.h
+
+ ~ winstl/winstl_int_to_string.h => winstl/conversion/int_to_string.hpp
+
+ ~ winstl::get_console_window() moved from winstl/functions.h =>
+    winstl/system/console_functions.h
+
+ ~ winstl/registry/defs.hpp => winstl/registry/util/defs.hpp
+ ~ winstl/registry/exceptions.hpp => winstl/registry/error/exceptions.hpp
+ ~ winstl/registry/shared_handles.hpp => winstl/registry/util/shared_handles.hpp
 
 
 ============================================================================

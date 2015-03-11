@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/format_functions.h (originally winstl_time_functions.h)
+ * File:        winstl/time/format_functions.h
  *
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     23rd August 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     47
+# define WINSTL_VER_WINSTL_TIME_H_FORMAT_FUNCTIONS_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

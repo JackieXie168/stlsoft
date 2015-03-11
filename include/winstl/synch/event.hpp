@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/synch/event.hpp (formerly winstl/event.hpp; originally winstl_event.h)
+ * File:        winstl/synch/event.hpp
  *
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     49
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

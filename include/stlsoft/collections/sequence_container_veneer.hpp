@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/sequence_container_veneer.hpp (originally stlsoft_sequence_container_veneer.h)
+ * File:        stlsoft/collections/sequence_container_veneer.hpp
  *
  * Purpose:     RRID veneer for sequence containers
  *
  * Created:     2nd October 2002
- * Updated:     7th July 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/collections/sequence_container_veneer.hpp (formerly stlsoft_sequence_container_veneer.h)
-///
-/// RRID veneer for sequence containers
+/** \file stlsoft/collections/sequence_container_veneer.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::sequence_container_veneer
+ *   class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER
 #define STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_MAJOR      4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_MINOR      0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       41
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_REVISION   2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_SEQUENCE_CONTAINER_VENEER_EDIT       45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,12 +76,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
-# error stlsoft/sequence_container_veneer.hpp is not compatible with Visual C++ 5.0 or earlier
+# error stlsoft/collections/sequence_container_veneer.hpp is not compatible with Visual C++ 5.0 or earlier
 #endif /* compiler */
 
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>

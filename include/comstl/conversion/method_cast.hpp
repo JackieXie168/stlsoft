@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/conversion/method_cast.hpp (originally comstl_method_cast.h)
+ * File:        comstl/conversion/method_cast.hpp
  *
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     18th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     0
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      27
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

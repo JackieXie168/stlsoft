@@ -1,12 +1,12 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/array_proxy.hpp (originally stlsoft_array_proxy.h)
+ * File:        stlsoft/collections/array_proxy.hpp
  *
  * Purpose:     Definition of the array_proxy template, which provides managed
  *              access to arrays, and can be used to avoid polymorphic array
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     13th September 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,9 +40,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/collections/array_proxy.hpp
-///
-/// Definition of the array_proxy template, which provides managed access to arrays, and can be used to avoid polymorphic array problems.
+/** \file stlsoft/collections/array_proxy.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::array_proxy
+ *   class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY
 #define STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY
@@ -50,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MAJOR    4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_MINOR    0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION 2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     46
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_REVISION 3
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_PROXY_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +67,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 # include <stlsoft/util/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -84,7 +87,7 @@ namespace stlsoft
 /** \brief Acts as a proxy for built-in arrays, ensuring functions passed array proxies
  * have safe access to both array pointer and length
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 template <ss_typename_param_k T>
 class array_proxy

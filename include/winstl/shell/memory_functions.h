@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shell/memory_functions.h (formerly comstl/memory/functions.h)
+ * File:        winstl/shell/memory_functions.h
  *
  * Purpose:     Shell memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_REVISION  2
-# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_EDIT      44
+# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_MEMORY_H_FUNCTIONS_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,6 +173,37 @@ STLSOFT_INLINE void winstl__SHMemFree(void *pv)
     }
 }
 
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ < 4 && \
+    __GNUC_MINOR__ < 3
+
+/* GCC pre 3.3 contains an invalid definition of IMalloc, where
+ * the Realloc() method is called ReAlloc().
+ *
+ * We use a bit of casting to get round it here.
+ */
+
+# undef INTERFACE
+# define INTERFACE IMallocGcc32
+DECLARE_INTERFACE_(IMallocGcc32,IUnknown)
+{
+    STDMETHOD(QueryInterface)(THIS_ REFIID,PVOID*) PURE;
+    STDMETHOD_(ULONG,AddRef)(THIS) PURE;
+    STDMETHOD_(ULONG,Release)(THIS) PURE;
+    STDMETHOD_(void*,Alloc)(THIS_ ULONG) PURE;
+    STDMETHOD_(void*,Realloc)(THIS_ void*,ULONG) PURE;
+    STDMETHOD_(void,Free)(THIS_ void*) PURE;
+    STDMETHOD_(ULONG,GetSize)(THIS_ void*) PURE;
+    STDMETHOD_(int,DidAlloc)(THIS_ void*) PURE;
+    STDMETHOD_(void,HeapMinimize)(THIS) PURE;
+};
+
+#endif /* compiler */
+
+
+
+
+
 /** \brief [C only] Rellocates a block of shell memory.
  *
  * \ingroup group__library__memory
@@ -194,11 +225,19 @@ STLSOFT_INLINE void winstl__SHMemFree(void *pv)
  * \note [C++] This function is wrapped by the winstl::SHMemRealloc()
  *   function.
  */
+
 STLSOFT_INLINE void *winstl__SHMemRealloc(void *pv, ws_size_t cb)
 {
-    LPMALLOC    lpmalloc;
-    void        *pvNew;
-    HRESULT     hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(&lpmalloc);
+#if defined(STLSOFT_COMPILER_IS_GCC) && \
+    __GNUC__ < 4 && \
+    __GNUC_MINOR__ < 3
+
+    IMallocGcc32    *lpmalloc;
+#else /* ? compiler */
+    LPMALLOC        lpmalloc;
+#endif /* compiler */
+    void            *pvNew;
+    HRESULT         hr  =   STLSOFT_NS_GLOBAL(SHGetMalloc)(stlsoft_reinterpret_cast(LPMALLOC*, &lpmalloc));
 
     if(SUCCEEDED(hr))
     {

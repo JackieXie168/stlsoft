@@ -1,11 +1,11 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/conversion/ptr_cast.hpp (originally stlsoft_ptr_cast.h)
+ * File:        stlsoft/conversion/ptr_cast.hpp
  *
  * Purpose:     A cast that throws bad_cast for dynamic pointer casting, as well
  *              as references.
  *
  * Created:     28th December 2002
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   6
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       29
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_REVISION   7
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_PTR_CAST_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,7 @@
 
 /*
 [Incompatibilies-start]
+STLSOFT_COMPILER_IS_INTEL: _MSC_VER<1310
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
@@ -223,7 +224,7 @@ public:
     typedef target_base_type                                                *pointer_type;
 
 private:
-    typedef ss_typename_type_k stlsoft::base_type_traits<Target>::base_type   target_base_type_;
+    typedef ss_typename_type_k stlsoft::base_type_traits<Target>::base_type target_base_type_;
     static target_base_type_ *manage_const(target_base_type_ *p)
     {
         return p;

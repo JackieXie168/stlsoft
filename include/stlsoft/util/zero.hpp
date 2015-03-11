@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/zero.hpp (originally stlsoft_zero.h)
+ * File:        stlsoft/util/zero.hpp
  *
  * Purpose:     ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     13th September 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_MINOR       0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        39
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_ZERO_EDIT        40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

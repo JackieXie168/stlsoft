@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/typefixer/difference_type.hpp (originally stlsoft/typefixer/difference_type.hpp)
+ * File:        stlsoft/meta/typefixer/difference_type.hpp
  *
  * Purpose:     Definition of the fixer_difference_type type.
  *
  * Created:     16th October 2004
- * Updated:     15th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_DIFFERENCE_TYPE_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_DIFFERENCE_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_DIFFERENCE_TYPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_DIFFERENCE_TYPE_EDIT        15
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_DIFFERENCE_TYPE_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

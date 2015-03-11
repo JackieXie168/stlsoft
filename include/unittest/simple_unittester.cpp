@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        simple_unittester.cpp
+ * File:        unittest/simple_unittester.cpp
  *
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     5th August 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,11 +38,18 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file unittest/simple_unittester.cpp
+ *
+ * \brief [C++ only] Implementation of the stlsoft::unittest::simple_unittest_host
+ *   class, which is a simple command-line unit-testing host.
+ * (\ref group__library__unittest "Unit Test" Library.)
+ */
+
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_MAJOR    2
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_MINOR    6
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_REVISION 1
-# define STLSOFT_VER_CPP_SIMPLE_UNITTESTER_EDIT     22
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MAJOR       2
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MINOR       6
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_REVISION    2
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_EDIT        23
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

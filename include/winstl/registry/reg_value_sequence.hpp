@@ -1,5 +1,5 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/registry/reg_value_sequence.hpp (formerly winstl_reg_value_sequence.h)
+ * File:        winstl/registry/reg_value_sequence.hpp
  *
  * Purpose:     Contains the basic_reg_value_sequence class template, and ANSI
  *              and Unicode specialisations thereof.
@@ -14,7 +14,7 @@
  *              basic_reg_value_sequence).
  *
  * Created:     19th January 2002
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/registry/reg_value_sequence.hpp
-/// \brief [C++ only] Definition of the \link winstl::basic_reg_value_sequence basic_reg_value_sequence\endlink class template. (\ref group__library__windows_registry "Windows Registry" Library.)
+/** \file winstl/registry/reg_value_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::basic_reg_value_sequence
+ *   class template.
+ * (\ref group__library__windows_registry "Windows Registry" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE
 #define WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE
@@ -57,8 +61,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_MINOR    4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     108
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_REVISION 9
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_SEQUENCE_EDIT     112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,30 +75,30 @@
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD
 # include <winstl/registry/regfwd.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REGFWD */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS
-# include <winstl/registry/defs.hpp>
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS
+# include <winstl/registry/util/defs.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_DEFS */
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS
 # include <winstl/registry/reg_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE
 # include <winstl/registry/reg_value.hpp>
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE */
-#ifndef WINSTL_INCL_WINSTL_REGISTRY_HPP_SHARED_HANDLES
-# include <winstl/registry/shared_handles.hpp>
-#endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_SHARED_HANDLES */
+#ifndef WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES
+# include <winstl/registry/util/shared_handles.hpp>
+#endif /* !WINSTL_INCL_WINSTL_REGISTRY_UTIL_HPP_SHARED_HANDLES */
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_AUTO_BUFFER */
 #ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
 # include <stlsoft/smartptr/ref_ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */

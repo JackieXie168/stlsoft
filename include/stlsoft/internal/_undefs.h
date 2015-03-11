@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/internal/_undefs.h (formerly stlsoft__undefs.h)
+ * File:        stlsoft/internal/_undefs.h
  *
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     26th November 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    3
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     19
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

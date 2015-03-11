@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        inetstl/error/exceptions.hpp (originally inetstl_exceptions.h)
+ * File:        inetstl/error/exceptions.hpp
  *
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     24th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MINOR     1
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_REVISION  3
-# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_EDIT      35
+# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

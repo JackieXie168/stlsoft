@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/util/struct_initialisers.hpp (Formerly MWInit.h, ::SynesisWin)
+ * File:        winstl/util/struct_initialisers.hpp
  *
  * Purpose:     Functions for initialising Win32 structures.
  *
  * Created:     20th October 1994
- * Updated:     1st October 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MAJOR       4
 # define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_MINOR       0
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    2
-# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        213
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_REVISION    3
+# define WINSTL_VER_WINSTL_UTIL_HPP_STRUCT_INITIALISERS_EDIT        215
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -313,7 +313,11 @@ WINSTL_The_structure_(DRAGINFOW, has::uSize_member_type);
 WINSTL_The_structure_(APPBARDATA, has::cbSize_member_type);
 WINSTL_The_structure_(SHELLEXECUTEINFOA, has::cbSize_member_type);
 WINSTL_The_structure_(SHELLEXECUTEINFOW, has::cbSize_member_type);
-#if !defined(STLSOFT_COMPILER_IS_DMC)
+#if !defined(STLSOFT_COMPILER_IS_DMC) && \
+    (   !defined(STLSOFT_COMPILER_IS_GCC) || \
+        __GNUC__ > 3 || \
+        (   __GNUC__ == 3 && \
+            __GNUC_MINOR__ > 2))
 WINSTL_The_structure_(SHQUERYRBINFO, has::cbSize_member_type);
 #endif /* compiler */
 WINSTL_The_structure_(NOTIFYICONDATAA, has::cbSize_member_type);

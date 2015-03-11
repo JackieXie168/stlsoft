@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        atlstl/util/module_scope.hpp (originally atlstl/module_scope.hpp)
+ * File:        atlstl/util/module_scope.hpp
  *
  * Purpose:     Scoping class for ATL _Module
  *
  * Created:     8th December 2004
- * Updated:     16th July 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file atlstl/util/module_scope.hpp
-///
-/// Scoping class for ATL _Module
+/** \file atlstl/util/module_scope.hpp
+ *
+ * \brief [C++ only] Definition of the atlstl::module_scope class template.
+ * (\ref group__library__util "Utility" Library.)
+ */
 
 #ifndef ATLSTL_INCL_ATLSTL_UTIL_HPP_MODULE_SCOPE
 #define ATLSTL_INCL_ATLSTL_UTIL_HPP_MODULE_SCOPE
@@ -49,7 +51,7 @@
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MAJOR       2
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_MINOR       1
 # define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_REVISION    1
-# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        18
+# define ATLSTL_VER_ATLSTL_UTIL_HPP_MODULE_SCOPE_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,7 +93,7 @@ namespace atlstl_project
 
 /** \brief Scopes the initialisation and uninitialisation of an ATL module
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__util
  */
 template<   ss_typename_param_k M
         ,   ss_typename_param_k X = stlsoft_ns_qual(null_exception_policy)

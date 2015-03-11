@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        mfcstl/shims/attribute/get_hwnd.hpp (originally mfcstl_window_access.h)
+ * File:        mfcstl/shims/attribute/get_hwnd.hpp
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     18th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,14 +45,14 @@
  *  (\ref group__library__shims__window_attribute "Window Attribute Shims".)
  */
 
-#ifndef MFCSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
-#define MFCSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND
+#ifndef MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND
+#define MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR      4
-# define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR      0
-# define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION   1
-# define MFCSTL_VER_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT       35
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MAJOR       4
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_MINOR       0
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_REVISION    1
+# define MFCSTL_VER_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -167,6 +167,6 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#endif /* MFCSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
+#endif /* MFCSTL_INCL_MFCSTL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 
 /* ////////////////////////////////////////////////////////////////////// */

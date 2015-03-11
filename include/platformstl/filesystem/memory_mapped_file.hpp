@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        platformstl/filesystem/memory_mapped_file.hpp (originally platformstl/memory_mapped_file.hpp)
+ * File:        platformstl/filesystem/memory_mapped_file.hpp
  *
  * Purpose:     Platform header for the memory_mapped_file components.
  *
  * Created:     20th March 2005
- * Updated:     11th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     13
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_MEMORY_MAPPED_FILE_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/filesystem/memory_mapped_file.hpp

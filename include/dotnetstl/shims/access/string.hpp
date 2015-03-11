@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        dotnetstl/shims/access/string.hpp (originally dotnetstl/string_access.hpp)
+ * File:        dotnetstl/shims/access/string.hpp
  *
  * Purpose:     String access shims for .net.
  *
  * Created:     24th June 2003
- * Updated:     18th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_MAJOR      2
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_MINOR      0
 # define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_REVISION   1
-# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_EDIT       10
+# define DOTNETSTL_VER_DOTNETSTL_SHIMS_ACCESS_HPP_STRING_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

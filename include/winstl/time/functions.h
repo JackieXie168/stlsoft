@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/time/functions.h (originally winstl_time_functions.h)
+ * File:        winstl/time/functions.h
  *
  * Purpose:     Time manipulation functions.
  *
  * Created:     21st November 2003
- * Updated:     7th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_MAJOR       5
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_EDIT        34
+# define WINSTL_VER_WINSTL_TIME_H_FUNCTIONS_EDIT        35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

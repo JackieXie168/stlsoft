@@ -1,5 +1,5 @@
 
-// Updated: 10th July 2006
+// Updated: 30th December 2006
 
 #if !defined(COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE)
 # error This file cannot be directly included, and should only be included within comstl/collections/enumerator_sequence.hpp
@@ -252,6 +252,7 @@ namespace unittest
 		}
 #endif /* compiler */
 
+#if !defined(STLSOFT_COMPILER_IS_COMO) // dl_call gives como an ICE
 		ss_bool_t test_comstl_enumerator_sequence_MMCOMBSC_IEnumString(HINSTANCE hinst, unittest_reporter *r)
 		{
 			using namespace Synesis_COM;
@@ -1034,6 +1035,7 @@ namespace unittest
 
 			return bSuccess;
 		}
+#endif /* compiler */
 
 		ss_bool_t test_comstl_enumerator_sequence(unittest_reporter *r)
 		{
@@ -1050,10 +1052,12 @@ namespace unittest
 			}
 #endif /* compiler */
 
+#if !defined(STLSOFT_COMPILER_IS_COMO) // dl_call gives como an ICE
 			if(!test_comstl_enumerator_sequence_MMCOMBSC(r))
 			{
 				bSuccess = false;
 			}
+#endif /* compiler */
 
 			return bSuccess;
 		}

@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/zerodef.h (originally stlsoft_zerodef.h)
+ * File:        stlsoft/util/zerodef.h
  *
  * Purpose:     Include for defining ZERO to be the ZERO_v template class.
  *
  * Created:     29th July 2003
- * Updated:     7th July 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_EDIT     18
+# define STLSOFT_VER_STLSOFT_UTIL_H_ZERODEF_EDIT     19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

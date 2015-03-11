@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/shims/access/string/std/exception.hpp (originally stlsoft/exception_string_access.hpp)
+ * File:        stlsoft/shims/access/string/std/exception.hpp
  *
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     18th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MAJOR       2
 # define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_MINOR       1
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    1
-# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        28
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_REVISION    2
+# define _STLSOFT_VER_STLSOFT_SHIMS_ACCESS_STRING_STD_HPP_EXCEPTION_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(exception) const &x)
  */
 inline ss_char_a_t const *c_str_data(stlsoft_ns_qual_std(exception) const &x)
 {
-    return c_str_data_a(x);
+    return c_str_data(x);
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(exception) const &x)
  */
 inline ss_size_t c_str_len(stlsoft_ns_qual_std(exception) const &x)
 {
-    return c_str_len_a(x);
+    return c_str_len(x);
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -172,7 +172,7 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(exception) const &x)
  */
 inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual_std(exception) const &x)
 {
-    return c_str_ptr_a(x);
+    return c_str_ptr(x);
 }
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -205,7 +205,7 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(exception) const 
  */
 inline ss_char_a_t const *c_str_ptr_null(stlsoft_ns_qual_std(exception) const &x)
 {
-    return c_str_ptr_null_a(x);
+    return c_str_ptr_null(x);
 }
 
 /* ////////////////////////////////////////////////////////////////////// */

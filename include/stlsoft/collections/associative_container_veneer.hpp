@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/collections/associative_container_veneer.hpp (originally stlsoft_associative_container_veneer.h)
+ * File:        stlsoft/collections/associative_container_veneer.hpp
  *
  * Purpose:     RRID veneer for associative containers
  *
  * Created:     2nd October 2002
- * Updated:     17th September 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/collections/associative_container_veneer.hpp (formerly stlsoft_associative_container_veneer.h)
-///
-/// RRID veneer for associative containers
+/** \file stlsoft/collections/associative_container_veneer.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::associative_container_veneer
+ *   class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER
 #define STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      37
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  3
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,15 +75,15 @@ STLSOFT_COMPILER_IS_WATCOM:
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #if defined(STLSOFT_COMPILER_IS_BORLAND)
-# error stlsoft_associative_container_veneer.h is incompatible with the Borland C/C++ compiler
+# error stlsoft/collections/associative_container_veneer.hpp is incompatible with the Borland C/C++ compiler
 #endif /* compiler */
 
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_NOOP
 # include <stlsoft/functional/noop.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_NOOP */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_FUNCTIONALS
 # include <stlsoft/obsolete/functionals.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_OBSOLETE_HPP_FUNCTIONALS */

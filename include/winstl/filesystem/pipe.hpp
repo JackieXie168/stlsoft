@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/filesystem/pipe.hpp (originally winstl_pipe.h)
+ * File:        winstl/filesystem/pipe.hpp
  *
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     16th July 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     28
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -64,9 +64,6 @@
 #ifndef WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS
 # include <winstl/error/exceptions.hpp>
 #endif /* !WINSTL_INCL_WINSTL_ERROR_HPP_WINDOWS_EXCEPTIONS */
-#ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
-# include <winstl/functions.h>      // for CloseHandleSetNull()
-#endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -167,7 +164,9 @@ public:
     {
         if(NULL != m_hReadHandle)
         {
-            CloseHandleSetNull(m_hReadHandle);
+            ::CloseHandle(m_hReadHandle);
+
+			m_hReadHandle = NULL;
         }
     }
     /// \brief Closes the write handle, if not already closed
@@ -175,7 +174,9 @@ public:
     {
         if(NULL != m_hWriteHandle)
         {
-            CloseHandleSetNull(m_hWriteHandle);
+            ::CloseHandle(m_hWriteHandle);
+
+			m_hReadHandle = NULL;
         }
     }
     /// \brief Closes the read and write handles, if not already closed

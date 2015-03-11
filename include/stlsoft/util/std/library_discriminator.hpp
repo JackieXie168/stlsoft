@@ -1,11 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/std/library_discriminator.hpp (formerly part of stlsoft/iterator.hpp)
+ * File:        stlsoft/util/std/library_discriminator.hpp
  *
- * Purpose:     iterator class templates and macros for abstracting away standard
- *              library inconsistencies.
+ * Purpose:     
  *
  * Created:     2nd January 2000
- * Updated:     10th June 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/std/library_discriminator.hpp
-///
-/// iterator class templates and macros for abstracting away standard library inconsistencies.
+/** \file stlsoft/util/std/library_discriminator.hpp
+ *
+ * \brief [C++ only] Discrimination and identification of standard library
+ *   implementations.
+ *  (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
 #define STLSOFT_INCL_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR
@@ -50,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       2
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        91
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -58,6 +60,7 @@
  */
 
 /*
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
 [Incompatibilies-start]
 STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]

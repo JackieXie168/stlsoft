@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     19th September 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        146
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    7
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        148
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,18 +91,18 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_UDT */
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+#  include <stlsoft/util/std/iterator_helper.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
 #endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 #ifndef _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD
 # ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS
 #  include <stlsoft/util/constraints.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 #endif /* _STLSOFT_AUTO_BUFFER_ALLOW_NON_POD */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 
 #ifdef STLSOFT_UNITTEST
 # include <algorithm>

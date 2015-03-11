@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     26th November 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -345,7 +345,7 @@
  * Calling convention
  */
 
-#ifdef __STDC__
+#if defined(__STDC__)
 
  /* Neither fastcall nor stdcall are supported in strict mode. */
 

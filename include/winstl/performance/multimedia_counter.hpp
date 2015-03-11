@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/performance/multimedia_counter.hpp (formerly winstl/multimedia_counter.hpp; originally winstl_multimedia_counter.h)
+ * File:        winstl/performance/multimedia_counter.hpp
  *
  * Purpose:     WinSTL multimedia performance counter class.
  *
  * Created:     31st July 2002
- * Updated:     10th June 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_MAJOR     4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_MINOR     0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_REVISION  1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_EDIT      34
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_EDIT      35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

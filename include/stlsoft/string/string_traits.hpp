@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/string/string_traits.hpp (originally stlsoft_string_traits.h)
+ * File:        stlsoft/string/string_traits.hpp
  *
  * Purpose:     string_traits traits class.
  *
  * Created:     16th January 2002
- * Updated:     17th September 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MAJOR     4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_MINOR     0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_REVISION  2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      69
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_TRAITS_EDIT      70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

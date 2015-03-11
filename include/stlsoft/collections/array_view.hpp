@@ -6,7 +6,7 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,9 +40,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/collections/array_view.hpp
-///
-/// Definition of the array_view template, which provides managed access to arrays, and can be used to avoid polymorphic array problems.
+/** \file stlsoft/collections/array_view.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::array_view
+ *   class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW
 #define STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW
@@ -50,8 +53,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       0
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    4
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        57
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    6
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,17 +74,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-# include <stlsoft/iterator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
-#  include <stlsoft/iterator.hpp>           // for reverse_iterator_base
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
-#endif /* STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
-#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
-# include <stlsoft/collections/collections.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER
+# include <stlsoft/util/std/iterator_helper.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_HELPER */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS
+# include <stlsoft/collections/util/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_UTIL_HPP_COLLECTIONS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                       // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -99,10 +97,11 @@ namespace stlsoft
  * Classes
  */
 
-/** \brief Acts as a view for built-in arrays, ensuring functions passed array proxies
- * have safe access to both array pointer and length
+/** \brief Acts as a view for built-in arrays, ensuring functions passed
+ *    array proxies have safe access to both array pointer and length, to
+ *    avoid polymorphic array problems.
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__collections
  */
 template <ss_typename_param_k T>
 class array_view

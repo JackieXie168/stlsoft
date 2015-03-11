@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/util/options_verifier.hpp (originally stlsoft/options_verifier.hpp)
+ * File:        stlsoft/util/options_verifier.hpp
  *
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     24th December 2006
+ * Updated:     30th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/options_verifier.hpp
-///
-/// Options verification.
+/** \file stlsoft/util/options_verifier.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::options_verifier class
+ *   template.
+ *  (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MAJOR     2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_MINOR     0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_REVISION  3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      34
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_OPTIONS_VERIFIER_EDIT      36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

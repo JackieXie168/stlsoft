@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        winstl/shims/attribute/get_kernel_handle.hpp (formerly winstl/handle_access.hpp)
+ * File:        winstl/shims/attribute/get_kernel_handle.hpp
  *
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     4th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_MAJOR      2
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_MINOR      0
 # define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_REVISION   1
-# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_EDIT       16
+# define WINSTL_VER_WINSTL_SHIMS_ATTRIBUTE_HPP_GET_KERNEL_HANDLE_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

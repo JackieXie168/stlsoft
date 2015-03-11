@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/shims/access/string.hpp (originally comstl_string_access.h)
+ * File:        comstl/shims/access/string.hpp
  *
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     18th December 2006
+ * Updated:     29th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_MAJOR    5
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_MINOR    0
 # define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_REVISION 1
-# define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_EDIT     100
+# define COMSTL_VER_COMSTL_SHIMS_ACCESS_HPP_STRING_EDIT     101
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
