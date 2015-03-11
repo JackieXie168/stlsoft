@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     7th February 2012
+ * Updated:     3rd June 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    24
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 4
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     423
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    25
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     425
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -275,12 +275,13 @@
 # define _STLSOFT_VER_1_9_110   0x01096eff  /*!< Version 1.9.110 (25th November 2011) */
 # define _STLSOFT_VER_1_9_111   0x01096fff  /*!< Version 1.9.111 (30th November 2011) */
 # define _STLSOFT_VER_1_9_112   0x010970ff  /*!< Version 1.9.112 (7th February 2012) */
+# define _STLSOFT_VER_1_9_113   0x010971ff  /*!< Version 1.9.113 (4th June 2012) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   112
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_112
+#define _STLSOFT_VER_REVISION   113
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_113
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -289,7 +290,7 @@
 /* Compilation messages
  *
  * To see certain informational messages during compilation define the
- * preprocessor symbol _STLSOFT_COMPILE_VERBOSE
+ * preprocessor symbol STLSOFT_COMPILE_VERBOSE
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -534,8 +535,10 @@
 #  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 10.0"
 # elif (__INTEL_COMPILER == 1100)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 11.0"
+# elif (__INTEL_COMPILER >= 1200) && (__INTEL_COMPILER < 1300)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Intel C/C++ 12.x"
 # else /* ? __INTEL_COMPILER */
-#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1), 8.0, 9.0, 10.0 and 11.0 currently supported by the STLSoft libraries
+#  error Only Intel C++ Compiler versions 6.0, 7.0(/7.1), 8.0, 9.0, 10.0, 11.0 and 12.x currently supported by the STLSoft libraries
 # endif /* __INTEL_COMPILER */
 
 #elif defined(__MWERKS__)
@@ -734,19 +737,51 @@
 # error Compiler not correctly discriminated
 #endif /* compiler */
 
+/* pragma message support */
+
+/* backwards-compatibility : _STLSOFT_COMPILE_VERBOSE => STLSOFT_COMPILE_VERBOSE */
+
 #if defined(_STLSOFT_COMPILE_VERBOSE) && \
-    !defined(STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT)
-# undef _STLSOFT_COMPILE_VERBOSE
-#endif /* !STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
+	!defined(STLSOFT_COMPILE_VERBOSE)
+# define STLSOFT_COMPILE_VERBOSE
+#endif
+
+/* backwards-compatibility : STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT => STLSOFT_PPF_pragma_message_SUPPORT */
+#if defined(STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT) && \
+	!defined(STLSOFT_PPF_pragma_message_SUPPORT)
+# define STLSOFT_PPF_pragma_message_SUPPORT
+#endif
+
+#if defined(STLSOFT_COMPILE_VERBOSE) && \
+    !defined(STLSOFT_PPF_pragma_message_SUPPORT)
+# undef STLSOFT_COMPILE_VERBOSE
+#endif /* !STLSOFT_PPF_pragma_message_SUPPORT && STLSOFT_COMPILE_VERBOSE */
 
 #if defined(STLSOFT_NO_COMPILE_VERBOSE) && \
-    defined(_STLSOFT_COMPILE_VERBOSE)
-# undef _STLSOFT_COMPILE_VERBOSE
-#endif /* STLSOFT_NO_COMPILE_VERBOSE && _STLSOFT_COMPILE_VERBOSE */
+    defined(STLSOFT_COMPILE_VERBOSE)
+# undef STLSOFT_COMPILE_VERBOSE
+#endif /* STLSOFT_NO_COMPILE_VERBOSE && STLSOFT_COMPILE_VERBOSE */
 
-#ifdef _STLSOFT_COMPILE_VERBOSE
+#ifdef STLSOFT_COMPILE_VERBOSE
 # pragma message(STLSOFT_COMPILER_VERSION_STRING)
-#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+#endif /* STLSOFT_COMPILE_VERBOSE */
+
+
+/* backwards-compatibility : STLSOFT_COMPILE_VERBOSE => _STLSOFT_COMPILE_VERBOSE */
+
+#if defined(STLSOFT_COMPILE_VERBOSE)
+# if defined(_STLSOFT_COMPILE_VERBOSE)
+#  if defined(STLSOFT_PPF_pragma_message_SUPPORT)
+#   pragma message("You have defined _STLSOFT_COMPILE_VERBOSE. This symbol is now deprecated, and may be ignored by a future release : instead define STLSOFT_COMPILE_VERBOSE")
+#  endif
+# else /* ? _STLSOFT_COMPILE_VERBOSE */
+   /* Must define it here, for backwards-compatibility with client code that uses it */
+#  define _STLSOFT_COMPILE_VERBOSE
+# endif /* _STLSOFT_COMPILE_VERBOSE */
+#endif /* STLSOFT_COMPILE_VERBOSE */
+
+
+
 
 
 /* __FUNCTION__ support */
@@ -1044,7 +1079,7 @@
  */
 
 /** \def STLSOFT_CC_COMBINED_VALUE
- * 
+ *
  * Combination of STLSOFT_CC_CDECL_VALUE, STLSOFT_CC_FASTCALL_VALUE
  * and STLSOFT_CC_STDCALL_VALUE.
  */
@@ -1052,21 +1087,21 @@
 #if defined(STLSOFT_CF_CDECL_SUPPORTED)
 # define STLSOFT_CDECL_VALUE            (1)     /*!< \deprecated This symbol is deprecated, and will be removed from a future version */
 # define STLSOFT_CC_CDECL_VALUE         (0x01)
-#else                                   
+#else
 # define STLSOFT_CC_CDECL_VALUE         (0)
 #endif /* STLSOFT_CF_CDECL_SUPPORTED */
 
 #if defined(STLSOFT_CF_FASTCALL_SUPPORTED)
 # define STLSOFT_FASTCALL_VALUE         (2)     /*!< \deprecated This symbol is deprecated, and will be removed from a future version */
 # define STLSOFT_CC_FASTCALL_VALUE      (0x02)
-#else                                   
+#else
 # define STLSOFT_CC_FASTCALL_VALUE      (0)
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
 #if defined(STLSOFT_CF_STDCALL_SUPPORTED)
 # define STLSOFT_STDCALL_VALUE          (3)     /*!< \deprecated This symbol is deprecated, and will be removed from a future version */
 # define STLSOFT_CC_STDCALL_VALUE       (0x04)
-#else                                   
+#else
 # define STLSOFT_CC_STDCALL_VALUE       (0)
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
@@ -1138,9 +1173,9 @@
 # ifdef STLSOFT_STRICT
 #  error You are using an old version of one or more of ATLSTL, COMSTL, MFCSTL, UNIXSTL and WinSTL. Please upgrade all dependent projects in line with the STLSoft version you are using
 # else /* ? STLSOFT_STRICT */
-#  ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+#  ifdef STLSOFT_COMPILE_VERBOSE
 #   pragma message("You are using an old version of one or more of ATLSTL, COMSTL, MFCSTL, UNIXSTL and WinSTL. _STLSOFT_INCLUDE_OBSOLETE will be defined (but is not guaranteed to work!)")
-#  endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+#  endif /* STLSOFT_COMPILE_VERBOSE */
 #  ifndef _STLSOFT_INCLUDE_OBSOLETE
 #   define _STLSOFT_INCLUDE_OBSOLETE
 #  endif /* !_STLSOFT_INCLUDE_OBSOLETE */

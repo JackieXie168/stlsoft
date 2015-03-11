@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     3rd February 2012
+ * Updated:     20th May 2012
  *
  * Thanks:      To Sergey Nikulov, for spotting a preprocessor typo that
  *              broke GCC -pedantic; to Michal Makowski and Zar Eindl for
@@ -58,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      122
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  7
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      126
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -338,9 +338,9 @@ public:
     /// \brief Initiate a file-system search
     static DIR*                 open_dir(char_type const* dir);
     /// \brief Read an entry from the file-system search
-    static struct dirent const* read_dir(DIR *h);
+    static struct dirent const* read_dir(DIR* h);
     /// \brief Closes the handle of the file-system search
-    static void                 close_dir(DIR *h);
+    static void                 close_dir(DIR* h);
 
 /// @}
 
@@ -366,12 +366,13 @@ public:
     static bool_type    is_file(char_type const* path);
     /// \brief Returns whether the given path represents a directory
     static bool_type    is_directory(char_type const* path);
+
     /// \brief Gets the information for a particular file system entry
-    static bool_type    stat(char_type const* path, stat_data_type *stat_data);
+    static bool_type    stat(char_type const* path, stat_data_type* stat_data);
     /// \brief Gets the information for a particular file system entry
-    static bool_type    lstat(char_type const* path, stat_data_type *stat_data);
+    static bool_type    lstat(char_type const* path, stat_data_type* stat_data);
     /// \brief Gets the information for a particular open file
-    static bool_type    fstat(file_handle_type fd, fstat_data_type *fstat_data);
+    static bool_type    fstat(file_handle_type fd, fstat_data_type* fstat_data);
 
     /// \brief Returns whether the given stat info represents a file
     static bool_type    is_file(stat_data_type const* stat_data);
@@ -379,6 +380,7 @@ public:
     static bool_type    is_directory(stat_data_type const* stat_data);
     /// \brief Returns whether the given stat info represents a link
     static bool_type    is_link(stat_data_type const* stat_data);
+
     /// \brief Returns whether the given stat info represents a read-only entry
     static bool_type    is_readonly(stat_data_type const* stat_data);
 /// @}
@@ -437,6 +439,40 @@ private:
 };
 
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+#if 0
+struct filesystem_traits_util_
+{
+public:
+    typedef struct stat                                 stat_data_type;
+    typedef us_bool_t                                   bool_type;
+#ifdef _WIN32
+    typedef unsigned short                              mode_type;
+#else /* ? _WIN32 */
+    typedef mode_t                                      mode_type;
+#endif /* _WIN32 */
+protected:
+    static bool_type is_file_type_(
+        stat_data_type const*   stat_data
+    ,   mode_type               typeModeBits
+    )
+    {
+        return typeModeBits == (stat_data->st_mode & S_IFMT);
+    }
+    template <ss_typename_param_k C>
+    static bool_type is_file_type_(
+        C const*                path
+    ,   bool_type               (*pfnstat)(C const*, stat_data_type*)
+    ,   mode_type               typeModeBits
+    )
+    {
+        stat_data_type sd;
+
+        return (*pfnstat)(path, &sd) && is_file_type_(&sd, typeModeBits);
+    }
+};
+#endif /* 0 */
+
 
 template <ss_typename_param_k C>
 struct filesystem_traits;
@@ -864,7 +900,7 @@ private:
         else
         {
             // Given path is relative, so get the current directory, and then concatenate
-            buffer_type_    directory(1 + path_max());
+            buffer_type_ directory(1 + path_max());
 
             if(0 == directory.size())
             {
@@ -956,7 +992,7 @@ private:
 
         if('\0' != fileName[len])
         {
-            buffer_type_    fileName_(1 + (len - 1));
+            buffer_type_ fileName_(1 + (len - 1));
 
             // May be being compiled absent exception support, so need to check the
             // file path buffers. (This _could_ be done with a compile-time #ifdef,
@@ -1003,9 +1039,9 @@ public:
             if(r == cchRequired)
             {
                 // Now search for the file separator
-                char_type* pFile        =   str_rchr(buffer, path_name_separator());
+                char_type* pFile    =   str_rchr(buffer, path_name_separator());
 #if defined(_WIN32)
-                char_type* pFile2       =   str_rchr(buffer, '\\');
+                char_type* pFile2   =   str_rchr(buffer, '\\');
 
                 if(NULL == pFile)
                 {
@@ -1037,7 +1073,7 @@ public:
 
         if('\0' == *fileName)
         {
-            static const char   s_dot[2] = { '.', '\0' };
+            static const char s_dot[2] = { '.', '\0' };
 
             fileName = s_dot;
         }
@@ -1058,15 +1094,15 @@ public:
 
     // File-system enumeration
 
-    static DIR *open_dir(char_type const* dir)
+    static DIR* open_dir(char_type const* dir)
     {
         return ::opendir(dir);
     }
-    static struct dirent const* read_dir(DIR *h)
+    static struct dirent const* read_dir(DIR* h)
     {
         return ::readdir(h);
     }
-    static void close_dir(DIR *h)
+    static void close_dir(DIR* h)
     {
         ::closedir(h);
     }
@@ -1088,33 +1124,111 @@ public:
         return get_current_directory(buffer, cchBuffer);
     }
 
+private:
+    static char_type const* call_getcwd_(char_type* buffer, size_type cchBuffer)
+    {
+#if defined(STLSOFT_COMPILER_IS_INTEL) || \
+    defined(STLSOFT_COMPILER_IS_MSVC)
+        return ::_getcwd(buffer, cchBuffer);
+#else /* ? compiler */
+        return ::getcwd(buffer, cchBuffer);
+#endif /* compiler */
+    }
+public:
+
     static size_type get_current_directory(char_type* buffer, size_type cchBuffer)
     {
-#if defined(_WIN32) && \
-    (   defined(STLSOFT_COMPILER_IS_INTEL) || \
-        defined(STLSOFT_COMPILER_IS_MSVC))
-        char_type const* dir = ::_getcwd(buffer, int(cchBuffer));
-#else /* ? _WIN32 */
-        char_type const* dir = ::getcwd(buffer, int(cchBuffer));
+#if defined(_WIN32)
+        char_type               local[1 + _MAX_PATH];
+        size_type const         cchLocal = STLSOFT_NUM_ELEMENTS(local);
+#elif defined(PATH_MAX)
+        char_type               local[1 + PATH_MAX];
+        size_type const         cchLocal = STLSOFT_NUM_ELEMENTS(local);
+#else
+        struct path_max_buffer
+        {
+        public:
+            typedef class_type  traits_type_;
+
+        public:
+            path_max_buffer()
+                : n(traits_type_::path_max())
+                , p(new traits_type_::char_type[n + 1])
+            {
+                // check, for non-throwing new
+                if(NULL == p)
+                {
+                    n = 0;
+                }
+            }
+            ~path_max_buffer() stlsoft_throw_0()
+            {
+                delete [] p;
+            }
+        private:
+            path_max_buffer(path_max_buffer const&) {}
+            path_max_buffer& operator =(path_max_buffer const&) { return *this; }
+
+        public:
+            size_type size() const
+            {
+                return n;
+            }
+            operator char_type* ()
+            {
+                return p;
+            }
+
+        private:
+            size_type   n;
+            char_type*  p;
+        };
+        path_max_buffer         local;
+        size_type const         cchLocal = local.size();
 #endif /* _WIN32 */
 
-        return (NULL == dir) ? 0 : str_len(dir);
+        char_type const* const  dir = call_getcwd_(local, cchLocal);
+
+        if(NULL == dir)
+        {
+            return 0;
+        }
+        else
+        {
+            size_type const len = str_len(dir);
+
+            if(0 == cchBuffer)
+            {
+                return len;
+            }
+            else
+            {
+                size_type const n = (len < cchBuffer) ? len : cchBuffer;
+
+                char_copy(buffer, dir, n);
+
+                if(n < cchBuffer)
+                {
+                    buffer[n] = '\0';
+                }
+
+                return n;
+            }
+        }
     }
 
     static bool_type file_exists(char_type const* fileName)
     {
-        stat_data_type  sd;
+        stat_data_type sd;
 
         return class_type::stat(fileName, &sd) /* || errno != ENOENT */;
     }
-
     static bool_type is_file(char_type const* path)
     {
-        stat_data_type  sd;
+        stat_data_type sd;
 
         return class_type::stat(path, &sd) && S_IFREG == (sd.st_mode & S_IFMT);
     }
-
     static bool_type is_directory(char_type const* path)
     {
         stat_data_type sd;
@@ -1122,7 +1236,7 @@ public:
         return class_type::stat(path, &sd) && S_IFDIR == (sd.st_mode & S_IFMT);
     }
 
-    static bool_type stat(char_type const* path, stat_data_type *stat_data)
+    static bool_type stat(char_type const* path, stat_data_type* stat_data)
     {
         UNIXSTL_ASSERT(NULL != path);
         UNIXSTL_ASSERT(NULL != stat_data);
@@ -1168,8 +1282,7 @@ public:
 
         return 0 == ::stat(path, stat_data);
     }
-
-    static bool_type lstat(char_type const* path, stat_data_type *stat_data)
+    static bool_type lstat(char_type const* path, stat_data_type* stat_data)
     {
         UNIXSTL_ASSERT(NULL != path);
         UNIXSTL_ASSERT(NULL != stat_data);
@@ -1180,8 +1293,7 @@ public:
         return 0 == ::lstat(path, stat_data);
 #endif /* _WIN32 */
     }
-
-    static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)
+    static bool_type fstat(file_handle_type fd, fstat_data_type* fstat_data)
     {
         UNIXSTL_ASSERT(-1 != fd);
         UNIXSTL_ASSERT(NULL != fstat_data);
@@ -1191,11 +1303,11 @@ public:
 
     static bool_type is_file(stat_data_type const* stat_data)
     {
-        return S_IFREG == (stat_data->st_mode & S_IFREG);
+        return S_IFREG == (stat_data->st_mode & S_IFMT);
     }
     static bool_type is_directory(stat_data_type const* stat_data)
     {
-        return S_IFDIR == (stat_data->st_mode & S_IFDIR);
+        return S_IFDIR == (stat_data->st_mode & S_IFMT);
     }
     static bool_type is_link(stat_data_type const* stat_data)
     {
@@ -1204,9 +1316,10 @@ public:
 
         return false;
 #else /* ? _WIN32 */
-        return S_IFLNK == (stat_data->st_mode & S_IFLNK);
+        return S_IFLNK == (stat_data->st_mode & S_IFMT);
 #endif /* _WIN32 */
     }
+
     static bool_type is_readonly(stat_data_type const* stat_data)
     {
 #ifdef _WIN32
@@ -1260,7 +1373,7 @@ public:
         return 0 == ::remove(file);
     }
 
-    static bool_type    delete_file(char_type const* file)
+    static bool_type delete_file(char_type const* file)
     {
         return unlink_file(file);
     }
@@ -1281,7 +1394,7 @@ public:
 
     static file_handle_type invalid_file_handle_value()
     {
-        return 0;
+        return -1;
     }
 
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode)

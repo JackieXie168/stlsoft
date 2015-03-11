@@ -2,9 +2,22 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  7th February 2012
+; Updated:  4th June 2012
 
 ============================================================================
+
+
+4th June 2012 - 1.9.113 released
+--------------------------------
+
+ * Intel C/C++ 12 support
+ * support for STLSOFT_COMPILE_VERBOSE; deprecation of _STLSOFT_COMPILE_VERBOSE
+ * fixed unixstl::filesystem_traits::broken get_current_directory()
+ * fixed unixstl::filesystem_traits::broken invalid_file_handle_value()
+ * fixed unixstl::filesystem_traits::is_file() / is_directory() / is_link()
+ * numerous improvements to unixstl::filesystem_traits::glob_sequence
+ * unixstl::readdir_sequence correction to elide sockets from search results
+ * winstl/time/conversion_functions.h renaming (and deprecation) of non-standard C function names
 
 
 7th February 2012 - 1.9.112 released

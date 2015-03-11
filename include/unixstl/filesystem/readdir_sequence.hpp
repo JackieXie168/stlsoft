@@ -4,11 +4,11 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     29th November 2010
+ * Updated:     20th May 2012
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2012, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       127
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   10
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -216,6 +216,9 @@ public:
             includeDots     =   0x0008  /*!< \brief Requests that dots directories be included in the returned sequence */
         ,   directories     =   0x0010  /*!< \brief Causes the search to include directories */
         ,   files           =   0x0020  /*!< \brief Causes the search to include files */
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+        ,   sockets         =   0x0000  /*!< CURRENTLY UNSUPPORTED : DO NOT USE! This exists for forward compatibility with STLSoft 1.10 test programs, and is subject to change in the future. A future version will support sockets, but it may not use this enumerator name. */
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
         ,   fullPath        =   0x0100  /*!< \brief Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath    =   0x0200  /*!< \brief The search directory is converted to an absolute path. */
     };
@@ -266,7 +269,7 @@ public:
     /// \note The value returned by this method always has a trailing path name separator, so
     /// you can safely concatenate this with the value returned by the iterator's operator *()
     /// with minimal fuss.
-    string_type const   &get_directory() const;
+    string_type const&  get_directory() const;
 
     /// \brief The flags used by the sequence
     ///
@@ -338,7 +341,7 @@ private:
     friend class readdir_sequence;
 
     /// \brief Construct an instance and begin a sequence iteration on the given dir.
-    const_iterator(DIR *dir, string_type const& directory, flags_type flags);
+    const_iterator(DIR* dir, string_type const& directory, flags_type flags);
 public:
     /// \brief Default constructor
     const_iterator();
@@ -381,8 +384,8 @@ public:
 private:
     struct shared_handle;
 
-    shared_handle   *m_handle;  // The DIR handle, shared with other iterator instances
-    struct dirent   *m_entry;   // The current entry
+    shared_handle*  m_handle;  // The DIR handle, shared with other iterator instances
+    struct dirent*  m_entry;   // The current entry
     flags_type      m_flags;    // flags. (Only non-const, to allow copy assignment)
     string_type     m_scratch;  // Holds the directory, and is a scratch area
     size_type       m_dirLen;   // The length of the directory
@@ -510,7 +513,7 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
     if( NULL == directory ||
         '\0' == *directory)
     {
-        static const char_type  s_thisDir[] = { '.', '\0' };
+        static const char_type s_thisDir[] = { '.', '\0' };
 
         directory = s_thisDir;
     }
@@ -549,7 +552,7 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
 
 inline readdir_sequence::const_iterator readdir_sequence::begin() const
 {
-    DIR *dir = ::opendir(m_directory.c_str());
+    DIR* dir = ::opendir(m_directory.c_str());
 
     if(NULL == dir)
     {
@@ -599,7 +602,7 @@ inline readdir_sequence::flags_type readdir_sequence::get_flags() const
 
 // readdir_sequence::const_iterator;
 
-inline readdir_sequence::const_iterator::const_iterator(DIR *dir, readdir_sequence::string_type const& directory, readdir_sequence::flags_type flags)
+inline readdir_sequence::const_iterator::const_iterator(DIR* dir, readdir_sequence::string_type const& directory, readdir_sequence::flags_type flags)
     : m_handle(new shared_handle(dir))
     , m_entry(NULL)
     , m_flags(flags)
@@ -649,7 +652,7 @@ inline readdir_sequence::const_iterator::~const_iterator() stlsoft_throw_0()
 
 inline readdir_sequence::const_iterator::class_type const& readdir_sequence::const_iterator::operator =(readdir_sequence::const_iterator::class_type const& rhs)
 {
-    shared_handle   *this_handle    =   m_handle;
+    shared_handle* this_handle = m_handle;
 
     m_handle  =   rhs.m_handle;
     m_entry   =   rhs.m_entry;
@@ -718,7 +721,9 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
             // - requiring absolute path
             //
             // then need to construct it.
+#ifdef _WIN32
             if((m_flags & (fullPath | directories | files)) != (directories | files))
+#endif /* _WIN32 */
             {
                 // Truncate the scratch to the directory path, ...
                 m_scratch.resize(m_dirLen);
@@ -726,7 +731,9 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
                 m_scratch += m_entry->d_name;
             }
 
+#ifdef _WIN32
             if((m_flags & (directories | files)) != (directories | files))
+#endif /* _WIN32 */
             {
                 // Now need to process the file, by using stat
                 traits_type::stat_data_type st;
@@ -739,6 +746,15 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
                 }
                 else
                 {
+#ifndef _WIN32
+                    // Test for sockets : this version does not support sockets,
+                    // but does elide them from the search results.
+                    if(S_IFSOCK == (st.st_mode & S_IFMT))
+                    {
+                        continue;
+                    }
+#endif /* !_WIN32 */
+
                     if(m_flags & directories) // Want directories
                     {
                         if(traits_type::is_directory(&st))
@@ -778,7 +794,7 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
 
 inline readdir_sequence::const_iterator::class_type readdir_sequence::const_iterator::operator ++(int)
 {
-    class_type  ret(*this);
+    class_type ret(*this);
 
     operator ++();
 
