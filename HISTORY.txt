@@ -2,10 +2,17 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  5th January 2008
+; Updated:  27th January 2008
 
 ============================================================================
 
+
+27th January 2008 - 1.9.18 released
+-----------------------------------
+
+ * enhancement of STLSoft's integral_printf_trait component to support
+   Pantheios 1.0.1 beta 91
+ * release of SAPI utility header for COMSTL
 
 5th January 2008 - 1.9.17 released
 ----------------------------------
