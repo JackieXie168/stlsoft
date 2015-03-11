@@ -1,5 +1,5 @@
 
-// Updated: 6th July 2006
+// Updated: 5th August 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE)
 # error This file cannot be directly included, and should only be included within stlsoft/smartptr/scoped_handle.hpp
@@ -13,17 +13,29 @@ namespace unittest
 {
 	namespace
 	{
-		void STLSOFT_CDECL test_stlsoft_scoped_handle__close_short_cdecl(short )
+		void STLSOFT_CDECL test_stlsoft_scoped_handle__close_short_cdecl_void(short )
 		{}
+		bool STLSOFT_CDECL test_stlsoft_scoped_handle__close_short_cdecl(short )
+		{
+			return true;
+		}
 
 #ifdef STLSOFT_CF_FASTCALL_SUPPORTED
-		void STLSOFT_FASTCALL test_stlsoft_scoped_handle__close_long_fastcall(long )
+		void STLSOFT_FASTCALL test_stlsoft_scoped_handle__close_long_fastcall_void(long )
 		{}
+		bool STLSOFT_FASTCALL test_stlsoft_scoped_handle__close_long_fastcall(long )
+		{
+			return true;
+		}
 #endif /* STLSOFT_CF_FASTCALL_SUPPORTED */
 
 #ifdef STLSOFT_CF_STDCALL_SUPPORTED
-		void STLSOFT_STDCALL test_stlsoft_scoped_handle__close_unsigned_stdcall(unsigned )
+		void STLSOFT_STDCALL test_stlsoft_scoped_handle__close_unsigned_stdcall_void(unsigned )
 		{}
+		bool STLSOFT_STDCALL test_stlsoft_scoped_handle__close_unsigned_stdcall(unsigned )
+		{
+			return true;
+		}
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
 		ss_bool_t test_stlsoft_scoped_handle(unittest_reporter *r)
@@ -34,6 +46,16 @@ namespace unittest
 
 #if !defined(STLSOFT_COMPILER_IS_DMC)
 			// cdecl
+			{
+				scoped_handle<short>	sh1(23, test_stlsoft_scoped_handle__close_short_cdecl_void);
+
+				if(23 != stlsoft_ns_qual(get_handle)(sh1))
+				{
+					r->report("scoped_handle<short> get_handle() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
+
 			{
 				scoped_handle<short>	sh1(23, test_stlsoft_scoped_handle__close_short_cdecl);
 
@@ -47,6 +69,16 @@ namespace unittest
 # ifdef STLSOFT_CF_FASTCALL_SUPPORTED
 			// fastcall
 			{
+				scoped_handle<long>    sh1(24, test_stlsoft_scoped_handle__close_long_fastcall_void);
+
+				if(24 != stlsoft_ns_qual(get_handle)(sh1))
+				{
+					r->report("scoped_handle<short> get_handle() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
+
+			{
 				scoped_handle<long>    sh1(24, test_stlsoft_scoped_handle__close_long_fastcall);
 
 				if(24 != stlsoft_ns_qual(get_handle)(sh1))
@@ -59,6 +91,16 @@ namespace unittest
 
 # ifdef STLSOFT_CF_STDCALL_SUPPORTED
 			// stdcall
+			{
+				scoped_handle<unsigned>    sh1(25, test_stlsoft_scoped_handle__close_unsigned_stdcall_void);
+
+				if(25 != stlsoft_ns_qual(get_handle)(sh1))
+				{
+					r->report("scoped_handle<short> get_handle() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
+
 			{
 				scoped_handle<unsigned>    sh1(25, test_stlsoft_scoped_handle__close_unsigned_stdcall);
 

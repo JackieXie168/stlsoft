@@ -4,7 +4,10 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     9th July 2006
+ * Updated:     7th August 2006
+ *
+ * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
+ *              for special_string_instance_1.
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        8
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -815,6 +818,108 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual(special_string_instance_0)<P> const
 }
 template <ss_typename_param_k P>
 inline ss_size_t c_str_len_w(stlsoft_ns_qual(special_string_instance_0)<P> const &ssi)
+{
+    // If this fires, you're trying to invoke c_str_len_w() on an SSI
+    // whose policy defines the character type to be something other
+    // than wchar_t.
+    ss_char_w_t const   *special_string_instance_must_use_wide_character    =   ssi.c_str_w();
+
+    STLSOFT_SUPPRESS_UNUSED(special_string_instance_must_use_wide_character);
+
+    return ssi.length();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::special_string_instance_1
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::char_type const *c_str_ptr_null(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return (0 != ssi.length()) ? ssi.c_str() : NULL;
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::cstring_a_type c_str_ptr_null_a(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return (0 != ssi.length()) ? ssi.c_str_a() : NULL;
+}
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr_null_w(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return (0 != ssi.length()) ? ssi.c_str_w() : NULL;
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::special_string_instance_1
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::char_type const *c_str_ptr(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.c_str();
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::cstring_a_type c_str_ptr_a(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.c_str_a();
+}
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_ptr_w(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.c_str_w();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::special_string_instance_1
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::char_type const *c_str_data(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.c_str();
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::cstring_a_type c_str_data_a(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.c_str_a();
+}
+template <ss_typename_param_k P>
+inline ss_typename_type_k special_string_instance_1<P>::cstring_w_type c_str_data_w(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.c_str_w();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::special_string_instance_1
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template <ss_typename_param_k P>
+inline ss_size_t c_str_len(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    return ssi.length();
+}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_typename_param_k P>
+inline ss_size_t c_str_len_a(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
+{
+    // If this fires, you're trying to invoke c_str_len_w() on an SSI
+    // whose policy defines the character type to be something other
+    // than char.
+    ss_char_a_t const   *special_string_instance_must_use_narrow_character  =   ssi.c_str_a();
+
+    STLSOFT_SUPPRESS_UNUSED(special_string_instance_must_use_narrow_character);
+
+    return ssi.length();
+}
+template <ss_typename_param_k P>
+inline ss_size_t c_str_len_w(stlsoft_ns_qual(special_string_instance_1)<P> const &ssi)
 {
     // If this fires, you're trying to invoke c_str_len_w() on an SSI
     // whose policy defines the character type to be something other

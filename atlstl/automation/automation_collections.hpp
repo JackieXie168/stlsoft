@@ -4,7 +4,7 @@
  * Purpose:     Adaptor classes for creating COM collection instances.
  *
  * Created:     16th April 1999
- * Updated:     18th July 2006
+ * Updated:     6th August 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MAJOR     3
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     0
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     1
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      94
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,11 +101,11 @@ namespace atlstl_project
  */
 
 template<   ss_typename_param_k D
-//      ,   HRESULT (STDMETHODCALLTYPE D::*pfn)(LPUNKNOWN*) =   &D::get__NewEnum
-        ,   ss_typename_param_k ThreadModel                 =   CComObjectThreadModel
+        ,   ss_typename_param_k ThreadModel =   CComObjectThreadModel
+        ,   ss_typename_param_k I           =   IDispatch
         >
 class generic_collection_base
-    : public IDispatch
+    : public I
     , public CComObjectRootEx<ThreadModel>
 {
 /// \name Member Types
@@ -113,27 +113,27 @@ class generic_collection_base
 public:
     typedef D                                               derived_class_type;
 //    typedef generic_collection_base<D, pfn, ThreadModel>  class_type;
-    typedef generic_collection_base<D, ThreadModel>         class_type;
+    typedef generic_collection_base<D, ThreadModel, I>      class_type;
 /// @}
 
 /// \name Interface map
 /// @{
 protected:
     BEGIN_COM_MAP(generic_collection_base)
-        COM_INTERFACE_ENTRY(IDispatch)
+        COM_INTERFACE_ENTRY(IDispatch)  // This is a constraint for I to be IDispatch, or a dual interface
     END_COM_MAP()
 /// @}
 
 /// \name IDispatch members
 /// @{
 protected:
-    virtual HRESULT STDMETHODCALLTYPE GetTypeInfoCount(UINT *pctinfo)
+    STDMETHOD(GetTypeInfoCount)(UINT *pctinfo)
     {
         *pctinfo = 0;
 
         return S_OK;
     }
-    virtual HRESULT STDMETHODCALLTYPE GetTypeInfo(UINT iTInfo, LCID /* lcid */, ITypeInfo **ppTInfo)
+    STDMETHOD(GetTypeInfo)(UINT iTInfo, LCID /* lcid */, ITypeInfo **ppTInfo)
     {
         if(0 != iTInfo)
         {
@@ -150,23 +150,22 @@ protected:
             return S_FALSE;
         }
     }
-    virtual HRESULT STDMETHODCALLTYPE GetIDsOfNames(
-        /* [in] */ REFIID riid,
-        /* [size_is][in] */ LPOLESTR __RPC_FAR *rgszNames,
-        /* [in] */ UINT cNames,
-        /* [in] */ LCID lcid,
-        /* [size_is][out] */ DISPID __RPC_FAR *rgDispId)
+    STDMETHOD(GetIDsOfNames)(   REFIID      /* riid */
+                            ,   LPOLESTR    * /* rgszNames */
+                            ,   UINT        /* cNames */
+                            ,   LCID        /* lcid */
+                            ,   DISPID      * /* rgDispId */)
     {
         return DISP_E_UNKNOWNNAME;
     }
-    virtual /* [local] */ HRESULT STDMETHODCALLTYPE Invoke( DISPID      dispidMember
-                                                        ,   REFIID      riid
-                                                        ,   LCID        lcid
-                                                        ,   WORD        wFlags
-                                                        ,   DISPPARAMS  *pDispParams
-                                                        ,   VARIANT     *pVarResult
-                                                        ,   EXCEPINFO   *pExcepInfo
-                                                        ,   UINT        *puArgErr)
+    STDMETHOD(Invoke)(  DISPID      dispidMember
+                    ,   REFIID      /* riid */
+                    ,   LCID        /* lcid */
+                    ,   WORD        /* wFlags */
+                    ,   DISPPARAMS  *pDispParams
+                    ,   VARIANT     *pVarResult
+                    ,   EXCEPINFO   * /* pExcepInfo */
+                    ,   UINT        * /* puArgErr */)
     {
         if(DISPID_NEWENUM == dispidMember)
         {
@@ -222,13 +221,16 @@ inline LPUNKNOWN get_clone(I1 *instance, HRESULT (STDAPICALLTYPE I3::*pfn)(I2 **
     return clone;
 }
 
-template <ss_typename_param_k E>    // Enumerator type
+template<   ss_typename_param_k E
+        ,   ss_typename_param_k ThreadModel =   CComObjectThreadModel
+        ,   ss_typename_param_k I           =   IDispatch
+        >    // Enumerator type
 class generic_automation_collection
-    : public generic_collection_base<generic_automation_collection<E> >
+    : public generic_collection_base<generic_automation_collection<E, ThreadModel, I> >
 {
 public:
-    typedef E                                   enumerator_type;
-    typedef generic_automation_collection<E>    class_type;
+    typedef E                                                   enumerator_type;
+    typedef generic_automation_collection<E, ThreadModel, I>    class_type;
 
 public:
     generic_automation_collection()
