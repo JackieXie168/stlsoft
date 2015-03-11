@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     10th October 2008
+ * Updated:     16th February 2009
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 3
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     246
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     247
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -172,16 +172,16 @@ typedef enumerator_sequence<IEnumGUID
  * The value type is <code>GUID</code> and it is returned as a reference, as
  * the <code>GUID const&</code> in fact.
  *
- * The \link group__project__comstl\endlink type
- * <GUID const&>GUID_policy</GUID const&> controls how the
- * <GUID const&>GUID</GUID const&> instances are initialised, copied and
+ * The \ref group__project__comstl type
+ * <code>GUID_policy</code> controls how the
+ * <code>GUID</code> instances are initialised, copied and
  * destroyed.
  *
- * The \link group__project__comstl\endlink type forward_cloning_policy allows the sequence to provide
+ * The \ref group__project__comstl type forward_cloning_policy allows the sequence to provide
  * <a href = "http://sgi.com/tech/stl/ForwardIterator.html">Forward Iterator</a>
  * semantics.
  *
- * And the <GUID const&>5</GUID const&> indicates that the sequence should
+ * And the <code>5</code> indicates that the sequence should
  * grab 5 values at a time, to save round trips to the enumerator.
  *
  * This would be used as follows:
@@ -189,14 +189,19 @@ typedef enumerator_sequence<IEnumGUID
 \code
 void dump_GUID(GUID const&);
 
-LPENUMGUID        *penGUIDs = . . .;      // Create an instance from wherever
-enum_sequence_t   guids(penGUIDs, false); // Eat the reference
+LPENUMGUID        penGUIDs = . . .;       // Create an instance from wherever
+enum_sequence_t   guids(penGUIDs, false); // Consume the reference
 
 std::for_each(guids.begin(), guids.end(), dump_GUID);
 \endcode
  *
  * \note The iterator instances returned by begin() and end() are valid outside
  * the lifetime of the collection instance from which they are obtained
+ *
+ * \remarks A detailed examination of the design and implementation of this
+ *   class template is described in Chapters 28 and 29 of
+ *   <a href="http://www.extendedstl.com/"><b>Extended STL, volume 1</b></a>
+ *   (published by Addison-Wesley, June 2007).
  *
  * \sa comstl::collection_sequence
  */

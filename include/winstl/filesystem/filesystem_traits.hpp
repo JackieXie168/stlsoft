@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     31st December 2008
+ * Updated:     14th February 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    8
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        113
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    9
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -239,11 +239,11 @@ public:
     /// \brief Appends a path name separator to \c dir if one does not exist
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *ensure_dir_end(char_type *dir);
+    static char_type*   ensure_dir_end(char_type *dir);
     /// \brief Removes the path name separator from the end of \c dir, if it has it
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
-    static char_type    *remove_dir_end(char_type *dir);
+    static char_type*   remove_dir_end(char_type *dir);
     /// \brief Returns \c true if \c dir has trailing path name separator
     ///
     /// \see \link #path_name_separator path_name_separator() \endlink
@@ -416,11 +416,16 @@ public:
     /// \brief Create / open a file
     static file_handle_type create_file(char_type const* fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, HANDLE hTemplateFile);
     /// \brief Closes the given file handle
-    static bool_type        close_file(file_handle_type h);
+    static bool_type    close_file(file_handle_type h);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /// \brief Gets the size of the file
-    static ws_uint64_t      get_file_size(file_handle_type h);
+    static ws_uint64_t  get_file_size(file_handle_type h);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+private:
+	/// Not currently supported
+    static void         get_file_size(stat_data_type const*);
+	/// Not currently supported
+    static void         get_file_size(stat_data_type const&);
 /// @}
 };
 
@@ -472,10 +477,10 @@ public:
     }
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    static ws_uint64_t  get_file_size(file_handle_type h)
+    static ws_uint64_t get_file_size(file_handle_type h)
     {
         DWORD   dwHigh;
-        DWORD   dwLow   =   ::GetFileSize(h, &dwHigh);
+        DWORD   dwLow = ::GetFileSize(h, &dwHigh);
 
         if( 0xFFFFFFFF == dwLow &&
             ERROR_SUCCESS != ::GetLastError())
@@ -555,7 +560,7 @@ public:
             return dir;
         }
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1241,11 +1246,14 @@ public:
     }
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    static ws_uint64_t  get_file_size(file_handle_type h)
+    static ws_uint64_t get_file_size(file_handle_type h)
     {
         return filesystem_traits_::get_file_size(h);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+private:
+    static void         get_file_size(stat_data_type const*);
+    static void         get_file_size(stat_data_type const&);
 
 private:
     static size_type GetFullPathNameA(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type **ppFile)
@@ -1383,7 +1391,7 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             !is_path_name_separator(*(end - 1)))
@@ -1416,7 +1424,7 @@ public:
             return dir;
         }
 
-        char_type   *end    =   str_end(dir);
+        char_type* end = str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1849,11 +1857,14 @@ public:
     }
 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-    static ws_uint64_t  get_file_size(file_handle_type h)
+    static ws_uint64_t get_file_size(file_handle_type h)
     {
         return filesystem_traits_::get_file_size(h);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+private:
+    static void         get_file_size(stat_data_type const*);
+    static void         get_file_size(stat_data_type const&);
 
 private:
     static size_type GetFullPathNameW(char_type const* fileName, size_type cchBuffer, char_type* buffer, char_type** ppFile)

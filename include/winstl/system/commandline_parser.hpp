@@ -4,11 +4,11 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     10th October 2008
+ * Updated:     23rd February 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       34
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,11 +107,11 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Parses a Windows (<code>WinMain()</code>) command line into
+/** Parses a Windows (<code>WinMain()</code>) command line into
  *   parts, and provides array semantics for their access.
  *
 \code
-winstl::commandline_parser  cp("abc \"d e f\" ghi);
+winstl::commandline_parser  cp("abc \"d e f\" ghi");
 
 assert(3 == cp.size());
 assert(0 == ::strcmp("abc",   cp[0]));
@@ -129,47 +129,65 @@ class basic_commandline_parser
 /// \name Member Types
 /// @{
 public:
-    /// \brief The character type
-    typedef C                                                       char_type;
-    /// \brief The traits type
-    typedef T                                                       traits_type;
-    /// \brief The current instantiation of the type
-    typedef basic_commandline_parser<C, T>                          class_type;
+    /// The character type
+    typedef C                                                   char_type;
+    /// The traits type
+    typedef T                                                   traits_type;
+    /// The current instantiation of the type
+    typedef basic_commandline_parser<C, T>                      class_type;
 private:
-    typedef char_type*                                              pointer_type;
-    typedef processheap_allocator<char_type>                        allocator_type;
-    typedef processheap_allocator<pointer_type>                     pointers_allocator_type;
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   256
-                                        ,   allocator_type
-                                        >                           buffer_type;
-    typedef stlsoft_ns_qual(auto_buffer)<   pointer_type
-                                        ,   20
-                                        ,   pointers_allocator_type
-                                        >                           pointers_type;
-    typedef ss_typename_type_k buffer_type::iterator                iterator;
+    typedef char_type*                                          pointer_type_;
+    typedef processheap_allocator<char_type>                    allocator_type_;
+    typedef processheap_allocator<pointer_type_>                pointers_allocator_type_;
+    typedef stlsoft_ns_qual(auto_buffer)<
+        char_type
+    ,   256
+    ,   allocator_type_
+    >                                                           buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer)<
+        pointer_type_
+    ,   20
+    ,   pointers_allocator_type_
+    >                                                           pointers_type_;
+    typedef ss_typename_type_k buffer_type_::iterator           iterator;
 public:
-    /// \brief The value type
-    typedef ss_typename_type_k pointers_type::value_type            value_type;
-    /// \brief The non-mutating (const) iterator type
-    typedef ss_typename_type_k pointers_type::const_iterator        const_iterator;
-    /// \brief The size type
-    typedef ss_size_t                                               size_type;
+    /// The value type
+    typedef ss_typename_type_k pointers_type_::value_type       value_type;
+    /// The non-mutating (const) iterator type
+    typedef ss_typename_type_k pointers_type_::const_iterator   const_iterator;
+    /// The size type
+    typedef ss_size_t                                           size_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    /** \brief Parses the given command-line and creates an internal array
+    /** Parses the given command-line and creates an internal array
      *   of pointers to the arguments.
      */
     ss_explicit_k basic_commandline_parser(char_type const* cmdLine)
         : m_buffer(1 + stlsoft_ns_qual(c_str_len)(cmdLine))
         , m_pointers(0)
     {
-        WINSTL_ASSERT(NULL != cmdLine);
+        init_(cmdLine, m_buffer.size() - 1);
+    }
+    /** Parses the given command-line and creates an internal array
+     *   of pointers to the arguments.
+     */
+    ss_explicit_k basic_commandline_parser(char_type const* cmdLine, size_type len)
+        : m_buffer(1 + len)
+        , m_pointers(0)
+    {
+        init_(cmdLine, len);
+    }
 
-        traits_type::copy(&m_buffer[0], cmdLine, m_buffer.size());
+private:
+    void init_(char_type const* cmdLine, size_type len)
+    {
+        WINSTL_MESSAGE_ASSERT("command-line may not be NULL, unless length is 0", (0 == len) || (NULL != cmdLine));
+
+        traits_type::copy(&m_buffer[0], cmdLine, len);
+        m_buffer[len] = '\0';
 
         // Here's the algorithm:
         //
@@ -190,7 +208,7 @@ public:
 
         for(; b != e; ++b)
         {
-            const char_type ch  =   *b;
+            const char_type ch = *b;
 
             WINSTL_ASSERT('\0' != ch);
 
@@ -258,23 +276,26 @@ public:
 /// \name Accessors
 /// @{
 public:
-    /// \brief The number of arguments
+    /// The number of arguments
     size_type           size() const
     {
         return m_pointers.size();
     }
 
-    /** \brief Returns a non-mutating (const) pointer to each argument
+    /** Returns a non-mutating (const) pointer to each argument
      *   string.
      *
      * \param index The index of the argument
      *
-     * \note The behaviour is undefined if <code>index</code> is not less
-     *  than <code>size()</code>.
+     * \note The behaviour is undefined if <code>index</code> is greater
+     *  than <code>size()</code>. If <code>index</code> is equal to
+     *  <code>size()</code>, then the returned reference may not be used,
+     *  other than to take its address (which is the address of the
+     *  <a href="http://www.extendedstl.com/glossary.html#end-element">"end-element"</a>).
      */
     value_type const&   operator [](size_type index) const
     {
-        WINSTL_ASSERT(index < size());
+        WINSTL_ASSERT(index <= size());
 
         return m_pointers[index];
     }
@@ -283,12 +304,12 @@ public:
 /// \name Iteration
 /// @{
 public:
-    /// \brief An iterator representing the start of the sequence
+    /// An iterator representing the start of the sequence
     const_iterator  begin() const
     {
         return m_pointers.begin();
     }
-    /// \brief An iterator representing the end of the sequence
+    /// An iterator representing the end of the sequence
     const_iterator  end() const
     {
         return m_pointers.end();
@@ -298,7 +319,7 @@ public:
 /// \name Implementation
 /// @{
 private:
-    ws_bool_t   add_pointer(pointer_type p)
+    ws_bool_t add_pointer(pointer_type_ p)
     {
         if(!m_pointers.resize(1 + m_pointers.size()))
         {
@@ -314,8 +335,8 @@ private:
 /// \name Members
 /// @{
 private:
-    buffer_type     m_buffer;
-    pointers_type   m_pointers;
+    buffer_type_    m_buffer;
+    pointers_type_  m_pointers;
 /// @}
 };
 
@@ -323,17 +344,17 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/** \brief Specialisation of the basic_commandline_parser template for the ANSI character type \c char
+/** Specialisation of the basic_commandline_parser template for the ANSI character type \c char
  *
  * \ingroup group__library__system
  */
 typedef basic_commandline_parser<ws_char_a_t>   commandline_parser_a;
-/** \brief Specialisation of the basic_commandline_parser template for the Unicode character type \c wchar_t
+/** Specialisation of the basic_commandline_parser template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__system
  */
 typedef basic_commandline_parser<ws_char_w_t>   commandline_parser_w;
-/** \brief Specialisation of the basic_commandline_parser template for the Win32 character type \c TCHAR
+/** Specialisation of the basic_commandline_parser template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__system
  */
