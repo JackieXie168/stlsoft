@@ -4,11 +4,11 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     10th August 2009
+ * Updated:     11th September 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     21
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -117,6 +117,12 @@ public:
     typedef ws_size_t       count_type;
     /// The resource type
     typedef HANDLE          resource_type;
+private:
+#if 0
+    typedef LONG            underlying_count_type_;
+#else /* ? 0 */
+    typedef count_type      underlying_count_type_;
+#endif /* 0 */
 
 public:
     enum
@@ -291,12 +297,37 @@ public:
 
 // Implementation
 private:
-    static synch_handle_type create_semaphore_(LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount, ws_char_a_t const* name)
+    static HANDLE CreateSemaphore_A_arguments_adjusted_(
+        LPSECURITY_ATTRIBUTES   psa
+    ,   underlying_count_type_  initialCount
+    ,   underlying_count_type_  maxCount
+    ,   ws_char_a_t const*      name
+    )
+    {
+        return STLSOFT_NS_GLOBAL(CreateSemaphoreA)(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
+    }
+    static HANDLE CreateSemaphore_W_arguments_adjusted_(
+        LPSECURITY_ATTRIBUTES   psa
+    ,   underlying_count_type_  initialCount
+    ,   underlying_count_type_  maxCount
+    ,   ws_char_w_t const*      name
+    )
+    {
+        return STLSOFT_NS_GLOBAL(CreateSemaphoreW)(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
+    }
+
+
+    static synch_handle_type create_semaphore_(
+        LPSECURITY_ATTRIBUTES   psa
+    ,   underlying_count_type_  initialCount
+    ,   underlying_count_type_  maxCount
+    ,   ws_char_a_t const*      name
+    )
     {
         WINSTL_MESSAGE_ASSERT("Maximum semaphore count must be > 0", maxCount > 0);
         WINSTL_ASSERT(initialCount <= maxCount);
 
-        synch_handle_type sem  =   ::CreateSemaphoreA(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
+        synch_handle_type sem = CreateSemaphore_A_arguments_adjusted_(psa, initialCount, maxCount, name);
 
         if(NULL == sem)
         {
@@ -307,9 +338,17 @@ private:
 
         return sem;
     }
-    static synch_handle_type create_semaphore_(LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount, ws_char_w_t const* name)
+    static synch_handle_type create_semaphore_(
+        LPSECURITY_ATTRIBUTES   psa
+    ,   underlying_count_type_  initialCount
+    ,   underlying_count_type_  maxCount
+    ,   ws_char_w_t const*      name
+    )
     {
-        synch_handle_type sem  =   ::CreateSemaphoreW(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
+        WINSTL_MESSAGE_ASSERT("Maximum semaphore count must be > 0", maxCount > 0);
+        WINSTL_ASSERT(initialCount <= maxCount);
+
+        synch_handle_type sem = CreateSemaphore_W_arguments_adjusted_(psa, initialCount, maxCount, name);
 
         if(NULL == sem)
         {

@@ -5,10 +5,12 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     26th February 2011
+ * Updated:     25th November 2011
  *
  * Thanks:      To Sergey Nikulov, for spotting a pre-processor typo that
- *              broke GCC -pedantic
+ *              broke GCC -pedantic; to Michal Makowski and Zar Eindl for
+ *              reporting GCC 4.5+ problem with use of NULL in return
+ *              of invalid_file_handle_value().
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +58,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR     8
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      119
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION  2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT      120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1279,7 +1281,7 @@ public:
 
     static file_handle_type invalid_file_handle_value()
     {
-        return NULL;
+        return 0;
     }
 
     static file_handle_type open_file(char_type const* fileName, int oflag, int pmode)

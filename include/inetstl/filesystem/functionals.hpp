@@ -4,11 +4,11 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     29th November 2010
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2010, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR       4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR       0
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION    3
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        33
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION    4
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,10 @@
 #ifndef INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 # include <inetstl/filesystem/filesystem_traits.hpp>
 #endif /* !INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
+# include <stlsoft/util/minmax.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX */
+
 #ifndef _INETSTL_FUNCTIONALS_NO_STD
 # include <functional>
 #else /* ? _INETSTL_FUNCTIONALS_NO_STD */
@@ -153,11 +157,15 @@ public:
 private:
     static result_type compare_(char_type const* s1, char_type const* s2)
     {
-        char_type   path1[_MAX_PATH + 1];
-        char_type   path2[_MAX_PATH + 1];
+        char_type       path1[_MAX_PATH + 1];
+        char_type       path2[_MAX_PATH + 1];
+        is_size_t const len1    =   traits_type::str_len(s1);
+        is_size_t const len2    =   traits_type::str_len(s2);
 
-        traits_type::str_n_copy(&path1[0], s1, STLSOFT_NUM_ELEMENTS(path1));
-        traits_type::str_n_copy(&path2[0], s2, STLSOFT_NUM_ELEMENTS(path2));
+        traits_type::char_copy(&path1[0], s1, stlsoft_ns_qual(minimum)(STLSOFT_NUM_ELEMENTS(path1), len1));
+        path1[len1] = '\0';
+        traits_type::char_copy(&path2[0], s2, stlsoft_ns_qual(minimum)(STLSOFT_NUM_ELEMENTS(path2), len2));
+        path2[len2] = '\0';
 
         traits_type::remove_dir_end(&path1[0]);
         traits_type::remove_dir_end(&path2[0]);

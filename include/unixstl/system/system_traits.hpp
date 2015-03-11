@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     2nd March 2011
+ * Updated:     10th September 2011
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MAJOR     5
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      110
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_MINOR     4
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS_EDIT      111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -184,6 +184,8 @@ public:
     typedef void*                                   module_type;
     /// The type of a handle to a kernel object
     typedef int                                     handle_type;
+    /// The type of system result codes
+    typedef int                                     result_code_type;
     /// The type of system error codes
     typedef int                                     error_type;
 /// @}
@@ -254,7 +256,7 @@ public:
     /// Gives the last error
     static error_type   get_last_error();
     /// Sets the last error
-    static void         set_last_error(error_type er = error_type());
+    static void         set_last_error(error_type er);
 /// @}
 
 /// \name Environment
@@ -288,6 +290,7 @@ public:
     typedef us_bool_t                   bool_type;
     typedef void*                       module_type;
     typedef int                         handle_type;
+    typedef int                         result_code_type;
     typedef int                         error_type;
 
 public:
@@ -495,6 +498,7 @@ public:
     typedef us_bool_t                   bool_type;
     typedef void*                       module_type;
     typedef int                         handle_type;
+    typedef int                         result_code_type;
     typedef int                         error_type;
 
 public:

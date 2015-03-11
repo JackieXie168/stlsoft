@@ -5,11 +5,11 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     30th January 2010
+ * Updated:     12th September 2011
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2010, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2011, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    13
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     39
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    14
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 1
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -123,12 +123,13 @@
 # define _PLATFORMSTL_VER_1_7_2     0x010702ff  /*!< Version 1.7.2 (with STLSoft 1.9.64) */
 # define _PLATFORMSTL_VER_1_8_1     0x010801ff  /*!< Version 1.8.1 (with STLSoft 1.9.86) */
 # define _PLATFORMSTL_VER_1_8_2     0x010802ff  /*!< Version 1.8.2 (with STLSoft 1.9.90) */
+# define _PLATFORMSTL_VER_1_8_3     0x010803ff  /*!< Version 1.8.3 (with STLSoft 1.9.110) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _PLATFORMSTL_VER_MAJOR      1
 #define _PLATFORMSTL_VER_MINOR      8
-#define _PLATFORMSTL_VER_REVISION   2
-#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_8_2
+#define _PLATFORMSTL_VER_REVISION   3
+#define _PLATFORMSTL_VER            _PLATFORMSTL_VER_1_8_3
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -142,8 +143,8 @@
  * STLSoft version compatibility
  */
 
-#if _STLSOFT_VER < 0x01095bff
-# error This version of the PlatformSTL libraries requires STLSoft version 1.9.91, or later. (www.stlsoft.org)
+#if _STLSOFT_VER < 0x01096eff
+# error This version of the PlatformSTL libraries requires STLSoft version 1.9.100, or later. (www.stlsoft.org)
 #endif /* STLSoft version */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -318,6 +319,19 @@
 # if defined(_PLATFORMSTL_NO_NAMESPACE)
 #  error Use of namespaces in PlatformSTL may not be suspended; _PLATFORMSTL_NO_NAMESPACE was detected
 # endif /* _PLATFORMSTL_NO_NAMESPACE */
+
+#if defined(PLATFORMSTL_OS_IS_UNIX)
+# ifdef UNIXSTL_NO_NAMESPACE
+#  define PLATFORMSTL_NO_PLATFORM_NAMESPACE
+# endif /* UNIXSTL_NO_NAMESPACE */
+#elif defined(PLATFORMSTL_OS_IS_WINDOWS)
+# ifdef WINSTL_NO_NAMESPACE
+#  define PLATFORMSTL_NO_PLATFORM_NAMESPACE
+# endif /* WINSTL_NO_NAMESPACE */
+#else /* ? operating system */
+# error Operating system not discriminated. Only UNIX and Windows are currently recognised by PlatformSTL
+#endif /* operating system */
+
 #endif /* __cplusplus */
 
 #if !defined(__cplusplus)
