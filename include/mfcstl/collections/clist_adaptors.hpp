@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     24th March 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MAJOR     3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_REVISION  6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      59
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -357,7 +357,7 @@ public:
             // can test both members, which results in the after-the-fact
             // equality evaluating correctly.
 
-            MFCSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", NULL == m_list || NULL == rhs.m_list || m_list == rhs.m_list);
+            MFCSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", (NULL == m_list || NULL == rhs.m_list || m_list == rhs.m_list));
 
             return m_pos == rhs.m_pos && m_list == rhs.m_list;
         }

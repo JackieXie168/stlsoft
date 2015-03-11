@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     24th April 2008
+ * Updated:     11th August 2008
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 2
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     243
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     244
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -784,7 +784,7 @@ public:
         reference operator *()
         {
             COMSTL_ASSERT(is_valid());
-            COMSTL_MESSAGE_ASSERT("Attempting to dereference an invalid iterator", NULL != m_ctxt && !m_ctxt->empty());
+            COMSTL_MESSAGE_ASSERT("Attempting to dereference an invalid iterator", (NULL != m_ctxt && !m_ctxt->empty()));
 
             return m_ctxt->current();
         }
@@ -793,7 +793,7 @@ public:
         pointer operator ->()
         {
             COMSTL_ASSERT(is_valid());
-            COMSTL_MESSAGE_ASSERT("Attempting to dereference an invalid iterator", NULL != m_ctxt && !m_ctxt->empty());
+            COMSTL_MESSAGE_ASSERT("Attempting to dereference an invalid iterator", (NULL != m_ctxt && !m_ctxt->empty()));
 
             return &m_ctxt->current();
         }

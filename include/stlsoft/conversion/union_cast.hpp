@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     22nd March 2007
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_MINOR    0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_REVISION 3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     62
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_UNION_CAST_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -185,7 +185,7 @@ public:
             STLSOFT_SUPPRESS_UNUSED(from_value);
 
             // Need to add to_size, since Metrowerks warns of constant division by zero
-            STLSOFT_MESSAGE_ASSERT( "Misalignment in conversion from non-pointer to pointer", !bCheckAlign || (0 == to_size) || (0 == ((from_value + to_size) % to_size)));
+            STLSOFT_MESSAGE_ASSERT( "Misalignment in conversion from non-pointer to pointer", (!bCheckAlign || (0 == to_size) || (0 == ((from_value + to_size) % to_size))));
         }
 # endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 #else /* ? compiler */

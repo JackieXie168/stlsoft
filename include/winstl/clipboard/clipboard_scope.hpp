@@ -4,7 +4,11 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     20th May 2008
+ * Updated:     12th August 2008
+ *
+ * Thanks:      To Martin Moene for reporting the problem with the data type
+ *              in set_data_or_deallocate_and_throw_(), and for calling for
+ *              clarification of the get_data() semantics
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   6
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       32
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   7
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -162,8 +166,6 @@ private:
     scope.get_data(str);
 
     std::cout << "Clipboard data: " << str << std::endl;
-
-    scope.get_allocator().deallocate(str);
   }
 \endcode
  *
@@ -246,42 +248,65 @@ public:
     void    set_data(HPALETTE hPal) stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the data with the requested format from the clipboard
+    ///
+    /// \note The handle must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     HANDLE  get_data(UINT fmt) const stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the clipboard data with the CF_TEXT format.
+    ///
+    /// \note The string pointer must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     void    get_data(char const*& str) const stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the clipboard data with the CF_UNICODETEXT format.
+    ///
+    /// \note The string pointer must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     void    get_data(wchar_t const*& str) const stlsoft_throw_1(clipboard_scope_exception);
 
     /// \brief Gets the clipboard data with the CF_BITMAP format.
+    ///
+    /// \note The bitmap handle must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     void    get_data(HBITMAP& hBmp) const stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gets the clipboard data with the CF_HDROP format.
+    ///
+    /// \note The drop handle must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     void    get_data(HDROP& hDrop) const stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gets the clipboard data with the CF_ENHMETAFILE format.
+    ///
+    /// \note The metafile handle must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     void    get_data(HENHMETAFILE& hEmf) const stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gets the clipboard data with the CF_PALETTE format.
+    ///
+    /// \note The palette handle must be used before the clipboard_scope destructor is
+    ///   invoked, or its contents copied
     void    get_data(HPALETTE& hPal) const stlsoft_throw_1(clipboard_scope_exception);
 /// @}
 
 /// \name Members
 /// @{
 private:
-    template <ss_typename_param_k A>
-    void set_data_or_deallocate_and_throw_(UINT fmt, HANDLE hData, A& ator) stlsoft_throw_1(clipboard_scope_exception)
+    template<   ss_typename_param_k A
+            ,   ss_typename_param_k T
+            >
+    void set_data_or_deallocate_and_throw_(UINT fmt, T* memory, A& ator) stlsoft_throw_1(clipboard_scope_exception)
     {
     #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         try
         {
     #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
 
-            set_data(fmt, hData);
+            set_data(fmt, static_cast<HANDLE>(memory));
 
     #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
         catch(...)
         {
-            ator.deallocate(hData);
+            ator.deallocate(memory);
 
             throw;
         }

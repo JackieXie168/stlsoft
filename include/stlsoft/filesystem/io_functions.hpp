@@ -4,7 +4,7 @@
  * Purpose:     File-system functions.
  *
  * Created:     2nd January 2007
- * Updated:     9th March 2008
+ * Updated:     12th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,10 +49,10 @@
 #define STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_MINOR      0
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   3
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       6
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_REVISION   1
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_IO_FUNCTIONS_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,15 +63,9 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifndef STLSOFT_INCL_STDEXCEPT
-# define STLSOFT_INCL_STDEXCEPT
-# include <stdexcept>
-#endif /* !STLSOFT_INCL_STDEXCEPT */
-
-#ifndef STLSOFT_INCL_H_STDIO
-# define STLSOFT_INCL_H_STDIO
-# include <stdio.h>
-#endif /* !STLSOFT_INCL_H_STDIO */
+#ifndef STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_READ_LINE
+# include <stlsoft/filesystem/read_line.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_READ_LINE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -85,66 +79,6 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
-
-template <typename S>
-ss_size_t read_line(FILE *stm, S &str)
-{
-    const char  CH      =   '~';
-#ifdef _DEBUG
-    char        buff[10];
-#else /* ? _DEBUG */
-    char        buff[100];
-#endif /* _DEBUG */
-    ss_size_t   total   =   0;
-
-    for(str.assign("");;)
-    {
-        buff[STLSOFT_NUM_ELEMENTS(buff) - 1] = CH;
-
-        if(NULL == ::fgets(&buff[0], STLSOFT_NUM_ELEMENTS(buff), stm))
-        {
-            return 0;
-        }
-        else
-        {
-            if('\0' == buff[STLSOFT_NUM_ELEMENTS(buff) - 1])
-            {
-                // If we've a full buffer, it might still be the last
-                // get, if the last character is \n
-
-                if('\n' == buff[STLSOFT_NUM_ELEMENTS(buff) - 2])
-                {
-                    str.append(buff, STLSOFT_NUM_ELEMENTS(buff) - 2);
-
-                    break;
-                }
-                else
-                {
-                    str.append(buff);
-                }
-            }
-            else
-            {
-                // Less than a full buffer.
-                ss_size_t len =   ::strlen(buff);
-
-                if(len > 0)
-                {
-                    if('\n' == buff[len - 1])
-                    {
-                        --len;
-                    }
-                }
-
-                str.append(buff, len);
-
-                break;
-            }
-        }
-    }
-
-    return 1 + str.length();
-}
 
 /* ////////////////////////////////////////////////////////////////////// */
 

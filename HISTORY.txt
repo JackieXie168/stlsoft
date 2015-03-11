@@ -2,10 +2,21 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  11th August 2008
+; Updated:  12th August 2008
 
 ============================================================================
 
+
+12th August 2008 - 1.9.47 released
+----------------------------------
+
+ * enhancement of stlsoft::read_line() function template to work with
+   various line-termination sequences
+ * enhancement of fixed array classes to allow zero size
+ * winstl::clipboard_format_sequence enhancements to iterator type profile
+ * winstl::clipboard_scope defect fix and documentation enhancement
+ * syntactic modification of contract enforcement statements to a large
+   number of components to address warnings with GCC 4.3 in pedantic mode
 
 11th August 2008 - 1.9.46 released
 ----------------------------------

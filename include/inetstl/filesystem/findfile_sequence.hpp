@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     14th May 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MAJOR    3
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_MINOR    0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_REVISION 9
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     133
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE_EDIT     134
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1269,7 +1269,7 @@ inline ss_typename_type_ret_k basic_findfile_sequence_const_input_iterator<C, T,
 inline basic_findfile_sequence_const_input_iterator<C, T, X, V> &basic_findfile_sequence_const_input_iterator<C, T, X, V>::operator =(basic_findfile_sequence_const_input_iterator<C, T, X, V> const& rhs)
 #endif /* compiler */
 {
-    INETSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", NULL == m_list || NULL == rhs.m_list || m_list == rhs.m_list);    // Should only be comparing iterators from same container
+    INETSTL_MESSAGE_ASSERT("Assigning iterators from separate sequences", (NULL == m_list || NULL == rhs.m_list || m_list == rhs.m_list));    // Should only be comparing iterators from same container
 
     shared_handle   *this_handle    =   m_handle;
 
@@ -1443,7 +1443,7 @@ template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k X, s
 inline is_bool_t basic_findfile_sequence_const_input_iterator<C, T, X, V>::equal(class_type const& rhs) const
 {
     // Should only be comparing iterators from same container
-    INETSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list);
+    INETSTL_MESSAGE_ASSERT("Comparing iterators from separate sequences", (m_list == rhs.m_list || NULL == m_list || NULL == rhs.m_list));
 
     return m_handle == rhs.m_handle;
 }

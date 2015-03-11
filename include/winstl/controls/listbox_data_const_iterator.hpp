@@ -4,7 +4,7 @@
  * Purpose:     Contains the listbox_data_const_iterator class.
  *
  * Created:     16th March 2008
- * Updated:     25th April 2008
+ * Updated:     11th August 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MAJOR       1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_MINOR       1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_EDIT        2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_DATA_CONST_ITERATOR_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -199,7 +199,7 @@ public:
     /// Compares \c this and \c rhs for equivalence
     difference_type compare(class_type const& rhs) const
     {
-        WINSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", m_hwnd == rhs.m_hwnd || NULL == m_hwnd || NULL == rhs.m_hwnd);
+        WINSTL_MESSAGE_ASSERT("invalid comparison between iterators from different ranges", (m_hwnd == rhs.m_hwnd || NULL == m_hwnd || NULL == rhs.m_hwnd));
 
         return m_index - rhs.m_index;
     }

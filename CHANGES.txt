@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  11th August 2008
+; Updated:  12th August 2008
 
 ============================================================================
 
@@ -15,6 +15,97 @@ STLSoft - Changes
    *   *  means a general bullet-point  *
    *                                    *
    **************************************
+
+
+============================================================================
+
+Changes for 1.9.47 (12th August 2008)
+
+Summary:
+========
+
+ * enhancement of stlsoft::read_line() function template to work with
+   various line-termination sequences
+ * enhancement of fixed array classes to allow zero size
+ * winstl::clipboard_format_sequence enhancements to iterator type profile
+ * winstl::clipboard_scope defect fix and documentation enhancement
+ * syntactic modification of contract enforcement statements to a large
+   number of components to address warnings with GCC 4.3 in pedantic mode
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/containers/fixed_array.hpp
+     - fixed array classes now can be of zero size
+     - GCC 4.3 pedantic warnings
+
+  ~ stlsoft/containers/static_array.hpp - GCC 4.3 pedantic warnings
+
+  ~ stlsoft/conversion/union_cast.hpp - GCC 4.3 pedantic warnings
+
+  ~ rewrote stlsoft::read_line(), which can now use any combination of the
+    line termination sequences CR, LF and CR+LF. stlsoft::read_line() is now
+	found in stlsoft/filesystem/read_line.hpp
+
+  ~ stlsoft/filesystem/io_functions.hpp now includes stlsoft/filesystem/read_line.hpp
+
+  ~ stlsoft/string/char_traits.hpp - GCC 4.3 pedantic warnings
+
+ ACESTL:
+ -------
+
+  ~ acestl/collections/message_queue_sequence.hpp - GCC 4.3 pedantic warnings
+  ~ acestl/reactor/custom_event_handler.hpp - GCC 4.3 pedantic warnings
+
+ COMSTL:
+ -------
+
+  ~ comstl/collections/enumerator_sequence.hpp - GCC 4.3 pedantic warnings
+  ~ comstl/string/bstr.hpp - GCC 4.3 pedantic warnings
+
+ InetSTL:
+ --------
+
+  ~ inetstl/filesystem/findfile_sequence.hpp - GCC 4.3 pedantic warnings
+
+ MFCSTL:
+ -------
+
+  ~ mfcstl/collections/clist_adaptors.hpp - GCC 4.3 pedantic warnings
+  
+ RangeLib:
+ ---------
+ 
+  ~ rangelib/integral_range.hpp - GCC 4.3 pedantic warnings
+
+ WinSTL:
+ -------
+
+  ~ winstl::clipboard_format_sequence::const_iterator now properly defined
+    according to rules outlined in Extended STL, vol 1
+	(winstl/clipboard/clipboard_format_sequence.hpp)
+
+  ~ winstl::clipboard_scope defect in deallocation function fixed, and
+    documentation markup improved to make clear the full semantics
+	
+  ~ winstl/controls/listbox_const_iterator.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/controls/listbox_data_const_iterator.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/filesystem/findfile_sequence.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/filesystem/findvolume_sequence.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/security/acl_sequence.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/shell/drophandle_sequence.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/toolhelp/sequence_base.hpp - GCC 4.3 pedantic warnings
+
+  ~ winstl/window/zorder_iterator.hpp - GCC 4.3 pedantic warnings
 
 
 ============================================================================
