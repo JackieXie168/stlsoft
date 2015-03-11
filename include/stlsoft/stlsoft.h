@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     15th March 2008
+ * Updated:     17th March 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    13
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 11
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     333
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    14
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     334
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -192,12 +192,13 @@
 # define _STLSOFT_VER_1_9_24    0x010918ff  /*!< Version 1.9.24 (8th Mar 2008) */
 # define _STLSOFT_VER_1_9_25    0x010919ff  /*!< Version 1.9.25 (9th Mar 2008) */
 # define _STLSOFT_VER_1_9_26    0x01091aff  /*!< Version 1.9.26 (15th Mar 2008) */
+# define _STLSOFT_VER_1_9_27    0x01091bff  /*!< Version 1.9.27 (17th Mar 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   25
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_26
+#define _STLSOFT_VER_REVISION   27
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_27
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -492,11 +493,13 @@
 # elif (_MSC_VER == 1200)
 #  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 6.0"
 # elif (_MSC_VER == 1300)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ .NET (7.0)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 7.0"
 # elif (_MSC_VER == 1310)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ .NET (7.1)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 7.1"
 # elif (_MSC_VER == 1400)
-#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ .NET (8.0)"
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 8.0"
+# elif (_MSC_VER == 1500)
+#  define STLSOFT_COMPILER_VERSION_STRING       "Visual C++ 9.0"
 # else /* ? _MSC_VER */
 #  error Currently only versions 5.0, 6.0, 7.0, 7.1 & 8.0 of the Visual C++ compiler are supported by the STLSoft libraries
 # endif /* _MSC_VER */

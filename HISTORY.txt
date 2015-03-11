@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  15th March 2008
+; Updated:  17th March 2008
 
 ============================================================================
 
+
+17th March 2008 - 1.9.27 released
+---------------------------------
+
+ * support for Visual C++ 9 (Visual C++ 2008)
+ * fixed pre-processor typo that breaks GCC -pedantic
 
 15th March 2008 - 1.9.26 released
 ---------------------------------

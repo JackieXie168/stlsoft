@@ -2,7 +2,7 @@
 STLSoft - Authors
 
 ; Created:  29th March 2002
-; Updated:  28th November 2007
+; Updated:  17th March 2008
 
 ============================================================================
 
@@ -62,6 +62,7 @@ Bug reports, fixes and suggestions (for which we are very grateful):
     Rupert Kittinger
     Ryan Ginstrom
     Sean Kelly
+    Sergey Nikulov
     Shawn Poulson
     Scott Meyers
     Scott Michel
