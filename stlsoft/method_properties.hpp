@@ -4,11 +4,11 @@
  * Purpose:     Method-based properties.
  *
  * Created:     6th October 2003
- * Updated:     18th December 2005
+ * Updated:     12th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_MINOR      2
+# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_MINOR      3
 # define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_EDIT       41
+# define STLSOFT_VER_STLSOFT_HPP_METHOD_PROPERTIES_EDIT       43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -284,7 +284,7 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
-#define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, GM, P)  \
+#define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, SM, P)  \
                                                                 \
     stlsoft_ns_qual(method_property_set_external)<  R           \
                                                 ,   C           \
@@ -295,7 +295,7 @@ namespace stlsoft
 #define STLSOFT_METHOD_PROPERTY_SET_EXTERNAL(R, C, SM, P)   \
                                                             \
     STLSOFT_METHOD_PROPERTY_DEFINE_OFFSET(C, P)             \
-    STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, GM, P)
+    STLSOFT_METHOD_PROPERTY_SET_EXTERNAL_PROP(R, C, SM, P)
 
 #else /* ? STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
 
@@ -339,6 +339,47 @@ namespace stlsoft
 /* ////////////////////////////////////////////////////////////////////////////
  * Classes
  */
+
+struct property_tag
+{};
+
+struct internal_property_tag
+    : public property_tag
+{
+    enum { is_internal  =   1       };
+    enum { is_external  =   0       };
+};
+
+struct external_property_tag
+    : public property_tag
+{
+    enum { is_internal  =   0       };
+    enum { is_external  =   1       };
+};
+
+template<   int R
+        ,   int W
+        ,   int S
+        >
+struct internal_property
+    : public internal_property_tag
+{
+    enum { is_read      =   R       };
+    enum { is_write     =   W       };
+    enum { is_static    =   S       };
+};
+
+template<   int R
+        ,   int W
+        ,   int S
+        >
+struct external_property
+    : public external_property_tag
+{
+    enum { is_read      =   R       };
+    enum { is_write     =   W       };
+    enum { is_static    =   S       };
+};
 
 /* ////////////////////////////////////////////////////////////////////////////
  * Internal method property classes
@@ -437,6 +478,7 @@ template<   ss_typename_param_k V   /* The actual property value type */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
         >
 class method_property_get
+    : public internal_property<1, 0, 0>
 {
 public:
     typedef V                                               value_type;
@@ -519,6 +561,7 @@ template<   ss_typename_param_k V   /* The actual property value type */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
         >
 class method_property_set
+    : public internal_property<0, 1, 0>
 {
     typedef V                                               value_type;
     typedef R                                               reference_type;
@@ -602,6 +645,7 @@ template<   ss_typename_param_k V   /* The actual property value type */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
         >
 class method_property_getset
+    : public internal_property<1, 1, 0>
 {
     typedef V                                                               value_type;
     typedef RG                                                              get_reference_type;
@@ -701,6 +745,7 @@ template<   ss_typename_param_k R   /* The reference type */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
         >
 class method_property_get_external
+    : public external_property<1, 0, 0>
 {
 public:
     typedef R                                                   reference_type;
@@ -764,6 +809,7 @@ template<   ss_typename_param_k R   /* The reference type */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
         >
 class method_property_set_external
+    : public external_property<0, 1, 0>
 {
 public:
     typedef R                                                   reference_type;
@@ -824,6 +870,7 @@ template<   ss_typename_param_k RG  /* The reference type */
 #endif /* STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT */
         >
 class method_property_getset_external
+    : public external_property<1, 1, 0>
 {
 public:
     typedef RG                                                                  get_reference_type;
@@ -896,6 +943,7 @@ template<   ss_typename_param_k V
         ,   R (*PFn)(void)
         >
 class static_method_property_get
+    : public internal_property<1, 0, 1>
 {
 public:
     typedef V                                           value_type;
@@ -939,6 +987,7 @@ template<   ss_typename_param_k V
         ,   void (*PFn)(R )
         >
 class static_method_property_set
+    : public internal_property<0, 1, 1>
 {
 public:
     typedef V                                               value_type;
@@ -978,6 +1027,7 @@ template<   ss_typename_param_k V
         ,   void (*PFnSet)(RS )
         >
 class static_method_property_getset
+    : public internal_property<1, 1, 1>
 {
 public:
     typedef V                                                               value_type;
@@ -1022,6 +1072,7 @@ template<   ss_typename_param_k R   /* The reference type */
         ,   R (*PFn)(void)
         >
 class static_method_property_get_external
+    : public external_property<1, 0, 1>
 {
 public:
     typedef R                                               reference_type;
@@ -1058,6 +1109,7 @@ template<   ss_typename_param_k R   /* The reference type */
         ,   void (*PFn)(R )
         >
 class static_method_property_set_external
+    : public external_property<0, 1, 1>
 {
 public:
     typedef R                                               reference_type;
@@ -1080,6 +1132,7 @@ template<   ss_typename_param_k RG
         ,   void (*PFnSet)(RS )
         >
 class static_method_property_getset_external
+    : public external_property<1, 1, 1>
 {
 public:
     typedef RG                                                                  get_reference_type;

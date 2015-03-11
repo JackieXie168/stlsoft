@@ -4,7 +4,7 @@
  * Purpose:     A container that measures the frequency of the element it contains.
  *
  * Created:     1st October 2005
- * Updated:     18th December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MAJOR    1
-# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MINOR    1
+# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_EDIT     3
+# define STLSOFT_VER_STLSOFT_HPP_FREQUENCY_MAP_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <map>
 #include <stdexcept>
 
@@ -83,6 +86,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k N = uint32_t
         >
 class frequency_map
+    : public stl_collection_tag
 {
 private:
     typedef stlsoft_ns_qual_std(map)<T, N>                  map_type;

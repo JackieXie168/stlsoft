@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MINOR    1
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_EDIT     76
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_MINOR    2
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_REVISION 2
+# define WINSTL_VER_WINSTL_HPP_FINDVOLUME_SEQUENCE_EDIT     80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -152,6 +155,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_findvolume_sequence
+    : public stl_collection_tag
 {
 public:
     /// The character type
@@ -247,7 +251,12 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k V
         >
 class basic_findvolume_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag), V, ws_ptrdiff_t, void, V>
+    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag)
+                                        ,   V
+                                        ,   ws_ptrdiff_t
+                                        ,   void    // By-Value Temporary reference
+                                        ,   V       // By-Value Temporary reference
+                                        >
 {
 public:
     /// The character type

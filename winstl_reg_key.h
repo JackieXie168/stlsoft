@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_KEY_MAJOR      2
-# define WINSTL_VER_H_WINSTL_REG_KEY_MINOR      3
-# define WINSTL_VER_H_WINSTL_REG_KEY_REVISION   1
-# define WINSTL_VER_H_WINSTL_REG_KEY_EDIT       76
+# define WINSTL_VER_H_WINSTL_REG_KEY_MINOR      5
+# define WINSTL_VER_H_WINSTL_REG_KEY_REVISION   2
+# define WINSTL_VER_H_WINSTL_REG_KEY_EDIT       79
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -216,28 +216,30 @@ public:
 
     /// The key handle
     hkey_type           get_key_handle() const;
+    /// The key handle
+    hkey_type           get() const;
 
 // Operations
 public:
     /// Opens the named sub-key of this key
     class_type  open_sub_key(char_type const *sub_key_name, REGSAM samDesired = KEY_READ);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
     class_type  open_sub_key(S const &sub_key_name, REGSAM samDesired = KEY_READ)
     {
-        return open_sub_key(c_str_ptr(sub_key_name), samDesired);
+        return open_sub_key_(c_str_ptr(sub_key_name), samDesired);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     /// Creates a named sub-key of this key
     class_type  create_sub_key(char_type const *sub_key_name, REGSAM samDesired = KEY_READ);
-#ifdef __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#ifdef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
     template <ss_typename_param_k S>
     class_type  create_sub_key(S const &sub_key_name, REGSAM samDesired = KEY_READ)
     {
-        return create_sub_key(c_str_ptr(sub_key_name), samDesired);
+        return create_sub_key_(c_str_ptr(sub_key_name), samDesired);
     }
-#endif /* __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
+#endif /* STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT */
 
     /* The handle returned from this method MUST be closed with RegCloseKey() */
     hkey_type   dup_key_handle(REGSAM samDesired = KEY_ALL_ACCESS);
@@ -245,6 +247,10 @@ public:
 // Implementation
 private:
     static hkey_type    open_key_(hkey_type hkeyParent, char_type const *key_name, REGSAM samDesired);
+
+    class_type  open_sub_key_(char_type const *sub_key_name, REGSAM samDesired);
+    class_type  create_sub_key_(char_type const *sub_key_name, REGSAM samDesired);
+
 
 // Operations
 public:
@@ -300,13 +306,13 @@ namespace unittest
 
             unittest_initialiser    init(r, "WinSTL", "reg_key", __FILE__);
 
-    #if 0
+#if 0
             if(<<TODO>>)
             {
                 r->report("<<TODO>> failed", __LINE__);
                 bSuccess = false;
             }
-    #endif /* 0 */
+#endif /* 0 */
 
             return bSuccess;
         }
@@ -420,7 +426,7 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::string_type basic_reg_key<C, T
 
     if(res == 0)
     {
-        stlsoft_ns_qual(auto_buffer)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>  p(++cch_key_class);
+        stlsoft_ns_qual(auto_buffer_old)<char_type, allocator_type, CCH_REG_API_AUTO_BUFFER>  p(++cch_key_class);
 
         res = traits_type::reg_query_info(m_hkey, &p[0], &cch_key_class, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
@@ -467,15 +473,33 @@ inline ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, 
     return m_hkey;
 }
 
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_k basic_reg_key<C, T, A>::hkey_type basic_reg_key<C, T, A>::get() const
+{
+    return get_key_handle();
+}
+
 // Operations
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::open_sub_key(char_type const *sub_key_name, REGSAM samDesired /* = KEY_READ */)
 {
-    return class_type(m_hkey, sub_key_name);
+    return this->open_sub_key_(sub_key_name, samDesired);
 }
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key(char_type const *sub_key_name, REGSAM samDesired /* = KEY_READ */)
+{
+    return this->create_sub_key_(sub_key_name, samDesired);
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::open_sub_key_(char_type const *sub_key_name, REGSAM samDesired /* = KEY_READ */)
+{
+    return class_type(m_hkey, sub_key_name, samDesired);
+}
+
+template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
+inline ss_typename_type_k basic_reg_key<C, T, A>::class_type basic_reg_key<C, T, A>::create_sub_key_(char_type const *sub_key_name, REGSAM samDesired)
 {
     hkey_type hkey;
 

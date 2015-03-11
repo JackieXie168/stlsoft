@@ -4,11 +4,11 @@
  * Purpose:     basic_simple_string class template.
  *
  * Created:     19th March 1993
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1993-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1993-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MINOR    3
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 4
-# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     201
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_MINOR    6
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_HPP_SIMPLE_STRING_EDIT     204
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -99,6 +99,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 # include <stlsoft/util/std_swap.hpp>       // for stlsoft::std_swap()
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 
 #ifdef STLSOFT_UNITTEST
@@ -161,6 +164,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_simple_string
+    : public stl_collection_tag
 {
 /// \name Types
 /// @{
@@ -537,9 +541,9 @@ private:
         char_type   contents[1];    // The first element in the array
     };
 
-    typedef auto_buffer<char_type
-                    ,   allocator_type
-                    >           buffer_type_;
+    typedef auto_buffer_old<char_type
+                        ,   allocator_type
+                        >       buffer_type_;
 
 #ifdef STLSOFT_SIMPLE_STRING_NO_PTR_ADJUST
     typedef string_buffer       *member_pointer;
@@ -684,7 +688,7 @@ typedef basic_simple_string<ss_char_w_t
  * Traits
  */
 
-# ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k C>
 struct string_traits<basic_simple_string<C> >
 {
@@ -730,7 +734,7 @@ struct string_traits<basic_simple_string<C> >
         return str.assign(first, last);
     }
 };
-# else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits<simple_string>
 {
@@ -816,7 +820,7 @@ struct string_traits<simple_wstring>
         return str.assign(first, last);
     }
 };
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Operators

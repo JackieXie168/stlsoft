@@ -4,11 +4,11 @@
  * Purpose:     Contains some Win32 file-system functions.
  *
  * Created:     7th February 2002
- * Updated:     22nd December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_MINOR      4
-# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_EDIT       22
+# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_REVISION   2
+# define UNIXSTL_VER_UNIXSTL_HPP_DIRECTORY_FUNCTIONS_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ inline C *find_last_path_name_separator_(C const *s)
 }
 
 template <ss_typename_param_k C>
-inline us_bool_t create_directory_recurse_impl(C const *dir, unsigned mode)
+inline us_bool_t create_directory_recurse_impl(C const *dir, unsigned short mode)
 {
     typedef C                                   char_type;
     typedef filesystem_traits<C>                traits_t;
@@ -445,7 +445,7 @@ inline us_int_t remove_directory_recurse_impl(C const *dir, us_int_t (*pfn)(void
 ///
 /// \param dir The path of the directory to create
 /// \mode The permissions with which each directory is to be created
-inline us_bool_t create_directory_recurse(us_char_a_t const *dir, unsigned mode = 0755)
+inline us_bool_t create_directory_recurse(us_char_a_t const *dir, unsigned short mode = 0755)
 {
     return create_directory_recurse_impl(dir, mode);
 }
@@ -456,7 +456,7 @@ inline us_bool_t create_directory_recurse(us_char_a_t const *dir, unsigned mode 
 ///
 /// \param dir The path of the directory to create
 /// \param mode The permissions with which each directory is to be created
-inline us_bool_t create_directory_recurse(us_char_w_t const *dir, unsigned mode = 0755)
+inline us_bool_t create_directory_recurse(us_char_w_t const *dir, unsigned short mode = 0755)
 {
     return create_directory_recurse_impl(dir, mode);
 }
@@ -468,7 +468,7 @@ inline us_bool_t create_directory_recurse(us_char_w_t const *dir, unsigned mode 
 /// \param dir The path of the directory to create
 /// \param mode The permissions with which each directory is to be created
 template <ss_typename_param_k S>
-inline us_bool_t create_directory_recurse(S const &dir, unsigned mode = 0755)
+inline us_bool_t create_directory_recurse(S const &dir, unsigned short mode = 0755)
 {
     return create_directory_recurse(stlsoft_ns_qual(c_str_ptr)(dir), mode);
 }

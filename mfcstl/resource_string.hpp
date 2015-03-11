@@ -4,7 +4,7 @@
  * Purpose:     resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MAJOR      3
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      1
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_MINOR      2
 # define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       60
+# define MFCSTL_VER_MFCSTL_HPP_RESOURCE_STRING_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,10 @@
 # pragma warn .8022 /* Suppresses "'f()' hides virtual function 'g()'" */
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
+
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -115,6 +119,7 @@ namespace mfcstl_project
 /// constructed from instance identifiers.
 class resource_string
     : public CString
+    , public stl_collection_tag
 {
 private:
     typedef CString         parent_class_type;

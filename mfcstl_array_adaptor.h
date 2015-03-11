@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     18th December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,10 +47,10 @@
 #define MFCSTL_INCL_H_MFCSTL_ARRAY_ADAPTOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MAJOR        3
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR        1
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION     1
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT         36
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MAJOR    3
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR    3
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 3
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,6 +77,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -195,7 +198,7 @@ struct array_adaptor_traits<CWordArray>
 // For CArray<, >
 
 #ifdef __AFXTEMPL_H__
-# ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 /* If your translator supports partial template specialisation, then
  * you should be fine with the following specialisation ...
  */
@@ -218,7 +221,7 @@ struct array_adaptor_traits<CArray<V, A> >
  *  };
  */
 
-# endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 #endif // __AFXTEMPL_H__
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -244,6 +247,7 @@ template<   class C                             // The container type
         ,   class T = array_adaptor_traits<C>   // The traits type
         >
 class array_adaptor
+    : public stl_collection_tag
 {
 public:
     /// The current parameterisation of the type
@@ -268,7 +272,12 @@ public:
     ///
     /// \note This supports the Random-Access Iterator concept
     class const_iterator
-        : public stlsoft_ns_qual(iterator_base)<mfcstl_ns_qual_std(random_access_iterator_tag), value_type, ms_ptrdiff_t, void, value_type>
+        : public stlsoft_ns_qual(iterator_base)<mfcstl_ns_qual_std(random_access_iterator_tag)
+                                            ,   value_type
+                                            ,   ms_ptrdiff_t
+                                            ,   void
+                                            ,   value_type  // By-Value Temporary reference category
+                                            >
     {
         friend class array_adaptor<C, T>;
 
@@ -277,10 +286,10 @@ public:
         // undefined 'value_type' then you need to provide a traits type
         // with the member type 'value_type' defined.
         typedef int                                                 index_type;
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         typedef ss_typename_type_k array_adaptor<C, T>::value_type  value_type;
 #else
-#endif /* !__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
     // Construction
     private:
@@ -491,8 +500,8 @@ public:
 #if defined(__STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator,
                                                                         value_type,
-                                                                        value_type, // Return by value!
-                                                                        void*,
+                                                                        value_type, // By-Value Temporary reference category
+                                                                        void,       // By-Value Temporary reference category
                                                                         difference_type>    const_reverse_iterator;
 #endif /* __STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT */
 

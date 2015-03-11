@@ -4,11 +4,11 @@
  * Purpose:     Intra-process mutext, based on PTHREADS.
  *
  * Created:     15th May 2002
- * Updated:     15th December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -42,14 +42,14 @@
 ///
 /// Intra-process mutext, based on PTHREADS.
 
-#ifndef UNIXSTL_INCL_H_UNIXSTL_PROCESS_MUTEX
-#define UNIXSTL_INCL_H_UNIXSTL_PROCESS_MUTEX
+#ifndef UNIXSTL_INCL_UNIXSTL_HPP_PROCESS_MUTEX
+#define UNIXSTL_INCL_UNIXSTL_HPP_PROCESS_MUTEX
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define UNIXSTL_VER_H_UNIXSTL_PROCESS_MUTEX_MAJOR      3
-# define UNIXSTL_VER_H_UNIXSTL_PROCESS_MUTEX_MINOR      1
-# define UNIXSTL_VER_H_UNIXSTL_PROCESS_MUTEX_REVISION   1
-# define UNIXSTL_VER_H_UNIXSTL_PROCESS_MUTEX_EDIT       41
+# define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_MAJOR    3
+# define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_MINOR    2
+# define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_REVISION 2
+# define UNIXSTL_VER_UNIXSTL_HPP_PROCESS_MUTEX_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -64,6 +64,9 @@
 #  include <unixstl/exceptions.hpp>
 # endif /* !UNIXSTL_INCL_H_UNIXSTL_EXCEPTIONS */
 #endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 #if !defined(_REENTRANT) && \
     !defined(_POSIX_THREADS)
 # error unixstl_process_mutex.h must be compiled in the context of PTHREADS
@@ -104,6 +107,9 @@ namespace unixstl_project
 // class process_mutex
 /// This class provides an implementation of the mutex model based on the PTHREADS pthread_mutex_t
 class process_mutex
+    : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_ISNOT_RECURSIVE
+                                            ,   STLSOFT_CRITICAL_SECTION_IS_TRYABLE
+                                            >
 {
 public:
     typedef process_mutex class_type;
@@ -337,69 +343,7 @@ public:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_unixstl_process_mutex(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "UNIXSTL", "process_mutex", __FILE__);
-
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-            try
-            {
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
-                process_mutex   mx_r(true);
-
-                mx_r.lock();
-                if(!mx_r.try_lock())
-                {
-fprintf(stderr, "try_lock: %d %s\n", errno, strerror(errno));
-                    r->report("process_mutex (recursive) could not lock recursively ", __LINE__);
-                    bSuccess = false;
-                }
-                else
-                {
-                    mx_r.unlock();
-                }
-                mx_r.unlock();
-
-                process_mutex   mx_nr(false);
-
-                mx_nr.lock();
-                if(mx_nr.try_lock())
-                {
-                    r->report("process_mutex (non-recursive) could lock recursively ", __LINE__);
-                    mx_nr.unlock();
-                    bSuccess = false;
-                }
-                mx_nr.unlock();
-#ifdef __STLSOFT_CF_EXCEPTION_SUPPORT
-            }
-            catch(unix_exception &x)
-            {
-                char    sz[1001] = "process_mutex exception failure: ";
-
-                strncpy(&sz[0] + strlen(sz), x.what(), (STLSOFT_NUM_ELEMENTS(sz) - 1) - strlen(sz));
-                sz[STLSOFT_NUM_ELEMENTS(sz) - 1] = '\0';
-
-                r->report(sz, __LINE__);
-                bSuccess = false;
-            }
-#endif /* __STLSOFT_CF_EXCEPTION_SUPPORT */
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_unixstl_process_mutex(test_unixstl_process_mutex);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/process_mutex_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -416,6 +360,6 @@ fprintf(stderr, "try_lock: %d %s\n", errno, strerror(errno));
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !UNIXSTL_INCL_H_UNIXSTL_PROCESS_MUTEX */
+#endif /* !UNIXSTL_INCL_UNIXSTL_HPP_PROCESS_MUTEX */
 
 /* ////////////////////////////////////////////////////////////////////////// */

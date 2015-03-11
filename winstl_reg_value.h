@@ -10,11 +10,11 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,9 +53,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_REG_VALUE_MAJOR    2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_MINOR    2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_REVISION 2
-# define WINSTL_VER_H_WINSTL_REG_VALUE_EDIT     62
+# define WINSTL_VER_H_WINSTL_REG_VALUE_MINOR    4
+# define WINSTL_VER_H_WINSTL_REG_VALUE_REVISION 1
+# define WINSTL_VER_H_WINSTL_REG_VALUE_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -80,6 +80,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>            // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <algorithm>
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -130,11 +133,12 @@ class basic_reg_value_sequence_const_iterator;
 template<ss_typename_param_k A>
 class reg_blob
     : protected A
+    , public stl_collection_tag
 {
-    typedef stlsoft_ns_qual(auto_buffer)<   ws_byte_t
-                                        ,   processheap_allocator<ws_byte_t>
-                                        ,   CCH_REG_API_AUTO_BUFFER
-                                        >                   buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   ws_byte_t
+                                            ,   processheap_allocator<ws_byte_t>
+                                            ,   CCH_REG_API_AUTO_BUFFER
+                                            >               buffer_type;
 public:
     /// The allocator type
     typedef A                                               allocator_type;
@@ -234,19 +238,18 @@ public:
     /// The blob type
     typedef reg_blob<A>                                                 blob_type;
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   allocator_type
-                                        ,   CCH_REG_API_AUTO_BUFFER
-                                        >                               char_buffer_type_;
-    typedef stlsoft_ns_qual(auto_buffer)<   ws_byte_t
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   allocator_type
+                                            ,   CCH_REG_API_AUTO_BUFFER
+                                            >                           char_buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   ws_byte_t
 #ifdef STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
-                                        ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<ws_byte_t>::other
+                                            ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<ws_byte_t>::other
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-                                        ,   processheap_allocator<ws_byte_t>
+                                            ,   processheap_allocator<ws_byte_t>
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-
-                                        ,   CCH_REG_API_AUTO_BUFFER
-                                        >                               byte_buffer_type_;
+                                            ,   CCH_REG_API_AUTO_BUFFER
+                                            >                           byte_buffer_type_;
 /// @}
 
 /// \name Construction

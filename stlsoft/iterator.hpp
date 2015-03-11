@@ -5,7 +5,7 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     24th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MAJOR     4
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     1
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      83
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     2
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  1
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      84
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -791,7 +791,7 @@ namespace std
             typedef T1  selected_type;
         };
 
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         template<   ss_typename_param_k T1
                 ,   ss_typename_param_k T2
                 >
@@ -799,7 +799,7 @@ namespace std
         {
             typedef T2  selected_type;
         };
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
         template<   class V
                 ,   class P

@@ -1,5 +1,5 @@
 
-// Updated: 19th September 2005
+// Updated: 17th January 2006
 
 #if !defined(WINSTL_INCL_WINSTL_HPP_FINDFILE_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/findfile_sequence.hpp
@@ -751,6 +751,22 @@ for(; b != e; ++b)
             }
 
             ffs_delete_test_fs_entries(tempDir);
+
+            if( 0 == ::GetTickCount() &&
+                (::Sleep(1000), 0 == ::GetTickCount()))
+            {
+                findfile_sequence_a     ffs1("*.*");
+                findfile_sequence_a     ffs2("*.*", findfile_sequence_a::files);
+                findfile_sequence_a     ffs3("*.*", findfile_sequence_a::files | findfile_sequence_a::directories);
+
+                findfile_sequence_a     ffs4(".", "*.*");
+                findfile_sequence_a     ffs5(".", "*.*", findfile_sequence_a::files);
+                findfile_sequence_a     ffs6(".", "*.*", findfile_sequence_a::files | findfile_sequence_a::directories);
+
+                findfile_sequence_a     ffs7(".", "*.*", ';');
+                findfile_sequence_a     ffs8(".", "*.*", ';', findfile_sequence_a::files);
+                findfile_sequence_a     ffs9(".", "*.*", ';', findfile_sequence_a::files | findfile_sequence_a::directories);
+            }
 
             return bSuccess;
         }

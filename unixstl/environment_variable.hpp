@@ -4,11 +4,11 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MAJOR     3
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_EDIT      47
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_MINOR     3
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_REVISION  1
+# define UNIXSTL_VER_UNIXSTL_HPP_ENVIRONMENT_VARIABLE_EDIT      48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -196,13 +196,13 @@ public:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
 #ifdef __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-                                        ,   allocator_type
+                                            ,   allocator_type
 #else /* ? __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-                                        ,   malloc_allocator<char_type>
+                                            ,   malloc_allocator<char_type>
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-                                        >           buffer_type;
+                                            >       buffer_type;
 
     buffer_type m_buffer;
 

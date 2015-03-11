@@ -5,11 +5,11 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     22nd December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MINOR    6
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_MINOR    7
 # define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_EDIT     80
+# define UNIXSTL_VER_UNIXSTL_HPP_FILESYSTEM_TRAITS_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -70,6 +70,9 @@
 #include <fcntl.h>
 #ifdef WIN32
 # include <io.h>
+# if defined(STLSOFT_COMPILER_IS_INTEL)
+#  include <direct.h>
+# endif /* os && compiler */
 #endif /* WIN32 */
 #include <dlfcn.h>
 #include <dirent.h>
@@ -394,30 +397,30 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<us_char_a_t>
 {
 public:
-    typedef us_char_a_t                             char_type;
-    typedef us_size_t                               size_type;
-    typedef us_ptrdiff_t                            difference_type;
-    typedef struct stat                             stat_data_type;
-    typedef struct stat                             fstat_data_type;
-    typedef filesystem_traits<us_char_a_t>          class_type;
+    typedef us_char_a_t                                 char_type;
+    typedef us_size_t                                   size_type;
+    typedef us_ptrdiff_t                                difference_type;
+    typedef struct stat                                 stat_data_type;
+    typedef struct stat                                 fstat_data_type;
+    typedef filesystem_traits<us_char_a_t>              class_type;
     /// The (signed) integer type
-    typedef us_int_t                                int_type;
+    typedef us_int_t                                    int_type;
     /// The Boolean type
-    typedef us_bool_t                               bool_type;
+    typedef us_bool_t                                   bool_type;
     /// The type of a system file handle
-    typedef int                                     file_handle_type;
+    typedef int                                         file_handle_type;
     /// The type of a handle to a dynamically loaded module
-    typedef void                                    *module_type;
+    typedef void                                        *module_type;
     /// The type of system error codes
-    typedef int                                     error_type;
+    typedef int                                         error_type;
     /// The mode type
 #ifdef WIN32
-    typedef unsigned short                          mode_type;
+    typedef unsigned short                              mode_type;
 #else /* ? WIN32 */
-    typedef mode_t                                  mode_type;
+    typedef mode_t                                      mode_type;
 #endif /* WIN32 */
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<char_type> buffer_type_;
+    typedef stlsoft_ns_qual(auto_buffer_old)<char_type> buffer_type_;
 public:
 
 
@@ -1037,6 +1040,8 @@ public:
     static bool_type is_link(stat_data_type const *stat_data)
     {
 #ifdef WIN32
+        STLSOFT_SUPPRESS_UNUSED(stat_data);
+
         return false;
 #else /* ? WIN32 */
         return S_IFLNK == (stat_data->st_mode & S_IFLNK);

@@ -4,11 +4,11 @@
  * Purpose:     basic_fixed_substring class.
  *
  * Created:     1st May 2003
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MINOR    4
+# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_MINOR    5
 # define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_EDIT     47
+# define STLSOFT_VER_H_STLSOFT_FIXED_SUBSTRING_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -147,7 +147,7 @@ public:
 
 // Members
 private:
-    typedef auto_buffer<char_type, allocator_type, 32>    buffer_t;
+    typedef auto_buffer_old<char_type, allocator_type, 32>    buffer_t;
 
     buffer_t    m_str;
 

@@ -4,7 +4,7 @@
  * Purpose:     Indexed range adaptor class.
  *
  * Created:     11th October 2004
- * Updated:     22nd December 2005
+ * Updated:     31st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,14 +40,14 @@
 
 /** \file rangelib/indexed_range.hpp Integral range class */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_INDEXED_RANGE
-#define STLSOFT_INCL_RANGELIB_HPP_INDEXED_RANGE
+#ifndef RANGELIB_INCL_RANGELIB_HPP_INDEXED_RANGE
+#define RANGELIB_INCL_RANGELIB_HPP_INDEXED_RANGE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
-# define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       2
-# define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    3
-# define STLSOFT_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        20
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       3
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    1
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -280,40 +280,7 @@ private:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-
-        ss_bool_t test_stlsoft_rangelib_indexed_range(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "indexed_range", __FILE__);
-
-            typedef integral_range<int> int_range_t;
-
-            { for(indexed_range<int_range_t> rng(int_range_t(0, 1000, 1)); rng; ++rng)
-            {
-                if(rng.index() != *rng)
-                {
-                    r->report("indexes mismatch", __LINE__);
-                    bSuccess = false;
-                    break;
-                }
-            }}
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_stlsoft_rangelib_indexed_range(test_stlsoft_rangelib_indexed_range);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/indexed_range_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -334,6 +301,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_INDEXED_RANGE */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_INDEXED_RANGE */
 
 /* ////////////////////////////////////////////////////////////////////////// */

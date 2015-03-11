@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     22nd December 2005
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_PIPE_MAJOR     3
 # define UNIXSTL_VER_UNIXSTL_HPP_PIPE_MINOR     1
-# define UNIXSTL_VER_UNIXSTL_HPP_PIPE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_PIPE_EDIT      26
+# define UNIXSTL_VER_UNIXSTL_HPP_PIPE_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_HPP_PIPE_EDIT      28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,8 @@ public:
     pipe()
     {
 #if defined(WIN32) && \
-    defined(_MSC_VER)
+    (   defined(_MSC_VER) || \
+        defined(STLSOFT_COMPILER_IS_DMC))
         if(0 != ::_pipe(&m_handles[0], 10240, _O_TEXT))
 #else /* ? WIN32 && STLSOFT_COMPILER_IS_MSVC */
         if(0 != ::pipe(&m_handles[0]))

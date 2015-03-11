@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_MAJOR    3
-# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_MINOR    1
-# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_REVISION 2
-# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_EDIT     23
+# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_MINOR    2
+# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_REVISION 1
+# define STLSOFT_VER_STLSOFT_HPP_ENVIRONMENT_BLOCK_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -274,28 +274,28 @@ private:
 
 // Members
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   allocator_type
-                                        ,   1024
-                                        >                   char_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   allocator_type
+                                            ,   1024
+                                            >               char_buffer_type;
 
-    typedef stlsoft_ns_qual(auto_buffer)<   size_type
+    typedef stlsoft_ns_qual(auto_buffer_old)<   size_type
 #if defined(STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT)
-                                        ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<size_type>::other
+                                            ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<size_type>::other
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-                                        ,   ss_typename_type_k allocator_selector<size_type>::allocator_type
+                                            ,   ss_typename_type_k allocator_selector<size_type>::allocator_type
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-                                        ,   32
-                                        >                   offset_buffer_type;
+                                            ,   32
+                                            >               offset_buffer_type;
 
-    typedef stlsoft_ns_qual(auto_buffer)<   const_pointer
+    typedef stlsoft_ns_qual(auto_buffer_old)<   const_pointer
 #if defined(STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT)
-                                        ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<pointer>::other
+                                            ,   ss_typename_type_k allocator_type::ss_template_qual_k rebind<pointer>::other
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-                                        ,   ss_typename_type_k allocator_selector<pointer>::allocator_type
+                                            ,   ss_typename_type_k allocator_selector<pointer>::allocator_type
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-                                        ,   32
-                                        >                   pointer_buffer_type;
+                                            ,   32
+                                            >               pointer_buffer_type;
 
     char_buffer_type        m_chars;
     offset_buffer_type      m_offsets;

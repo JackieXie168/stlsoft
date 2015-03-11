@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for CodePlay Vector C.
  *
  * Created:     3rd October 2003
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_MINOR      4
 # define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       29
+# define STLSOFT_VER_H_STLSOFT_CCCAP_VECTORC_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -77,6 +77,11 @@
 #ifdef _MSC_VER
 # define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
 #endif /* _MSC_VER */
+
+/* Support for #pragma once
+ */
+
+/* #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* Types:
  */
@@ -179,6 +184,7 @@
 #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
 #define __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
 #define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
 
@@ -192,6 +198,7 @@
 
 #define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
+//#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 //#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 # ifdef __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT

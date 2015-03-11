@@ -4,11 +4,11 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     27th December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        11
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       2
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    4
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
+# include <stlsoft/iterator.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -72,7 +75,13 @@
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1200
 # include <iterator>
+# include <stlsoft/char_traits.hpp>
 #endif /* compiler */
+
+#ifdef STLSOFT_UNITTEST
+# include <algorithm>
+# include <sstream>
+#endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -96,50 +105,6 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////////
  * Classes
  */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-template <ss_typename_param_k C>
-struct character_encoding_verifier
-{
-    typedef character_encoding_verifier<C>  class_type;
-
-public:
-    character_encoding_verifier()
-    {}
-
-    template <ss_typename_param_k S>
-    character_encoding_verifier(S const &s)
-    {
-        C   const   *p1 =   stlsoft::c_str_ptr(s);
-
-        STLSOFT_STATIC_ASSERT(sizeof(C) == sizeof(*stlsoft::c_str_ptr(s)));
-    }
-
-    template<   ss_typename_param_k S1
-            ,   ss_typename_param_k S2
-            >
-    character_encoding_verifier(S1 const &s1, S2 const &s2)
-    {
-        C   const   *p1 =   stlsoft::c_str_ptr(s1);
-        C   const   *p2 =   stlsoft::c_str_ptr(s2);
-
-        STLSOFT_STATIC_ASSERT(sizeof(C) == sizeof(*stlsoft::c_str_ptr(s1)));
-        STLSOFT_STATIC_ASSERT(sizeof(C) == sizeof(*stlsoft::c_str_ptr(s2)));
-    }
-
-private:
-    template<   ss_typename_param_k S
-            ,   ss_typename_param_k C2
-            >
-    static void check_stream_has_correct_encoding(S const &given_string_type)
-    {
-        C2 const *required_char_encoding_type   =   stlsoft::c_str_ptr(given_string_type);
-
-        STLSOFT_STATIC_ASSERT(sizeof(C) == sizeof(*stlsoft::c_str_ptr(given_string_type)));
-    }
-};
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
 
 /// \brief Enhanced functionality over std::ostream_iterator
 ///
@@ -191,30 +156,30 @@ private:
 /// \param S The string type. Defaults to <code>std::basic_string&lt;C></code>.
 template<   ss_typename_param_k V
         ,   ss_typename_param_k C = char
-        ,   ss_typename_param_k T = std::char_traits<C>
-        ,   ss_typename_param_k S = std::basic_string<C, T>
+        ,   ss_typename_param_k T = stlsoft_ns_qual_std(char_traits)<C>
+        ,   ss_typename_param_k S = stlsoft_ns_qual_std(basic_string)<C, T>
         >
+// [[synesis:class:iterator: ostream_iterator<T<V>, T<C>, T<T>, T<S>>]]
 class ostream_iterator
-    : private character_encoding_verifier<C>
+    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
 {
 /// \name Member Types
 /// @{
 public:
     /// The value type
-    typedef V                                           value_type;
+    typedef V                                                           assigned_type;
     /// The character type
-    typedef C                                           char_type;
+    typedef C                                                           char_type;
     /// The traits type
-    typedef T                                           traits_type;
+    typedef T                                                           traits_type;
     /// The string type
-    typedef S                                           string_type;
+    typedef S                                                           string_type;
     /// The stream type
-    typedef std::basic_ostream<char_type, traits_type>  ostream_type;
-private:
-    typedef character_encoding_verifier<C>              encoding_verifier_type;
-public:
+    typedef stlsoft_ns_qual_std(basic_ostream)< char_type
+                                            ,   traits_type
+                                            >           ostream_type;
     /// The class type
-    typedef ostream_iterator<V, C, T, S>                class_type;
+    typedef ostream_iterator<V, C, T, S>                                class_type;
 private:
     class deref_proxy;
     friend class deref_proxy;
@@ -227,8 +192,7 @@ public:
     ///
     /// \note This is 100% functionally compatible with std::iostream_iterator
     ss_explicit_k ostream_iterator(ostream_type &os)
-        : encoding_verifier_type()
-        , m_stm(os)
+        : m_stm(&os)
         , m_prefix()
         , m_suffix()
     {}
@@ -237,18 +201,16 @@ public:
     /// \note This is 100% functionally compatible with std::iostream_iterator
     template <ss_typename_param_k S1>
     ostream_iterator(ostream_type &os, S1 const &suffix)
-        : encoding_verifier_type(suffix)
-        , m_stm(os)
+        : m_stm(&os)
         , m_prefix()
-        , m_suffix(stlsoft::c_str_ptr(suffix))
+        , m_suffix(get_string_(suffix))
     {}
     /// \brief Constructs an instance holding a reference to the given stream, with a prefix and a suffix
     template <ss_typename_param_k S1, ss_typename_param_k S2>
     ostream_iterator(ostream_type &os, S1 const &prefix, S2 const &suffix)
-        : encoding_verifier_type(prefix, suffix)
-        , m_stm(os)
-        , m_prefix(stlsoft::c_str_ptr(prefix))
-        , m_suffix(stlsoft::c_str_ptr(suffix))
+        : m_stm(&os)
+        , m_prefix(get_string_(prefix))
+        , m_suffix(get_string_(suffix))
     {}
     /// \brief Creates a copy of an ostream_iterator instance
     ///
@@ -273,7 +235,7 @@ private:
         {}
 
     public:
-        void operator =(value_type const &value)
+        void operator =(assigned_type const &value)
         {
             m_it->invoke_(value);
         }
@@ -286,9 +248,9 @@ private:
         void operator =(deref_proxy const &);
     };
 
-    void invoke_(value_type const &value)
+    void invoke_(assigned_type const &value)
     {
-        m_stm  << m_prefix << value << m_suffix;
+        *m_stm << m_prefix << value << m_suffix;
     }
 /// @}
 
@@ -309,10 +271,27 @@ public:
     }
 /// @}
 
+/// \name Implementation
+/// @{
+private:
+    template <typename S2>
+    static string_type get_string_(S2 const &s)
+    {
+        return stlsoft::c_str_ptr(s);
+    }
+#if !defined(STLSOFT_COMPILER_IS_MSVC) || \
+    _MSC_VER > 1300
+    static string_type const &get_string_(string_type const &s)
+    {
+        return s;
+    }
+#endif /* compiler */
+/// @}
+
 /// \name Members
 /// @{
 private:
-    ostream_type    &m_stm;
+    ostream_type    *m_stm;
     string_type     m_prefix;
     string_type     m_suffix;
 /// @}

@@ -4,7 +4,7 @@
  * Purpose:     RRID veneer for associative containers
  *
  * Created:     2nd October 2002
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MAJOR     3
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     1
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      30
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_CONTAINER_VENEER_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -78,6 +78,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS
 # include <stlsoft/functionals.hpp>   // for stlsoft::noop_function
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_FUNCTIONALS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -109,6 +112,7 @@ template<   ss_typename_param_k T
         >
 class associative_container_veneer
     : public T
+    , public stl_collection_tag
 {
 public:
     /// The container type

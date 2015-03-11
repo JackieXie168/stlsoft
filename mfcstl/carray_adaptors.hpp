@@ -5,11 +5,11 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     23rd December 2005
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MAJOR    3
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    1
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 1
-# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     40
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_MINOR    3
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_REVISION 2
+# define MFCSTL_VER_MFCSTL_HPP_CARRAY_ADAPTORS_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -82,10 +82,13 @@ STLSOFT_COMPILER_IS_MSVC:  _MSC_VER==1300
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-#if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
+#if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT) && \
     !defined(MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT)
 # include <afxtempl.h>
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT && !MFCSTL_NO_INCLUDE_AFXTEMPL_BY_DEFAULT */
 
 #ifdef STLSOFT_UNITTEST
 # include <afxtempl.h>
@@ -223,7 +226,7 @@ struct CArray_adaptor_traits<CStringArray>
 };
 
 #if defined(__AFXTEMPL_H__) && \
-    defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+    defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
 template <class V, class A>
 struct CArray_adaptor_traits<CArray<V, A> >
 {
@@ -231,7 +234,7 @@ struct CArray_adaptor_traits<CArray<V, A> >
     typedef A               arg_type;
     typedef CArray<V, A>    array_type;
 };
-#endif /* __AFXTEMPL_H__ && __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* __AFXTEMPL_H__ && STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /// \brief Traits type for specific setting of value_type and arg_type
@@ -281,6 +284,7 @@ template<   ss_typename_param_k A
         ,   ss_typename_param_k T
         >
 class CArray_adaptor_base
+    : public stl_collection_tag
 {
 private:
     typedef A                                                                   array_type;
@@ -1014,7 +1018,7 @@ public: // Construction
     CArray_cadaptor(I first, I last)
     {
         // Precondition checks
-        MFCSTL_ASSERT(is_valid_source_range_(first, last));
+        MFCSTL_ASSERT(parent_class_type::is_valid_source_range_(first, last));
 
         std::copy(first, last, std::back_inserter<class_type>(*this));
     }
@@ -1051,7 +1055,7 @@ public:
 
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Adaptor class, representing a proxy over the CArray family of MFC containers
+/// \brief Adaptor class, representing an Instance Adaptor over the CArray family of MFC containers
 ///
 /// It is used as follows:
 ///
@@ -1133,15 +1137,15 @@ public:
          : m_pArray(&array)
     {
         STLSOFT_STATIC_ASSERT(sizeof(array_type) == sizeof(A2));
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<array_type, A2>::value));
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
         ASSERT(0 == strcmp(array.GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-#ifdef _CPPUNWIND
+#ifdef _CPPRTTI
         ASSERT(0 == strcmp(typeid(A2).name(), typeid(array_type).name()));
-#endif /* _CPPUNWIND */
+#endif /* _CPPRTTI */
     }
     template <ss_typename_param_k A2>
     CArray_iadaptor(A2 *pArray)
@@ -1150,15 +1154,15 @@ public:
         MFCSTL_MESSAGE_ASSERT("Cannot initialise a CArray_iadaptor with a NULL pointer", NULL != pArray);
 
         STLSOFT_STATIC_ASSERT(sizeof(array_type) == sizeof(A2));
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
         STLSOFT_STATIC_ASSERT((stlsoft::is_same_type<array_type, A2>::value));
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
         ASSERT(0 == strcmp(pArray->GetRuntimeClass()->m_lpszClassName, array_type().GetRuntimeClass()->m_lpszClassName));
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
-#ifdef _CPPUNWIND
+#ifdef _CPPRTTI
         ASSERT(0 == strcmp(typeid(A2).name(), typeid(array_type).name()));
-#endif /* _CPPUNWIND */
+#endif /* _CPPRTTI */
     }
 /// @}
         

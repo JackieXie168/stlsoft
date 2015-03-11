@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_mapped_type type.
  *
  * Created:     26th February 2005
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MAJOR      1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MINOR      2
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_MINOR      3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_EDIT       6
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_MAPPED_TYPE_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifndef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifndef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 # error stlsoft/typefixer/mapped_type.hpp is only compatible with compilers that support partial template specialisation
-#endif /* !__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

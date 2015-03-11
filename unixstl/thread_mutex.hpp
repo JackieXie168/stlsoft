@@ -1,14 +1,14 @@
 /* ////////////////////////////////////////////////////////////////////////////
  * File:        unixstl/thread_mutex.hpp (formerly unixstl_thread_mutex.h; originally MLCrtSct.h, ::SynesisStd)
  *
- * Purpose:     Intra-process mutex, based on PTHREADS CRITICAL_SECTION.
+ * Purpose:     Intra-process mutex, based on PTHREADS pthread_mutex_t.
  *
  * Created:     17th December 1996
- * Updated:     15th December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -40,16 +40,16 @@
 
 /// \file unixstl/thread_mutex.hpp
 ///
-/// Intra-process mutex, based on PTHREADS CRITICAL_SECTION.
+/// Intra-process mutex, based on PTHREADS pthread_mutex_t.
 
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_THREAD_MUTEX
 #define UNIXSTL_INCL_UNIXSTL_HPP_THREAD_MUTEX
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_THREAD_MUTEX_MAJOR     3
-# define UNIXSTL_VER_UNIXSTL_HPP_THREAD_MUTEX_MINOR     1
+# define UNIXSTL_VER_UNIXSTL_HPP_THREAD_MUTEX_MINOR     2
 # define UNIXSTL_VER_UNIXSTL_HPP_THREAD_MUTEX_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_THREAD_MUTEX_EDIT      30
+# define UNIXSTL_VER_UNIXSTL_HPP_THREAD_MUTEX_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 #if !defined(_REENTRANT) && \
     !defined(_POSIX_THREADS)
 # error unixstl_thread_mutex.h must be compiled in the context of PTHREADS
@@ -94,6 +97,9 @@ namespace unixstl_project
 // class thread_mutex
 /// This class provides an implementation of the mutex model based on the PTHREADS mutex
 class thread_mutex
+    : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_IS_RECURSIVE
+                                            ,   STLSOFT_CRITICAL_SECTION_IS_TRYABLE
+                                            >
 {
 public:
     typedef thread_mutex class_type;

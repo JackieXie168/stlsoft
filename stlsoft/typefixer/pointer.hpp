@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_pointer and fixer_const_pointer types.
  *
  * Created:     9th February 2004
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_MAJOR    3
-# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_MINOR    1
+# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_MINOR    2
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_REVISION 1
-# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_EDIT     22
+# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,7 +62,7 @@
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 [Incompatibilies-end]
 [Requirements-start]
-__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 [Requirements-end]
 */
 
@@ -74,9 +74,9 @@ __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-#ifndef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifndef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 # error stlsoft/typefixer/pointer.hpp is only compatible with compilers that support partial template specialisation
-#endif /* !__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace

@@ -1,14 +1,14 @@
 /* ////////////////////////////////////////////////////////////////////////////
- * File:        process_mutex.hpp (formerly winstl_process_mutex.h)
+ * File:        winstl/process_mutex.hpp (formerly winstl_process_mutex.h)
  *
  * Purpose:     Inter-process mutext, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     18th December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2004, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_MINOR    1
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_EDIT     34
+# define WINSTL_VER_WINSTL_HPP_PROCESS_MUTEX_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD
 # include <stlsoft/string_access_fwd.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS_FWD */
@@ -98,6 +101,10 @@ namespace winstl_project
 // class process_mutex
 /// This class provides an implementation of the mutex model based on the Win32 CRITICAL_SECTION
 class process_mutex
+    : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_IS_RECURSIVE
+                                            ,   STLSOFT_CRITICAL_SECTION_IS_TRYABLE
+                                            >
+    , public stlsoft_ns_qual(synchronisable_object_tag)
 {
 public:
     typedef process_mutex   class_type;
@@ -200,6 +207,15 @@ public:
     }
 /// @}
 
+/// \name State
+/// @{
+public:
+    ws_bool_t is_signalled() const
+    {
+        return WAIT_OBJECT_0 == ::WaitForSingleObject(m_mx, 0);
+    }
+/// @}
+
 /// \name Accessors
 /// @{
 public:
@@ -232,7 +248,6 @@ public:
     {
         return m_bAbandoned;
     }
-
 /// @}
 
 // Implementation

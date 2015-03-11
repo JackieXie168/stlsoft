@@ -4,7 +4,7 @@
  * Purpose:     basic_indirect_range_adaptor.
  *
  * Created:     4th November 2003
- * Updated:     13th December 2005
+ * Updated:     31st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -40,14 +40,14 @@
 
 /** \file rangelib/basic_indirect_range_adaptor.hpp basic_indirect_range_adaptor */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
-#define STLSOFT_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
+#ifndef RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
+#define RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MAJOR      2
-# define STLSOFT_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MINOR      0
-# define STLSOFT_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_REVISION   5
-# define STLSOFT_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_EDIT       20
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MAJOR      2
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_MINOR      1
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_REVISION   1
+# define RANGELIB_VER_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -632,35 +632,7 @@ private:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_rangelib_indirect_range_adaptors(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "indirect_range_adaptors", __FILE__);
-
-#if 0
-            if(
-            {
-                r->report("construct() failed ", __LINE__);
-                bSuccess = false;
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_rangelib_indirect_range_adaptors(test_rangelib_indirect_range_adaptors);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/basic_indirect_range_adaptor_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -681,6 +653,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_BASIC_INDIRECT_RANGE_ADAPTOR */
 
 /* ////////////////////////////////////////////////////////////////////////// */

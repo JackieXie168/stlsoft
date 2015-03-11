@@ -41,7 +41,7 @@ namespace unittest
             iv_t        v4(v1);
 
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-	__DMC__ < 0x0845
+    __DMC__ < 0x0845
             if(v4 != v1)
             {
                 r->report("copy construction failed", __LINE__);
@@ -53,7 +53,7 @@ namespace unittest
             iv_t        v5(const_cast<iv_t const&>(v2).begin(), const_cast<iv_t const&>(v2).end());
 
 #if !defined(STLSOFT_COMPILER_IS_DMC) || \
-	__DMC__ < 0x0845
+    __DMC__ < 0x0845
             if(v5 != v2)
             {
                 r->report("iterator construction failed", __LINE__);
@@ -109,7 +109,7 @@ namespace unittest
 #endif /* 0 */
 
 //#else /* ? compiler */
-//			STLSOFT_SUPPRESS_UNUSED(bSuccess);
+//          STLSOFT_SUPPRESS_UNUSED(bSuccess);
 //#endif /* compiler */
 
             return bSuccess;

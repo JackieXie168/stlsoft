@@ -5,7 +5,7 @@
  *              non_mutating_operator_adaptor classes.
  *
  * Created:     4th November 2003
- * Updated:     22nd December 2005
+ * Updated:     31st December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -45,14 +45,14 @@
 /// These classes are used to bolt in Range operators to a class that implements the
 /// range methods
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
-#define STLSOFT_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
+#ifndef RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
+#define RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
-# define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       4
-# define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    2
-# define STLSOFT_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        18
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       5
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    1
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -324,40 +324,7 @@ public:
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        ss_bool_t test_rangelib_operator_adaptor(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "operator_adaptors", __FILE__);
-
-#if 0
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
-
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed ", __LINE__);
-                    bSuccess = false;
-                }
-            }
-#endif /* 0 */
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_rangelib_operator_adaptor(test_rangelib_operator_adaptor);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/operator_adaptors_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -378,6 +345,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
 
 /* ////////////////////////////////////////////////////////////////////////// */

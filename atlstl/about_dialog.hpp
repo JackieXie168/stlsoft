@@ -4,11 +4,11 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MAJOR      3
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      1
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   2
-# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       37
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_MINOR      2
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_REVISION   1
+# define ATLSTL_VER_ATLSTL_HPP_ABOUT_DIALOG_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -178,10 +178,10 @@ protected:
 
             if(DLGC_BUTTON & ctrlCode)
             {
-                typedef ::stlsoft::auto_buffer< TCHAR
-                                            ,   ::stlsoft::malloc_allocator<TCHAR>
-                                            ,   512
-                                            >               buffer_t;
+                typedef ::stlsoft::auto_buffer_old< TCHAR
+                                                ,   ::stlsoft::malloc_allocator<TCHAR>
+                                                ,   512
+                                                >           buffer_t;
 
                 // 3. Get text
                 //

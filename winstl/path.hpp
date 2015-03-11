@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     26th December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_PATH_MAJOR       5
-# define WINSTL_VER_WINSTL_HPP_PATH_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    3
-# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        190
+# define WINSTL_VER_WINSTL_HPP_PATH_MINOR       4
+# define WINSTL_VER_WINSTL_HPP_PATH_REVISION    1
+# define WINSTL_VER_WINSTL_HPP_PATH_EDIT        191
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -1006,9 +1006,9 @@ inline basic_path<C, T, A> &basic_path<C, T, A>::canonicalise(ws_bool_t bRemoveT
     typedef ss_typename_type_k allocator_selector<part>::allocator_type     part_ator_type;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
 
-    typedef stlsoft_ns_qual(auto_buffer)<   part
-                                        ,   part_ator_type
-                                        >                                   part_buffer_t;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   part
+                                            ,   part_ator_type
+                                            >                               part_buffer_t;
 
     part_buffer_t   parts(this->length() / 2);  // Uncanonicalised directory parts
     char_type       *dest   =   &newPath.m_buffer[0];

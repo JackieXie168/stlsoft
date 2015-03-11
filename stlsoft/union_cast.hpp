@@ -6,7 +6,7 @@
  *              some compilers.
  *
  * Created:     2nd May 1997
- * Updated:     22nd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MAJOR       4
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       1
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        42
+# define STLSOFT_VER_STLSOFT_HPP_UNION_CAST_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS
 # include <stlsoft/constraints.hpp>   // for stlsoft_constraint_must_be_pod
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-# include <stlsoft/type_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+# include <stlsoft/meta/base_type_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -120,7 +120,7 @@ public:
         // (ii) Both must be of POD type
         stlsoft_constraint_must_be_pod(from_type);
         stlsoft_constraint_must_be_pod(to_type);
-# if defined(__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
+# if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
         // (iii) There must be either a change of const/volatile,
         /// or a change of type, but not both.
 //        STLSOFT_STATIC_ASSERT(  (1 == is_same_type<from_type, to_type>::value) ||
@@ -161,7 +161,7 @@ public:
             // Need to add to_size, since Metrowerks warns of constant division by zero
             STLSOFT_MESSAGE_ASSERT( "Misalignment in conversion from non-pointer to pointer", (0 == to_size) || (0 == ((from_value + to_size) % to_size)));
         }
-# endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+# endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 #else /* ? compiler */
         // Sizes must be the same
         STLSOFT_ASSERT(sizeof(from_type) == sizeof(to_type));

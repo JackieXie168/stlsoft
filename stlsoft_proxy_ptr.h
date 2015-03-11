@@ -4,11 +4,11 @@
  * Purpose:     Contains the proxy_ptr template class.
  *
  * Created:     17th January 1999
- * Updated:     18th December 2005
+ * Updated:     20th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define STLSOFT_INCL_H_STLSOFT_PROXY_PTR
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_MAJOR      2
-# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_MINOR      2
-# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_EDIT       53
+# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_MAJOR      3
+# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_MINOR      0
+# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_PROXY_PTR_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -60,161 +60,13 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* /////////////////////////////////////////////////////////////////////////////
- * Namespace
- */
+#ifdef _STLSOFT_COMPILE_VERBOSE
+# pragma message("This file is now obsolete. Instead include stlsoft/ptr_proxy.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
-#ifndef _STLSOFT_NO_NAMESPACE
-namespace stlsoft
-{
-#endif /* _STLSOFT_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Forward declarations
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-class proxy_ptr;
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////////
- * Classes
- */
-
-// class proxy_ptr
-/// This class emulates a pointer in all respects, and is simply an aid to
-/// self-documentation.
-///
-/// \param T The value type
-template <ss_typename_param_k T>
-class proxy_ptr
-{
-public:
-    /// The value type
-    typedef T                       value_type;
-    /// The current parameterisation of the type
-    typedef proxy_ptr<T>            class_type;
-
-// Construction
-public:
-    /// Construct from a pointer to "borrow"
-    ss_explicit_k proxy_ptr(value_type *t)
-        : m_value(t)
-    {}
-    /// Assignment from a new pointer
-    proxy_ptr &operator =(value_type *t)
-    {
-        m_value = t;
-
-        return *this;
-    }
-
-// Conversion
-public:
-    /// Implicit conversion to pointer to the underlying pointer
-    operator value_type *()
-    {
-        return m_value;
-    }
-    /// Implicit conversion to pointer-to-const to the underlying pointer
-    operator const value_type *() const
-    {
-        return m_value;
-    }
-
-    /// Indirection operator
-    ///
-    /// \note This method does a debug-time assertion that the underlying pointer is non-null
-    value_type &operator *() // indirection
-    {
-        STLSOFT_MESSAGE_ASSERT("Dereferencing a null pointer!", NULL != m_value);
-
-        return *m_value;
-    }
-    /// Indirection operator
-    ///
-    /// \note This method does a debug-time assertion that the underlying pointer is non-null
-    value_type const &operator *() const // indirection
-    {
-        STLSOFT_MESSAGE_ASSERT("Dereferencing a null pointer!", NULL != m_value);
-
-        return *m_value;
-    }
-    /// Member-selection operator
-    ///
-    /// \note This method does a debug-time assertion that the underlying pointer is non-null
-    value_type *operator ->() // member-selection
-    {
-        STLSOFT_MESSAGE_ASSERT("Dereferencing a null pointer!", NULL != m_value);
-
-        return m_value;
-    }
-    /// Member-selection operator
-    ///
-    /// \note This method does a debug-time assertion that the underlying pointer is non-null
-    value_type const *operator ->() const // member-selection
-    {
-        STLSOFT_MESSAGE_ASSERT("Dereferencing a null pointer!", NULL != m_value);
-
-        return m_value;
-    }
-
-    /// Returns the underlying pointer value
-    value_type *get_ptr()
-    {
-        return m_value;
-    }
-    /// Returns the underlying pointer value
-    value_type const *get_ptr() const
-    {
-        return m_value;
-    }
-
-    /// Returns the underlying pointer value
-    value_type *get()
-    {
-        return m_value;
-    }
-    /// Returns the underlying pointer value
-    value_type const *get() const
-    {
-        return m_value;
-    }
-
-    /// Returns the underlying pointer value
-    ///
-    /// \deprecated
-    value_type *GetPointer()
-    {
-        return m_value;
-    }
-    /// Returns the underlying pointer value
-    ///
-    /// \deprecated
-    value_type const *GetPointer() const
-    {
-        return m_value;
-    }
-
-    /// Sets the underlying pointer value to null
-    void clear()
-    {
-        m_value = NULL;
-    }
-
-// Members
-private:
-    value_type  *m_value;
-};
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-#ifndef _STLSOFT_NO_NAMESPACE
-} // namespace stlsoft
-#endif /* _STLSOFT_NO_NAMESPACE */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_PTR_PROXY
+# include <stlsoft/ptr_proxy.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_PTR_PROXY */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

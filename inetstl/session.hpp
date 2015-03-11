@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     22nd December 2005
+ * Updated:     17th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_SESSION_MAJOR      4
-# define INETSTL_VER_INETSTL_HPP_SESSION_MINOR      1
+# define INETSTL_VER_INETSTL_HPP_SESSION_MINOR      2
 # define INETSTL_VER_INETSTL_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       46
+# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -190,7 +190,12 @@ public:
     /// Indicates whether the object is managing an open session
     is_bool_t   is_open() const;
 
+    /// The underlying WinInet handle
+    HINTERNET get() const;
+
     /// Implicit conversion operator to a WinInet handle
+    ///
+    /// \deprecated This will be removed in a future release
     operator HINTERNET ();
 
 // Implementation
@@ -240,7 +245,7 @@ inline basic_session<C, X, T>::basic_session()
 {
     if(NULL == m_hConn)
     {
-        exception_policy_type()(::GetLastError());
+        exception_policy_type()("Failed to create session", ::GetLastError());
     }
 }
 
@@ -257,7 +262,7 @@ inline basic_session<C, X, T>::basic_session(   char_type const *pcszAgent
 {
     if(NULL == m_hConn)
     {
-        exception_policy_type()(::GetLastError());
+        exception_policy_type()("Failed to create session", ::GetLastError());
     }
 }
 
@@ -295,7 +300,7 @@ inline is_bool_t basic_session<C, X, T>::open(  char_type const *pcszAgent
 
         if(NULL == m_hConn)
         {
-            exception_policy_type()(::GetLastError());
+            exception_policy_type()("Failed to create session", ::GetLastError());
 
             bRet = false;
         }
@@ -344,6 +349,15 @@ template<   ss_typename_param_k C
 inline is_bool_t basic_session<C, X, T>::is_open() const
 {
     return NULL != m_hConn;
+}
+
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k X
+        ,   ss_typename_param_k T
+        >
+inline HINTERNET basic_session<C, X, T>::get() const
+{
+    return m_hConn;
 }
 
 template<   ss_typename_param_k C

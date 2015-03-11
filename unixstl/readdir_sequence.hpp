@@ -4,11 +4,11 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     22nd December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MAJOR     4
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     5
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      90
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_MINOR     6
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_REVISION  3
+# define UNIXSTL_VER_UNIXSTL_HPP_READDIR_SEQUENCE_EDIT      95
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,6 +81,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <dirent.h>
@@ -161,7 +164,10 @@ public:
 /// iteration over the contents of a directory.
 
 class readdir_sequence
+    : public stl_collection_tag
 {
+/// \name Member Types
+/// @{
 public:
     // This class
     typedef readdir_sequence                                    class_type;
@@ -195,7 +201,10 @@ public:
     typedef stlsoft_ns_qual(basic_simple_string)<   char_type
                                                 >               string_type;
 #endif /* !PATH_MAX */
+/// @}
 
+/// \name Flags
+/// @{
 public:
     enum
     {
@@ -205,8 +214,10 @@ public:
         ,   fullPath        =   0x0100  /*!< Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath    =   0x0200  /*!< The search directory is converted to an absolute path. */
     };
+/// @}
 
-// Construction
+/// \name Construction
+/// @{
 public:
     /// \brief Constructs a sequence according to the given criteria
     ///
@@ -228,8 +239,10 @@ public:
         , m_directory(prepare_directory_(stlsoft_ns_qual(c_str_ptr)(directory), flags))
     {}
 #endif /* 0 */
+/// @}
 
-// Iteration
+/// \name Iteration
+/// @{
 public:
     /// Begins the iteration
     ///
@@ -239,8 +252,10 @@ public:
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
+/// @}
 
-// Attributes
+/// \name Attributes
+/// @{
 public:
     /// \brief Indicates whether the search sequence is empty
     us_bool_t empty() const;
@@ -259,19 +274,31 @@ public:
     /// other words, if <code>includeDots</code> is specified, this function
     /// will return <code>includeDots | directories | files</code>
     us_int_t            get_flags() const;
+/// @}
 
-// Implementation
+/// \name Implementation
+/// @{
 private:
     /// \brief Ensures that the flags are correct
     static us_int_t     validate_flags_(us_int_t flags);
 
     /// \brief Prepares the directory, according to the given flags
     static string_type  prepare_directory_(char_type const *directory, us_int_t flags);
+/// @}
 
-// Members
+/// \name Members
+/// @{
 private:
     const us_int_t      m_flags;
     const string_type   m_directory;
+/// @}
+
+/// \name Not to be implemented
+/// @{
+private:
+    readdir_sequence(class_type const &);
+    class_type &operator =(class_type const &);
+/// @}
 };
 
 /// \brief Iterator for readdir_sequence class
@@ -280,12 +307,12 @@ private:
 /// readdir_sequence class.
 
 class readdir_sequence::const_iterator
-    : public stlsoft_ns_qual(iterator_base) <   unixstl_ns_qual_std(input_iterator_tag)
-                                            ,   readdir_sequence::value_type
-                                            ,   us_ptrdiff_t
-                                            ,   void
-                                            ,   readdir_sequence::value_type
-                                            >
+    : public stlsoft_ns_qual(iterator_base)<unixstl_ns_qual_std(input_iterator_tag)
+                                        ,   readdir_sequence::value_type
+                                        ,   us_ptrdiff_t
+                                        ,   void                            // By-Value Temporary reference
+                                        ,   readdir_sequence::value_type    // By-Value Temporary reference
+                                        >
 {
 private:
     typedef readdir_sequence::string_type           string_type;

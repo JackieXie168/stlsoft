@@ -4,11 +4,11 @@
  * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MINOR      3
+# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_MINOR      4
 # define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_EDIT       150
+# define STLSOFT_VER_STLSOFT_HPP_FIXED_ARRAY_EDIT       153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -88,14 +88,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>                // for is_pointer
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-
-#if 0
-#    define STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-#    ifndef STLSOFT_INCL_STLSOFT_HPP_CONTAINER_BASE
-#     include <stlsoft/container_base.hpp>
-#    endif /* !STLSOFT_INCL_STLSOFT_HPP_CONTAINER_BASE */
-#endif /* 0 */
-
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     defined(__STLSOFT_CF_STL_IS_STLPORT)
 # include <string>                      // for std::string - sigh!
@@ -176,33 +171,21 @@ template<   ss_typename_param_k T
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class fixed_array_1d
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    : public container_base<A>
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
     : protected A
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
+    , public stl_collection_tag
 {
 public:
-    typedef fixed_array_1d<T, A, P, R>                              class_type;
-    typedef T                                                       dimension_element_type;
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    typedef ss_typename_type_k container_base<A>::allocator_type    allocator_type;
-    typedef P                                                       initialisation_policy_type;
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-    typedef A                                                       allocator_type;
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-
-//private:
-//  typedef inplace_range_construct<T>::
-public:
-    typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef ss_size_t                                       size_type;
-    typedef ss_size_t                                       index_type;
-    typedef ss_ptrdiff_t                                    difference_type;
+    typedef fixed_array_1d<T, A, P, R>              class_type;
+    typedef T                                       dimension_element_type;
+    typedef A                                       allocator_type;
+    typedef T                                       value_type;
+    typedef value_type                              &reference;
+    typedef value_type const                        &const_reference;
+    typedef value_type                              *pointer;
+    typedef value_type const                        *const_pointer;
+    typedef ss_size_t                               size_type;
+    typedef ss_size_t                               index_type;
+    typedef ss_ptrdiff_t                            difference_type;
 
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -332,31 +315,21 @@ template<   ss_typename_param_k T
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class fixed_array_2d
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    : public container_base<A>
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
     : protected A
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
+    , public stl_collection_tag
 {
 public:
-    typedef fixed_array_2d<T, A, P, R>                      class_type;
-    typedef fixed_array_1d<T, A, P, false>                  dimension_element_type;
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    typedef ss_typename_type_k container_base<A>::allocator_type    allocator_type;
-    typedef P                                               initialisation_policy_type;
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-    typedef A                                               allocator_type;
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-
-public:
-    typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef ss_size_t                                       size_type;
-    typedef ss_size_t                                       index_type;
-    typedef ss_ptrdiff_t                                    difference_type;
+    typedef fixed_array_2d<T, A, P, R>              class_type;
+    typedef fixed_array_1d<T, A, P, false>          dimension_element_type;
+    typedef A                                       allocator_type;
+    typedef T                                       value_type;
+    typedef value_type                              &reference;
+    typedef value_type const                        &const_reference;
+    typedef value_type                              *pointer;
+    typedef value_type const                        *const_pointer;
+    typedef ss_size_t                               size_type;
+    typedef ss_size_t                               index_type;
+    typedef ss_ptrdiff_t                            difference_type;
 
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -492,31 +465,21 @@ template<   ss_typename_param_k T
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class fixed_array_3d
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    : public container_base<A>
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
     : protected A
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
+    , public stl_collection_tag
 {
 public:
-    typedef fixed_array_3d<T, A, P, R>                      class_type;
-    typedef fixed_array_2d<T, A, P, false>                  dimension_element_type;
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    typedef ss_typename_type_k container_base<A>::allocator_type    allocator_type;
-    typedef P                                               initialisation_policy_type;
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-    typedef A                                               allocator_type;
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-
-public:
-    typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef ss_size_t                                       size_type;
-    typedef ss_size_t                                       index_type;
-    typedef ss_ptrdiff_t                                    difference_type;
+    typedef fixed_array_3d<T, A, P, R>              class_type;
+    typedef fixed_array_2d<T, A, P, false>          dimension_element_type;
+    typedef A                                       allocator_type;
+    typedef T                                       value_type;
+    typedef value_type                              &reference;
+    typedef value_type const                        &const_reference;
+    typedef value_type                              *pointer;
+    typedef value_type const                        *const_pointer;
+    typedef ss_size_t                               size_type;
+    typedef ss_size_t                               index_type;
+    typedef ss_ptrdiff_t                            difference_type;
 
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)
@@ -653,31 +616,21 @@ template<   ss_typename_param_k T
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class fixed_array_4d
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    : public container_base<A>
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
     : protected A
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
+    , public stl_collection_tag
 {
 public:
-    typedef fixed_array_4d<T, A, P, R>                      class_type;
-    typedef fixed_array_3d<T, A, P, false>                  dimension_element_type;
-#ifdef STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE
-    typedef ss_typename_type_k container_base<A>::allocator_type    allocator_type;
-    typedef P                                               initialisation_policy_type;
-#else /* ? STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-    typedef A                                               allocator_type;
-#endif /* STLSOFT_FIXED_ARRAY_USES_CONTAINER_BASE */
-
-public:
-    typedef T                                               value_type;
-    typedef value_type                                      &reference;
-    typedef value_type const                                &const_reference;
-    typedef value_type                                      *pointer;
-    typedef value_type const                                *const_pointer;
-    typedef ss_size_t                                       size_type;
-    typedef ss_size_t                                       index_type;
-    typedef ss_ptrdiff_t                                    difference_type;
+    typedef fixed_array_4d<T, A, P, R>              class_type;
+    typedef fixed_array_3d<T, A, P, false>          dimension_element_type;
+    typedef A                                       allocator_type;
+    typedef T                                       value_type;
+    typedef value_type                              &reference;
+    typedef value_type const                        &const_reference;
+    typedef value_type                              *pointer;
+    typedef value_type const                        *const_pointer;
+    typedef ss_size_t                               size_type;
+    typedef ss_size_t                               index_type;
+    typedef ss_ptrdiff_t                            difference_type;
 
     typedef
 #if !defined(STLSOFT_COMPILER_IS_BORLAND)

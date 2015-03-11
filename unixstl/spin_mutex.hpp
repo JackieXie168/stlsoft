@@ -4,11 +4,11 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     21st December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MAJOR       3
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MINOR       1
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_EDIT        38
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_MINOR       2
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_REVISION    1
+# define UNIXSTL_VER_UNIXSTL_HPP_SPIN_MUTEX_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -63,6 +63,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
+#ifndef STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS
+# include <stlsoft/synch/concepts.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 #if defined(UNIXSTL_OS_IS_LINUX) && \
     !defined(UNIXSTL_ARCH_IS_INTEL)
 # include <asm/atomic.h> // Only works for Linux. For other OSs, use unixstl_process_mutex.h
@@ -106,6 +109,9 @@ namespace unixstl_project
 // class spin_mutex
 /// This class provides an implementation of the mutex model based on a spinning mechanism
 class spin_mutex
+    : public stlsoft_ns_qual(critical_section)< STLSOFT_CRITICAL_SECTION_ISNOT_RECURSIVE
+                                            ,   STLSOFT_CRITICAL_SECTION_ISNOT_TRYABLE
+                                            >
 {
 public:
     typedef spin_mutex  class_type;

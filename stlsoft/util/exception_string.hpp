@@ -4,11 +4,11 @@
  * Purpose:     Contains the exception_string limited functionality string class.
  *
  * Created:     26th December 2005
- * Updated:     27th December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MAJOR    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 3
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     3
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_MINOR    1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_EXCEPTION_STRING_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -91,13 +91,13 @@ class exception_string
 /// \name Member Types
 /// @{
 public:
-    typedef char                                        char_type;
-    typedef stlsoft_char_traits<char>                   traits_type;
-    typedef allocator_selector<char>::allocator_type    allocator_type;
-    typedef exception_string                            class_type;
-    typedef size_t                                      size_type;
+    typedef char                                            char_type;
+    typedef stlsoft_char_traits<char>                       traits_type;
+    typedef allocator_selector<char>::allocator_type        allocator_type;
+    typedef exception_string                                class_type;
+    typedef size_t                                          size_type;
 private:
-    typedef auto_buffer<char_type, allocator_type, 96>	buffer_type_;
+    typedef auto_buffer_old<char_type, allocator_type, 96>  buffer_type_;
 /// @}
 
 /// \name Construction
@@ -124,7 +124,7 @@ public:
         m_message[m_message.size() - 1] = '\0';
     }
 
-	/// Appends the given string to the message
+    /// Appends the given string to the message
     void operator +=(char const *s)
     {
         const ss_size_t n       =   traits_type::length(s);
@@ -136,7 +136,7 @@ public:
             m_message[m_message.size() - 1] = '\0';
         }
     }
-	/// Appends the given string to the message
+    /// Appends the given string to the message
     void operator +=(class_type const &rhs)
     {
         const ss_size_t n       =   rhs.length();
@@ -148,7 +148,7 @@ public:
             m_message[m_message.size() - 1] = '\0';
         }
     }
-	/// Appends the given character to the message
+    /// Appends the given character to the message
     void operator +=(char ch)
     {
         const ss_size_t n       =   1;
@@ -165,20 +165,20 @@ public:
 /// \name Attributes
 /// @{
 public:
-	/// Returns a null-terminated c-style string string representing
-	/// the message
+    /// Returns a null-terminated c-style string string representing
+    /// the message
     char const *c_str() const
     {
         return m_message.data();
     }
-	/// Returns the number of characters in the message
+    /// Returns the number of characters in the message
     size_type   length() const
     {
         STLSOFT_ASSERT(m_message.size() > 0);
 
         return m_message.size() - 1;
     }
-	/// Indicates whether or not the message is blank
+    /// Indicates whether or not the message is blank
     ss_bool_t    empty() const
     {
         return 0 == this->length();
@@ -194,7 +194,7 @@ private:
 /// \name Not to be implemented
 /// @{
 private:
-	class_type &operator =(class_type const &);
+    class_type &operator =(class_type const &);
 /// @}
 };
 

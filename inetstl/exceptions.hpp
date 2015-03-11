@@ -4,7 +4,7 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     15th December 2005
+ * Updated:     18th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MAJOR       3
-# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MINOR       1
-# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_EDIT        20
+# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_MINOR       2
+# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_REVISION    2
+# define INETSTL_VER_INETSTL_HPP_EXCEPTIONS_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,12 +59,16 @@
 #ifndef INETSTL_INCL_INETSTL_H_INETSTL
 # include <inetstl/inetstl.h>
 #endif /* !INETSTL_INCL_INETSTL_H_INETSTL */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS
+# include <stlsoft/exceptions.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING
+# include <stlsoft/util/exception_string.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_EXCEPTION_STRING */
 
 #ifndef __STLSOFT_CF_EXCEPTION_SUPPORT
 # error This file cannot be included when exception-handling is not supported
 #endif /* !__STLSOFT_CF_EXCEPTION_SUPPORT */
-
-#include <exception>
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -106,64 +110,152 @@ namespace inetstl_project
  * Classes
  */
 
-/// The exception type thrown by throw_internet_exception_policy
+/// \brief Exception class for general Windows operating system failures
 class internet_exception
-#if defined(STLSOFT_COMPILER_IS_DMC)
-    : public std::exception
-#else /* ? compiler */
-    : public inetstl_ns_qual_std(exception)
-#endif /* compiler */
+    : public os_exception
 {
+/// \name Types
+/// @{
+protected:
+    typedef stlsoft_ns_qual(exception_string)   string_type;
 public:
-#if defined(STLSOFT_COMPILER_IS_DMC)
-    typedef std::exception                  parent_class_type;
-#else /* ? compiler */
-    typedef inetstl_ns_qual_std(exception)  parent_class_type;
-#endif /* compiler */
-    typedef internet_exception              class_type;
+    typedef os_exception                        parent_class_type;
+    typedef is_dword_t                          error_code_type;
+    typedef internet_exception                  class_type;
+/// @}
 
+/// \name Construction
+/// @{
 public:
-    ss_explicit_k internet_exception(is_dword_t errorCode) stlsoft_throw_0()
-        : m_errorCode(errorCode)
+    ss_explicit_k internet_exception(error_code_type err)
+        : m_reason()
+        , m_errorCode(err)
     {}
-
-#if defined(STLSOFT_COMPILER_IS_DMC)
-    char const  *what() const throw()
-#else /* ? compiler */
-    char const  *what() const stlsoft_throw_0()
+    internet_exception(class_type const &rhs)
+        : m_reason(rhs.m_reason)
+        , m_errorCode(rhs.m_errorCode)
+    {}
+    internet_exception(char const *reason, error_code_type err)
+        : m_reason(class_type::create_reason_(reason, err))
+        , m_errorCode(err)
+    {}
+protected:
+    internet_exception(string_type const &reason, error_code_type err)
+        : m_reason(reason)
+        , m_errorCode(err)
+    {}
+public:
+#if defined(STLSOFT_COMPILER_IS_COMO) || \
+    defined(STLSOFT_COMPILER_IS_GCC)
+    virtual ~internet_exception() stlsoft_throw_0()
+    {}
 #endif /* compiler */
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    virtual char const *what() const stlsoft_throw_0()
     {
-        return "Internet failure";
+        if(!m_reason.empty())
+        {
+            return m_reason.c_str();
+        }
+        else
+        {
+            return "Internet failure";
+        }
     }
 
-    is_dword_t error() const stlsoft_throw_0()
+    error_code_type get_error_code() const stlsoft_throw_0()
     {
         return m_errorCode;
     }
+    error_code_type last_error() const stlsoft_throw_0()
+    {
+        return m_errorCode;
+    }
+    error_code_type error() const stlsoft_throw_0()
+    {
+        return m_errorCode;
+    }
+/// @}
 
+/// \name Implementation
+/// @{
 private:
-    is_dword_t const    m_errorCode;
+    static string_type create_reason_(char const *reason, error_code_type err)
+    {
+        if( err == static_cast<error_code_type>(E_OUTOFMEMORY) ||
+            err == static_cast<error_code_type>(ERROR_OUTOFMEMORY) ||
+            NULL == reason ||
+            '\0' == reason[0])
+        {
+            return string_type();
+        }
+        else
+        {
+            return string_type(reason);
+        }
+    }
+/// @}
 
-// Not to be implemented
+/// \name Members
+/// @{
+private:
+    const string_type   m_reason;
+    error_code_type     m_errorCode;
+/// @}
+
+/// \name Not to be implemented
+/// @{
 private:
     class_type &operator =(class_type const &);
+/// @}
 };
 
-/// This type throws internet_exception
+/* ////////////////////////////////////////////////////////////////////////////
+ * Policies
+ */
+
+/// The policy class, which throws a internet_exception class.
 // [[synesis:class:exception-policy: throw_internet_exception_policy]]
 struct throw_internet_exception_policy
 {
 public:
-    /// The exception type
-    typedef internet_exception  thrown_type;
+    /// The thrown type
+    typedef internet_exception                  thrown_type;
+    typedef internet_exception::error_code_type error_code_type;
 
 public:
-    /// The function call operator, which does not throw an exception
-    ///
-    /// \param error The Win32/WinInet error value associated with the exceptional condition
-    void operator ()(is_dword_t error) stlsoft_throw_1(internet_exception)
+    /// Function call operator, taking no parameters
+    void operator ()()
     {
-        throw internet_exception(error);
+        throw_exception_(thrown_type(::GetLastError()));
+    }
+    /// Function call operator, taking one parameter
+    void operator ()(error_code_type err) const
+    {
+        throw_exception_(thrown_type(err));
+    }
+    /// Function call operator, taking two parameters
+    void operator ()(char const *reason, error_code_type err) const
+    {
+        throw_exception_(thrown_type(reason, err));
+    }
+
+private:
+#if defined(__STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT)
+    template <ss_typename_param_k X>
+    static void throw_exception_(X const &x)
+#elif defined(STLSOFT_COMPILER_IS_MSVC) && \
+      _MSC_VER < 1200
+    static void throw_exception_(std::exception const &x)
+#else /* ? feature / compiler */
+    static void throw_exception_(thrown_type const &x)
+#endif /* feature / compiler */
+    {
+        throw x;
     }
 };
 

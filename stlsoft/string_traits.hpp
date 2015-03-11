@@ -4,11 +4,11 @@
  * Purpose:     Contains string_traits.
  *
  * Created:     16th January 2002
- * Updated:     22nd December 2005
+ * Updated:     14th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MINOR      1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_REVISION   4
-# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_EDIT       60
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_MINOR      2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_REVISION   2
+# define STLSOFT_VER_STLSOFT_HPP_STRING_TRAITS_EDIT       63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -81,7 +81,7 @@
 #ifdef STLSOFT_UNITTEST
 # include <string>
 # include <stlsoft/meta.hpp>
-# include <stlsoft/type_traits.hpp>
+# include <stlsoft/meta/base_type_traits.hpp>
 #endif /* STLSOFT_UNITTEST */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -183,12 +183,12 @@ struct string_traits<ss_char_a_t (&)[N]>
     : public string_traits<ss_char_a_t *>
 {};
 
-template <>
+STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits<ss_char_a_t const []>
     : public string_traits<ss_char_a_t const *>
 {};
 
-template <>
+STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits<ss_char_a_t []>
     : public string_traits<ss_char_a_t *>
 {};
@@ -283,7 +283,7 @@ struct string_traits<ss_char_w_t const *>
 
 /* std::basic_string */
 # ifndef _STLSOFT_STRING_TRAITS_NO_STD_STRING
-#  ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#  ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k C>
 struct string_traits<stlsoft_ns_qual_std(basic_string)<C> >
 {
@@ -327,7 +327,7 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<C> >
         return str;
     }
 };
-#  else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#  else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 #   if defined(__STLSOFT_CF_std_NAMESPACE)
 STLSOFT_TEMPLATE_SPECIALISATION
 struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_a_t> >
@@ -411,7 +411,7 @@ struct string_traits<stlsoft_ns_qual_std(basic_string)<ss_char_w_t> >
     }
 };
 #   endif /* __STLSOFT_CF_std_NAMESPACE */
-#  endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#  endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 # endif /* _STLSOFT_STRING_TRAITS_NO_STD_STRING */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

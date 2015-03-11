@@ -4,7 +4,7 @@
  * Purpose:     proxy_sequence template class.
  *
  * Created:     10th September 2003
- * Updated:     22nd December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MAJOR       2
-# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MINOR       3
+# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_MINOR       4
 # define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_EDIT        22
+# define STLSOFT_VER_H_STLSOFT_PROXY_SEQUENCE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -72,6 +72,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_PROXY_ITERATOR
 # include <stlsoft/proxy_iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_PROXY_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -98,6 +101,7 @@ template<   ss_typename_param_k E
         ,   ss_typename_param_k T
         >
 class proxy_sequence
+    : public stl_collection_tag
 {
 private:
     typedef stlsoft_ns_qual_std(random_access_iterator_tag) tag_type;

@@ -5,11 +5,11 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     22nd December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -39,7 +39,7 @@
  * ////////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterator.hpp
+/// \file stlsoft/util/std/library_discriminator.hpp
 ///
 /// iterator class templates and macros for abstracting away standard library inconsistencies.
 
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_MINOR       2
 # define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        84
+# define STLSOFT_VER_STLSOFT_UTIL_STD_LIBRARY_DISCRIMINATOR_EDIT        86
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -158,7 +158,7 @@ namespace stlsoft
 #  pragma message("Standard library is STLport")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_STLPORT
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"STLport"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "STLport"
 #elif defined(_ITERATOR_) && \
       defined(_UTILITY_) && \
       defined(_XSTDDEF_)
@@ -166,7 +166,7 @@ namespace stlsoft
 #  pragma message("Standard library is Dinkumware (VC++)")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"Dinkumware (VC++)"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "Dinkumware (VC++)"
 #elif defined(_ITERATOR) && \
       defined(_MSLCONFIG) && \
       defined(__MSL_CPP__)
@@ -174,33 +174,33 @@ namespace stlsoft
 #  pragma message("Standard library is MSL")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_MSL
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"MSL"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "MSL"
 #elif defined(__SGI_STL_INTERNAL_ITERATOR_H)
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is HP/SGI")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_HP_SGI
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"HP/SGI"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "HP/SGI"
 #elif defined(__GLIBCPP_INTERNAL_ITERATOR_H) || \
       defined(_GLIBCXX_ITERATOR)
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is HP/SGI/GnuFSF")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_HP_SGI_GNU
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"HP/SGI/GnuFSF"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "HP/SGI/GnuFSF"
 #elif defined(__RW_ITERATOR_H) && \
       defined(__STD_RW_ITERATOR__)
 # ifdef _STLSOFT_COMPILE_VERBOSE
 #  pragma message("Standard library is HP/RW")
 # endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 # define STLSOFT_CF_STD_LIBRARY_IS_HP_RW
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"HP/SGI/RW"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "HP/SGI/RW"
 #elif defined(STLSOFT_OW12_INCL_ITERATOR)
 # define STLSOFT_CF_STD_LIBRARY_IS_WATCOM_PATCH
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"STLSoft Watcom Patch"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "STLSoft Watcom Patch"
 #elif defined(STLSOFT_COMPILER_IS_WATCOM)
 # define STLSOFT_CF_STD_LIBRARY_IS_WATCOM_NONE
-# define STLSOFT_CF_STD_LIBRARY_NAME_STRING				"<no standard library with Open Watcom>"
+# define STLSOFT_CF_STD_LIBRARY_NAME_STRING             "<no standard library with Open Watcom>"
 #else
 # error Standard library implementation not recognised
 #endif /* various "unique" macros */

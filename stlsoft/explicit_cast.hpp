@@ -4,7 +4,7 @@
  * Purpose:     Class to provide explicit cast operators.
  *
  * Created:     20th September 2002
- * Updated:     18th December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_MAJOR      3
-# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_MINOR      1
+# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_MINOR      2
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_EDIT       25
+# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_CAST_EDIT       26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ public:
         : m_t(t)
     {}
 
-#ifndef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifndef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
     // For compilers that do not support partial specialisation we need to
     // enforce the constraint that only basic types may be used.
     ~explicit_cast() stlsoft_throw_0()
@@ -102,7 +102,7 @@ public:
             T   t;
         };
     }
-#endif /* !__STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 // Conversions
 public:
@@ -116,7 +116,7 @@ private:
     T   m_t;
 };
 
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 /// Being able to cast to non-const references does not work, since
 /// the compilers will refuse to apply such to a temporary.
 ///
@@ -264,7 +264,7 @@ private:
 
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

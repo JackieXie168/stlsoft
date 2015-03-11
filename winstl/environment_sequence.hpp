@@ -4,11 +4,11 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       3
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        52
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_MINOR       5
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_REVISION    1
+# define WINSTL_VER_WINSTL_HPP_ENVIRONMENT_SEQUENCE_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////////////
@@ -71,6 +71,9 @@
 #ifndef WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR
 # include <winstl/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_HPP_PROCESSHEAP_ALLOCATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 #include <algorithm>
 #ifndef _WINSTL_WINDOW_FUNCTIONALS_NO_STD
 # include <functional>
@@ -131,6 +134,7 @@ namespace winstl_project
 /// supporting all possible modes.
 template <ss_typename_param_k C>
 class basic_environment_sequence
+    : public stl_collection_tag
 {
 public:
     /// The character type
@@ -253,12 +257,12 @@ public:
 
 // Implementation
 private:
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   processheap_allocator<char_type>
-                                        >           environment_buffer_type;
-    typedef stlsoft_ns_qual(auto_buffer)<   symbol
-                                        ,   processheap_allocator<symbol>
-                                        >           symbols_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   processheap_allocator<char_type>
+                                            >           environment_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   symbol
+                                            ,   processheap_allocator<symbol>
+                                            >           symbols_buffer_type;
 
     static ws_size_t    calc_items_(char_type const *p, char_type const **q, ws_int_t flags);
     static void         prepare_items_(symbols_buffer_type &symbols, environment_buffer_type &environment, char_type *p, char_type *q, ws_int_t flags);

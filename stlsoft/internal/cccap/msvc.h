@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -58,9 +58,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     4
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      71
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      74
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -79,6 +79,13 @@
  */
 
 #define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+
+/* Support for #pragma once
+ */
+
+#if _MSC_VER >= 900
+# define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+#endif /* _MSC_VER */
 
 /* Types:
  */
@@ -272,6 +279,7 @@
 
 #if _MSC_VER >= 1100
 # define __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+# define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 #else
   /* Not defined */
 #endif /* _MSC_VER */
@@ -321,7 +329,8 @@
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1310
-# define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+# define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+# define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 #endif /* _MSC_VER */
 
 #if _MSC_VER >= 1100

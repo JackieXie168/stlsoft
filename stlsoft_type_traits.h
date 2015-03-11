@@ -4,7 +4,7 @@
  * Purpose:     type traits classes.
  *
  * Created:     24th August 2003
- * Updated:     23rd December 2005
+ * Updated:     29th December 2005
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_TYPE_TRAITS_MAJOR    3
-# define STLSOFT_VER_H_STLSOFT_TYPE_TRAITS_MINOR    2
+# define STLSOFT_VER_H_STLSOFT_TYPE_TRAITS_MINOR    3
 # define STLSOFT_VER_H_STLSOFT_TYPE_TRAITS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_TYPE_TRAITS_EDIT     23
+# define STLSOFT_VER_H_STLSOFT_TYPE_TRAITS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -61,12 +61,12 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete. Instead include stlsoft/type_traits.hpp")
+# pragma message("This file is now obsolete. Instead include stlsoft/meta/base_type_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT && _STLSOFT_COMPILE_VERBOSE */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS
-# include <stlsoft/type_traits.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_TYPE_TRAITS */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
+# include <stlsoft/meta/base_type_traits.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
 
 /* ////////////////////////////////////////////////////////////////////////// */
 

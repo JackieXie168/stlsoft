@@ -3,12 +3,12 @@
  *
  * Purpose:     Type conversions for Windows.
  *
- * Created:
- * Updated:     22nd December 2005
+ * Created:     1st June 2003
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2004, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_MINOR       1
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT        26
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_TYPE_CONVERSIONS_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

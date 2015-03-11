@@ -4,11 +4,11 @@
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     18th December 2005
+ * Updated:     19th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -46,10 +46,10 @@
 #define MFCSTL_INCL_H_MFCSTL_CSTRING_VENEER
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       2
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       4
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       0
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    1
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        52
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,11 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 [Incompatibilies-end]
  */
 
+/*
+[<[STLSOFT-AUTO:OBSOLETE]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
+
 /* /////////////////////////////////////////////////////////////////////////////
  * Includes
  */
@@ -69,6 +74,10 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef MFCSTL_INCL_MFCSTL_HPP_MFCSTL
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
+
+#if !defined(STLSOFT_OBSOLETE)
+# error mfcstl::cstring_veneer is now obsolete. Please include mfcstl/cstring_adaptors.hpp, and use mfcstl::CString_cadaptor
+#endif /* !STLSOFT_OBSOLETE */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER < 1200
@@ -86,6 +95,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #  include <stlsoft/sap_cast.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
 #endif /* compiler */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -138,6 +150,7 @@ class cstring_veneer
 #else
     : private CString
 #endif /* _MFCSTL_CSTRING_VENEER_INHERIT_AS_PUBLIC */
+    , public stl_collection_tag
 {
 private:
     typedef CString         parent_class_type;
@@ -160,7 +173,7 @@ public:
     /// The size type
     typedef ms_size_t       size_type;
     /// The difference type
-    typedef ms_ptrdiff_t   difference_type;
+    typedef ms_ptrdiff_t    difference_type;
 
 // Construction
 public:
@@ -263,25 +276,13 @@ inline ms_bool_t operator ==(LPCWSTR lhs, cstring_veneer const &rhs)
 {
     CString const  &rhs_ = rhs.get_base_type();
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    (   defined(STLSOFT_COMPILER_IS_DMC) && \
-        __DMC__ < 0x0835)
     return CString(lhs) == rhs_;
-#else /* ? compiler */
-    return lhs == rhs_;
-#endif /* compiler */
 }
 inline ms_bool_t operator ==(cstring_veneer const &lhs, LPCWSTR rhs)
 {
     CString const  &lhs_ = lhs.get_base_type();
 
-#if defined(STLSOFT_COMPILER_IS_BORLAND) || \
-    (   defined(STLSOFT_COMPILER_IS_DMC) && \
-        __DMC__ < 0x0835)
     return lhs_ == CString(rhs);
-#else /* ? compiler */
-    return lhs_ == rhs;
-#endif /* compiler */
 }
 inline ms_bool_t operator !=(cstring_veneer const &lhs, cstring_veneer const &rhs)
 {

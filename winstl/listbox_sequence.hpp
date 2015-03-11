@@ -4,13 +4,13 @@
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_LISTBOX_SEQUENCE_MAJOR       3
-# define WINSTL_VER_WINSTL_HPP_LISTBOX_SEQUENCE_MINOR       1
+# define WINSTL_VER_WINSTL_HPP_LISTBOX_SEQUENCE_MINOR       3
 # define WINSTL_VER_WINSTL_HPP_LISTBOX_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_LISTBOX_SEQUENCE_EDIT        41
+# define WINSTL_VER_WINSTL_HPP_LISTBOX_SEQUENCE_EDIT        46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -73,6 +73,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS
 # include <winstl/control_functions.h>      // for listbox_addstring(), etc.
 #endif /* !WINSTL_INCL_WINSTL_H_CONTROL_FUNCTIONS */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -122,12 +125,12 @@ namespace winstl_project
 /// \param S The string type
 template <ss_typename_param_k S>
 class listbox_sequence_const_iterator
-    : public stlsoft_ns_qual(iterator_base) <   winstl_ns_qual_std(random_access_iterator_tag)
-                                            ,   S
-                                            ,   ws_ptrdiff_t
-                                            ,   void * // Placate Borland C++ (to test, replace with void)
-                                            ,   S
-                                            >
+    : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(random_access_iterator_tag)
+                                        ,   S
+                                        ,   ws_ptrdiff_t
+                                        ,   void    // By-Value Temporary reference
+                                        ,   S       // By-Value Temporary reference
+                                        >
 {
 public:
     /// The string type
@@ -145,10 +148,10 @@ public:
     /// The allocator type
     typedef processheap_allocator<char_type>            allocator_type;
     /// The auto-buffer type
-    typedef stlsoft_ns_qual(auto_buffer)<   char_type
-                                        ,   allocator_type
-                                        ,   256
-                                        >               buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
+                                            ,   allocator_type
+                                            ,   256
+                                            >           buffer_type;
 
 public:
     /// Construct an instance from the list-box \c hwndListBox at the given \c index
@@ -330,6 +333,7 @@ private:
 /// \param S The string type
 template <ss_typename_param_k S>
 class listbox_sequence
+    : public stl_collection_tag
 {
 public:
     /// The current parameterisation of the type

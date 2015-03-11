@@ -2,6 +2,25 @@
 #ifndef MFCSTL_INCL_MFCSTL_HPP_CSTRING_VENEER
 #define MFCSTL_INCL_MFCSTL_HPP_CSTRING_VENEER
 
+/* /////////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[Incompatibilies-start]
+STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
+[Incompatibilies-end]
+ */
+
+/*
+[<[STLSOFT-AUTO:OBSOLETE]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
+
+/* /////////////////////////////////////////////////////////////////////////////
+ * Includes
+ */
+
 #ifndef MFCSTL_INCL_H_MFCSTL_CSTRING_VENEER
 # include <mfcstl_cstring_veneer.h>
 #endif /* !MFCSTL_INCL_H_MFCSTL_CSTRING_VENEER */

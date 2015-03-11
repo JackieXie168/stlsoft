@@ -4,7 +4,7 @@
  * Purpose:     Windows identification.
  *
  * Created:     11th March 2004
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MAJOR      3
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MINOR      1
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_EDIT       30
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_MINOR      2
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_REVISION   1
+# define WINSTL_VER_WINSTL_HPP_WINDOWS_IDENT_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -106,10 +106,10 @@ enum WindowIdent
 
 inline WindowIdent GetWindowIdent(HWND hwnd)
 {
-    typedef auto_buffer<char
-                    ,   processheap_allocator<char>
-                    ,   256
-                    >                           buffer_t;
+    typedef auto_buffer_old<char
+                        ,   processheap_allocator<char>
+                        ,   256
+                        >           buffer_t;
 
     struct Ident
     {

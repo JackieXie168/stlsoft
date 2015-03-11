@@ -5,11 +5,11 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,9 +48,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MAJOR      3
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      2
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_MINOR      4
 # define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_REVISION   1
-# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       62
+# define WINSTL_VER_H_WINSTL_SEARCHPATH_SEQUENCE_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>                // for stlsoft::iterator, stlsoft::reverse_iterator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -138,6 +141,7 @@ template<   ss_typename_param_k C
 #endif /* __STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_searchpath_sequence
+    : public stl_collection_tag
 {
 public:
     /// The character type
@@ -239,10 +243,10 @@ private:
     // 5. Windows directory
     // 6 - n. Path directories
 
-    typedef processheap_allocator<char_type>                                    main_allocator_type;
-    typedef processheap_allocator<value_type>                                   value_allocator_type;
-    typedef stlsoft_ns_qual(auto_buffer)<char_type, main_allocator_type, 1024>  main_buffer_type;
-    typedef stlsoft_ns_qual(auto_buffer)<value_type, value_allocator_type, 24>  value_buffer_type;
+    typedef processheap_allocator<char_type>                                        main_allocator_type;
+    typedef processheap_allocator<value_type>                                       value_allocator_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<char_type, main_allocator_type, 1024>  main_buffer_type;
+    typedef stlsoft_ns_qual(auto_buffer_old)<value_type, value_allocator_type, 24>  value_buffer_type;
 
     main_buffer_type    m_buffer;
     value_buffer_type   m_values;

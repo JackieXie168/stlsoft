@@ -4,11 +4,11 @@
  * Purpose:     Helper functions for ACE strings.
  *
  * Created:     23rd September 2004
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MAJOR      1
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      4
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_MINOR      5
 # define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_REVISION   1
-# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       18
+# define ACESTL_VER_ACESTL_HPP_INET_ADDR_STRING_ACCESS_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -113,9 +113,9 @@ namespace acestl_project
 template <ss_typename_param_k S>
 void stream_insert(S &s, ACE_INET_Addr const &addr)
 {
-    typedef ::stlsoft::auto_buffer< ACE_TCHAR
-                                ,   ::stlsoft::allocator_selector<ACE_TCHAR>::allocator_type
-                                >       buffer_t;
+    typedef ::stlsoft::auto_buffer_old< ACE_TCHAR
+                                    ,   ::stlsoft::allocator_selector<ACE_TCHAR>::allocator_type
+                                    >       buffer_t;
 
     buffer_t    buffer(buffer_t::internal_size());
 

@@ -4,11 +4,11 @@
  * Purpose:     Meta programming primitives.
  *
  * Created:     19th November 1998
- * Updated:     18th December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_META_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_META_MINOR       12
+# define STLSOFT_VER_H_STLSOFT_META_MINOR       16
 # define STLSOFT_VER_H_STLSOFT_META_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_META_EDIT        106
+# define STLSOFT_VER_H_STLSOFT_META_EDIT        112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -65,9 +65,15 @@
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
 # include <stlsoft/meta/is_function_pointer_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
+# include <stlsoft/meta/is_pointer_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
 # include <stlsoft/meta/n_types.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE
+# include <stlsoft/meta/is_same_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_SAME_TYPE */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -116,7 +122,7 @@ namespace stlsoft
  */
 
 
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 /// This template provides compile-time type selection between the two types
 /// specified in its first two parameters, based on a (compile-time) boolean
@@ -167,7 +173,7 @@ struct select_first_type<T1, T2, false>
 
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#endif // STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 /// \brief Converts compile time constants to type
 template <int N>
@@ -177,37 +183,6 @@ struct int_to_type
 /* /////////////////////////////////////////////////////////////////////////////
  * Tests
  */
-
-// is_pointer_type
-//
-/// Constraint to ensure that a type is a pointer type
-
-template <ss_typename_param_k U>
-one_t is_pointer_type_func(U const volatile *);
-
-two_t is_pointer_type_func(...);
-
-/// traits type used to determine whether the given type is a pointer
-template <ss_typename_param_k T>
-struct is_pointer_type
-{
-    typedef T   test_type;
-
-private:
-    static T    t;
-public:
-    enum { value = sizeof(is_pointer_type_func(t)) == sizeof(one_t) };
-};
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-STLSOFT_TEMPLATE_SPECIALISATION
-struct is_pointer_type<void>
-{
-    enum { value = 0 };
-};
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 // is_array_type
 //
@@ -418,6 +393,40 @@ STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_integral_type, ss_char_w_t, 1, yes
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
+/// traits type used to determine whether a given type is signed
+template <ss_typename_param_k T>
+struct is_signed_type
+{
+    enum { value = 0 };
+
+    typedef no_type     type;
+};
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint8_t, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint16_t, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint32_t, 1, yes_type)
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, ss_sint64_t, 1, yes_type)
+#endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
+#if (   defined(STLSOFT_COMPILER_IS_INTEL) || \
+        defined(STLSOFT_COMPILER_IS_MSVC)) && \
+    _MSC_VER == 1200
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed char, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed short, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed int, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed long, 1, yes_type)
+#elif defined(__STLSOFT_CF_INT_DISTINCT_TYPE)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, signed int, 1, yes_type)
+#endif /* _MSC_VER == 1200 */
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, float, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, double, 1, yes_type)
+STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(is_signed_type, long double, 1, yes_type)
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+
 /// traits type used to determine whether the given type is floating point
 template <ss_typename_param_k T>
 struct is_floating_point_type
@@ -483,10 +492,14 @@ struct is_fundamental_type
     enum
     {
         value   =   is_integral_type<T>::value
-                |   is_floating_point_type<T>::value
-                |   is_bool_type<T>::value
-                |   is_void_type<T>::value
+                ||  is_floating_point_type<T>::value
+                ||  is_bool_type<T>::value
+                ||  is_void_type<T>::value
     };
+
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+    typedef ss_typename_type_k select_first_type_if<yes_type, no_type, value>::type type;
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 };
 
 
@@ -647,30 +660,6 @@ struct size_of<void>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-
-
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-
-/// \brief Determines whether the type is the same type
-template <ss_typename_param_k T1, ss_typename_param_k T2>
-struct is_same_type
-{
-    enum { value = 0 };
-};
-
-# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template <ss_typename_param_k T>
-struct is_same_type<T, T>
-{
-    enum { value = 1 };
-};
-
-# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
-
-#endif // __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 
 #if !defined(STLSOFT_COMPILER_IS_BORLAND) && \

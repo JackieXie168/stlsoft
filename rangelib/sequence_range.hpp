@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     22nd December 2005
+ * Updated:     31st December 2005
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -43,14 +43,14 @@
 
 /** \file rangelib/sequence_range.hpp Sequence container range adaptor */
 
-#ifndef STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE
-#define STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE
+#ifndef RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE
+#define RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
-# define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    7
-# define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define STLSOFT_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     45
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    10
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 1
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -90,6 +90,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR
 #  include <stlsoft/typefixer/iterator.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
+#  include <stlsoft/typefixer/pointer.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER */
 # ifndef STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS
 #  include <stlsoft/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMBER_TRAITS */
@@ -161,6 +164,8 @@ private:
     enum { HAS_MEMBER_ITERATOR          =   0 != member_traits<S>::has_member_iterator          };  // Need to do these as member enums, otherwise GCC2.95 cries a river
     enum { HAS_MEMBER_CONST_ITERATOR    =   0 != member_traits<S>::has_member_const_iterator    };  // Need to do these as member enums, otherwise GCC2.95 cries a river
     enum { HAS_MEMBER_DIFFERENCE_TYPE   =   0 != member_traits<S>::has_member_difference_type   };  // Need to do these as member enums, otherwise GCC2.95 cries a river
+    enum { HAS_MEMBER_POINTER           =   0 != member_traits<S>::has_member_pointer           };
+    enum { HAS_MEMBER_CONST_POINTER     =   0 != member_traits<S>::has_member_const_pointer     };
 
 public:
     /// The sequence type
@@ -183,9 +188,16 @@ public:
                                                 ,   HAS_MEMBER_REFERENCE
                                                 >::type             reference;
     /// The non-mutating (const) reference type
-    typedef ss_typename_type_k ::stlsoft::typefixer::fixer_const_reference<S, HAS_MEMBER_CONST_ITERATOR>::const_reference
+    typedef ss_typename_type_k ::stlsoft::typefixer::fixer_const_reference<S, HAS_MEMBER_CONST_REFERENCE>::const_reference
                                                                     const_reference;
-// TODO: Stick in the member-finder stuff here, so can assume ptrdiff_t if none found
+    /// The mutating (non-const) pointer type
+    typedef ss_typename_type_k select_first_type_if<ss_typename_type_k ::stlsoft::typefixer::fixer_pointer<sequence_type, HAS_MEMBER_POINTER>::pointer
+                                                ,   ss_typename_type_k ::stlsoft::typefixer::fixer_const_pointer<sequence_type, HAS_MEMBER_CONST_POINTER>::const_pointer
+                                                ,   HAS_MEMBER_POINTER
+                                                >::type             pointer;
+    /// The non-mutating (const) pointer type
+    typedef ss_typename_type_k ::stlsoft::typefixer::fixer_const_pointer<S, HAS_MEMBER_CONST_POINTER>::const_pointer
+                                                                    const_pointer;
     /// The difference type
     typedef ss_typename_type_k select_first_type_if<ss_typename_type_k ::stlsoft::typefixer::fixer_difference_type<S, HAS_MEMBER_DIFFERENCE_TYPE>::difference_type
                                                 ,   ss_ptrdiff_t
@@ -465,11 +477,11 @@ private:
 // Functions
 
 template<ss_typename_param_k S>
-#ifdef __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 inline sequence_range<S> make_sequence_range(S &s)
-#else /* ? __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 inline sequence_range<S> make_sequence_range(S const &s)
-#endif /* __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 {
     return sequence_range<S>(s);
 }
@@ -478,79 +490,7 @@ inline sequence_range<S> make_sequence_range(S const &s)
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
-
-namespace unittest
-{
-    namespace
-    {
-        template <typename T>
-        ss_bool_t test_container()
-        {
-            typedef ss_typename_type_k T::value_type    value_t;
-
-            T           cont;
-            value_t     total0  =   0;
-            value_t     total1  =   0;
-
-            STLSOFT_SUPPRESS_UNUSED(total0);    // Borland
-            STLSOFT_SUPPRESS_UNUSED(total1);    // Borland
-
-            for(int i = 0; i < 100; i += 5)
-            {
-                cont.push_back(value_t(i));
-            }
-
-            for(sequence_range<T> range(cont); range; ++range)
-            {
-                total0 += *range;
-            }
-
-            total1 = std::accumulate(cont.begin(), cont.end(), value_t(0));
-
-            if(total1 == total0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        ss_bool_t test_rangelib_sequence_range(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-
-            ss_bool_t               bSuccess    =   true;
-
-            unittest_initialiser    init(r, "RangeLib", "sequence_range", __FILE__);
-
-            if(!test_container<std::list<int> >())
-            {
-                r->report("summation over list<int> failed", __LINE__);
-                bSuccess = false;
-            }
-
-            if(!test_container<std::vector<int> >())
-            {
-                r->report("summation over vector<int> failed", __LINE__);
-                bSuccess = false;
-            }
-
-            if(!test_container<std::deque<int> >())
-            {
-                r->report("summation over deque<short> failed", __LINE__);
-                bSuccess = false;
-            }
-
-            return bSuccess;
-        }
-
-        unittest_registrar    unittest_rangelib_sequence_range(test_rangelib_sequence_range);
-    } // anonymous namespace
-
-} // namespace unittest
-
+# include "./unittest/sequence_range_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
 /* ////////////////////////////////////////////////////////////////////////// */
@@ -571,6 +511,6 @@ namespace unittest
 
 /* ////////////////////////////////////////////////////////////////////////// */
 
-#endif /* !STLSOFT_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
+#endif /* !RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
 
 /* ////////////////////////////////////////////////////////////////////////// */

@@ -5,11 +5,11 @@
  *              iterator in order to obtain the value_type.
  *
  * Created:     28th January 2005
- * Updated:     18th December 2005
+ * Updated:     2nd January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -41,7 +41,7 @@
 
 /// \file stlsoft/associative_select_iterator.hpp
 ///
-/// An iterator adaptor that uses a select functor on its underlying iterator in
+/// An iterator adaptor that uses a select functor on its base iterator in
 /// order to obtain the value_type.
 
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     11
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////

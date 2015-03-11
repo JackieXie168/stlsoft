@@ -1,4 +1,6 @@
 
+// Updated: 31st December 2005
+
 #if !defined(STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER)
 # error This file cannot be directly included, and should only be included within stlsoft/string_tokeniser.hpp
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */

@@ -4,13 +4,13 @@
  * Purpose:     Contains the c_str_ptr_insert_iterator template class and c_str_ptr_inserter creator function.
  *
  * Created:     12th October 2004
- * Updated:     18th December 2005
+ * Updated:     18th January 2006
  *
  * Thanks to:   Pablo Aguilar for spotting missing inclusions.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MAJOR       1
-# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MINOR       2
+# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_MINOR       3
 # define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_EDIT        14
+# define STLSOFT_VER_STLSOFT_HPP_C_STR_PTR_INSERTER_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ namespace stlsoft
 
 template <ss_typename_param_k F>
 struct c_str_ptr_extract_iterator
-    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, ss_ptrdiff_t, void, void>
+    : public stlsoft_ns_qual(iterator_base)<stlsoft_ns_qual_std(output_iterator_tag), void, void, void, void>
 {
 public:
     typedef F                               function_type;
@@ -125,7 +125,9 @@ public:
     template <ss_typename_param_k S>
     class_type &operator =(S const &s)
     {
-        m_f = stlsoft_ns_qual(c_str_ptr)(s);
+        // Double application to ensure the function understands
+        // the C-style string.
+        m_f = stlsoft_ns_qual(c_str_ptr)(stlsoft_ns_qual(c_str_ptr)(s));
 
         return *this;
     }

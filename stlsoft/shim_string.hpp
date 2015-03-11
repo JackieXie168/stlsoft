@@ -4,11 +4,11 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     22nd December 2005
+ * Updated:     13th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MAJOR      2
-# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MINOR      2
+# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_MINOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_EDIT       20
+# define STLSOFT_VER_STLSOFT_HPP_SHIM_STRING_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -106,17 +106,17 @@ class basic_shim_string
 /// @{
 public:
     /// The value type
-    typedef C                                           char_type;
+    typedef C                                               char_type;
     /// The traits type
-    typedef T                                           traits_type;
+    typedef T                                               traits_type;
     /// The allocator type
-    typedef A                                           allocator_type;
+    typedef A                                               allocator_type;
     /// The current parameterisation of the type
-    typedef basic_shim_string<C, N, U, A, T>            class_type;
+    typedef basic_shim_string<C, N, U, A, T>                class_type;
     /// The size type
-    typedef size_t                                      size_type;
+    typedef size_t                                          size_type;
     /// The buffer type
-    typedef auto_buffer<char_type, allocator_type, N>   buffer_type;
+    typedef auto_buffer_old<char_type, allocator_type, N>   buffer_type;
 
 /// @}
 

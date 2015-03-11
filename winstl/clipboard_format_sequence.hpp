@@ -4,7 +4,7 @@
  * Purpose:     Enumerates clipboard formats.
  *
  * Created:     11th May 2003
- * Updated:     18th December 2005
+ * Updated:     11th January 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    3
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    1
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     16
+# define WINSTL_VER_WINSTL_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -59,6 +59,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
+#ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
+# include <stlsoft/collections/collections.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
 /* /////////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -89,6 +92,7 @@ namespace winstl_project
 // class clipboard_format_sequence
 /// This class provides an STL-like sequence for iterating the clipboard formats for the current process
 class clipboard_format_sequence
+    : public stl_collection_tag
 {
 public:
     /// The type

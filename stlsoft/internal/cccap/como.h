@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Comeau C/C++.
  *
  * Created:     7th February 2003
- * Updated:     22nd December 2005
+ * Updated:     16th January 2006
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2005, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2006, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,9 +54,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_MINOR     4
 # define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      39
+# define STLSOFT_VER_H_STLSOFT_CCCAP_COMO_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,12 @@
 /* Messaging
  */
 
-//#define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+/* #define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+
+/* Support for #pragma once
+ */
+
+/* #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
 /* Types:
  */
@@ -186,6 +191,7 @@
 #define STLSOFT_CF_MEM_FUNC_AS_TEMPLATE_PARAM_SUPPORT
 
 #define __STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
+#define STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 
 #define STLSOFT_CF_MEMBER_TEMPLATE_OVERLOAD_DISCRIMINATED
 
@@ -199,7 +205,8 @@
 
 #define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
-#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
+#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+#define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 #define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 
