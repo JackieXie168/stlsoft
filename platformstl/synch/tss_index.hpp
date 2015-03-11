@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/synch/tss_index.hpp
  *
  * Purpose:     Definition of the tss_index type.
  *
  * Created:     20th March 2005
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_TSS_INDEX
@@ -46,16 +46,16 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       10
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_TSS_INDEX_EDIT       12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/tss_index.hpp
  *
- * \brief [C++ only] Definition of the platformstl::tss_index components.
+ * \brief [C++ only] Definition of the platformstl::tss_index type.
  *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -75,7 +75,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,9 +94,27 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+	/** \brief A thread key class
+	 *
+	 * The class is not actually defined in the
+	 * \link ::platformstl platformstl\endlink namespace. Rather, it
+	 * resolves to the appropriate type for the given platform, relying on
+	 * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+	 * of the resolved platform-specific types.
+	 *
+	 * When compiling on UNIX platforms, the platformstl::tss_index
+	 * type resolves to the unixstl::tss_index class. On Windows platforms
+	 * it resolves to the winstl::tss_index class. It is not defined
+	 * for other platforms.
+	 */
+	class tss_index
+	{};
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef _UNIXSTL_NO_NAMESPACE
     using ::tss_index;
@@ -116,7 +134,7 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -126,8 +144,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_TSS_INDEX */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

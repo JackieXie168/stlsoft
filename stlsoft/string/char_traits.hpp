@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/char_traits.hpp (originally stlsoft_char_traits.h)
  *
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/char_traits.hpp
@@ -52,10 +52,10 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     60
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  *
  * There is a degree of complexity with respect to the definition and use of
@@ -113,7 +113,7 @@
 #endif /* compiler */
 #endif /* !STLSOFT_NO_CHAR_TRAITS_LIBRARY_CALLS || _DEBUG */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -122,16 +122,16 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Constraints
  */
 
 // class stlsoft_char_traits
 /** \brief Character traits
-///
-/// \param C The character type
-/// \param N The integer type
-/// \param Z The size type
+ *
+ * \param C The character type
+ * \param N The integer type
+ * \param Z The size type
  *
  * \ingroup group__library__string
  */
@@ -416,10 +416,10 @@ public:
 
 // class stlsoft_char_traits_safe
 /** \brief Character traits, all of the operations of which can work with null pointers
-///
-/// \param C The character type
-/// \param N The integer type
-/// \param Z The size type
+ *
+ * \param C The character type
+ * \param N The integer type
+ * \param Z The size type
  *
  * \ingroup group__library__string
  */
@@ -591,10 +591,10 @@ public:
 
 // class char_traits
 /** \brief Character traits, all of the operations of which can work with null pointers
-///
-/// \param C The character type
-/// \param N The integer type
-/// \param Z The size type
+ *
+ * \param C The character type
+ * \param N The integer type
+ * \param Z The size type
  *
  * \ingroup group__library__string
  */
@@ -640,10 +640,10 @@ public:
 
 // class char_traits_safe
 /** \brief Character traits, all of the operations of which can work with null pointers
-///
-/// \param C The character type
-/// \param N The integer type
-/// \param Z The size type
+ *
+ * \param C The character type
+ * \param N The integer type
+ * \param Z The size type
  *
  * \ingroup group__library__string
  */
@@ -664,7 +664,7 @@ public:
     typedef ss_typename_type_k parent_class_type::off_type  off_type;
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Specialisations
  */
 
@@ -732,21 +732,21 @@ inline ss_size_t stlsoft_char_traits<wchar_t>::length(wchar_t const *s)
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/char_traits_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CHAR_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

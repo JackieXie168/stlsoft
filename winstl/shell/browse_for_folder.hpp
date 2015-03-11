@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/shell/browse_for_folder.hpp (formerly winstl/shell_browse.hpp; originally winstl_shell_browse.h)
  *
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     25th March 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -38,12 +38,14 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/shell/browse_for_folder.hpp
-///
-/// Shell browsing functions.
+/** \file winstl/shell/browse_for_folder.hpp
+ *
+ * \brief [C++ only] Definition of Windows Shell folder browsing functions.
+ *  (\ref group__library__windows_shell "Windows Shell" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER
 #define WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER
@@ -52,10 +54,10 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    1
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 1
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     48
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes.
  */
 
@@ -76,7 +78,7 @@
 # include <string>
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -98,7 +100,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -106,6 +108,8 @@ namespace winstl_project
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /// \brief Traits for accessing the correct browse information functions for a given character type
+///
+/// \ingroup group__library__windows_shell
 ///
 /// shell_browse_traits is a traits class for determining the correct browse
 /// information structures and functions for a given character type.
@@ -185,7 +189,7 @@ struct shell_browse_callback_holder
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -244,7 +248,9 @@ inline ws_bool_t shell_browse_impl( C const         *title
 
 
 // function browse_for_folder
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -259,7 +265,9 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, H
     return shell_browse_impl(stlsoft_ns_qual(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, static_cast<C const*>(NULL));
 }
 
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -276,7 +284,9 @@ inline ws_bool_t browse_for_folder(const S0 &title, C *displayName, UINT flags, 
     return shell_browse_impl(stlsoft_ns_qual(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, stlsoft_ns_qual(c_str_ptr)(defaultFolder));
 }
 
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -290,7 +300,9 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, H
     return browse_for_folder(title, displayName, flags, hwndOwner, static_cast<LPCITEMIDLIST>(0));
 }
 
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -304,7 +316,9 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, L
     return browse_for_folder(title, displayName, flags, 0, pidlRoot);
 }
 
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -320,7 +334,9 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags)
 #if !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1300)
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -340,7 +356,9 @@ inline ws_bool_t browse_for_folder(  const S0    &title
 }
 #endif /* compiler */
 
-/// Browses the shell namespace according to the given parameters
+/// \brief Browses the shell namespace according to the given parameters
+///
+/// \ingroup group__library__windows_shell
 ///
 /// \param title The title for the browse dialog
 /// \param displayName Buffer to receive the display name
@@ -352,14 +370,14 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName)
     return browse_for_folder(title, displayName, 0, 0, 0);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/browse_for_folder_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -371,8 +389,8 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

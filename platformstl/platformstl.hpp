@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/platformstl.hpp
  *
  * Purpose:     Root header for the PlatformSTL C++ libraries. Performs platform
  *              discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     8th February 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL
@@ -47,12 +47,17 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       9
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORMSTL_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file platformstl/platformstl.hpp Root header for the PlatformSTL C++ libraries */
+/** \file platformstl/platformstl.hpp
+ *
+ * \brief [C++ only] Root header for the 
+ *  \ref group__project__platformstl "PlatformSTL" project for C++
+ *  compilation units.
+ */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -64,7 +69,7 @@
 # error platformstl/platformstl.hpp is only valid within C++ compilation units
 #endif /* !__cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -83,7 +88,7 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -93,7 +98,7 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -101,8 +106,8 @@ namespace platformstl_project
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORMSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/time_string_access.hpp
  *
  * Purpose:     String shims for standard time structures.
  *
  * Created:     25th July 2005
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/time_string_access.hpp
@@ -49,10 +49,10 @@
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_EDIT        5
+# define STLSOFT_VER_STLSOFT_HPP_TIME_STRING_ACCESS_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -67,7 +67,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 #include <time.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -76,23 +76,7 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \defgroup stlsoft_string_access_shims String Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for Win32 time types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  *
  * All the struct tm-related conversions assume a format of 20 characters
@@ -157,19 +141,14 @@ inline ss_size_t c_str_len(struct tm const &/* t */)
     return 20;
 }
 
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_string_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_TIME_STRING_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

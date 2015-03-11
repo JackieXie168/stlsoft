@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/menu_functions.h (formerly MWMenu.h, ::SynesisWin)
  *
  * Purpose:     Menu functions.
  *
  * Created:     20th October 1994
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/menu_functions.h
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_H_MENU_FUNCTIONS_MAJOR       2
 # define WINSTL_VER_WINSTL_H_MENU_FUNCTIONS_MINOR       2
 # define WINSTL_VER_WINSTL_H_MENU_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_H_MENU_FUNCTIONS_EDIT        119
+# define WINSTL_VER_WINSTL_H_MENU_FUNCTIONS_EDIT        121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -82,21 +82,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \defgroup winstl_menu_library Menu Library (WinSTL)
-/// \ingroup WinSTL libraries_window ccompilation
-/// \brief This library provides facilities for defining and manipulating menus in Win32 GUI windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
 
@@ -140,7 +126,7 @@ STLSOFT_INLINE BOOL winstl__SetMenuItemStateById(HMENU hmenu, UINT id, UINT stat
     return STLSOFT_NS_GLOBAL(SetMenuItemInfo)(hmenu, id, FALSE, &mii);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -163,11 +149,7 @@ inline BOOL SetMenuItemStateById(HMENU hmenu, UINT id, UINT state)
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_menu_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -179,8 +161,8 @@ inline BOOL SetMenuItemStateById(HMENU hmenu, UINT id, UINT state)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_H_MENU_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/system/environment_sequence.hpp (originally winstl_environment_sequence.h)
  *
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/system/environment_sequence.hpp
@@ -52,10 +52,10 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     63
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -84,7 +84,7 @@
 # error Now need to write that std_binary_function stuff!!
 #endif /* _WINSTL_WINDOW_FUNCTIONALS_NO_STD */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -106,7 +106,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -306,7 +306,7 @@ private:
     class_type const &operator =(class_type const &);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
@@ -317,7 +317,7 @@ typedef basic_environment_sequence<ws_char_w_t>     environment_sequence_w;
 /// Instantiation of the basic_environment_sequence template for the Win32 character type \c TCHAR
 typedef basic_environment_sequence<TCHAR>           environment_sequence;
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -574,14 +574,14 @@ inline ss_typename_type_k basic_environment_sequence<C>::value_type basic_enviro
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/environment_sequence_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -593,8 +593,8 @@ inline ss_typename_type_k basic_environment_sequence<C>::value_type basic_enviro
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

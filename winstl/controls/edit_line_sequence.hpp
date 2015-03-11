@@ -4,7 +4,7 @@
  * Purpose:     Contains the edit_line_sequence class.
  *
  * Created:     23rd March 2006
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/controls/edit_line_sequence.hpp
-///
-/// Contains the edit_line_sequence class.
+/** \file winstl/controls/edit_line_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::edit_line_sequence class
+ *  template.
+ *  (\ref group__library__windows_controls "Windows Controls" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE
 #define WINSTL_INCL_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE
@@ -49,7 +52,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     2
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_EDIT_LINE_SEQUENCE_EDIT     4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -182,7 +185,7 @@ inline ws_bool_t operator !=(ss_typename_type_k edit_line_sequence<C, A, S, Q>::
     return !lhs.equal(rhs);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/controls/listbox_sequence.hpp (formerly winstl/listbox_sequence.hpp; originally winstl_listbox_sequence.h)
  *
  * Purpose:     Contains the listbox_sequence class.
  *
  * Created:     10th November 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -37,12 +37,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/controls/listbox_sequence.hpp
-///
-/// Contains the listbox_sequence class.
+/** \file winstl/controls/listbox_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::listbox_sequence class
+ *  template.
+ *  (\ref group__library__windows_controls "Windows Controls" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE
 #define WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE
@@ -51,10 +54,10 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        51
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE_EDIT        53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +74,7 @@
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -93,21 +96,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_control Control Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI controls
-
-/// \defgroup winstl_control_library Control Library (WinSTL)
-/// \ingroup WinSTL libraries_control
-/// \brief This library provides facilities for defining and manipulating Win32 GUI controls
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -255,18 +244,14 @@ private:
 /// @}
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/listbox_sequence_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_control_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -278,8 +263,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

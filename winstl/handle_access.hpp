@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/handle_access.hpp (Formerly in winstl_event.h)
  *
  * Purpose:     Contains classes and functions for dealing with Win32 handles.
  *
  * Created:     3rd July 2003
- * Updated:     31st May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/handle_access.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MAJOR      1
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_MINOR      3
 # define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_EDIT       12
+# define WINSTL_VER_WINSTL_HPP_HANDLE_ACCESS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -63,7 +63,7 @@
 # include <stlsoft/handle_access.hpp>
 #endif /* !STLSOFT_INCL_H_STLSOFT_HANDLE_ACCESS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -85,23 +85,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_handle_access Handle Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" retrieve the "handle" for arbitrary types
-
-/// \defgroup winstl_handle_access_shims Handle Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_handle_access
-/// \brief These \ref concepts_shims "shims" retrieve the "handle" for arbitrary Win32 types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -125,7 +109,7 @@ inline HANDLE get_handle(HANDLE h)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Traits specialisations
  */
 
@@ -147,7 +131,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
@@ -186,11 +170,7 @@ namespace unittest
 
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_handle_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -202,7 +182,7 @@ namespace unittest
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The handle access shims exist either in the stlsoft namespace, or in the
@@ -229,8 +209,8 @@ using ::winstl::get_handle;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_HPP_HANDLE_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/controls/combobox_sequence.hpp (formerly winstl/combobox_sequence.hpp; originally winstl_combobox_sequence.h)
  *
  * Purpose:     Contains the combobox_sequence class.
  *
  * Created:     13th November 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -37,12 +37,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/controls/combobox_sequence.hpp
-///
-/// Contains the combobox_sequence class.
+/** \file winstl/controls/combobox_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::combobox_sequence class
+ *  template.
+ *  (\ref group__library__windows_controls "Windows Controls" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE
 #define WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE
@@ -51,10 +54,10 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_MINOR      3
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_REVISION   3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       50
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +74,7 @@
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -93,21 +96,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_control Control Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI controls
-
-/// \defgroup winstl_control_library Control Library (WinSTL)
-/// \ingroup WinSTL libraries_control
-/// \brief This library provides facilities for defining and manipulating Win32 GUI controls
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -138,7 +127,9 @@ public:
 };
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// STL-like sequence for combo-box contents
+/// \brief STL-like sequence for combo-box contents
+///
+/// \ingroup group__library__windows_controls
 ///
 /// This class presents an STL-like sequence interface to a combo-box
 ///
@@ -255,18 +246,14 @@ private:
 /// @}
 };
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/combobox_sequence_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_control_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -278,8 +265,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_CONTROLS_HPP_COMBOBOX_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

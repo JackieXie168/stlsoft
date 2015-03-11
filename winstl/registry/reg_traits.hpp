@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_traits.hpp (formerly winstl_reg_traits.h)
  *
  * Purpose:     Contains the reg_traits class template, and ANSI
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     23rd May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/registry/reg_traits.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     58
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -63,7 +63,7 @@
 # include <winstl/registry/defs.hpp>             // The WinSTL reg API standard types
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_DEFS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -85,7 +85,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /// \brief Traits for accessing the correct registry functions for a given character type
@@ -589,7 +589,7 @@ public:
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -601,8 +601,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

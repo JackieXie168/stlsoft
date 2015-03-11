@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/synch/thread_mutex.hpp
  *
  * Purpose:     Definition of the thread_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX
@@ -46,7 +46,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        10
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/synch/thread_mutex.hpp
@@ -55,7 +55,7 @@
  *  (\ref group__library__synch "Synchronisation" Library.)
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -75,7 +75,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,9 +94,27 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+	/** \brief A thread mutex class
+	 *
+	 * The class is not actually defined in the
+	 * \link ::platformstl platformstl\endlink namespace. Rather, it
+	 * resolves to the appropriate type for the given platform, relying on
+	 * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+	 * of the resolved platform-specific types.
+	 *
+	 * When compiling on UNIX platforms, the platformstl::thread_mutex
+	 * type resolves to the unixstl::thread_mutex class. On Windows
+	 * platforms it resolves to the winstl::thread_mutex class. It is not
+	 * defined for other platforms.
+	 */
+	class thread_mutex
+	{};
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef _UNIXSTL_NO_NAMESPACE
     using ::thread_mutex;
@@ -116,7 +134,7 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -126,8 +144,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYNCH_HPP_THREAD_MUTEX */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

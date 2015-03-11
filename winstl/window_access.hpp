@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        window_access.hpp (formerly winstl_window_access.h)
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     7th October 2002
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/window_access.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_EDIT      36
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_EDIT      38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -60,7 +60,7 @@
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -82,23 +82,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_window_access Window Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" retrieve the HWND for arbitrary types
-
-/// \defgroup winstl_window_access_shims Window Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_window_access
-/// \brief These \ref concepts_shims "shims" retrieve the HWND for arbitrary types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * get_hwnd
  *
  * This can be applied to an expression, and the return value is the
@@ -119,18 +103,14 @@ inline HWND get_hwnd(HWND h)
     return h;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/window_access_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -142,8 +122,8 @@ inline HWND get_hwnd(HWND h)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

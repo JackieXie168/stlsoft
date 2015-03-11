@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/toolhelp/heap_sequence.hpp
  *
  * Purpose:     TOOLHELP heap sequence class.
  *
  * Created:     21st May 2005
- * Updated:     22nd May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -39,11 +39,14 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/toolhelp/heap_sequence.hpp
-/// \brief [C++ only] Definition of the \link winstl::heap_sequence heap_sequence\endlink class. (\ref group__library__toolhelp "ToolHelp" Library.)
+/** \file winstl/toolhelp/heap_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the \link winstl::heap_sequence heap_sequence\endlink class.
+ *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE
 #define WINSTL_INCL_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE
@@ -52,10 +55,10 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_REVISION  2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_EDIT      3
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_EDIT      5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -69,7 +72,7 @@
 # include <winstl/toolhelp/sequence_base.hpp>
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,12 +94,12 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // th_sequence_value_traits specialization for heap_sequence
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE                           HEAPLIST32
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FIRST                           Heap32ListFirst
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_NEXT                            Heap32ListNext
@@ -106,7 +109,7 @@ namespace winstl_project
 
 /// \brief An STL collection for accessing heap information.
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 typedef th_sequence_base<HEAPLIST32>                heap_sequence;
 
 /** \brief [IMPLEMENTATION] Specialisation of
@@ -120,7 +123,7 @@ struct sequence_doesnt_use_pid<HEAPLIST32>
 
 /// \brief Attribute shim for retrieving the process id associated with the HEAPLIST32 instance
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 ///
 /// \param hl The HEAPLIST32 instance
 inline DWORD get_pid(HEAPLIST32 const& hl)
@@ -128,7 +131,7 @@ inline DWORD get_pid(HEAPLIST32 const& hl)
     return hl.th32ProcessID;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -140,8 +143,8 @@ inline DWORD get_pid(HEAPLIST32 const& hl)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

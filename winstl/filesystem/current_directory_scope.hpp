@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/filesystem/current_directory_scope.hpp (formerly winstl_current_directory_scope.h; originally MLPwdScp.h, ::SynesisStd)
  *
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/filesystem/current_directory_scope.hpp
@@ -49,13 +49,13 @@
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR		5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION	2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT		104
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR     5
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR     0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION  2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -65,7 +65,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -99,7 +99,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <stlsoft/operator_bool.hpp>     // for operator_bool_generator
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -121,7 +121,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * basic_current_directory_scope
  *
  * This class pushes the given directory as the current directory upon
@@ -214,7 +214,7 @@ private:
     class_type const &operator =(class_type const &);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
@@ -225,7 +225,7 @@ typedef basic_current_directory_scope<ws_char_w_t, filesystem_traits<ws_char_w_t
 /// Instantiation of the basic_current_directory_scope template for the Win32 character type \c TCHAR
 typedef basic_current_directory_scope<TCHAR, filesystem_traits<TCHAR> >                 current_directory_scope;
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -282,14 +282,14 @@ inline S &operator <<(S & s, basic_current_directory_scope<C, T> const &b)
     return s;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/current_directory_scope_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -359,7 +359,7 @@ inline basic_current_directory_scope<C, T>::operator ss_typename_type_k basic_cu
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -371,7 +371,7 @@ inline basic_current_directory_scope<C, T>::operator ss_typename_type_k basic_cu
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The string access shims exist either in the stlsoft namespace, or in the
@@ -408,8 +408,8 @@ using ::winstl::c_str_size;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

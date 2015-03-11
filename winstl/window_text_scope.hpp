@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        window_text_scope.hpp (formerly winstl_window_text_scope.h)
  *
  * Purpose:     Window text scoping class.
  *
  * Created:     21st August 2003
- * Updated:     31st May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/window_text_scope.hpp
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_MINOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_REVISION 3
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     28
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TEXT_SCOPE_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -72,7 +72,7 @@
 # include <winstl/memory/processheap_allocator.hpp>
 #endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,21 +94,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \defgroup winstl_window_library Window Library (WinSTL)
-/// \ingroup WinSTL libraries_window
-/// \brief This library provides facilities for defining and manipulating Win32 GUI windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -242,11 +228,7 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -258,8 +240,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_HPP_WINDOW_TEXT_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

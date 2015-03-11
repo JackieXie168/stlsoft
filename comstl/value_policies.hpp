@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        comstl/value_policies.hpp (formerly comstl_value_policies.h; originally MOEnSeq.h, ::SynesisCom)
  *
  * Purpose:     Value policies that work with STL sequence types for IEnumXXXX
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     25th January 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file comstl/value_policies.hpp (formerly comstl_value_policies.h; originally MOEnSeq.h, ::SynesisCom)
@@ -50,10 +50,10 @@
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MAJOR     4
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_MINOR     2
 # define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_REVISION  1
-# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_EDIT      151
+# define COMSTL_VER_COMSTL_HPP_VALUE_POLICIES_EDIT      153
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -63,11 +63,11 @@
 #ifndef COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS
 # include <comstl/olestring_functions.h>   // for olestring_dup(), etc.
 #endif /* !COMSTL_INCL_COMSTL_H_OLESTRING_FUNCTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-# include <stlsoft/sap_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+# include <stlsoft/conversion/sap_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -89,14 +89,7 @@ namespace comstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \defgroup comstl_value_policies Value Policies
-/// \ingroup COMSTL
-/// \brief These functions objects define the policies for manipulating various COM types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -335,11 +328,7 @@ public:
     }
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group comstl_value_policies
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -351,8 +340,8 @@ public:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !COMSTL_INCL_COMSTL_HPP_VALUE_POLICIES */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

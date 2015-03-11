@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/process/functions.h
  *
  * Purpose:     Process functions.
  *
  * Created:     12th March 2006
- * Updated:     22nd March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/process/functions.h
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MAJOR    1
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_MINOR    0
 # define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_REVISION 2
-# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     5
+# define WINSTL_VER_WINSTL_PROCESS_H_FUNCTIONS_EDIT     7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -61,7 +61,7 @@
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 #include <string.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -83,21 +83,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \defgroup winstl_window_library Window Library (WinSTL)
-/// \ingroup WinSTL libraries_window ccompilation functions
-/// \brief This library provides facilities for defining and manipulating Win32 GUI windows
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
 
@@ -130,7 +116,7 @@ STLSOFT_INLINE BOOL winstl__CreateProcess0A(ws_char_a_t const *cmdLine)
     return winstl__CreateProcessEA(cmdLine, NULL);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -153,11 +139,7 @@ inline BOOL CreateProcess(ws_char_a_t const *cmdLine)
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_window_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -169,8 +151,8 @@ inline BOOL CreateProcess(ws_char_a_t const *cmdLine)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_PROCESS_H_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

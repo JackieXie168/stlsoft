@@ -1,4 +1,4 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/performance/performance_counter.hpp (formerly winstl/performance_counter.hpp; originally winstl_performance_counter.h)
  *
  * Purpose:     WinSTL general performance counter class. This class attempts to
@@ -6,7 +6,7 @@
  *              otherwise using the tick-count facilities.
  *
  * Created:     31st July 2002
- * Updated:     30th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -37,7 +37,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/performance/performance_counter.hpp
@@ -52,12 +52,12 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR    4
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    0
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR    1
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION 1
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     17
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -66,7 +66,7 @@
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -89,7 +89,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_64BIT_INTEGERS */
 #endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -111,18 +111,59 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // class performance_counter
-/** \brief A performance counter that uses the most accurate measurement APIs available on the host machine
+/** \brief A performance counter that uses the most accurate measurement
+ *   APIs available on the host machine
  *
  * \ingroup group__library__performance
  *
- * This class attempts to use the high performance hardware counter as its measurement resource, but failing
- * that it defaults to less accurate resources in order to guarantee that meaningful measurements are always
- * available to application code
+ * The following example illustrates the use of the counter to measure an
+ * interval:
+\htmlonly
+<pre>
+  <b>winstl::performance_counter</b>   counter;
+
+  counter.<b>start()</b>;
+  for(volatile size_t i = 0; i != 0x7fffffff; ++i)
+  counter.<b>stop()</b>;
+
+  std::cout << "Number of seconds:      " << counter.<b>get_seconds()</b> << std::endl;
+  std::cout << "Number of milliseconds: " << counter.<b>get_milliseconds()</b> << std::endl;
+  std::cout << "Number of microseconds: " << counter.<b>get_microseconds()</b> << std::endl;
+</pre>
+\endhtmlonly
+ *
+ * Note: Some standard libraries' IOStreams do not recognise the 64-bit
+ * unsigned integer that is the counter class's <code>interval_type</code>
+ * (and <code>epoch_type</code>), in which case you should use an
+ * appropriate cast. The following code shows a cast to
+ * <code>unsigned long</code>, but be aware that this may cause truncation
+ * in the case where, say, the <code>unsigned long</code> type for your
+ * compiler is 32-bits and the value returned by a given
+ * <code>get_???()</code> method is > 4294967295.
+\htmlonly
+<pre>
+  winstl::performance_counter   counter;
+
+  counter.start();
+  for(volatile size_t i = 0; i != 0x7fffffff; ++i)
+  counter.stop();
+
+  std::cout << "Number of seconds:      " << <b>static_cast&lt;unsigned long>(</b>counter.get_seconds()<b>)</b> << std::endl;
+  std::cout << "Number of milliseconds: " << <b>static_cast&lt;unsigned long>(</b>counter.get_milliseconds()<b>)</b> << std::endl;
+  std::cout << "Number of microseconds: " << <b>static_cast&lt;unsigned long>(</b>counter.get_microseconds()<b>)</b> << std::endl;
+</pre>
+\endhtmlonly
+ *
+ *
+ * \remarks This class attempts to use the high performance hardware counter
+ *  as its measurement resource, but failing that it defaults to less
+ *  accurate resources in order to guarantee that meaningful measurements
+ *  are always available to application code.
  */
 class performance_counter
 {
@@ -130,19 +171,24 @@ class performance_counter
 /// @{
 public:
     typedef performance_counter         class_type;
-private:
+    /// \brief The epoch type
+    ///
+    /// The type of the epoch measurement. This will be a 64-bit signed
+    /// integer for compilers that such types, or a 32-bit integer
+    /// otherwise. 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     typedef ws_sint64_t                 epoch_type;
-#else
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     typedef sinteger64                  epoch_type;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-public:
     /// \brief The interval type
     ///
-    /// The type of the interval measurement, a 64-bit signed integer
+    /// The type of the interval measurement. This will be a 64-bit signed
+    /// integer for compilers that such types, or a 32-bit integer
+    /// otherwise. 
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     typedef ws_sint64_t                 interval_type;
-#else
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
     typedef sinteger64                  interval_type;
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
 /// @}
@@ -166,16 +212,31 @@ public:
     /// \brief Starts measurement
     ///
     /// Begins the measurement period
-    void        start();
+    void    start();
     /// \brief Ends measurement
     ///
     /// Ends the measurement period
-    void        stop();
+    void    stop();
+    /// \brief Ends the current measurement period and start the next
+    ///
+    /// \remarks This is equivalent to an atomic invocation of stop() and
+    /// start()
+    void    restart();
 /// @}
 
 /// \name Attributes
 /// @{
 public:
+    /// \brief The current epoch
+    static epoch_type       get_epoch();
+
+    /// \brief The number of whole seconds in the given measurement period
+    static interval_type    get_seconds(epoch_type start, epoch_type end);
+    /// \brief The number of whole milliseconds in the given measurement period
+    static interval_type    get_milliseconds(epoch_type start, epoch_type end);
+    /// \brief The number of whole microseconds in the given measurement period
+    static interval_type    get_microseconds(epoch_type start, epoch_type end);
+
     /// \brief The elapsed count in the measurement period
     ///
     /// This represents the extent, in machine-specific increments, of the measurement period
@@ -192,6 +253,23 @@ public:
     ///
     /// This represents the extent, in whole microseconds, of the measurement period
     interval_type   get_microseconds() const;
+
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  period count for the prior period.
+    interval_type   stop_get_period_count_and_restart();
+
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  interval, in seconds, for the prior period.
+    interval_type   stop_get_seconds_and_restart();
+
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  interval, in milliseconds, for the prior period.
+    interval_type   stop_get_milliseconds_and_restart();
+
+    /// \brief Stops the current period, starts the next, and returns the
+    ///  interval, in microseconds, for the prior period.
+    interval_type   stop_get_microseconds_and_restart();
+
 /// @}
 
 /// \name Implementation
@@ -215,7 +293,7 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # if !defined(STLSOFT_COMPILER_IS_DMC) && \
@@ -225,7 +303,7 @@ static stlsoft_ns_qual(class_constructor)<performance_counter>  s_performance_co
 # endif /* compiler */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -233,7 +311,7 @@ static stlsoft_ns_qual(class_constructor)<performance_counter>  s_performance_co
 # include "./unittest/performance_counter_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -337,7 +415,73 @@ inline void performance_counter::stop()
     measure_(m_end);
 }
 
+inline void performance_counter::restart()
+{
+    measure_(m_start);
+    m_end = m_start;
+}
+
+
 // Attributes
+
+inline /* static */ performance_counter::epoch_type performance_counter::get_epoch()
+{
+    epoch_type  epoch;
+
+    measure_(epoch);
+
+    return epoch;
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::get_seconds(performance_counter::epoch_type start, performance_counter::epoch_type end)
+{
+    interval_type   period_count    =   static_cast<interval_type>(end - start);
+
+    return period_count / frequency_();
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::get_milliseconds(performance_counter::epoch_type start, performance_counter::epoch_type end)
+{
+    interval_type   result;
+    interval_type   count   =   static_cast<interval_type>(end - start);
+
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    if(count < STLSOFT_GEN_SINT64_SUFFIX(0x20C49BA5E353F7))
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+    if(count < interval_type(0x20C49B, 0xA5E353F7))
+#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
+    {
+        result = (count * interval_type(1000)) / frequency_();
+    }
+    else
+    {
+        result = (count / frequency_()) * interval_type(1000);
+    }
+
+    return result;
+}
+
+inline /* static */ performance_counter::interval_type performance_counter::get_microseconds(performance_counter::epoch_type start, performance_counter::epoch_type end)
+{
+    interval_type   result;
+    interval_type   count   =   static_cast<interval_type>(end - start);
+
+#ifdef STLSOFT_CF_64BIT_INT_SUPPORT
+    if(count < STLSOFT_GEN_SINT64_SUFFIX(0x8637BD05AF6))
+#else /* ? STLSOFT_CF_64BIT_INT_SUPPORT */
+    if(count < interval_type(0x863, 0x7BD05AF6))
+#endif /* !STLSOFT_CF_64BIT_INT_SUPPORT */
+    {
+        result = (count * interval_type(1000000)) / frequency_();
+    }
+    else
+    {
+        result = (count / frequency_()) * interval_type(1000000);
+    }
+
+    return result;
+}
+
 inline performance_counter::interval_type performance_counter::get_period_count() const
 {
     return static_cast<interval_type>(m_end - m_start);
@@ -390,9 +534,54 @@ inline performance_counter::interval_type performance_counter::get_microseconds(
     return result;
 }
 
+
+inline performance_counter::interval_type performance_counter::stop_get_period_count_and_restart()
+{
+    stop();
+
+    interval_type   interval    =   get_period_count();
+
+    m_start = m_end;
+
+    return interval;
+}
+
+inline performance_counter::interval_type performance_counter::stop_get_seconds_and_restart()
+{
+    stop();
+
+    interval_type   interval    =   get_seconds();
+
+    m_start = m_end;
+
+    return interval;
+}
+
+inline performance_counter::interval_type performance_counter::stop_get_milliseconds_and_restart()
+{
+    stop();
+
+    interval_type   interval    =   get_milliseconds();
+
+    m_start = m_end;
+
+    return interval;
+}
+
+inline performance_counter::interval_type performance_counter::stop_get_microseconds_and_restart()
+{
+    stop();
+
+    interval_type   interval    =   get_microseconds();
+
+    m_start = m_end;
+
+    return interval;
+}
+
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -404,8 +593,8 @@ inline performance_counter::interval_type performance_counter::get_microseconds(
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/string_traits_fwd.hpp (originally stlsoft_string_traits.h)
  *
  * Purpose:     Forward declaration of the string_traits traits class.
  *
  * Created:     1st April 2005
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/string_traits_fwd.hpp
@@ -52,10 +52,10 @@
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_MAJOR       2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_MINOR       0
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_REVISION    1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_EDIT        10
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD_EDIT        12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -63,7 +63,7 @@
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -72,16 +72,16 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 /** \brief Traits for determining the characteristics of strings
-///
-/// string_traits is a traits class for determining various characteristics of
-/// strings.
-///
-/// \param C The char type
+ *
+ * string_traits is a traits class for determining various characteristics of
+ * strings.
+ *
+ * \param C The char type
  *
  * \ingroup group__library__string
  */
@@ -118,14 +118,14 @@ struct string_traits;
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TRAITS_FWD */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

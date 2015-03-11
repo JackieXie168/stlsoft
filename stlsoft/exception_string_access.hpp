@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/exception_string_access.hpp
  *
  * Purpose:     Contains the string access shims for std::exception.
  *
  * Created:     2nd May 2003
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/exception_string_access.hpp
@@ -49,10 +49,10 @@
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MAJOR     1
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_MINOR     3
 # define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_REVISION  3
-# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      20
+# define _STLSOFT_VER_STLSOFT_HPP_EXCEPTION_STRING_ACCESS_EDIT      22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -64,7 +64,7 @@
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #include <exception>                // for std::exception
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -73,23 +73,7 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_string_access String Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" accessing string attributes for arbitrary types
-
-/// \defgroup stlsoft_string_access_shims String Access Shims (STLSoft)
-/// \ingroup STLSoft concepts_shims_string_access
-/// \brief These \ref concepts_shims "shims" accessing string attributes for exception types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr_null
  *
  * This can be applied to an expression, and the return value is either a
@@ -110,7 +94,7 @@ inline ss_char_a_t const *c_str_ptr_null(stlsoft_ns_qual_std(exception) const &x
     return c_str_ptr_null_a(x);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
  *
  * This can be applied to an expression, and the return value is either a
@@ -130,7 +114,7 @@ inline ss_char_a_t const *c_str_ptr(stlsoft_ns_qual_std(exception) const &x)
     return c_str_ptr_a(x);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
  * This can be applied to an expression, and the return value is either a
@@ -151,7 +135,7 @@ inline ss_char_a_t const *c_str_data(stlsoft_ns_qual_std(exception) const &x)
     return c_str_ptr_a(x);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
  * This can be applied to an expression, and the return value is the number of
@@ -171,7 +155,7 @@ inline ss_size_t c_str_len(stlsoft_ns_qual_std(exception) const &x)
     return c_str_len_a(x);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * c_str_size
  *
  * This can be applied to an expression, and the return value is the number of
@@ -196,18 +180,14 @@ inline ss_size_t c_str_size(stlsoft_ns_qual_std(exception) const &x)
 }
 #endif /* 0 */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group stlsoft_string_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_EXCEPTION_STRING_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

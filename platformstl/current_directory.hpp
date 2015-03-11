@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/current_directory.hpp
  *
  * Purpose:     Platform header for the current_directory components.
  *
  * Created:     13th June 2005
- * Updated:     3rd June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_HPP_CURRENT_DIRECTORY
@@ -46,12 +46,12 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_MINOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     8
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_CURRENT_DIRECTORY_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/current_directory.hpp Platform header for the current_directory components */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +71,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -90,7 +90,7 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -200,7 +200,7 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -210,8 +210,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_CURRENT_DIRECTORY */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

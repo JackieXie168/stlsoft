@@ -3,12 +3,12 @@
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 
 #ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
-# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/any_caster.hpp")
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/conversion/any_cast.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_HPP_ANY_CASTER
-# include <stlsoft/any_caster.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_ANY_CASTER */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST
+# include <stlsoft/conversion/any_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_ANY_CAST */
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

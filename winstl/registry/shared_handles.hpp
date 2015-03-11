@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/shared_handles.hpp (formerly part of winstl/registry/reg_key_sequence.hpp)
  *
  * Purpose:     Contains the shared_handle and monitored_shared_handle classes.
  *
  * Created:     19th January 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/registry/shared_handles.hpp
@@ -55,10 +55,10 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MAJOR    1
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_MINOR    0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_REVISION 6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     10
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_SHARED_HANDLES_EDIT     11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -90,7 +90,7 @@
 # include <stlsoft/exceptions/external_iterator_invalidation.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -112,7 +112,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -308,7 +308,7 @@ namespace registry_util
 } // namespace registry_util
 #endif /* !_STLSOFT_NO_NAMESPACES */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -320,8 +320,8 @@ namespace registry_util
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_REGISTRY_HPP_SHARED_HANDLES */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

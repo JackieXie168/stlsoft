@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/string/shim_string.hpp (originally stlsoft_shim_string.h)
  *
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file stlsoft/string/shim_string.hpp
@@ -52,10 +52,10 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        25
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -75,7 +75,12 @@
 # include <stlsoft/meta/yesno.hpp>          // for yes_type, no_type
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META_YESNO */
 
-/* /////////////////////////////////////////////////////////////////////////////
+#if defined(STLSOFT_COMPILER_IS_MSVC) && \
+    _MSC_VER < 1310
+# include <iosfwd>
+#endif /* compiler */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -84,19 +89,19 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 /** \brief An implementation class, which provides efficient intermediate string
-/// objects for conversion shims.
-///
-/// \param C The character type
-/// \param N The number of characters in the internal auto_buffer
-/// \param U The nUll indicator. If true, the implicit conversion operator returns
-///           NULL for an empty string, otherwise it returns the empty string
-/// \param A The allocator
-/// \param T The char tratis type
+ * objects for conversion shims.
+ *
+ * \param C The character type
+ * \param N The number of characters in the internal auto_buffer
+ * \param U The nUll indicator. If true, the implicit conversion operator returns
+ *           NULL for an empty string, otherwise it returns the empty string
+ * \param A The allocator
+ * \param T The char tratis type
  *
  * \ingroup group__library__string
  */
@@ -247,7 +252,7 @@ private:
     basic_shim_string &operator =(class_type const &);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -315,14 +320,33 @@ inline S &operator <<(S &s, basic_shim_string<C, N, U, A, T> const &ss)
 
 #endif /* compiler */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     _MSC_VER < 1310
+
+template<   ss_typename_param_k C
+        ,   stlsoft::ss_size_t  N
+        ,   stlsoft::ss_bool_t  U
+        ,   ss_typename_param_k A
+        ,   ss_typename_param_k T
+        >
+inline std::basic_ostream<C> &operator <<(std::basic_ostream<C> &s, stlsoft::basic_shim_string<C, N, U, A, T> const &ss)
+{
+    s << ss.data();
+
+    return s;
+}
+
+# endif /* compiler */
+
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

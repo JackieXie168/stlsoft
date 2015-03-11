@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        mfcstl_list_adaptor.h
  *
  * Purpose:     Contains the definition of the list_adaptor template, and the
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     5th February 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file mfcstl_list_adaptor.h
@@ -50,10 +50,10 @@
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MAJOR     2
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_MINOR     5
 # define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_REVISION  1
-# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      44
+# define MFCSTL_VER_H_MFCSTL_LIST_ADAPTOR_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -67,7 +67,7 @@
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -89,21 +89,7 @@ namespace mfcstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_container Container Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulation containers
-
-/// \defgroup mfcstl_container_library Container Library (MFCSTL)
-/// \ingroup MFCSTL libraries_container
-/// \brief This library provides facilities for defining and manipulation containers for MFC types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Pre-processor options
  *
  * Because the CObList, CPtrList, CStringList and CList<,> implementations all
@@ -122,7 +108,7 @@ namespace mfcstl_project
  * semantics.
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -426,11 +412,7 @@ private:
     container_type  &m_c;
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group mfcstl_container_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -442,8 +424,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !MFCSTL_INCL_H_MFCSTL_LIST_ADAPTOR */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

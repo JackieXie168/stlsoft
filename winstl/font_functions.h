@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/font_functions.h (formerly formerly MWGdi.h / MWWinCmn, ::SynesisWin)
  *
  * Purpose:     Error functions.
  *
  * Created:     20th October 1994
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/font_functions.h
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_H_FONT_FUNCTIONS_MAJOR       3
 # define WINSTL_VER_WINSTL_H_FONT_FUNCTIONS_MINOR       1
 # define WINSTL_VER_WINSTL_H_FONT_FUNCTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_H_FONT_FUNCTIONS_EDIT        129
+# define WINSTL_VER_WINSTL_H_FONT_FUNCTIONS_EDIT        131
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -63,7 +63,7 @@
 # include <winstl/message_functions.h>
 #endif /* !WINSTL_INCL_WINSTL_H_MESSAGE_FUNCTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -85,21 +85,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_window Window Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI windows
-
-/// \weakgroup winstl_gdi_library GDI Library (WinSTL)
-/// \ingroup WinSTL libraries_window ccompilation
-/// \brief This library provides facilities for defining and manipulating GDI objects
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -113,7 +99,7 @@ STLSOFT_INLINE void winstl__set_window_font(HWND hwnd, HFONT hfont, ws_int_t bRe
     stlsoft_static_cast(void, winstl__SendMessage(hwnd, WM_SETFONT, stlsoft_reinterpret_cast(WPARAM, hfont), bRedraw));
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C++ Function Overrides
  */
 
@@ -131,11 +117,7 @@ inline void set_window_font(HWND hwnd, HFONT hfont, ws_bool_t bRedraw = true)
 
 #endif /* __cplusplus */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_gdi_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -147,8 +129,8 @@ inline void set_window_font(HWND hwnd, HFONT hfont, ws_bool_t bRedraw = true)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_H_FONT_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

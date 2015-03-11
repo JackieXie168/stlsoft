@@ -4,7 +4,7 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     30th May 2006
- * Updated:     3rd June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file platformstl/synch/semaphore.hpp
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       2
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,25 @@ namespace platformstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+	/** \brief A semaphore class
+	 *
+	 * The class is not actually defined in the
+	 * \link ::platformstl platformstl\endlink namespace. Rather, it
+	 * resolves to the appropriate type for the given platform, relying on
+	 * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+	 * of the resolved platform-specific types.
+	 *
+	 * When compiling on UNIX platforms, the platformstl::semaphore
+	 * type resolves to the unixstl::semaphore class. On Windows platforms
+	 * it resolves to the winstl::semaphore class. It is not defined
+	 * for other platforms.
+	 */
+	class semaphore
+	{};
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef _UNIXSTL_NO_NAMESPACE
     using ::semaphore;

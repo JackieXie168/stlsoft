@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/associative_adaptor_sequences.hpp
  *
  * Purpose:     Associative container adaptor sequences.
  *
  * Created:     28th January 2005
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/associative_adaptor_sequences.hpp
@@ -49,10 +49,10 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MINOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     8
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -62,7 +62,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -76,8 +76,8 @@ STLSOFT_COMPILER_IS_WATCOM:
 # include <stlsoft/associative_value_sequence.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_VALUE_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

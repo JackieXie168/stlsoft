@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        comstl/security_initialisers.hpp (formerly comstl_security_initialisers.h; originally MOSecFns.h, ::SynesisCom)
  *
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     1st February 1998
- * Updated:     21st March 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file comstl/security_initialisers.hpp
@@ -48,20 +48,20 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_MAJOR      4
 # define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_MINOR      1
-# define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_REVISION   1
-# define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_EDIT       36
+# define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_REVISION   2
+# define COMSTL_VER_COMSTL_HPP_SECURITY_INITIALISERS_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
-# include <stlsoft/union_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
+#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST
+# include <stlsoft/conversion/union_cast.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST */
 
 #if (   !defined(_WIN32_WINNT) || \
         (_WIN32_WINNT < 0x0400)) && \
@@ -74,7 +74,7 @@
 # include <iaccess.h>
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -96,14 +96,7 @@ namespace comstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \defgroup comstl_security_intialisers Security Initialiser Functions
-/// \ingroup COMSTL
-/// \brief These functions initialise the COM security libraries
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Constants & definitions.
  */
 
@@ -116,7 +109,7 @@ const DWORD _EOAC_SECURITY_MASK     =   (   _EOAC_SEC_DESC |
                                             _EOAC_ACCESS_CONTROL);
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -178,7 +171,7 @@ inline HRESULT CoInitSecurity(  const GUID                  &appid,
     // Since some compilers define CIS to take SECURITY_DESCRIPTOR*, we need to
     // do better than just cast the address of appid to void*
 
-    return ::CoInitializeSecurity(stlsoft_ns_qual(make_union_cast)<SECURITY_DESCRIPTOR*>(&appid), cAuthSvc, asAuthSvc, NULL, dwAuthnLevel, dwImpLevel, pAuthInfo, dwCapabilities, NULL);
+    return ::CoInitializeSecurity(stlsoft_ns_qual(union_cast)<SECURITY_DESCRIPTOR*>(&appid), cAuthSvc, asAuthSvc, NULL, dwAuthnLevel, dwImpLevel, pAuthInfo, dwCapabilities, NULL);
 }
 
 /// Initialises the COM security libraries with a security descriptor
@@ -198,18 +191,14 @@ inline HRESULT CoInitSecurity(  SECURITY_DESCRIPTOR         *psd,
     return ::CoInitializeSecurity(psd, cAuthSvc, asAuthSvc, NULL, dwAuthnLevel, dwImpLevel, pAuthInfo, dwCapabilities, NULL);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/security_initialisers_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group comstl_security_intialisers
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _COMSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -221,8 +210,8 @@ inline HRESULT CoInitSecurity(  SECURITY_DESCRIPTOR         *psd,
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_COMSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !COMSTL_INCL_COMSTL_HPP_SECURITY_INITIALISERS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

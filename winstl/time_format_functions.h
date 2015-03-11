@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/time_format_functions.h (formerly winstl_time_functions.h)
  *
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     29th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/time_format_functions.h
@@ -49,10 +49,10 @@
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MAJOR    3
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_MINOR    3
 # define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_REVISION 3
-# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     41
+# define WINSTL_VER_WINSTL_H_TIME_FORMAT_FUNCTIONS_EDIT     43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -72,7 +72,7 @@
 # include <winstl/registry/functions.hpp>   // for reg_get_string_value()
 #endif /* !WINSTL_INCL_WINSTL_REGISTRY_HPP_FUNCTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,21 +94,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_time Time Library
-/// \ingroup libraries
-/// \brief This library provides facilities for representing and manipulating time
-
-/// \weakgroup winstl_time_library Time Library (WinSTL)
-/// \ingroup WinSTL libraries_time
-/// \brief This library provides facilities for representing and manipulating time for the Win32 API
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Helper classes
  */
 
@@ -165,7 +151,7 @@ struct time_format_functions_traits<ws_char_w_t>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -775,18 +761,14 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      
 #endif /* 0 */
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/time_format_functions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_time_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -798,8 +780,8 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !WINSTL_INCL_WINSTL_H_TIME_FORMAT_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

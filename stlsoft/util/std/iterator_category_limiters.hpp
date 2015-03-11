@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        stlsoft/util/std/iterator_category_limiters.hpp (derived in part from stlsoft/iterators/filter_iterator.hpp)
  *
  * Purpose:     Meta classes to limit iterator categories.
  *
  * Created:     3rd January 2006
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file stlsoft/util/std/iterator_category_limiters.hpp
@@ -49,10 +49,10 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_REVISION   1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_EDIT       3
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Auto-generation and compatibility
  */
 
@@ -60,7 +60,7 @@
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +71,7 @@
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -80,7 +80,7 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -114,14 +114,14 @@ STLSOFT_ITER_CAT_LIMITER_DEFINE_SPECIALISATION(std::forward_iterator_tag,       
 STLSOFT_ITER_CAT_LIMITER_DEFINE_SPECIALISATION(std::bidirectional_iterator_tag, std::random_access_iterator_tag, std::bidirectional_iterator_tag);
 STLSOFT_ITER_CAT_LIMITER_DEFINE_SPECIALISATION(std::random_access_iterator_tag, std::random_access_iterator_tag, std::random_access_iterator_tag);
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        acestl/acestl.hpp
  *
  * Purpose:     Root header for the ACESTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     25th May 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef ACESTL_INCL_ACESTL_HPP_ACESTL
@@ -46,13 +46,13 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
-# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  2
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      24
+# define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * ACESTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -114,7 +114,7 @@
 
 #define _ACESTL_VER            _ACESTL_VER_1_0_3
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -125,12 +125,12 @@
 
 /* Intel is super pernickety about conversions, so we need to bring out the union_cast. */
 #if defined(STLSOFT_COMPILER_IS_INTEL)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_UNION_CAST
-#  include <stlsoft/union_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_UNION_CAST */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST
+#  include <stlsoft/conversion/union_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_UNION_CAST */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -139,7 +139,7 @@
 # error This version of the ACESTL libraries requires STLSoft version 1.8.3 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_8_3 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Proper C++ casting
  */
 
@@ -147,21 +147,21 @@
 # ifdef ACE_WIN32
 #  undef     ACE_INVALID_HANDLE
 #  if defined(STLSOFT_COMPILER_IS_INTEL)
-#   define    ACE_INVALID_HANDLE            stlsoft_ns_qual(make_union_cast)<HANDLE>(-1)
+#   define    ACE_INVALID_HANDLE            stlsoft_ns_qual(union_cast)<HANDLE>(-1)
 #  else /* ? compiler */
 #   define    ACE_INVALID_HANDLE            reinterpret_cast<HANDLE>(-1)
 #  endif /* compiler */
 # endif /* ACE_WIN32 */
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the ACESTL libraries are
  *
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro acestl_assert provides standard debug-mode assert functionality.
@@ -191,7 +191,7 @@
 # define acestl_static_assert(expr)         ACESTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The ACESTL components are contained within the acestl namespace. This is
@@ -323,7 +323,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define acestl_ns_using_std(x)
 #endif /* !STLSOFT_CF_std_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The ACESTL uses a number of typedefs to aid in compiler-independence in the
@@ -391,7 +391,7 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 # endif /* compiler */
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -405,7 +405,7 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 #define as_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -442,7 +442,7 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
  */
 #define acestl_gen_opaque(_htype)                      STLSOFT_GEN_OPAQUE(_htype)
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ACESTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -455,7 +455,7 @@ namespace acestl = ::stlsoft::acestl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -463,8 +463,8 @@ namespace acestl = ::stlsoft::acestl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !ACESTL_INCL_ACESTL_HPP_ACESTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

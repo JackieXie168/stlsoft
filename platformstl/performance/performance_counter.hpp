@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/performance/performance_counter.hpp
  *
  * Purpose:     Platform header for the performance_counter components.
  *
  * Created:     20th March 2005
- * Updated:     30th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER
@@ -46,16 +46,21 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       9
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/performance/performance_counter.hpp
  *
  * \brief [C++ only] Definition of the platformstl::performance_counter
  *  type. (\ref group__library__performance "Performance" Library.)
+ *
+ * When compiling on UNIX platforms, the platformstl::performance_counter
+ * type resolves to the unixstl::performance_counter class. On Windows
+ * platforms it resolves to the winstl::performance_counter class. It is not
+ * defined for other platforms.
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -75,7 +80,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,9 +99,27 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
-#if defined(PLATFORMSTL_OS_IS_UNIX)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+
+	/** \brief A performance counter class
+	 *
+	 * The class is not actually defined in the
+	 * \link ::platformstl platformstl\endlink namespace. Rather, it
+	 * resolves to the appropriate type for the given platform, relying on
+	 * \ref group__pattern__intersecting_structural_conformance "Intersecting Structural Conformance"
+	 * of the resolved platform-specific types.
+	 *
+	 * When compiling on UNIX platforms, the platformstl::performance_counter
+	 * type resolves to the unixstl::performance_counter class. On Windows
+	 * platforms it resolves to the winstl::performance_counter class. It is
+	 * not defined for other platforms.
+	 */
+	class performance_counter
+	{};
+
+#elif defined(PLATFORMSTL_OS_IS_UNIX)
 
 # ifdef _UNIXSTL_NO_NAMESPACE
     using ::performance_counter;
@@ -116,7 +139,7 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -126,8 +149,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/controls/listbox_const_iterator.hpp (formerly part of winstl/listbox_sequence.hpp; originally part of winstl_listbox_sequence.h)
  *
  * Purpose:     Contains the listbox_const_iterator class.
  *
  * Created:     10th November 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo Aguilar for some patches.
  *
@@ -37,12 +37,14 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/controls/listbox_const_iterator.hpp
-///
-/// Contains the listbox_const_iterator class.
+/** \file winstl/controls/listbox_const_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the winstl::listbox_const_iterator class.
+ *  (\ref group__library__windows_controls "Windows Controls" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR
 #define WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR
@@ -51,10 +53,10 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_MINOR    1
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_REVISION 3
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     56
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR_EDIT     58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -77,7 +79,7 @@
 # include <stlsoft/exceptions/external_iterator_invalidation.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_EXCEPTIONS_HPP_EXTERNAL_ITERATOR_INVALIDATION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -99,25 +101,13 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_control Control Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating GUI controls
-
-/// \defgroup winstl_control_library Control Library (WinSTL)
-/// \ingroup WinSTL libraries_control
-/// \brief This library provides facilities for defining and manipulating Win32 GUI controls
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 /// Iterator for listbox_sequence class
+///
+/// \ingroup group__library__windows_controls
 ///
 /// This class acts as the iterator for the listbox_sequence class, and implements
 /// the Random Access Iterator concept
@@ -425,11 +415,7 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_control_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -441,8 +427,8 @@ private:
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_CONTROLS_HPP_LISTBOX_CONST_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

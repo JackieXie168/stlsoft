@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        unixstl/module.hpp (formerly unixstl_module.h; originally MXModule.h, ::SynesisUnix)
  *
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     30th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file unixstl/module.hpp
@@ -49,17 +49,17 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_MODULE_REVISION    2
-# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        199
+# define UNIXSTL_VER_UNIXSTL_HPP_MODULE_EDIT        201
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
 /*
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -75,7 +75,7 @@
 #include <dlfcn.h>
 #include <errno.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -97,21 +97,7 @@ namespace unixstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_system System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating operating-system specific constructs
-
-/// \weakgroup unixstl_system_library System Library (UNIXSTL)
-/// \ingroup UNIXSTL libraries_system
-/// \brief This library provides facilities for defining and manipulating operating-system specific constructs for UNIX
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -210,27 +196,9 @@ private:
 /// @}
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group unixstl_system_library
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Access shims
  */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_handle_access Handle Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" retrieve the "handle" for arbitrary types
-
-/// \defgroup unixstl_handle_access_shims Handle Access Shims (UNIXSTL)
-/// \ingroup UNIXSTL concepts_shims_handle_access
-/// \brief These \ref concepts_shims "shims" retrieve the "handle" for arbitrary UNIX types
-/// @{
 
 /// Returns the handle for the given module
 inline void *get_handle(module const &m)
@@ -238,9 +206,7 @@ inline void *get_handle(module const &m)
     return m.get_handle();
 }
 
-/// @} // end of group unixstl_module_attribute_shims
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -248,7 +214,7 @@ inline void *get_handle(module const &m)
 # include "./unittest/module_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -341,7 +307,7 @@ inline module::module_handle_type module::get_handle() const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _UNIXSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -353,8 +319,8 @@ inline module::module_handle_type module::get_handle() const
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* UNIXSTL_INCL_UNIXSTL_HPP_MODULE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        atlstl/atlstl.hpp (formerly atlstl.h)
  *
  * Purpose:     Root header for the ATLSTL libraries. Performs various compiler
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     25th May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
@@ -48,12 +48,12 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  1
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      91
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      92
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp \brief [C++ only; requires ATL library] The root header for the \ref group__project__atlstl "ATLSTL" project. */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * ATLSTL version
  *
  * The libraries version information is comprised of major, minor and revision
@@ -127,7 +127,7 @@
 
 #define _ATLSTL_VER             _ATLSTL_VER_1_5_1
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -153,7 +153,7 @@ extern CComModule _Module;
 # include <stdio.h>
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * STLSoft version compatibility
  */
 
@@ -162,7 +162,7 @@ extern CComModule _Module;
 # error This version of the ATLSTL libraries requires STLSoft version 1.5.1 or later
 #endif /* _STLSOFT_VER < _STLSOFT_VER_1_5_1 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compiler compatibility
  *
  * Currently the only compilers supported by the ATLSTL libraries are
@@ -216,7 +216,7 @@ extern CComModule _Module;
 # endif /* _STLSOFT_FORCE_ANY_COMPILER */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro atlstl_assert provides standard debug-mode assert functionality.
@@ -246,7 +246,7 @@ extern CComModule _Module;
 # define atlstl_static_assert(expr)         ATLSTL_STATIC_ASSERT(expr)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The ATLSTL components are contained within the atlstl namespace. This is
@@ -400,7 +400,7 @@ stlsoft_ns_using(move_lhs_from_rhs)
 # define atlstl_ns_using_atl(x)
 #endif /* !ATL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs
  *
  * The ATLSTL uses a number of typedefs to aid in compiler-independence in the
@@ -437,7 +437,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     as_streamoff_t; //!< streamoff
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Values
  *
  * Since the boolean type may not be supported natively on all compilers, the
@@ -451,7 +451,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     as_streamoff_t; //!< streamoff
 #define as_false_v      ss_false_v
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Code modification macros
  */
 
@@ -488,7 +488,7 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     as_streamoff_t; //!< streamoff
  */
 #define atlstl_gen_opaque(_htype)                       STLSOFT_GEN_OPAQUE(_htype)
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
@@ -505,7 +505,7 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 }
 #endif /* _ATL_VER < 0x0700 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -513,7 +513,7 @@ inline as_bool_t InlineIsEqualGUID(REFGUID rguid1, REFGUID rguid2)
 # include "./unittest/atlstl_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ATLSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -526,7 +526,7 @@ namespace atlstl = ::stlsoft::atlstl_project;
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Inclusion
  */
 
@@ -534,8 +534,8 @@ namespace atlstl = ::stlsoft::atlstl_project;
 # pragma once
 #endif /* STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

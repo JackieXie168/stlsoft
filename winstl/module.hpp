@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/module.hpp (formerly winstl_module.h; originally MWModule.h, ::SynesisWin)
  *
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     1st June 2006
+ * Updated:     10th June 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -37,7 +37,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/module.hpp
@@ -51,17 +51,17 @@
 # define WINSTL_VER_WINSTL_HPP_MODULE_MAJOR     5
 # define WINSTL_VER_WINSTL_HPP_MODULE_MINOR     4
 # define WINSTL_VER_WINSTL_HPP_MODULE_REVISION  2
-# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      207
+# define WINSTL_VER_WINSTL_HPP_MODULE_EDIT      209
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
 /*
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -81,7 +81,7 @@
 # include <winstl/filesystem/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -103,21 +103,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_system System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating operating-system specific constructs
-
-/// \weakgroup winstl_system_library System Library (WinSTL)
-/// \ingroup WinSTL libraries_system
-/// \brief This library provides facilities for defining and manipulating operating-system specific constructs for the Win32 operating system
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -275,27 +261,9 @@ private:
     class_type &operator =(class_type const &);
 };
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group winstl_system_library
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Access shims
  */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_handle_access Handle Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" retrieve the "handle" for arbitrary types
-
-/// \defgroup winstl_handle_access_shims Handle Access Shims (WinSTL)
-/// \ingroup WinSTL concepts_shims_handle_access
-/// \brief These \ref concepts_shims "shims" retrieve the "handle" for arbitrary Win32 types
-/// @{
 
 /// Returns the handle for the given module
 inline HINSTANCE get_handle(module const &m)
@@ -303,9 +271,7 @@ inline HINSTANCE get_handle(module const &m)
     return m.get_handle();
 }
 
-/// @} // end of group winstl_module_attribute_shims
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -313,7 +279,7 @@ inline HINSTANCE get_handle(module const &m)
 # include "./unittest/module_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -454,7 +420,7 @@ inline module::module_handle_type module::get() const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -466,8 +432,8 @@ inline module::module_handle_type module::get() const
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_HPP_MODULE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

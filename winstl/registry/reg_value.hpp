@@ -1,4 +1,4 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_value.hpp (formerly winstl_reg_value.h)
  *
  * Purpose:     Contains the basic_reg_value class template, and ANSI
@@ -12,7 +12,7 @@
  * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
  *
  * Created:     19th January 2002
- * Updated:     31st May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -43,7 +43,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file winstl/registry/reg_value.hpp
@@ -56,10 +56,10 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  7
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      77
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -96,7 +96,7 @@
 # include <winstl/registry/reg_key.hpp>
 #endif /* !STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -118,7 +118,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 /// \brief Represents a binary registry value
 ///
@@ -384,14 +384,14 @@ typedef basic_reg_value<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_alloca
 /// Instantiation of the basic_reg_value template for the Win32 character type \c TCHAR
 typedef basic_reg_value<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >                    reg_value;
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/reg_value_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -674,7 +674,7 @@ inline ss_typename_type_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rend(
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -686,8 +686,8 @@ inline ss_typename_type_k reg_blob<A>::const_reverse_iterator reg_blob<A>::rend(
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_VALUE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        mfcstl_cstring_veneer.h
  *
  * Purpose:     Contains the definition of the cstring_veneer template.
  *
  * Created:     1st October 2002
- * Updated:     6th June 2006
+ * Updated:     11th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file mfcstl_cstring_veneer.h
@@ -49,10 +49,10 @@
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MAJOR       3
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_MINOR       1
 # define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_REVISION    2
-# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        59
+# define MFCSTL_VER_H_MFCSTL_CSTRING_VENEER_EDIT        61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -67,7 +67,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -91,15 +91,15 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 # include <stlsoft/constraints.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_CONSTRAINTS */
 #if defined(STLSOFT_COMPILER_IS_DMC)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_SAP_CAST
-#  include <stlsoft/sap_cast.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_SAP_CAST */
+# ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST
+#  include <stlsoft/conversion/sap_cast.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_SAP_CAST */
 #endif /* compiler */
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -121,21 +121,7 @@ namespace mfcstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_container Container Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulation containers
-
-/// \defgroup mfcstl_string_library String Library (MFCSTL)
-/// \ingroup MFCSTL libraries_string
-/// \brief This library provides facilities for defining and manipulating MFC string types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
@@ -248,7 +234,7 @@ public:
     const_pointer   data() const;
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Operators
  */
 
@@ -306,7 +292,7 @@ inline ms_bool_t operator !=(cstring_veneer const &lhs, LPCWSTR rhs)
 }
 #endif /* !_MFCSTL_CSTRING_VENEER_INHERIT_AS_PUBLIC */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -345,7 +331,7 @@ inline S &operator <<(S &s, cstring_veneer const &str)
     return s;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -478,7 +464,7 @@ namespace unittest
 
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -695,11 +681,7 @@ inline cstring_veneer::const_pointer cstring_veneer::data() const
     return empty() ? _T("") : static_cast<const_pointer>(*this);
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group mfcstl_string_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -711,8 +693,8 @@ inline cstring_veneer::const_pointer cstring_veneer::data() const
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !MFCSTL_INCL_H_MFCSTL_CSTRING_VENEER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

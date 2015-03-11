@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/toolhelp/process_sequence.hpp
  *
  * Purpose:     TOOLHELP process sequence class.
  *
  * Created:     21st May 2005
- * Updated:     22nd May 2006
+ * Updated:     10th June 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -39,11 +39,15 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file winstl/toolhelp/process_sequence.hpp
-/// \brief [C++ only] Definition of the \link winstl::process_sequence process_sequence\endlink class. (\ref group__library__toolhelp "ToolHelp" Library.)
+/** \file winstl/toolhelp/process_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the
+ *  \link winstl::process_sequence process_sequence\endlink class.
+ *  (\ref group__library__windows_toolhelp "Windows ToolHelp" Library.)
+ */
 
 #ifndef WINSTL_INCL_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE
 #define WINSTL_INCL_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE
@@ -52,10 +56,10 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_MAJOR      1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_EDIT       2
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -69,7 +73,7 @@
 # include <winstl/toolhelp/sequence_base.hpp>
 #endif /* !WINSTL_INCL_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,12 +95,12 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
 // th_sequence_value_traits specialization for process_sequence
-/////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_VALUE                           PROCESSENTRY32
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FIRST                           Process32First
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_NEXT                            Process32Next
@@ -106,12 +110,12 @@ namespace winstl_project
 
 /// \brief An STL collection for accessing process information.
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 typedef th_sequence_base<PROCESSENTRY32>            process_sequence;
 
 /// \brief Attribute shim for retrieving the process id associated with the PROCESSENTRY32 instance
 ///
-/// \ingroup group__library__toolhelp
+/// \ingroup group__library__windows_toolhelp
 ///
 /// \param pe The PROCESSENTRY32 instance
 inline DWORD get_pid(PROCESSENTRY32 const& pe)
@@ -119,7 +123,7 @@ inline DWORD get_pid(PROCESSENTRY32 const& pe)
     return pe.th32ProcessID;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -131,8 +135,8 @@ inline DWORD get_pid(PROCESSENTRY32 const& pe)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif // WINSTL_INCL_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

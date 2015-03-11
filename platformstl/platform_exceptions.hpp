@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        platformstl/platform_exceptions.hpp
  *
  * Purpose:     Platform header for the platform_exceptions components.
  *
  * Created:     20th March 2005
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS
@@ -46,12 +46,12 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS_REVISION   6
-# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS_EDIT       10
+# define PLATFORMSTL_VER_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platform_exceptions.hpp Platform header for the platform_exceptions components */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -71,7 +71,7 @@
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -90,7 +90,7 @@ namespace platformstl_project
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(PLATFORMSTL_OS_IS_UNIX)
 
@@ -112,7 +112,7 @@ namespace platformstl_project
 # error Operating system not discriminated
 #endif /* operating system */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #if defined(_STLSOFT_NO_NAMESPACE) || \
     defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
@@ -122,8 +122,8 @@ namespace platformstl_project
 } // namespace stlsoft
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_HPP_PLATFORM_EXCEPTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

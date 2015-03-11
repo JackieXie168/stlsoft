@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/filesystem/current_directory.hpp (formerly winstl_current_directory.h)
  *
  * Purpose:     Simple class that gets, and makes accessible, the current
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     6th June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/filesystem/current_directory.hpp
@@ -49,13 +49,13 @@
 #define WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR		4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR		0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION	2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT		58
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR       4
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR       0
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION    2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -65,7 +65,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -83,7 +83,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -105,7 +105,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * basic_current_directory
  *
  * This class wraps the GetCurrentDirectory() API function, and effectively acts
@@ -178,7 +178,7 @@ private:
     class_type &operator =(class_type const &);
 };
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
@@ -189,7 +189,7 @@ typedef basic_current_directory<ws_char_w_t, filesystem_traits<ws_char_w_t> >   
 /// Instantiation of the basic_current_directory template for the Win32 character type \c TCHAR
 typedef basic_current_directory<TCHAR, filesystem_traits<TCHAR> >                 current_directory;
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Support for PlatformSTL redefinition by inheritance+namespace, for confused
  * compilers (e.g. VC++ 6)
  */
@@ -217,7 +217,7 @@ typedef basic_current_directory<TCHAR, filesystem_traits<TCHAR> >               
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
@@ -274,7 +274,7 @@ inline S &operator <<(S & s, basic_current_directory<C, T> const &b)
     return s;
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
  */
 
@@ -282,7 +282,7 @@ inline S &operator <<(S & s, basic_current_directory<C, T> const &b)
 # include "./unittest/current_directory_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Implementation
  */
 
@@ -337,7 +337,7 @@ inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -349,7 +349,7 @@ inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  *
  * The string access shims exist either in the stlsoft namespace, or in the
@@ -386,8 +386,8 @@ using ::winstl::c_str_size;
 # endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

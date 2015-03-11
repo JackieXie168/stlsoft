@@ -1,11 +1,11 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        atlstl/property_method_helpers.hpp (formerly atlstl_property_method_helpers.h)
  *
  * Purpose:     Contains functions for assisting in the implementation of
  *              property methods of ATL COM server classes.
  *
  * Created:     25th June 2002
- * Updated:     21st May 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -36,7 +36,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file atlstl/property_method_helpers.hpp
@@ -50,10 +50,10 @@
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_MINOR    4
 # define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_REVISION 1
-# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_EDIT     58
+# define ATLSTL_VER_ATLSTL_HPP_PROPERTY_METHOD_HELPERS_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Compatibility
  */
 
@@ -64,7 +64,7 @@ STLSOFT_COMPILER_IS_DMC:
 [Incompatibilies-end]
  */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -76,7 +76,7 @@ STLSOFT_COMPILER_IS_DMC:
 # error No recognised Borland compiler generates correct code when used with these functions
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -98,14 +98,7 @@ namespace atlstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \defgroup atlstl_property_helpers Property Helpers
-/// \ingroup ATLSTL
-/// \brief This set of <b>get_</b>/<b>put_</b> accessor function templates simplify the writing of COM object accessor methods
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * get_MemberValue
  *
  * This can be used to get a member variable value. The function has the
@@ -214,7 +207,7 @@ inline HRESULT get_MemberValue(C *const cls, T *ret, T (C::*pfn)() const)
     return (ret == 0) ? E_POINTER : (*ret = (cls->*pfn)(), S_OK);
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * put_MemberValue
  *
  * This can be used to put a member variable value. The function has the
@@ -322,18 +315,14 @@ inline HRESULT get_ConstantValue(T1 *ret, T2 const &value)
     return (NULL == ret) ? E_POINTER : (*ret = value, S_OK);
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/property_method_helpers_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group atlstl_property_helpers
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ATLSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -345,8 +334,8 @@ inline HRESULT get_ConstantValue(T1 *ret, T2 const &value)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_PROPERTY_METHOD_HELPERS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        atlstl/window_access.hpp (formerly atlstl_window_access.h)
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     21st March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file atlstl/window_access.hpp
@@ -49,10 +49,10 @@
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_MINOR      1
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_EDIT       29
+# define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -72,7 +72,7 @@
 # pragma warn .8084 /* Suppresses "Suggest parentheses to clarify precedence in function 'f()'" */
 #endif /* compiler */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -94,23 +94,7 @@ namespace atlstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_window_access Window Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" retrieve the HWND for arbitrary types
-
-/// \defgroup atlstl_window_access_shims Window Access Shims (ATLSTL)
-/// \ingroup ATLSTL concepts_shims_window_access
-/// \brief These \ref concepts_shims "shims" retrieve the HWND for arbitrary types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * get_hwnd
  *
  * This can be applied to an expression, and the return value is the
@@ -131,21 +115,14 @@ inline HWND get_hwnd(CWindow const &w)
     return w.m_hWnd;
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/window_access_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-////////////////////////////////////////////////////////////////////////////////
-// Implementation
-
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group atlstl_window_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _ATLSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -157,8 +134,8 @@ inline HWND get_hwnd(CWindow const &w)
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ATLSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* ATLSTL_INCL_ATLSTL_HPP_WINDOW_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

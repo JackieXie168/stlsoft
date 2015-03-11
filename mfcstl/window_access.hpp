@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        mfcstl/window_access.hpp (formerly mfcstl_window_access.h)
  *
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     28th March 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file mfcstl/window_access.hpp
@@ -49,10 +49,10 @@
 # define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_MINOR      1
 # define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_REVISION   2
-# define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_EDIT       30
+# define MFCSTL_VER_MFCSTL_HPP_WINDOW_ACCESS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -61,7 +61,7 @@
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
 # include <afxwin.h>
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -83,23 +83,7 @@ namespace mfcstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup concepts STLSoft Concepts
-
-/// \weakgroup concepts_shims Shims
-/// \ingroup concepts
-
-/// \weakgroup concepts_shims_window_access Window Access Shims
-/// \ingroup concepts_shims
-/// \brief These \ref concepts_shims "shims" retrieve the HWND for arbitrary types
-
-/// \defgroup mfcstl_window_access_shims Window Access Shims (MFCSTL)
-/// \ingroup MFCSTL concepts_shims_window_access
-/// \brief These \ref concepts_shims "shims" retrieve the HWND for arbitrary types
-/// @{
-
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * get_hwnd
  *
  * This can be applied to an expression, and the return value is the
@@ -132,18 +116,14 @@ inline HWND get_hwnd(CWnd const *w)
     return w->GetSafeHwnd();
 }
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/window_access_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group mfcstl_window_access_shims
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -174,8 +154,8 @@ namespace winstl_project
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* MFCSTL_INCL_MFCSTL_HPP_WINDOW_ACCESS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

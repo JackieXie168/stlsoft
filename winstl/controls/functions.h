@@ -1,10 +1,10 @@
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/controls/functions.h (formerly control_functions.h; originally winstl_control_functions.h)
  *
  * Purpose:     Various Windows control functions.
  *
  * Created:     13th November 2002
- * Updated:     1st June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,12 +35,13 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /** \file winstl/controls/functions.h
  *
  * \brief [C, C++] Various Windows control functions.
+ *  (\ref group__library__windows_controls "Windows Controls" Library.)
  */
 
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
@@ -50,10 +51,10 @@
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_MINOR       0
 # define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_REVISION    2
-# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        37
+# define WINSTL_VER_WINSTL_CONTROLS_H_FUNCTIONS_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -69,7 +70,7 @@
 # endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
 #endif /* __cplusplus */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -91,7 +92,7 @@ namespace winstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C functions
  */
 
@@ -329,7 +330,7 @@ STLSOFT_INLINE ws_int_t winstl__edit_getline_w(HWND hwnd, ws_int_t lineIndex, ws
     return stlsoft_static_cast(ws_int_t, winstl__SendMessageW(hwnd, EM_GETLINE, stlsoft_static_cast(WPARAM, lineIndex), stlsoft_reinterpret_cast(LPARAM, buffer)));
 }
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * C++ functions
  */
 
@@ -659,14 +660,14 @@ inline ws_int_t edit_getline(HWND hwnd, ws_int_t lineIndex, ws_char_w_t *buffer,
 
 #endif /* __cplusplus */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/functions_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -678,8 +679,8 @@ inline ws_int_t edit_getline(HWND hwnd, ws_int_t lineIndex, ws_char_w_t *buffer,
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

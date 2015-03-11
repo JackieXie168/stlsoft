@@ -1,10 +1,10 @@
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * File:        grab_cstring_buffer.hpp (formerly mfcstl_grab_cstring_buffer.h, originally MFGrbStr.h: ::SynesisMfc)
  *
  * Purpose:     CString Get/ReleaseBuffer scoping class.
  *
  * Created:     12th February 1999
- * Updated:     3rd June 2006
+ * Updated:     10th June 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -35,7 +35,7 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  *
- * ////////////////////////////////////////////////////////////////////////// */
+ * ////////////////////////////////////////////////////////////////////// */
 
 
 /// \file mfcstl/grab_cstring_buffer.hpp
@@ -49,10 +49,10 @@
 # define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_MAJOR      3
 # define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_MINOR      1
 # define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_REVISION   1
-# define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_EDIT       50
+# define MFCSTL_VER_MFCSTL_HPP_GRAB_CSTRING_BUFFER_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
@@ -60,7 +60,7 @@
 # include <mfcstl/mfcstl.hpp>
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_MFCSTL */
 
-/* /////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * Namespace
  */
 
@@ -82,21 +82,7 @@ namespace mfcstl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_string String Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating strings
-
-/// \defgroup mfcstl_string_library String Library (MFCSTL)
-/// \ingroup MFCSTL libraries_string
-/// \brief This library provides facilities for defining and manipulating MFC string types
-/// @{
-
-/* ////////////////////////////////////////////////////////////////////////////
+/* /////////////////////////////////////////////////////////////////////////
  * grab_cstring_buffer
  *
  * This class is used to scope the aquisition and release of a CString buffer
@@ -154,14 +140,14 @@ private:
     class_type &operator =(class_type const &rhs);
 };
 
-///////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Unit-testing
 
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/grab_cstring_buffer_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
 
-////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////
 // Implementation
 
 inline grab_cstring_buffer::grab_cstring_buffer(CString &str, int length) stlsoft_throw_1(CMemoryException *)
@@ -216,11 +202,7 @@ inline int grab_cstring_buffer::original_length() const
     return m_originalLen;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
-
-/// @} // end of group mfcstl_string_library
-
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #ifndef _MFCSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \
@@ -232,8 +214,8 @@ inline int grab_cstring_buffer::original_length() const
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_MFCSTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 #endif /* !MFCSTL_INCL_MFCSTL_HPP_GRAB_CSTRING_BUFFER */
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
