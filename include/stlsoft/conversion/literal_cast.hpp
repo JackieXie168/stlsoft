@@ -4,11 +4,11 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     9th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       43
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -217,4 +217,4 @@ public: static void f() {}
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_LITERAL_CAST */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

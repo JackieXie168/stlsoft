@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     1st May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    1
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     72
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1051,4 +1051,4 @@ public:
 
 #endif /* INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     1st May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MAJOR       4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_MINOR       0
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_REVISION    3
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        32
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FUNCTIONALS_EDIT        33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -252,4 +252,4 @@ private:
 
 #endif /* INETSTL_INCL_INETSTL_FILESYSTEM_HPP_FUNCTIONALS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

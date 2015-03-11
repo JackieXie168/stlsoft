@@ -4,11 +4,11 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     14th October 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    7
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        30
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -463,4 +463,4 @@ using ::comstl::c_str_ptr_null_o;
 
 #endif /* !COMSTL_INCL_COMSTL_ERROR_HPP_ERRORINFO_DESC */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

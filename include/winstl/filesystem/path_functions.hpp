@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     6th June 2006
- * Updated:     1st February 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MAJOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_REVISION   3
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       13
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -317,4 +317,4 @@ ws_size_t path_squeeze(S const& path, C *buffer, ws_size_t cchBuffer)
 
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PATH_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

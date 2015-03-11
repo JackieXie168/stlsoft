@@ -4,7 +4,7 @@
  * Purpose:     Contains the stlsoft::mem_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     8th June 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   3
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       61
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -1921,4 +1921,4 @@ inline stdcall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (STLSOFT_STDCAL
 
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

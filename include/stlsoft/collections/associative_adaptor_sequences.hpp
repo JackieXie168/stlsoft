@@ -4,11 +4,11 @@
  * Purpose:     Include file for all associative sequences.
  *
  * Created:     28th January 2005
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MAJOR    2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_MINOR    0
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_REVISION 2
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     14
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,4 +82,4 @@ STLSOFT_COMPILER_IS_WATCOM:
 
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_ADAPTOR_SEQUENCES */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     UNIXSTL process-time performance counter class.
  *
  * Created:     9th June 2006
- * Updated:     1st October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     1
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  7
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      12
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -366,4 +366,4 @@ inline processtimes_counter::interval_type processtimes_counter::get_microsecond
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

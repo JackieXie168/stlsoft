@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::ptr_ifun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     9th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_MINOR    1
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_REVISION 2
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_EDIT     9
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -366,4 +366,4 @@ inline ref2ptr_1_STDCALL_void_t<T> ref2ptr_void(void (STLSOFT_STDCALL *p)(T*))
 
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_INDIRECT_FUNCTION_POINTER_ADAPTORS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

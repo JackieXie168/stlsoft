@@ -4,14 +4,14 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     61
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -510,4 +510,4 @@ inline sequence_range<S> make_sequence_range(S const& s)
 
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

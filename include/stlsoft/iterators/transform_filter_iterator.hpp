@@ -4,11 +4,11 @@
  * Purpose:     A combination of the transform_iterator and the filter_iterator.
  *
  * Created:     2nd January 2006
- * Updated:     1st February 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_REVISION  3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_EDIT      10
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_EDIT      11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -163,4 +163,4 @@ inline transform_iterator<filter_iterator<I, FP>, TF> transform_filter(I from, I
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     12th May 2003
- * Updated:     1st October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_EDIT       43
+# define WINSTL_VER_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE_EDIT       44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -192,4 +192,4 @@ private:
 
 #endif /* WINSTL_INCL_WINSTL_WINDOW_HPP_SETCURSOR_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

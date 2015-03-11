@@ -4,13 +4,13 @@
  * Purpose:     TOOLHELP module sequence class.
  *
  * Created:     21st May 2005
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Thanks:      To Pablo for contributing this great library.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Pablo Aguilar
+ * Copyright (c) 2005-2009, Pablo Aguilar
  * Copyright (c) 2006-2007, Matthew Wilson
  * All rights reserved.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_REVISION    2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        8
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,4 +150,4 @@ inline DWORD get_pid(MODULEENTRY32 const& me)
 
 #endif // WINSTL_INCL_WINSTL_TOOLHELP_HPP_MODULE_SEQUENCE
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

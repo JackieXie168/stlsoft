@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     1st May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MAJOR      5
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_MINOR      1
 # define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_REVISION   3
-# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       60
+# define INETSTL_VER_INETSTL_NETWORK_HPP_SESSION_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -404,4 +404,4 @@ inline HINTERNET get_handle(basic_session<C, X, T> &s)
 
 #endif /* INETSTL_INCL_INETSTL_NETWORK_HPP_SESSION */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

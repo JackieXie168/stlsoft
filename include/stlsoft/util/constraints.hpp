@@ -4,7 +4,7 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     25th May 2008
+ * Updated:     10th August 2009
  *
  * Thanks:      To Peter Bannister for having the clear thinking to see the
  *              obvious (but only in hindsight) tactic of overloading the
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MAJOR      5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_REVISION   2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       96
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_CONSTRAINTS_EDIT       97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -689,4 +689,4 @@ inline ss_bool_t operator ==(T2 const& lhs, not_implicitly_comparable const& rhs
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_CONSTRAINTS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

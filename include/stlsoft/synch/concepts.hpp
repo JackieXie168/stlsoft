@@ -4,11 +4,11 @@
  * Purpose:     Synchronisation concept tags.
  *
  * Created:     16th January 2006
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_MINOR       0
 # define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_REVISION    3
-# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        10
+# define STLSOFT_VER_STLSOFT_HPP_SYNCH_HPP_CONCEPTS_FWD_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -257,4 +257,4 @@ namespace concept_check
 
 #endif /* !STLSOFT_INCL_STLSOFT_SYNCH_HPP_CONCEPTS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

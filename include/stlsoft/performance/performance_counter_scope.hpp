@@ -4,11 +4,11 @@
  * Purpose:     Performance counter scope class.
  *
  * Created:     20th July 2002
- * Updated:     12th March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     40
+# define STLSOFT_VER_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE_EDIT     41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -139,4 +139,4 @@ private:
 
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_PERFORMANCE_COUNTER_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

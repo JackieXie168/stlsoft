@@ -4,7 +4,7 @@
  * Purpose:     Special string instance class template.
  *
  * Created:     3rd June 2006
- * Updated:     28th January 2009
+ * Updated:     10th August 2009
  *
  * Thanks to:   Pablo Aguilar for spotting my omission of string access shims
  *              for special_string_instance_1.
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MAJOR       1
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_REVISION    5
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        18
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE_EDIT        19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -967,4 +967,4 @@ inline ss_size_t c_str_len_w(stlsoft_ns_qual(special_string_instance_1)<P> const
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

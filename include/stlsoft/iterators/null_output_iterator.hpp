@@ -4,7 +4,7 @@
  * Purpose:     Null output iterator.
  *
  * Created:     18th February 2006
- * Updated:     6th May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_REVISION    4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        15
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR_EDIT        16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -214,4 +214,4 @@ public:
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_NULL_OUTPUT_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

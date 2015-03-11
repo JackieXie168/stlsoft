@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     23rd February 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR      2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR      1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION   2
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       35
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -383,4 +383,4 @@ typedef basic_commandline_parser<TCHAR>         commandline_parser;
 
 #endif /* WINSTL_INCL_WINSTL_SYSTEM_HPP_COMMANDLINE_PARSER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

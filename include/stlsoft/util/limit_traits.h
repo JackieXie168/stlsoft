@@ -7,7 +7,7 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     22nd May 2009
+ * Updated:     10th August 2009
  *
  * Thanks:      To Jonathan Wakely for help with Solaris compatibility.
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_REVISION 6
-# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     59
+# define STLSOFT_VER_STLSOFT_UTIL_H_LIMIT_TRAITS_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -528,4 +528,4 @@ struct limit_traits<unsigned long>
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_H_LIMIT_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

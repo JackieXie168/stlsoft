@@ -4,11 +4,11 @@
  * Purpose:     Adaptor classes for creating COM collection instances.
  *
  * Created:     16th April 1999
- * Updated:     9th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MAJOR     3
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_MINOR     2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_REVISION  2
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      106
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS_EDIT      107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -420,4 +420,4 @@ class simple_automation_collection
 
 #endif /* !ATLSTL_INCL_ATLSTL_AUTOMATION_HPP_AUTOMATION_COLLECTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

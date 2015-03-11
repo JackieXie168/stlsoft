@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     4th March 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        42
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -351,4 +351,4 @@ inline std::basic_ostream<C>& operator <<(std::basic_ostream<C> &s, stlsoft::bas
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

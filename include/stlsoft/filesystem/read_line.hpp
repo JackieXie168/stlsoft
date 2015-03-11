@@ -4,11 +4,11 @@
  * Purpose:     Definition of stlsoft::read_line() function template.
  *
  * Created:     2nd January 2007
- * Updated:     1st October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      9
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -363,4 +363,4 @@ ss_bool_t read_line(FILE* stm, S& line, read_line_flags::flags_t flags = read_li
 
 #endif /* !STLSOFT_INCL_STLSOFT_FILESYSTEM_HPP_READ_LINE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

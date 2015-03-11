@@ -4,11 +4,11 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_REVISION 3
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     25
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -231,4 +231,4 @@ struct allocator_selector
 
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     SupportErrorInfoImpl class.
  *
  * Created:     17th April 1999
- * Updated:     2nd June 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MAJOR     5
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_MINOR     0
 # define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_REVISION  1
-# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      66
+# define ATLSTL_VER_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO_EDIT      67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -236,4 +236,4 @@ public:
 
 #endif /* !ATLSTL_INCL_ATLSTL_ERROR_HPP_SUPPORT_ERROR_INFO */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

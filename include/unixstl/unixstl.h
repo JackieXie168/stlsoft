@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MAJOR    3
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_MINOR    7
 # define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_REVISION 1
-# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     87
+# define UNIXSTL_VER_UNIXSTL_H_UNIXSTL_EDIT     88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file unixstl/unixstl.h \brief [C, C++] The root header for the \ref group__project__unixstl "UNIXSTL" project. */
@@ -697,4 +697,4 @@ namespace unixstl = ::stlsoft::unixstl_project;
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

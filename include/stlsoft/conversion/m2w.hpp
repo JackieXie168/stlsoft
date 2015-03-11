@@ -4,11 +4,11 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     27th October 2008
- * Updated:     27th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2008-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_MAJOR       1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_MINOR       0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_REVISION    1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_EDIT        1
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_M2W_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,4 +91,4 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 
 #endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_M2W */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

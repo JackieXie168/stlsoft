@@ -4,7 +4,7 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     21st April 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        35
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -311,4 +311,4 @@ private:
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

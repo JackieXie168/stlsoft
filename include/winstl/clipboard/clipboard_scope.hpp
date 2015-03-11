@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     12th August 2008
+ * Updated:     10th August 2009
  *
  * Thanks:      To Martin Moene for reporting the problem with the data type
  *              in set_data_or_deallocate_and_throw_(), and for calling for
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   7
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       33
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -527,4 +527,4 @@ inline void clipboard_scope::get_data(HPALETTE& hPal) const stlsoft_throw_1(clip
 
 #endif /* WINSTL_INCL_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

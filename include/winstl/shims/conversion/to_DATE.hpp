@@ -4,11 +4,11 @@
  * Purpose:     Includes all winstl::to_DATE conversion shims.
  *
  * Created:     21st October 2007
- * Updated:     6th November 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_MAJOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_MINOR       0
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_REVISION    2
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_EDIT        2
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE_EDIT        3
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,4 +89,4 @@ STLSOFT_COMPILER_IS_GCC:
 
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_HPP_TO_DATE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

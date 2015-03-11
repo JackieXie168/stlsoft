@@ -4,7 +4,7 @@
  * Purpose:     Restartable tokenising functions.
  *
  * Created:     6th January 2001
- * Updated:     24th January 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_MINOR      0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_REVISION   2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       21
+# define STLSOFT_VER_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -247,4 +247,4 @@ find_next_token(
 
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_TOKENISER_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

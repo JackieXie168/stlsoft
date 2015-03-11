@@ -4,11 +4,11 @@
  * Purpose:     Definition of the has_iterator member type detector.
  *
  * Created:     19th November 1998
- * Updated:     9th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_EDIT        129
+# define STLSOFT_VER_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR_EDIT        130
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -127,4 +127,4 @@ struct has_iterator<void>
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

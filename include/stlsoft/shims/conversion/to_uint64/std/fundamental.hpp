@@ -4,11 +4,11 @@
  * Purpose:     Contains the to_uint64 access shim.
  *
  * Created:     4th July 2007
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        5
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -131,4 +131,4 @@ inline ss_uint64_t to_uint64(ss_uint64_t i)
 
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_TO_UINT64_STD_HPP_FUNDAMENTAL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

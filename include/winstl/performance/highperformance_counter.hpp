@@ -4,11 +4,11 @@
  * Purpose:     WinSTL high performance counter class.
  *
  * Created:     19th October 1998
- * Updated:     1st October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MAJOR    4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_MINOR    0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_REVISION 3
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     82
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -329,4 +329,4 @@ inline highperformance_counter::interval_type highperformance_counter::get_micro
 
 #endif /* !WINSTL_INCL_WINSTL_PERFORMANCE_HPP_HIGHPERFORMANCE_COUNTER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

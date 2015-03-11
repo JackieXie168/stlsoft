@@ -4,11 +4,11 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     29th May 2006
- * Updated:     8th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR       1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION    1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        10
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT        11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -154,4 +154,4 @@ inline bool_t remove_directory_recurse(S const& dir)
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

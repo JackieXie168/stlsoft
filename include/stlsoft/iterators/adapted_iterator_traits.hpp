@@ -4,11 +4,11 @@
  * Purpose:     Traits for detecting characteristics of adapted iterators.
  *
  * Created:     9th July 2004
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    5
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     47
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -413,4 +413,4 @@ struct adapted_iterator_traits<T const volatile*>
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

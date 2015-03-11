@@ -4,14 +4,14 @@
  * Purpose:     Comparison functions for Windows time structures.
  *
  * Created:     21st November 2003
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Thanks to:   Mikael Pahmp, for spotting the failure to handle 24-hour
  *              time pictures.
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MAJOR      5
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_MINOR      0
 # define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_REVISION   4
-# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       57
+# define WINSTL_VER_WINSTL_TIME_HPP_FORMAT_FUNCTIONS_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -432,4 +432,4 @@ inline int STLSOFT_STDCALL GetTimeFormat_msW(   LCID                locale      
 
 #endif /* !WINSTL_INCL_WINSTL_TIME_HPP_FORMAT_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     cstring_concatenator_iterator class template.
  *
  * Created:     20th June 2005
- * Updated:     22nd March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       27
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -314,4 +314,4 @@ inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t *pN
 
 #endif /* !STLSOFT_INCL_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

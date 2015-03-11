@@ -4,11 +4,11 @@
  * Purpose:     Includes all winstl::to_FILETIME conversion shims.
  *
  * Created:     15th December 2006
- * Updated:     15th September 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MAJOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_MINOR       1
 # define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_REVISION    3
-# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        6
+# define WINSTL_VER_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,4 +77,4 @@
 
 #endif /* !WINSTL_INCL_WINSTL_SHIMS_CONVERSION_HPP_TO_FILETIME */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

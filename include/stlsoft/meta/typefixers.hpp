@@ -4,11 +4,11 @@
  * Purpose:     Combined header file for STLSoft's TypeFixer utility components.
  *
  * Created:     24th April 2005
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       10
+# define STLSOFT_VER_STLSOFT_META_HPP_TYPEFIXERS_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -113,4 +113,4 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER < 1310
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_TYPEFIXERS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

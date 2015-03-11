@@ -4,11 +4,11 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     29th December 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_MINOR    0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     59
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_PRINTF_TRAITS_EDIT     60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -281,4 +281,4 @@ struct printf_traits<unsigned long>
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_PRINTF_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

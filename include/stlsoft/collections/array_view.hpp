@@ -6,11 +6,11 @@
  *              problems.
  *
  * Created:     11th November 2002
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MAJOR       4
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_MINOR       1
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_REVISION    1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        69
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW_EDIT        70
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -494,4 +494,4 @@ inline array_view<const T> make_array_view(T const* p, ss_size_t n)
 
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ARRAY_VIEW */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

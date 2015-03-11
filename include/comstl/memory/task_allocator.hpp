@@ -4,11 +4,11 @@
  * Purpose:     task_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MAJOR      4
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_MINOR      0
 # define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_REVISION   4
-# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       86
+# define COMSTL_VER_COMSTL_MEMORY_HPP_TASK_ALLOCATOR_EDIT       87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -247,4 +247,4 @@ inline cs_bool_t operator !=(const task_allocator<T> &/* lhs */, const task_allo
 
 #endif /* !COMSTL_INCL_COMSTL_MEMORY_HPP_TASK_ALLOCATOR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

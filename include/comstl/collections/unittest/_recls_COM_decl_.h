@@ -1,6 +1,6 @@
 
 // Created: 13th December 2005
-// Updated: 8th March 2008
+// Updated: 10th August 2009
 
 #ifndef COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_
 #define COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_
@@ -187,4 +187,4 @@ namespace stlsoft
 
 #endif /* COMSTL_INCL_COMSTL_UNITTEST_H__RECLS_COM_DECL_ */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

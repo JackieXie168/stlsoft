@@ -4,11 +4,11 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     22nd March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    1
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     35
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -225,4 +225,4 @@ private:
 
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_PIPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

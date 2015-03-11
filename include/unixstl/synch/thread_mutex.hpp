@@ -4,7 +4,7 @@
  * Purpose:     Intra-process mutex, based on PTHREADS pthread_mutex_t.
  *
  * Created:     17th December 1996
- * Updated:     6th May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MAJOR       4
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        55
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_THREAD_MUTEX_EDIT        56
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -428,4 +428,4 @@ public:
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_THREAD_MUTEX */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

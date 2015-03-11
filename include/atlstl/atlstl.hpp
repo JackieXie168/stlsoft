@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     21st July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     4
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      104
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      105
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -553,4 +553,4 @@ namespace atlstl = ::stlsoft::atlstl_project;
 
 #endif /* ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

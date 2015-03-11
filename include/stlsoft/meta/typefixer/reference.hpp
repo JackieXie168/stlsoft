@@ -4,11 +4,11 @@
  * Purpose:     Definition of the fixer_reference and fixer_const_reference types.
  *
  * Created:     9th February 2004
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_MINOR     0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_REVISION  1
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_EDIT      30
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_REFERENCE_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,4 +159,4 @@ struct fixer_const_reference<T, false>
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_REFERENCE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     Algorithms for manipulating unordered sequences.
  *
  * Created:     17th January 2002
- * Updated:     22nd September 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MAJOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_MINOR     3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_REVISION  2
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      70
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_UNORDERED_EDIT      71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -467,4 +467,4 @@ inline ss_bool_t unordered_includes(I1 first1, I1 last1, I2 first2, I2 last2)
 
 #endif /* !STLSOFT_INCL_STLSOFT_ALGORITHMS_HPP_UNORDERED */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

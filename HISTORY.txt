@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  24th July 2009
+; Updated:  11th August 2009
 
 ============================================================================
+
+
+11th August 2009 - 1.9.87 released
+----------------------------------
+
+ * trivial formatting changes
 
 
 24th July 2009 - 1.9.86 released

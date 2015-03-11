@@ -4,11 +4,11 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     11th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_EDIT       52
+# define UNIXSTL_VER_UNIXSTL_SHIMS_ACCESS_HPP_STRING_EDIT       53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -70,4 +70,4 @@
 
 #endif /* !UNIXSTL_INCL_UNIXSTL_SHIMS_ACCESS_HPP_STRING */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

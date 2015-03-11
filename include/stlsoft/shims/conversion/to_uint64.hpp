@@ -4,11 +4,11 @@
  * Purpose:     Contains the to_uint64 conversion shim.
  *
  * Created:     4th July 2007
- * Updated:     4th July 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2007-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64_MAJOR       1
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64_MINOR       0
 # define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64_REVISION    1
-# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64_EDIT        1
+# define STLSOFT_VER_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64_EDIT        2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -76,4 +76,4 @@
 
 #endif /* !STLSOFT_INCL_STLSOFT_SHIMS_CONVERSION_HPP_TO_UINT64 */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

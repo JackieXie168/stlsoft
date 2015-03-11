@@ -4,11 +4,11 @@
  * Purpose:     Interface management helper classes.
  *
  * Created:     2nd November 1994
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1994-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1994-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MAJOR      7
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_MINOR      2
 # define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_REVISION   2
-# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       497
+# define COMSTL_VER_COMSTL_SMARTPTR_HPP_INTERFACE_PTR_EDIT       498
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -395,4 +395,4 @@ namespace std
 
 #endif /* !COMSTL_INCL_COMSTL_SMARTPTR_HPP_INTERFACE_PTR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

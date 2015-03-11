@@ -4,11 +4,11 @@
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     9th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  4
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      118
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      119
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -180,4 +180,4 @@ struct size_type
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

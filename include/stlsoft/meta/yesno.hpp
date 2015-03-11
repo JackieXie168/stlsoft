@@ -4,11 +4,11 @@
  * Purpose:     yes / no classes.
  *
  * Created:     16th May 2005
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MAJOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_MINOR       3
 # define STLSOFT_VER_STLSOFT_META_HPP_YESNO_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        13
+# define STLSOFT_VER_STLSOFT_META_HPP_YESNO_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -132,4 +132,4 @@ struct value_to_yesno_type<0>
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

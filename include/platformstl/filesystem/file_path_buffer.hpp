@@ -4,11 +4,11 @@
  * Purpose:     Platform header for the file_path_buffer components.
  *
  * Created:     20th March 2005
- * Updated:     29th December 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       22
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -258,4 +258,4 @@ namespace platformstl_project
 
 #endif /* !PLATFORMSTL_INCL_PLATFORMSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,7 +4,7 @@
  * Purpose:     Contains the shared_ptr template class.
  *
  * Created:     17th June 2002
- * Updated:     26th April 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MAJOR       3
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_MINOR       2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_REVISION    3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        36
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SHARED_PTR_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -489,4 +489,4 @@ namespace std
 
 #endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SHARED_PTR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -5,7 +5,7 @@
  *              enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     16th February 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MAJOR    5
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_MINOR    1
 # define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     163
+# define COMSTL_VER_COMSTL_UTIL_HPP_VALUE_POLICIES_EDIT     164
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -535,4 +535,4 @@ public:
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_VALUE_POLICIES */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

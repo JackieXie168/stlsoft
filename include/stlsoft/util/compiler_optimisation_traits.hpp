@@ -4,11 +4,11 @@
  * Purpose:     compiler_optimisation_traits class.
  *
  * Created:     15th November 2003
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MAJOR       4
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_MINOR       0
 # define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        20
+# define STLSOFT_VER_H_STLSOFT_COMPILER_OPTIMISATION_TRAITS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -349,4 +349,4 @@ public:
 
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_COMPILER_OPTIMISATION_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

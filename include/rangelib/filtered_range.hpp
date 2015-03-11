@@ -4,11 +4,11 @@
  * Purpose:     Range filter adaptor.
  *
  * Created:     9th July 2004
- * Updated:     6th December 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_MINOR    5
 # define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     30
+# define RANGELIB_VER_RANGELIB_HPP_FILTERED_RANGE_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -333,4 +333,4 @@ inline filtered_range<R, P> filter_range(R r, P pr)
 
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_FILTERED_RANGE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     12th March 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MAJOR       4
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_MINOR       0
 # define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_REVISION    1
-# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        96
+# define ATLSTL_VER_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR_EDIT        97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -258,4 +258,4 @@ using ::atlstl::c_str_ptr_null_w;
 
 #endif /* !ATLSTL_INCL_ATLSTL_SHIMS_ACCESS_STRING_HPP_CCOMBSTR */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

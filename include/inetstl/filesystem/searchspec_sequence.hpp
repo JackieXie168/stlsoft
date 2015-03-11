@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     1st May 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MAJOR      5
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_MINOR      1
 # define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_REVISION   5
-# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       54
+# define STLSOFT_VER_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -527,4 +527,4 @@ private:
 
 #endif /* INETSTL_INCL_INETSTL_FILESYSTEM_HPP_SEARCHSPEC_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

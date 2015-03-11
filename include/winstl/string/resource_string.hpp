@@ -4,7 +4,7 @@
  * Purpose:     basic_resource_string class.
  *
  * Created:     1st November 1994
- * Updated:     23rd January 2009
+ * Updated:     10th August 2009
  *
  * Thanks to:   Ryan Ginstrom for suggesting the implementation for handling
  *              Unicode strings on Win9x.
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MAJOR    4
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_MINOR    2
 # define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_REVISION 4
-# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     82
+# define WINSTL_VER_WINSTL_STRING_HPP_RESOURCE_STRING_EDIT     83
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -444,4 +444,4 @@ inline ss_size_t c_str_len(basic_resource_string<S, X> const& s)
 
 #endif /* !WINSTL_INCL_WINSTL_STRING_HPP_RESOURCE_STRING */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -4,11 +4,11 @@
  * Purpose:     variant class.
  *
  * Created:     12th December 1996
- * Updated:     23rd August 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1996-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1996-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MAJOR      2
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_MINOR      3
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_REVISION   1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       150
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_VARIANT_EDIT       151
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -698,4 +698,4 @@ namespace stlsoft
 
 #endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_COMSTL_VARIANT */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

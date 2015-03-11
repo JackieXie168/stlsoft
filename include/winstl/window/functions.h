@@ -4,11 +4,11 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     17th May 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2000-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2000-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  10
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      65
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      66
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -615,4 +615,4 @@ inline HWND FindFirstChildById(HWND hwndParent, int id)
 
 #endif /* WINSTL_INCL_WINSTL_WINDOW_H_FUNCTIONS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

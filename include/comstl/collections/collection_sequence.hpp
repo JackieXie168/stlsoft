@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     16th February 2009
+ * Updated:     10th August 2009
  *
  * Thanks:      To Eduardo Bezerra and Vivi Orunitia for reporting
  *              incompatibilities with Borland's 5.82 (Turbo C++). The awful
@@ -56,7 +56,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 10
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     102
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     103
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -455,4 +455,4 @@ private:
 
 #endif /* !COMSTL_INCL_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

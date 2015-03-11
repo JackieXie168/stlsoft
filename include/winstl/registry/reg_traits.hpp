@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     19th May 2009
+ * Updated:     10th August 2009
  *
  * Thanks to:   Sam Fisher for requesting reg_delete_tree().
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    5
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 1
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     76
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -633,4 +633,4 @@ private:
 
 #endif /* WINSTL_INCL_WINSTL_REGISTRY_HPP_REG_TRAITS */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

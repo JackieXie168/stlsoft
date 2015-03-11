@@ -4,11 +4,11 @@
  * Purpose:     Wrapper class for UNIX PThreads TSS key.
  *
  * Created:     21st January 1999
- * Updated:     10th October 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MAJOR      3
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       48
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_TSS_INDEX_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -271,4 +271,4 @@ private:
 
 #endif /* UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_TSS_INDEX */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

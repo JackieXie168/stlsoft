@@ -4,11 +4,11 @@
  * Purpose:     is_compound_type meta class.
  *
  * Created:     19th November 1998
- * Updated:     9th March 2008
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_REVISION 3
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     7
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_COMPOUND_TYPE_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,4 +125,4 @@ struct is_compound_type
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_COMPOUND_TYPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

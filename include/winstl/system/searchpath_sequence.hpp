@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     28th January 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    2
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     93
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     94
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -737,4 +737,4 @@ inline ss_typename_type_ret_k basic_searchpath_sequence<C, T>::value_type basic_
 
 #endif /* WINSTL_INCL_WINSTL_SYSTEM_HPP_SEARCHPATH_SEQUENCE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

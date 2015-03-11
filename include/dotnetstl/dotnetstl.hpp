@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     12th May 2003
- * Updated:     21st July 2009
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_MINOR    4
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_REVISION 2
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     49
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DOTNETSTL_EDIT     50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file dotnetstl/dotnetstl.hpp
@@ -417,4 +417,4 @@ namespace dotnetstl = ::stlsoft::dotnetstl_project;
 
 #endif /* DOTNETSTL_INCL_DOTNETSTL_HPP_DOTNETSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

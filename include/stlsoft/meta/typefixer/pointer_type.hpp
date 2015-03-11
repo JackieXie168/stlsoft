@@ -4,11 +4,11 @@
  * Purpose:     Definition of the fixer_pointer_type and fixer_const_pointer_type types.
  *
  * Created:     17th October 2004
- * Updated:     10th January 2007
+ * Updated:     10th August 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_MAJOR      2
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_MINOR      0
 # define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_REVISION   1
-# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_EDIT       17
+# define STLSOFT_VER_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE_EDIT       18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -159,4 +159,4 @@ struct fixer_const_pointer_type<T, false>
 
 #endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_POINTER_TYPE */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */
