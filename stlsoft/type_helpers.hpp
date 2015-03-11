@@ -4,7 +4,7 @@
  * Purpose:     Type assistor classes.
  *
  * Created:     5th December 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_TYPE_HELPERS_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_TYPE_HELPERS_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_TYPE_HELPERS_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_TYPE_HELPERS_EDIT      16
+# define STLSOFT_VER_STLSOFT_HPP_TYPE_HELPERS_EDIT      17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,12 @@ namespace stlsoft
  * Classes
  */
 
-/// Defines a type with a \c value_type member type
-///
-/// \param T The type
+/** \brief Defines a type with a \c value_type member type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The type
+ */
 template <ss_typename_param_k T>
 struct make_value_type
 {

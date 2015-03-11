@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_session class.
  *
  * Created:     30th April 1999
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define INETSTL_VER_INETSTL_HPP_SESSION_MAJOR      4
 # define INETSTL_VER_INETSTL_HPP_SESSION_MINOR      3
 # define INETSTL_VER_INETSTL_HPP_SESSION_REVISION   1
-# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       50
+# define INETSTL_VER_INETSTL_HPP_SESSION_EDIT       51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,9 +98,12 @@ namespace inetstl_project
  * Classes
  */
 
-/// Represents an internet session
-///
-/// \note A session is required for WinInet, as it represents an initialisation of the WinInet libraries
+/** \brief Represents an internet session
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note A session is required for WinInet, as it represents an initialisation of the WinInet libraries
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         ,   ss_typename_param_k X   =   throw_internet_exception_policy
@@ -202,11 +205,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_session template for the ANSI character type \c char
+/** \brief Instantiation of the basic_session template for the ANSI character type \c char
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_session<is_char_a_t>  session_a;
-/// Instantiation of the basic_session template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_session template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_session<is_char_w_t>  session_w;
-/// Instantiation of the basic_session template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_session template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_session<TCHAR>        session;
 
 /* ////////////////////////////////////////////////////////////////////// */

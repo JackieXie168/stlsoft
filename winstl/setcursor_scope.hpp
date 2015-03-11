@@ -4,7 +4,7 @@
  * Purpose:     Cursor scoping class.
  *
  * Created:     12th May 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_REVISION   3
-# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       35
+# define WINSTL_VER_WINSTL_HPP_SETCURSOR_SCOPE_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,10 +93,13 @@ namespace winstl_project
  */
 
 // setcursor_scope
-/// \brief Provides scoping of a window's cursor.
-///
-/// This class provides scoping of the cursor of a window via the API
-/// function SetCursor().
+/** \brief Provides scoping of a window's cursor.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class provides scoping of the cursor of a window via the API
+ * function SetCursor().
+ */
 class setcursor_scope
 {
 public:
@@ -143,7 +146,10 @@ public:
         ::SetCursor(m_hcurLast);
     }
 
-/// Implementation
+/** \brief Implementation
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 private:
     static HCURSOR load_(HINSTANCE hinst, ws_char_a_t const *name)
     {
@@ -154,11 +160,17 @@ private:
         return ::LoadCursorW(hinst, name);
     }
 
-/// Members
+/** \brief Members
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 private:
     HCURSOR m_hcurLast;
 
-/// Not to be implemented
+/** \brief Not to be implemented
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 private:
     setcursor_scope(setcursor_scope const &);
     setcursor_scope &operator =(setcursor_scope const &);

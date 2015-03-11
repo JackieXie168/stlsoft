@@ -4,7 +4,7 @@
  * Purpose:     Explicit inheritance veneer class.
  *
  * Created:     13th January 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       29
+# define STLSOFT_VER_STLSOFT_HPP_EXPLICIT_INHERITANCE_VENEER_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,12 +79,13 @@ namespace stlsoft
 
 // class explicit_inheritance_veneer
 
-/// Applies a \c protected veneer over a type, which can be accessed only
-/// through conversions to the veneered type
-///
-/// \param T The type to be subject to the veneer
-///
-/// \ingroup concepts_veneer
+/** \brief Applies a \c protected veneer over a type, which can be accessed only
+ * through conversions to the veneered type
+ *
+ * \param T The type to be subject to the veneer
+ *
+ * \ingroup concepts_veneer
+ */
 template <ss_typename_param_k T>
 struct explicit_inheritance_veneer
     : protected T

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the \c contract_violation exception class.
  *
  * Created:     17th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_CONTRACT_VIOLATION_MAJOR    1
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_CONTRACT_VIOLATION_MINOR    2
 # define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_CONTRACT_VIOLATION_REVISION 2
-# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_CONTRACT_VIOLATION_EDIT     13
+# define STLSOFT_VER_STLSOFT_EXCEPTIONS_HPP_CONTRACT_VIOLATION_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,10 +79,13 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief Thrown when a contract has been violated
-///
-/// Exceptions deriving from this class may be caught, but they result in
-/// process termination at the end of the catch clause, or if they're not caught.
+/** \brief Thrown when a contract has been violated
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * Exceptions deriving from this class may be caught, but they result in
+ * process termination at the end of the catch clause, or if they're not caught.
+ */
 class contract_violation
     : public unrecoverable
 {

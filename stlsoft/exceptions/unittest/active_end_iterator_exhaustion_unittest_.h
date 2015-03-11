@@ -11,22 +11,22 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_active_end_iterator_exhaustion(unittest_reporter *r)
-        {
+	namespace
+	{
+		ss_bool_t test_stlsoft_active_end_iterator_exhaustion(unittest_reporter *r)
+		{
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-            using ::stlsoft::unittest::unittest_initialiser;
+			using ::stlsoft::unittest::unittest_initialiser;
 #endif /* compiler */
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "exceptions/active_end_iterator_exhaustion", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "exceptions/active_end_iterator_exhaustion", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_active_end_iterator_exhaustion(test_stlsoft_active_end_iterator_exhaustion);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_active_end_iterator_exhaustion(test_stlsoft_active_end_iterator_exhaustion);
+	} // anonymous namespace
 
 } // namespace unittest

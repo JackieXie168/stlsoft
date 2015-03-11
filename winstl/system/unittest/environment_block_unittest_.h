@@ -9,21 +9,21 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_environment_block(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_system_environment_block(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/environment_block", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/environment_block", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_system_environment_block(test_winstl_system_environment_block);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_system_environment_block(test_winstl_system_environment_block);
+	} // anonymous namespace
 
 } // namespace unittest
 

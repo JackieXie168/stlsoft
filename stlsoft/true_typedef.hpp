@@ -4,7 +4,7 @@
  * Purpose:     Contains the true_typedef class template.
  *
  * Created:     16th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_TRUE_TYPEDEF_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_TRUE_TYPEDEF_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_TRUE_TYPEDEF_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_TRUE_TYPEDEF_EDIT      64
+# define STLSOFT_VER_STLSOFT_HPP_TRUE_TYPEDEF_EDIT      65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,24 +82,27 @@ namespace stlsoft
  * thus generating a unique type uniquelong over base-type long.
  */
 
-/// This class is used to create strong types from base types, to facilitate
-/// type disambiguation, overloading and mutual incompatibility.
-///
-/// For example, the following code creates two types based on the \c int type:
-///
-/// &nbsp;&nbsp;<code>STLSOFT_GEN_OPAQUE(h_protocol_tt)</code><br>
-/// &nbsp;&nbsp;<code>STLSOFT_GEN_OPAQUE(h_port_tt)</code><br>
-/// &nbsp;&nbsp;<code>typedef true_typedef<long, h_protocol_tt>  protocol_tt;</code><br>
-/// &nbsp;&nbsp;<code>typedef true_typedef<long, h_port_tt>      port_tt;</code><br>
-/// <br>
-/// &nbsp;&nbsp;<code>protocol_tt pro1(3);    // Ok</code><br>
-/// &nbsp;&nbsp;<code>port_tt     prt1(8088); // Ok</code><br>
-/// &nbsp;&nbsp;<code>protocol_tt pro2(pro1); // Ok, can copy from another protocol_tt</code><br>
-/// &nbsp;&nbsp;<code>port_tt     prt2(pro2); // Error, cannot copy from a protocol_tt</code><br>
-///
-///
-/// \param T The base type, e.g. \c int, \c std::wstring
-/// \param U The unique type, usually created by using STLSOFT_GEN_OPAQUE()
+/** \brief This class is used to create strong types from base types, to facilitate
+ * type disambiguation, overloading and mutual incompatibility.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * For example, the following code creates two types based on the \c int type:
+ *
+ * &nbsp;&nbsp;<code>STLSOFT_GEN_OPAQUE(h_protocol_tt)</code><br>
+ * &nbsp;&nbsp;<code>STLSOFT_GEN_OPAQUE(h_port_tt)</code><br>
+ * &nbsp;&nbsp;<code>typedef true_typedef<long, h_protocol_tt>  protocol_tt;</code><br>
+ * &nbsp;&nbsp;<code>typedef true_typedef<long, h_port_tt>      port_tt;</code><br>
+ * <br>
+ * &nbsp;&nbsp;<code>protocol_tt pro1(3);    // Ok</code><br>
+ * &nbsp;&nbsp;<code>port_tt     prt1(8088); // Ok</code><br>
+ * &nbsp;&nbsp;<code>protocol_tt pro2(pro1); // Ok, can copy from another protocol_tt</code><br>
+ * &nbsp;&nbsp;<code>port_tt     prt2(pro2); // Error, cannot copy from a protocol_tt</code><br>
+ *
+ *
+ * \param T The base type, e.g. \c int, \c std::wstring
+ * \param U The unique type, usually created by using STLSOFT_GEN_OPAQUE()
+ */
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k U>

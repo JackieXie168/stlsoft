@@ -4,7 +4,7 @@
  * Purpose:     printf_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_MINOR    3
 # define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_REVISION 3
-# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_EDIT     48
+# define STLSOFT_VER_STLSOFT_HPP_PRINTF_TRAITS_EDIT     49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -197,19 +197,22 @@ namespace stlsoft
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/// Traits for determining the size, in printf-ed form, of the minimum and
-/// maximum values of types
-///
-/// printf_traits is a traits class for acquiring enum values representing the
-/// lengths, when expressed in string form, of the minimum and maximum values of
-/// the type, and the maximum of the two. The lengths are inclusive of the
-/// null terminator.
-///
-/// &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size_min == 6</code><br>
-/// &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size_max == 7</code><br>
-/// &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size == 7</code><br>
-///
-/// \param T The type
+/** \brief Traits for determining the size, in printf-ed form, of the minimum and
+ * maximum values of types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * printf_traits is a traits class for acquiring enum values representing the
+ * lengths, when expressed in string form, of the minimum and maximum values of
+ * the type, and the maximum of the two. The lengths are inclusive of the
+ * null terminator.
+ *
+ * &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size_min == 6</code><br>
+ * &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size_max == 7</code><br>
+ * &nbsp;&nbsp;<code>printf_traits<ss_sint16_t>::size == 7</code><br>
+ *
+ * \param T The type
+ */
 template <ss_typename_param_k T>
 struct printf_traits
 {

@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_difference_type type.
  *
  * Created:     16th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/typefixer/difference_type.hpp
-///
-/// Definition of the fixer_difference_type type.
+/** \file stlsoft/typefixer/difference_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::typefixer::difference_type
+ *   typefixer class template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE
 #define STLSOFT_INCL_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE_MINOR      3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE_EDIT       13
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_DIFFERENCE_TYPE_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,11 +94,14 @@ namespace typefixer
  * Classes
  */
 
-/// \brief Type-fixer for \c difference_type member type
-///
-/// If type \c T has a \c difference_type member type, then the type of
-/// <code>fixer_difference_type<T>::difference_type</code> is
-/// <code>T::difference_type</code>, otherwise it is \c void
+/** \brief Type-fixer for \c difference_type member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c difference_type member type, then the type of
+ * <code>fixer_difference_type<T>::difference_type</code> is
+ * <code>T::difference_type</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_difference_type

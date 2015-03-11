@@ -9,23 +9,23 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_filesystem_functionals(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-            using stlsoft::null_exception_policy;
+	namespace
+	{
+		ss_bool_t test_winstl_filesystem_functionals(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
+			using stlsoft::null_exception_policy;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "filesystem/functionals", __FILE__);
-
-
-            return bSuccess;
-        }
+			unittest_initialiser	init(r, "WinSTL", "filesystem/functionals", __FILE__);
 
 
-        unittest_registrar    unittest_winstl_filesystem_functionals(test_winstl_filesystem_functionals);
-    } // anonymous namespace
+			return bSuccess;
+		}
+
+
+		unittest_registrar	  unittest_winstl_filesystem_functionals(test_winstl_filesystem_functionals);
+	} // anonymous namespace
 
 } // namespace unittest

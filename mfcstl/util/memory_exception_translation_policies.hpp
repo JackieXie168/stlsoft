@@ -4,7 +4,7 @@
  * Purpose:     Contains .
  *
  * Created:     2nd February 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MAJOR     1
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_MINOR     0
 # define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_REVISION  1
-# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      3
+# define MFCSTL_VER_MFCSTL_UTIL_HPP_MEMORY_EXCEPTION_TRANSLATION_POLICIES_EDIT      4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,10 @@ namespace mfcstl_project
  * Classes
  */
 
-/// \brief Memory exception translation policy that ensures CMemoryException* is the thrown type in all cases
+/** \brief Memory exception translation policy that ensures CMemoryException* is the thrown type in all cases
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct CMemoryException_throwing_policy
 {
 public:
@@ -103,7 +106,10 @@ public:
     }
 };
 
-/// \brief Memory exception translation policy that ensures std::bad_alloc is the thrown type in all cases
+/** \brief Memory exception translation policy that ensures std::bad_alloc is the thrown type in all cases
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct bad_alloc_throwing_policy
 {
 public:

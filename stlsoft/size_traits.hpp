@@ -4,7 +4,7 @@
  * Purpose:     size_traits classes.
  *
  * Created:     24th August 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_EDIT       15
+# define STLSOFT_VER_STLSOFT_HPP_SIZE_TRAITS_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,8 +73,11 @@ namespace stlsoft
  * Classes
  */
 
-/// traits type for determining the signed and unsigned forms of a given integral
-/// type
+/** \brief traits type for determining the signed and unsigned forms of a given integral
+ * type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_size_t BYTES>
 struct int_size_traits
 {

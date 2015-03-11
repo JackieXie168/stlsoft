@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include platformstl/system/environment_variable_traits.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS
-# include <platformstl/system/environment_variable_traits.hpp>
-#endif /* !PLATFORMSTL_INCL_PLATFORMSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_TRAITS */
+#include <platformstl/system/environment_variable_traits.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

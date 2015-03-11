@@ -9,27 +9,27 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_argument_proxies(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_argument_proxies(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "argument_proxies", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "argument_proxies", __FILE__);
 
-    #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
+	#if 0
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
+	#endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_argument_proxies(test_stlsoft_argument_proxies);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_argument_proxies(test_stlsoft_argument_proxies);
+	} // anonymous namespace
 
 } // namespace unittest
 

@@ -11,40 +11,40 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_rangelib_exceptions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_rangelib_exceptions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "RangeLib", "exceptions", __FILE__);
+			unittest_initialiser	init(r, "RangeLib", "exceptions", __FILE__);
 
-            {
-                range_exception rx1;
+			{
+				range_exception rx1;
 
-                if(0 != ::strcmp(rx1.what(), "Range exception"))
-                {
-                    r->report("Default construction failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(0 != ::strcmp(rx1.what(), "Range exception"))
+				{
+					r->report("Default construction failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            {
-                range_exception rx2("A custom message");
+			{
+				range_exception rx2("A custom message");
 
-                if(0 != ::strcmp(rx2.what(), "A custom message"))
-                {
-                    r->report("Non-default construction failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(0 != ::strcmp(rx2.what(), "A custom message"))
+				{
+					r->report("Non-default construction failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_rangelib_exceptions(test_rangelib_exceptions);
-    } // anonymous namespace
+		unittest_registrar	  unittest_rangelib_exceptions(test_rangelib_exceptions);
+	} // anonymous namespace
 
 } // namespace unittest

@@ -4,7 +4,7 @@
  * Purpose:     Type-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_HPP_TYPE_FUNCTIONALS_MAJOR      3
 # define COMSTL_VER_HPP_TYPE_FUNCTIONALS_MINOR      1
 # define COMSTL_VER_HPP_TYPE_FUNCTIONALS_REVISION   1
-# define COMSTL_VER_HPP_TYPE_FUNCTIONALS_EDIT       55
+# define COMSTL_VER_HPP_TYPE_FUNCTIONALS_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,11 +97,14 @@ namespace comstl_project
  * Functionals
  */
 
-/// \brief Closes BSTRs
-///
-/// This function object closes BSTRs by applying
-/// SysFreeString() to them
-// [[synesis:class:unnary-functor: BSTR_close]]
+/** \brief Closes BSTRs
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object closes BSTRs by applying
+ * SysFreeString() to them
+ */
+// [[synesis:class:unary-functor: BSTR_close]]
 struct BSTR_close
     : public comstl_ns_qual_std(unary_function)<BSTR, void>
 {
@@ -114,11 +117,14 @@ struct BSTR_close
     }
 };
 
-/// \brief Close OLE strings
-///
-/// This function object closes OLE strings (LPOLESTR) by returning
-/// their memory back to the COM task allocator
-// [[synesis:class:unnary-functor: olestring_close]]
+/** \brief Close OLE strings
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object closes OLE strings (LPOLESTR) by returning
+ * their memory back to the COM task allocator
+ */
+// [[synesis:class:unary-functor: olestring_close]]
 struct olestring_close
     : public comstl_ns_qual_std(unary_function)<LPOLESTR, void>
 {
@@ -131,11 +137,14 @@ struct olestring_close
     }
 };
 
-/// \brief Close task memory blocks
-///
-/// This function object closes task memory blocks by returning
-/// their memory back to the COM task allocator
-// [[synesis:class:unnary-functor: task_memory_close]]
+/** \brief Close task memory blocks
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object closes task memory blocks by returning
+ * their memory back to the COM task allocator
+ */
+// [[synesis:class:unary-functor: task_memory_close]]
 struct task_memory_close
     : public comstl_ns_qual_std(unary_function)<void *, void>
 {
@@ -148,11 +157,14 @@ struct task_memory_close
     }
 };
 
-/// \brief Close VARIANTs
-///
-/// This function object closes VARIANTs by applying
-/// VariantClear() to them
-// [[synesis:class:unnary-functor: VARIANT_close]]
+/** \brief Close VARIANTs
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object closes VARIANTs by applying
+ * VariantClear() to them
+ */
+// [[synesis:class:unary-functor: VARIANT_close]]
 struct VARIANT_close
     : public comstl_ns_qual_std(unary_function)<VARIANT&, void>
 {

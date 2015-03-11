@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      0
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      1
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   1
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       210
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       212
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -79,9 +79,9 @@
 # ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
 #  include <winstl/filesystem/file_path_buffer.hpp>
 # endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem/filesystem_traits.hpp>
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -270,7 +270,10 @@ private:
  * Access shims
  */
 
-/// Returns the handle for the given module
+/** \brief Returns the handle for the given module
+ *
+ * \ingroup group__library__dl
+ */
 inline HINSTANCE get_handle(module const &m)
 {
     return m.get_handle();
@@ -332,7 +335,7 @@ inline module::module(module const &rhs)
     else
     {
         basic_file_path_buffer<ws_char_a_t> buffer;
-        ws_size_t                           cch =   filesystem_traits<ws_char_a_t>::get_module_filename(rhs.get_handle(), &buffer[0], buffer.size());
+        ws_size_t                           cch =   system_traits<ws_char_a_t>::get_module_filename(rhs.get_handle(), &buffer[0], buffer.size());
 
         if(0 == cch)
         {

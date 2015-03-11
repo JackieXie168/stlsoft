@@ -177,11 +177,11 @@ void simple_unittest_reporter::report(char const *message, int line, char const 
     if( NULL != baseFile &&
         '\0' != *baseFile)
     {
-		if(line < 0)
-		{
+        if(line < 0)
+        {
             printf("  %s:%s: (in %s): %s\n", m_projectName.c_str(), m_componentName.c_str(), baseFile, message);
-		}
-		else if(0 != line)
+        }
+        else if(0 != line)
         {
             printf("  %s(%d): (in %s): %s:%s: %s\n", m_fileName.c_str(), line, baseFile, m_projectName.c_str(), m_componentName.c_str(), message);
         }
@@ -193,10 +193,10 @@ void simple_unittest_reporter::report(char const *message, int line, char const 
     else
     {
         if(line < 0)
-		{
+        {
             printf("  %s:%s: %s\n", m_projectName.c_str(), m_componentName.c_str(), message);
-		}
-		else if(0 != line)
+        }
+        else if(0 != line)
         {
             printf("  %s(%d): %s:%s: %s\n", m_fileName.c_str(), line, m_projectName.c_str(), m_componentName.c_str(), message);
         }

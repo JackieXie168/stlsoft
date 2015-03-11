@@ -9,27 +9,27 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_rangelib_range_categories(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_rangelib_range_categories(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "RangeLib", "range_categories", __FILE__);
+			unittest_initialiser	init(r, "RangeLib", "range_categories", __FILE__);
 
-            // Just check the relationship between the indirect ranges
-            const indirect_range_tag        irt     =   indirect_range_tag();
-            basic_indirect_range_tag const  &birt   =   irt;
+			// Just check the relationship between the indirect ranges
+			const indirect_range_tag		irt 	=	indirect_range_tag();
+			basic_indirect_range_tag const	&birt	=	irt;
 
-            STLSOFT_SUPPRESS_UNUSED(birt);
+			STLSOFT_SUPPRESS_UNUSED(birt);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_rangelib_range_categories(test_rangelib_range_categories);
-    } // anonymous namespace
+		unittest_registrar	  unittest_rangelib_range_categories(test_rangelib_range_categories);
+	} // anonymous namespace
 
 } // namespace unittest
 

@@ -4,7 +4,7 @@
  * Purpose:     Basic functionals.
  *
  * Created:     19th January 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_MAJOR    2
 # define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_MINOR    2
 # define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_EDIT     39
+# define STLSOFT_VER_H_STLSOFT_FUNCTIONALS_EDIT     40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,10 @@ namespace stlsoft
 
 // struct noop_function
 //
-/// This functional performs no operation at all, and is simply a place-holder
+/** \brief This functional performs no operation at all, and is simply a place-holder
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 template <ss_typename_param_k T>
 // [[synesis:class:unary-functor: noop_function]]
@@ -102,7 +105,10 @@ public:
 
 // struct delete_instance
 //
-/// This functional deletes an object instance, via scalar delete
+/** \brief This functional deletes an object instance, via scalar delete
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 template <ss_typename_param_k T>
 // [[synesis:class:unary-functor: delete_instance]]
@@ -122,7 +128,10 @@ public:
 
 // struct delete_array
 //
-/// This functional deletes an array of objects, via vector delete
+/** \brief This functional deletes an array of objects, via vector delete
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 template <ss_typename_param_k T>
 // [[synesis:class:unary-functor: delete_array]]
@@ -143,17 +152,20 @@ public:
 #if 0
 // struct selector1st
 
-/// Selects the <b><code>first</code></b> member of an instance and applies the
-/// parameterising functional to it. This functional selects the \c first member
-/// of an instance (obviously this is usually the \c std::pair type), and
-/// applies the parameterising functional to it.
-///
-/// For example, if you have a std::map and wish to write out the keys
-/// with a dump_key functional, you could achieve this with the following:
-///
-/// &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::selector1st<dump_key>());</code>
-///
-/// \param F The parameterising functional
+/** \brief Selects the <b><code>first</code></b> member of an instance and applies the
+ * parameterising functional to it. This functional selects the \c first member
+ * of an instance (obviously this is usually the \c std::pair type), and
+ * applies the parameterising functional to it.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * For example, if you have a std::map and wish to write out the keys
+ * with a dump_key functional, you could achieve this with the following:
+ *
+ * &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::selector1st<dump_key>());</code>
+ *
+ * \param F The parameterising functional
+ */
 template<   ss_typename_param_k F
 #ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
@@ -213,19 +225,22 @@ inline selector1st<F> select1st(F f)
 
 // struct selector2nd
 //
-/// \brief Selects the <b><code>second</code></b> member of an instance and
-/// applies the parameterising functional to it.
-///
-/// This functional selects the "second" member of an instance (obviously
-/// this is usually the std::pair type), and applies the parameterising
-/// functional to it.
-///
-/// For example, if you have a std::map and wish to write out the values
-/// with a dump_value functional, you could achieve this with the following:
-///
-/// &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::selector2nd<dump_value>());</code>
-///
-/// \param F The parameterising functional
+/** \brief Selects the <b><code>second</code></b> member of an instance and
+ * applies the parameterising functional to it.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This functional selects the "second" member of an instance (obviously
+ * this is usually the std::pair type), and applies the parameterising
+ * functional to it.
+ *
+ * For example, if you have a std::map and wish to write out the values
+ * with a dump_value functional, you could achieve this with the following:
+ *
+ * &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::selector2nd<dump_value>());</code>
+ *
+ * \param F The parameterising functional
+ */
 
 template<   ss_typename_param_k F
 #ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
@@ -277,17 +292,20 @@ private:
 
 // struct select_1st
 
-/// Selects the <b><code>first</code></b> member of an instance and applies the
-/// parameterising functional to it. This functional selects the \c first member
-/// of an instance (obviously this is usually the \c std::pair type), and
-/// applies the parameterising functional to it.
-///
-/// For example, if you have a std::map and wish to write out the keys
-/// with a dump_key functional, you could achieve this with the following:
-///
-/// &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::select_1st<dump_key>());</code>
-///
-/// \param F The parameterising functional
+/** \brief Selects the <b><code>first</code></b> member of an instance and applies the
+ * parameterising functional to it. This functional selects the \c first member
+ * of an instance (obviously this is usually the \c std::pair type), and
+ * applies the parameterising functional to it.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * For example, if you have a std::map and wish to write out the keys
+ * with a dump_key functional, you could achieve this with the following:
+ *
+ * &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::select_1st<dump_key>());</code>
+ *
+ * \param F The parameterising functional
+ */
 template<   ss_typename_param_k F
 #ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
         ,   ss_typename_param_k T
@@ -343,19 +361,22 @@ inline select_1st<F> make_1st_selector(F f)
 
 // struct select_2nd
 //
-/// \brief Selects the <b><code>second</code></b> member of an instance and
-/// applies the parameterising functional to it.
-///
-/// This functional selects the "second" member of an instance (obviously
-/// this is usually the std::pair type), and applies the parameterising
-/// functional to it.
-///
-/// For example, if you have a std::map and wish to write out the values
-/// with a dump_value functional, you could achieve this with the following:
-///
-/// &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::select_2nd<dump_value>());</code>
-///
-/// \param F The parameterising functional
+/** \brief Selects the <b><code>second</code></b> member of an instance and
+ * applies the parameterising functional to it.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This functional selects the "second" member of an instance (obviously
+ * this is usually the std::pair type), and applies the parameterising
+ * functional to it.
+ *
+ * For example, if you have a std::map and wish to write out the values
+ * with a dump_value functional, you could achieve this with the following:
+ *
+ * &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::select_2nd<dump_value>());</code>
+ *
+ * \param F The parameterising functional
+ */
 
 template<   ss_typename_param_k F
 #ifndef STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
@@ -400,18 +421,21 @@ private:
 
 // struct select_both
 //
-/// This functional selects both the \c first and \c second members of an instance
-/// (obviously this is usually the std::pair type), and applies the respective
-/// parameterising functionals to them.
-///
-/// For example, if you have a std::map and wish to write out the keys with the
-/// dump_key functional and the values with the dump_value functional, you could
-/// achieve this with the following:
-///
-/// &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::select_both<dump_key, dump_value>());</code>
-///
-/// \param F1 The functional to apply to the <b><code>first</code></b> part of the elements
-/// \param F2 The functional to apply to the <b><code>second</code></b> part of the elements
+/** \brief This functional selects both the \c first and \c second members of an instance
+ * (obviously this is usually the std::pair type), and applies the respective
+ * parameterising functionals to them.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * For example, if you have a std::map and wish to write out the keys with the
+ * dump_key functional and the values with the dump_value functional, you could
+ * achieve this with the following:
+ *
+ * &nbsp;&nbsp;<code>std::for_each(m.begin(), m.end(), stlsoft::select_both<dump_key, dump_value>());</code>
+ *
+ * \param F1 The functional to apply to the <b><code>first</code></b> part of the elements
+ * \param F2 The functional to apply to the <b><code>second</code></b> part of the elements
+ */
 
 template<   ss_typename_param_k F1
         ,   ss_typename_param_k F2

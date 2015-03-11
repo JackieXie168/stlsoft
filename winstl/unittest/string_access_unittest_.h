@@ -11,72 +11,72 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_string_access_HWND(unittest_reporter *r)
-        {
-            ss_bool_t   bSuccess = true;
+	namespace
+	{
+		ss_bool_t test_winstl_string_access_HWND(unittest_reporter *r)
+		{
+			ss_bool_t	bSuccess = true;
 
-            HWND        hwnd    =   ::CreateWindow("BUTTON", "Window #1", 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL);
+			HWND		hwnd	=	::CreateWindow("BUTTON", "Window #1", 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL);
 
-            if( NULL != hwnd &&
-                0 != strcmp("Window #1", c_str_ptr_a(hwnd)))
-            {
-                r->report("c_str_ptr(HWND) failed", __LINE__);
-                bSuccess = false;
-            }
+			if( NULL != hwnd &&
+				0 != strcmp("Window #1", c_str_ptr_a(hwnd)))
+			{
+				r->report("c_str_ptr(HWND) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        ss_bool_t test_winstl_string_access_LSA_UNICODE_STRING(unittest_reporter *r)
-        {
-            ss_bool_t   bSuccess = true;
+		ss_bool_t test_winstl_string_access_LSA_UNICODE_STRING(unittest_reporter *r)
+		{
+			ss_bool_t	bSuccess = true;
 
 #ifdef _NTSECAPI_
-            WCHAR               buffer[100] = L"LSA-String #1";
-            LSA_UNICODE_STRING  lsa1 =
-            {
-                    static_cast<USHORT>(wcslen(buffer))
-                ,   STLSOFT_NUM_ELEMENTS(buffer)
-                ,   buffer
-            };
+			WCHAR				buffer[100] = L"LSA-String #1";
+			LSA_UNICODE_STRING	lsa1 =
+			{
+					static_cast<USHORT>(wcslen(buffer))
+				,	STLSOFT_NUM_ELEMENTS(buffer)
+				,	buffer
+			};
 
-            if(0 != wcscmp(c_str_ptr(lsa1), L"LSA-String #1"))
-            {
-                r->report("c_str_ptr(LSA_UNICODE_STRING) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != wcscmp(c_str_ptr(lsa1), L"LSA-String #1"))
+			{
+				r->report("c_str_ptr(LSA_UNICODE_STRING) failed", __LINE__);
+				bSuccess = false;
+			}
 #else  /* ?_NTSECAPI_ */
-            STLSOFT_SUPPRESS_UNUSED(r);
+			STLSOFT_SUPPRESS_UNUSED(r);
 #endif /* _NTSECAPI_ */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        ss_bool_t test_winstl_string_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+		ss_bool_t test_winstl_string_access(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "string_access", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "string_access", __FILE__);
 
-            if(!test_winstl_string_access_HWND(r))
-            {
-                bSuccess = false;
-            }
+			if(!test_winstl_string_access_HWND(r))
+			{
+				bSuccess = false;
+			}
 
-            if(!test_winstl_string_access_LSA_UNICODE_STRING(r))
-            {
-                bSuccess = false;
-            }
+			if(!test_winstl_string_access_LSA_UNICODE_STRING(r))
+			{
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
 
-        unittest_registrar    unittest_winstl_string_access(test_winstl_string_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_string_access(test_winstl_string_access);
+	} // anonymous namespace
 
 } // namespace unittest

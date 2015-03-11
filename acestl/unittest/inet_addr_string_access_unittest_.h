@@ -9,20 +9,20 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_acestl_inet_addr_string_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_acestl_inet_addr_string_access(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "ACESTL", "inet_addr_string_access", __FILE__);
+			unittest_initialiser	init(r, "ACESTL", "inet_addr_string_access", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_acestl_inet_addr_string_access(test_acestl_inet_addr_string_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_acestl_inet_addr_string_access(test_acestl_inet_addr_string_access);
+	} // anonymous namespace
 
 } // namespace unittest

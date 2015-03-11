@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     24th April 2004
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define INETSTL_VER_INETSTL_H_INETSTL_MAJOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_MINOR    3
 # define INETSTL_VER_INETSTL_H_INETSTL_REVISION 1
-# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     30
+# define INETSTL_VER_INETSTL_H_INETSTL_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file inetstl/inetstl.h \brief [C, C++] The root header for the \ref group__project__inetstl "InetSTL" project. */
@@ -244,20 +244,29 @@
  * The macro inetstl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param expr Must be non-zero, or an assertion will be fired
+/** \brief Defines a runtime assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ */
 #define INETSTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
 
-/// Defines a runtime assertion, with message
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-/// \param msg The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
 #define INETSTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
-/// Defines a compile-time assertion
-///
-/// \param expr Must be non-zero, or compilation will fail
+/** \brief Defines a compile-time assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or compilation will fail
+ */
 #define INETSTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 
@@ -503,9 +512,12 @@ typedef is_streamoff_t      streamoff_t;        //!< streamoff
 # define inetstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param ar An array whose dimension is to be evaluated
+ */
 #define INETSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define inetstl_num_elements(ar)                        INETSTL_NUM_ELEMENTS(ar)

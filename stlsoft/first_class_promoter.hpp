@@ -4,7 +4,7 @@
  * Purpose:     Class template that allows built-in & aggregate types to be treated as 1st-class types.
  *
  * Created:     8th September 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_REVISION  2
-# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      39
+# define STLSOFT_VER_STLSOFT_HPP_FIRST_CLASS_PROMOTER_EDIT      40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -156,13 +156,16 @@ struct first_class_promoter_traits
 
 // class first_class_promoter
 
-/// Promotes a basic type to a first-class type
-///
-/// This type can be used to promote a basic type (e.g. <code>int</code>) or a type that
-/// cannot be used as the base of an inheritance relationship (such as a union)
-/// to first class status.
-///
-/// \param T The basic type
+/** \brief Promotes a basic type to a first-class type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This type can be used to promote a basic type (e.g. <code>int</code>) or a type that
+ * cannot be used as the base of an inheritance relationship (such as a union)
+ * to first class status.
+ *
+ * \param T The basic type
+ */
 template<   ss_typename_param_k T
         ,   ss_bool_t           INIT    =   false
         >

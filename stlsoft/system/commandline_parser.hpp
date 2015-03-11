@@ -4,7 +4,7 @@
  * Purpose:     commandline_parser class.
  *
  * Created:     20th May 2000
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MAJOR    2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_MINOR    0
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_REVISION 2
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     23
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_COMMANDLINE_PARSER_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -319,9 +319,15 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// \brief Instantiation of the basic_commandline_parser template for the ANSI character type \c char
+/** \brief Instantiation of the basic_commandline_parser template for the ANSI character type \c char
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_commandline_parser<ss_char_a_t>   commandline_parser_a;
-/// \brief Instantiation of the basic_commandline_parser template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_commandline_parser template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_commandline_parser<ss_char_w_t>   commandline_parser_w;
 
 ////////////////////////////////////////////////////////////////////////////

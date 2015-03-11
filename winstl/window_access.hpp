@@ -4,7 +4,7 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     7th October 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_MAJOR     3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_MINOR     1
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_REVISION  1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_EDIT      38
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ACCESS_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,13 +91,16 @@ namespace winstl_project
 
 /* HWND */
 
-/// \brief Access the HWND of the given HWND
-///
-/// This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a>
-//// retrieves the HWND window handle for the given HWND handle.
-///
-/// \param h A HWND whose corresponding HWND will be retrieved
-/// \return The HWND corresponding to the given HWND \c h
+/** \brief Access the HWND of the given HWND
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a>
+ * retrieves the HWND window handle for the given HWND handle.
+ *
+ * \param h A HWND whose corresponding HWND will be retrieved
+ * \return The HWND corresponding to the given HWND \c h
+ */
 inline HWND get_hwnd(HWND h)
 {
     return h;

@@ -4,7 +4,7 @@
  * Purpose:     sign_traits classes.
  *
  * Created:     16th January 2002
- * Updated:     15th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_MINOR      3
 # define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_REVISION   1
-# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       37
+# define STLSOFT_VER_STLSOFT_HPP_SIGN_TRAITS_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -80,16 +80,19 @@ namespace stlsoft
 // struct sign_traits
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// Traits for determining the signed, unsigned and alternate-signed type
-///
-/// sign_traits is a traits class for acquiring the corresponding signed,
-/// unsigned, and alternate-signed type eg.
-///
-/// &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::signed_type == ss_sint16_t</code><br>
-/// &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::unsigned_type == ss_uint16_t</code><br>
-/// &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::alt_sign_type == ss_uint16_t</code><br>
-///
-/// \param T The char type
+/** \brief Traits for determining the signed, unsigned and alternate-signed type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * sign_traits is a traits class for acquiring the corresponding signed,
+ * unsigned, and alternate-signed type eg.
+ *
+ * &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::signed_type == ss_sint16_t</code><br>
+ * &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::unsigned_type == ss_uint16_t</code><br>
+ * &nbsp;&nbsp;<code>sign_traits<ss_sint16_t>::alt_sign_type == ss_uint16_t</code><br>
+ *
+ * \param T The char type
+ */
 template <ss_typename_param_k T>
 struct sign_traits
 {

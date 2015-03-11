@@ -4,7 +4,7 @@
  * Purpose:     Contains access shims for windows.
  *
  * Created:     10th January 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_MINOR      1
 # define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_REVISION   1
-# define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_EDIT       31
+# define ATLSTL_VER_ATLSTL_HPP_WINDOW_ACCESS_EDIT       32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,13 +103,16 @@ namespace atlstl_project
 
 /* HWND */
 
-/// \brief Access the HWND of the given CWindow instance
-///
-/// This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a> retrieves the
-/// HWND window handle for the given CWindow instance.
-///
-/// \param w A reference to the CWindow instance whose HWND will be retrieved
-/// \return The HWND corresponding to the given CWindow instance \c w
+/** \brief Access the HWND of the given CWindow instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This access <a href = "http://stlsoft.org/white_papers.html#shims">shim</a> retrieves the
+ * HWND window handle for the given CWindow instance.
+ *
+ * \param w A reference to the CWindow instance whose HWND will be retrieved
+ * \return The HWND corresponding to the given CWindow instance \c w
+ */
 inline HWND get_hwnd(CWindow const &w)
 {
     return w.m_hWnd;

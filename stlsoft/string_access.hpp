@@ -5,7 +5,7 @@
  *              c_str_size accessors.
  *
  * Created:     16th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks to:   Robert Kreger for spotting a bug in the discrimination of wide
  *              character support on GCC 3.3.3.
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_MINOR       5
 # define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        81
+# define STLSOFT_VER_STLSOFT_HPP_STRING_ACCESS_EDIT        82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -185,26 +185,38 @@ struct cannot_use_untyped_0_or_NULL_with_shims;
  */
 
 /* C-style ANSI string */
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null_a(ss_char_a_t const *s)
 {
     return (NULL == s || '\0' == *s) ? NULL : s;
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null(ss_char_a_t const *s)
 {
     return c_str_ptr_null_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null_w(ss_char_w_t const *s)
 {
     return (NULL == s || L'\0' == *s) ? NULL : s;
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null(ss_char_w_t const *s)
 {
     return c_str_ptr_null_w(s);
@@ -212,26 +224,38 @@ inline ss_char_w_t const *c_str_ptr_null(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 #ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null_a(ss_char_a_t *s)
 {
     return (NULL == s || '\0' == *s) ? NULL : s;
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null(ss_char_a_t *s)
 {
     return c_str_ptr_null_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null_w(ss_char_w_t *s)
 {
     return (NULL == s || L'\0' == *s) ? NULL : s;
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null(ss_char_w_t *s)
 {
     return c_str_ptr_null_w(s);
@@ -242,31 +266,46 @@ inline ss_char_w_t const *c_str_ptr_null(ss_char_w_t *s)
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null_a(string const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null(string const &s)
 {
     return c_str_ptr_null_a(s);
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null_w(wstring const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null(wstring const &s)
 {
     return c_str_ptr_null_w(s);
 }
 # else /* ? compiler */
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(string) const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
@@ -274,14 +313,20 @@ inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null_w(_stlsoft_wstring_t const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
 #  endif /* compiler */
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -300,19 +345,28 @@ inline C const *c_str_ptr_null(stlsoft_ns_qual_std(basic_string)<C, T, A> const 
     !defined(_STLP_REDEFINE_STD) && \
     (   !defined(_STLPORT_MAJOR) || \
         _STLPORT_MAJOR < 5)
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_null_a(stlport::string const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_null_w(stlport::wstring const &s)
 {
     return (0 == s.length()) ? 0 : s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline C const *c_str_ptr_null(stlport::basic_string<C> const &s)
 {
@@ -351,26 +405,38 @@ inline ss_char_w_t const *c_str_ptr_null_w(S const &s)
  */
 
 /* C-style ANSI string */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_a(ss_char_a_t const *s)
 {
     return (NULL != s) ? s : "";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr(ss_char_a_t const *s)
 {
     return c_str_ptr_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_w(ss_char_w_t const *s)
 {
     return (NULL != s) ? s : L"";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr(ss_char_w_t const *s)
 {
     return c_str_ptr_w(s);
@@ -378,26 +444,38 @@ inline ss_char_w_t const *c_str_ptr(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 #ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_a(ss_char_a_t *s)
 {
     return (NULL != s) ? s : "";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr(ss_char_a_t *s)
 {
     return c_str_ptr_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_w(ss_char_w_t *s)
 {
     return (NULL != s) ? s : L"";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr(ss_char_w_t *s)
 {
     return c_str_ptr_w(s);
@@ -408,31 +486,46 @@ inline ss_char_w_t const *c_str_ptr(ss_char_w_t *s)
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_a(string const &s)
 {
     return s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr(string const &s)
 {
     return c_str_ptr_a(s);
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_w(wstring const &s)
 {
     return s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr(wstring const &s)
 {
     return c_str_ptr_w(s);
 }
 # else /* ? compiler */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(string) const &s)
 {
     return s.c_str();
@@ -440,14 +533,20 @@ inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_w(_stlsoft_wstring_t const &s)
 {
     return s.c_str();
 }
 #  endif /* compiler */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -465,19 +564,28 @@ inline C const *c_str_ptr(stlsoft_ns_qual_std(basic_string)<C, T, A> const &s)
     !defined(_STLP_REDEFINE_STD) && \
     (   !defined(_STLPORT_MAJOR) || \
         _STLPORT_MAJOR < 5)
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_ptr_a(stlport::string const &s)
 {
     return s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_ptr_w(stlport::wstring const &s)
 {
     return s.c_str();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline C const *c_str_ptr(stlport::basic_string<C> const &s)
 {
@@ -493,26 +601,38 @@ inline C const *c_str_ptr(stlport::basic_string<C> const &s)
  */
 
 /* C-style ANSI string */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data_a(ss_char_a_t const *s)
 {
     return (NULL != s) ? s : "";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data(ss_char_a_t const *s)
 {
     return c_str_data_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data_w(ss_char_w_t const *s)
 {
     return (NULL != s) ? s : L"";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data(ss_char_w_t const *s)
 {
     return c_str_data_w(s);
@@ -520,26 +640,38 @@ inline ss_char_w_t const *c_str_data(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 #ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data_a(ss_char_a_t *s)
 {
     return (NULL != s) ? s : "";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data(ss_char_a_t *s)
 {
     return c_str_data_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data_w(ss_char_w_t *s)
 {
     return (NULL != s) ? s : L"";
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data(ss_char_w_t *s)
 {
     return c_str_data_w(s);
@@ -550,31 +682,46 @@ inline ss_char_w_t const *c_str_data(ss_char_w_t *s)
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data_a(string const &s)
 {
     return s.data();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data(string const &s)
 {
     return c_str_data_a(s);
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data_w(wstring const &s)
 {
     return s.data();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data(wstring const &s)
 {
     return c_str_data_w(s);
 }
 # else /* ? compiler */
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(string) const &s)
 {
     return s.data();
@@ -582,14 +729,20 @@ inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data_w(_stlsoft_wstring_t const &s)
 {
     return s.data();
 }
 #  endif /* compiler */
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -607,19 +760,28 @@ inline C const *c_str_data(stlsoft_ns_qual_std(basic_string)<C, T, A> const &s)
     !defined(_STLP_REDEFINE_STD) && \
     (   !defined(_STLPORT_MAJOR) || \
         _STLPORT_MAJOR < 5)
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_a_t const *c_str_data_a(stlport::string const &s)
 {
     return s.data();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_char_w_t const *c_str_data_w(stlport::wstring const &s)
 {
     return s.data();
 }
 
-/// \brief Returns the corresponding C-string pointer of \c s
+/** \brief Returns the corresponding C-string pointer of \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline C const *c_str_data(stlport::basic_string<C> const &s)
 {
@@ -658,7 +820,10 @@ inline ss_char_w_t const *c_str_data_w(S const &s)
  */
 
 /* C-style ANSI string */
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_a(ss_char_a_t const *s)
 {
 #if !defined(STLSOFT_CF_STRING_ACCESS_USE_std_char_traits)
@@ -668,14 +833,20 @@ inline ss_size_t c_str_len_a(ss_char_a_t const *s)
 #endif /* !STLSOFT_CF_std_char_traits_AVAILABLE */
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(ss_char_a_t const *s)
 {
     return c_str_len_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_w(ss_char_w_t const *s)
 {
 #if defined(STLSOFT_COMPILER_IS_GCC)
@@ -687,7 +858,10 @@ inline ss_size_t c_str_len_w(ss_char_w_t const *s)
 #endif /* !STLSOFT_CF_STRING_ACCESS_USE_std_char_traits */
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(ss_char_w_t const *s)
 {
     return c_str_len_w(s);
@@ -695,26 +869,38 @@ inline ss_size_t c_str_len(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 #ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_a(ss_char_a_t *s)
 {
     return c_str_len_a(static_cast<ss_char_a_t const *>(s));
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(ss_char_a_t *s)
 {
     return c_str_len_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_w(ss_char_w_t *s)
 {
     return c_str_len_w(static_cast<ss_char_w_t const *>(s));
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(ss_char_w_t *s)
 {
     return c_str_len_w(s);
@@ -725,31 +911,46 @@ inline ss_size_t c_str_len(ss_char_w_t *s)
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_a(string const &s)
 {
     return s.length();
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(string const &s)
 {
     return c_str_len_a(s);
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_w(wstring const &s)
 {
     return s.length();
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len(wstring const &s)
 {
     return c_str_len_w(s);
 }
 # else /* ? compiler */
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(string) const &s)
 {
     return s.length();
@@ -757,14 +958,20 @@ inline ss_size_t c_str_len_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_w(_stlsoft_wstring_t const &s)
 {
     return s.length();
 }
 #  endif /* compiler */
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -782,19 +989,28 @@ inline ss_size_t c_str_len(stlsoft_ns_qual_std(basic_string)<C, T, A> const &s)
     !defined(_STLP_REDEFINE_STD) && \
     (   !defined(_STLPORT_MAJOR) || \
         _STLPORT_MAJOR < 5)
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_a(stlport::string const &s)
 {
     return s.length();
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_len_w(stlport::wstring const &s)
 {
     return s.length();
 }
 
-/// \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline ss_size_t c_str_len(stlport::basic_string<C> const &s)
 {
@@ -811,26 +1027,38 @@ inline ss_size_t c_str_len(stlport::basic_string<C> const &s)
  */
 
 /* C-style ANSI string */
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_a(ss_char_a_t const *s)
 {
     return c_str_len(s) * sizeof(ss_char_a_t);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size(ss_char_a_t const *s)
 {
     return c_str_size_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_w(ss_char_w_t const *s)
 {
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size(ss_char_w_t const *s)
 {
     return c_str_size_w(s);
@@ -838,26 +1066,38 @@ inline ss_size_t c_str_size(ss_char_w_t const *s)
 
 /* C-style ANSI string */
 #ifdef _STLSOFT_STRING_ACCESS_ALLOW_NON_CONST
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_a(ss_char_a_t *s)
 {
     return c_str_len(s) * sizeof(ss_char_a_t);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size(ss_char_a_t *s)
 {
     return c_str_size_a(s);
 }
 
 /* C-style Unicode string */
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_w(ss_char_w_t *s)
 {
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size(ss_char_w_t *s)
 {
     return c_str_size_w(s);
@@ -869,31 +1109,46 @@ inline ss_size_t c_str_size(ss_char_w_t *s)
 #ifndef STLSOFT_STRING_ACCESS_NO_STD_STRING
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_a(string const &s)
 {
     return c_str_len(s) * sizeof(string::value_type);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size(string const &s)
 {
     return c_str_size_a(s);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_w(wstring const &s)
 {
     return c_str_len(s) * sizeof(wstring::value_type);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size(wstring const &s)
 {
     return c_str_size_w(s);
 }
 # else /* ? compiler */
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_a(stlsoft_ns_qual_std(string) const &s)
 {
     return c_str_len(s) * sizeof(ss_char_a_t);
@@ -901,14 +1156,20 @@ inline ss_size_t c_str_size_a(stlsoft_ns_qual_std(string) const &s)
 
 #  if !defined(STLSOFT_COMPILER_IS_GCC) || \
       !(__GNUC__ < 3)
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_w(_stlsoft_wstring_t const &s)
 {
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
 #  endif /* compiler */
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
@@ -921,7 +1182,10 @@ inline ss_size_t c_str_size(stlsoft_ns_qual_std(basic_string)<C, T, A> const &s)
 #endif /* STLSOFT_STRING_ACCESS_NO_STD_STRING */
 
 /* stlport::basic_string */
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 #if defined(_STLP_USE_NAMESPACES) && \
     defined(_STLP_USE_OWN_NAMESPACE) && \
     !defined(_STLP_REDEFINE_STD) && \
@@ -932,13 +1196,19 @@ inline ss_size_t c_str_size_a(stlport::string const &s)
     return c_str_len(s) * sizeof(ss_char_a_t);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ss_size_t c_str_size_w(stlport::wstring const &s)
 {
     return c_str_len(s) * sizeof(ss_char_w_t);
 }
 
-/// \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the size (in bytes) of the contents of \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline ss_size_t c_str_size(stlport::basic_string<C> const &s)
 {

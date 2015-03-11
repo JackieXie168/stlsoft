@@ -9,54 +9,54 @@
 
 namespace unittest
 {
-    namespace
-    {
+	namespace
+	{
 
-        ss_bool_t test_stlsoft_rangelib_cstring_range(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+		ss_bool_t test_stlsoft_rangelib_cstring_range(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "RangeLib", "cstring_range", __FILE__);
+			unittest_initialiser	init(r, "RangeLib", "cstring_range", __FILE__);
 
-            typedef cstring_range<char> cstring_range_t;
+			typedef cstring_range<char> cstring_range_t;
 
-            cstring_range_t r1("Hello, Natty!");
-            size_t          len;
+			cstring_range_t r1("Hello, Natty!");
+			size_t			len;
 
-            for(len = 0; r1; ++r1, ++len)
-            {}
+			for(len = 0; r1; ++r1, ++len)
+			{}
 
-            if(13 != len)
-            {
-                r->report("manual enumeration failed", __LINE__);
-                bSuccess = false;
-            }
+			if(13 != len)
+			{
+				r->report("manual enumeration failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(r1.is_open())
-            {
-                r->report("closed range presents as open (is_open() method)", __LINE__);
-                bSuccess = false;
-            }
+			if(r1.is_open())
+			{
+				r->report("closed range presents as open (is_open() method)", __LINE__);
+				bSuccess = false;
+			}
 
-            if(r1)
-            {
-                r->report("closed range presents as open (operator \"bool\"())", __LINE__);
-                bSuccess = false;
-            }
+			if(r1)
+			{
+				r->report("closed range presents as open (operator \"bool\"())", __LINE__);
+				bSuccess = false;
+			}
 
-            if(cstring_range_t(""))
-            {
-                r->report("closed range presents as open", __LINE__);
-                bSuccess = false;
-            }
+			if(cstring_range_t(""))
+			{
+				r->report("closed range presents as open", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_rangelib_cstring_range(test_stlsoft_rangelib_cstring_range);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_rangelib_cstring_range(test_stlsoft_rangelib_cstring_range);
+	} // anonymous namespace
 
 } // namespace unittest
 

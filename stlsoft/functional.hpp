@@ -4,7 +4,7 @@
  * Purpose:     Mappings to stdlib string functions
  *
  * Created:     2nd December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_MINOR       2
 # define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_EDIT        13
+# define STLSOFT_VER_STLSOFT_HPP_FUNCTIONAL_EDIT        14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,6 +110,7 @@ public:
     }
 
 /// \name Implementation
+/// @{
 private:
     R invoke_(C *c) const
     {
@@ -144,6 +145,7 @@ public:
     }
 
 /// \name Implementation
+/// @{
 private:
     R invoke_(C *c) const
     {
@@ -177,6 +179,7 @@ public:
     }
 
 /// \name Implementation
+/// @{
 private:
     void invoke_(C *c) const
     {
@@ -210,6 +213,7 @@ public:
     }
 
 /// \name Implementation
+/// @{
 private:
     void invoke_(C *c) const
     {
@@ -478,10 +482,13 @@ inline mem_fun1_ref_t<R, C, A> mem_fun1_ref(R (C::*PFn)(A))
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-///
-/// \alpha
-///
-/// \note This is an alpha form, and *will* be changed in a future release
+/** \brief
+ * \alpha
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note This is an alpha form, and *will* be changed in a future release
+ */
 template<   ss_typename_param_k R
         ,   ss_typename_param_k C
         ,   ss_typename_param_k V

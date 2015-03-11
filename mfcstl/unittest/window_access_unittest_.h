@@ -11,41 +11,41 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_mfcstl_window_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_mfcstl_window_access(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "MFCSTL", "window_access", __FILE__);
+			unittest_initialiser	init(r, "MFCSTL", "window_access", __FILE__);
 
-            HWND    hwndDesktop =   ::GetDesktopWindow();
-            CWnd    wndDesktop;
+			HWND	hwndDesktop =	::GetDesktopWindow();
+			CWnd	wndDesktop;
 
-            wndDesktop.Attach(hwndDesktop);
+			wndDesktop.Attach(hwndDesktop);
 
-            if(get_hwnd(wndDesktop) != hwndDesktop)
-            {
-                r->report("get_hwnd(CWindow) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(get_hwnd(wndDesktop) != hwndDesktop)
+			{
+				r->report("get_hwnd(CWindow) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            wndDesktop.Detach();
+			wndDesktop.Detach();
 
-            CWnd    *pwndDesktop    =   CWnd::FromHandle(hwndDesktop);
+			CWnd	*pwndDesktop	=	CWnd::FromHandle(hwndDesktop);
 
-            if(get_hwnd(pwndDesktop) != hwndDesktop)
-            {
-                r->report("get_hwnd(CWindow*) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(get_hwnd(pwndDesktop) != hwndDesktop)
+			{
+				r->report("get_hwnd(CWindow*) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_mfcstl_window_access(test_mfcstl_window_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_mfcstl_window_access(test_mfcstl_window_access);
+	} // anonymous namespace
 
 }// namespace unittest

@@ -4,7 +4,7 @@
  * Purpose:     Fast string concatenator.
  *
  * Created:     4th November 2003 (the time added to STLSoft libraries)
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks to:   Sean Kelly for picking up on my gratuitous use of pointers
  *              in the first implementation.
@@ -47,8 +47,6 @@
  *  class template.
  *  (\ref group__library__string "String" Library.)
  */
-///
-/// Fast string concatenator.
 
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR
 #define STLSOFT_INCL_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR
@@ -57,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        126
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR_EDIT        127
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,13 +76,6 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-
-#if 0
-#if defined(STLSOFT_COMPILER_IS_MSVC) && \
-    _MSC_VER < 1200
-# error stlsoft_fast_string_concatenator.h is not compatible with Visual C++ 5.0 or earlier
-#endif /* compiler */
-#endif /* 0 */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 namespace stlsoft

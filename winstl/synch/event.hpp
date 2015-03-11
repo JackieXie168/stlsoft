@@ -4,7 +4,7 @@
  * Purpose:     event class, based on Windows EVENT.
  *
  * Created:     3rd July 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     44
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EVENT_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,8 +102,8 @@ class event
     : public stlsoft_ns_qual(synchronisable_object_tag)
 {
 public:
-    typedef event			class_type;
-	typedef HANDLE			handle_type;
+    typedef event           class_type;
+    typedef HANDLE          handle_type;
 
 /// \name Construction
 /// @{

@@ -4,7 +4,7 @@
  * Purpose:     Window visible-state scoping class.
  *
  * Created:     26th May 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_MAJOR       3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_MINOR       2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_REVISION    1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_EDIT        29
+# define WINSTL_VER_WINSTL_HPP_WINDOW_VISIBLE_SCOPE_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,10 +90,13 @@ namespace winstl_project
  */
 
 // window_visible_scope
-/// Provides scoping of the visible status of a window.
-///
-/// This class provides scoping of the visible status of a window via the API
-/// function ShowWindow().
+/** \brief Provides scoping of the visible status of a window.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class provides scoping of the visible status of a window via the API
+ * function ShowWindow().
+ */
 class window_visible_scope
 {
 public:

@@ -9,48 +9,48 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_scale_functions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_scale_functions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "scale_functions", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "scale_functions", __FILE__);
 
-            SIZE    size    =   { 100, 100 };
-            RECT    rect    =   { 0, 0, 100, 100 };
+			SIZE	size	=	{ 100, 100 };
+			RECT	rect	=	{ 0, 0, 100, 100 };
 
-            if(calc_width(size) != 100)
-            {
-                r->report("calc_width(SIZE) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(calc_width(size) != 100)
+			{
+				r->report("calc_width(SIZE) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(calc_width(rect) != 100)
-            {
-                r->report("calc_width(RECT) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(calc_width(rect) != 100)
+			{
+				r->report("calc_width(RECT) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(calc_height(size) != 100)
-            {
-                r->report("calc_height(SIZE) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(calc_height(size) != 100)
+			{
+				r->report("calc_height(SIZE) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(calc_height(rect) != 100)
-            {
-                r->report("calc_height(RECT) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(calc_height(rect) != 100)
+			{
+				r->report("calc_height(RECT) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_scale_functions(test_winstl_scale_functions);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_scale_functions(test_winstl_scale_functions);
+	} // anonymous namespace
 
 } // namespace unittest
 

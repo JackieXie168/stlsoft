@@ -1,9 +1,15 @@
-/** \file winstl_searchpath_sequence.h Redirects inclusion to winstl/searchpath_sequence.hpp. */
-#ifndef WINSTL_INCL_H_WINSTL_SEARCHPATH_SEQUENCE
-#define WINSTL_INCL_H_WINSTL_SEARCHPATH_SEQUENCE
+#ifndef WINSTL_INCL_WINSTL_H_WINSTL
+# include <winstl/winstl.h>
+#endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifndef WINSTL_INCL_WINSTL_HPP_SEARCHPATH_SEQUENCE
-# include <winstl/searchpath_sequence.hpp>
-#endif /* !WINSTL_INCL_WINSTL_HPP_SEARCHPATH_SEQUENCE */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/system/searchpath_sequence.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#endif /* !WINSTL_INCL_H_WINSTL_SEARCHPATH_SEQUENCE */
+#include <winstl/system/searchpath_sequence.hpp>
+
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
+

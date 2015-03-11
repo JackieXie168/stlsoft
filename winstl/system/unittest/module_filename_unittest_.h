@@ -9,30 +9,38 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_module_filename(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_system_module_filename(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/module_filename", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/module_filename", __FILE__);
 
-            TCHAR   mfn[1 + _MAX_PATH];
+			TCHAR	mfn[1 + _MAX_PATH];
 
-            ::GetModuleFileName(NULL, &mfn[0], STLSOFT_NUM_ELEMENTS(mfn));
+			::GetModuleFileName(NULL, &mfn[0], STLSOFT_NUM_ELEMENTS(mfn));
 
-            if(0 != ::lstrcmp(mfn, module_filename()))
-            {
-                r->report("module filename failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != ::lstrcmp(mfn, module_filename(NULL).c_str()))
+			{
+				r->report("module filename failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+#if !defined(STLSOFT_COMPILER_IS_BORLAND)
+			if(0 != ::lstrcmp(mfn, module_filename(NULL)))
+			{
+				r->report("module filename failed", __LINE__);
+				bSuccess = false;
+			}
+#endif /* compiler */
 
-        unittest_registrar    unittest_winstl_system_module_filename(test_winstl_system_module_filename);
-    } // anonymous namespace
+			return bSuccess;
+		}
+
+		unittest_registrar	  unittest_winstl_system_module_filename(test_winstl_system_module_filename);
+	} // anonymous namespace
 
 } // namespace unittest

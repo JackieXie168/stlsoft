@@ -6,7 +6,7 @@
  *              page size.
  *
  * Created:     7th February 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_MAJOR     4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_MINOR     0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_REVISION  1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_EDIT      49
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_SYSTEM_INFO_EDIT      50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,15 +91,16 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Provides system information, which provides information regarding
-///  the host system, such as number of processors and page size
-///
-/// \ingroup group__library__system
-///
-/// This class wraps the GetSystemInfo() API function. Since the information that
-/// this function provides is constant for any particular active system for its
-/// lifetime, the function is called only once, as implemented via the
-/// _get_systeminfo() method.
+/** \brief Provides system information, which provides information regarding
+ *  the host system, such as number of processors and page size
+ *
+ * \ingroup group__library__system
+ *
+ * This class wraps the GetSystemInfo() API function. Since the information that
+ * this function provides is constant for any particular active system for its
+ * lifetime, the function is called only once, as implemented via the
+ * _get_systeminfo() method.
+ */
 class system_info
 {
 public:

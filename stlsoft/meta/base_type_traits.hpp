@@ -4,7 +4,7 @@
  * Purpose:     type traits classes.
  *
  * Created:     24th August 2003
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/base_type_traits.hpp
-///
-/// type traits classes.
+/** \file stlsoft/meta/base_type_traits.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::base_type_traits component.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #define STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_EDIT     30
+# define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_EDIT     31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,7 +122,10 @@ struct base_type_traits_pointer_detector<T const volatile*>
 
 
 
-/// \brief Deduces the base type
+/** \brief Deduces the base type
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct base_type_traits
 {

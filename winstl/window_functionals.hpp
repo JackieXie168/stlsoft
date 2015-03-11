@@ -4,7 +4,7 @@
  * Purpose:     Window function objects and predicates.
  *
  * Created:     19th January 2001
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_FUNCTONALS_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_FUNCTONALS_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_FUNCTONALS_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_FUNCTONALS_EDIT       29
+# define WINSTL_VER_WINSTL_HPP_WINDOW_FUNCTONALS_EDIT       30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,8 +94,11 @@ namespace winstl_project
  * Predicate classes
  */
 
-/// Predicate used to determine whether windows are visible
-///
+/** \brief Predicate used to determine whether windows are visible
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 // [[synesis:class:function-class:unary-predicate: is_visible]]
 struct is_visible
     : public winstl_ns_qual_std(unary_function)<HWND, BOOL>
@@ -125,8 +128,11 @@ public:
 #endif // STLSOFT_CF_MEMBER_TEMPLATE_FUNCTION_SUPPORT
 };
 
-/// Predicate used to determine whether windows are enabled
-///
+/** \brief Predicate used to determine whether windows are enabled
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 // [[synesis:class:function-class:unary-predicate: is_enabled]]
 struct is_enabled
     : public winstl_ns_qual_std(unary_function)<HWND, BOOL>
@@ -160,8 +166,11 @@ public:
  * Functor classes
  */
 
-/// Functor used to show or hide windows
-///
+/** \brief Functor used to show or hide windows
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 // [[synesis:class:unary-functor: window_show]]
 struct window_show
     : public std::unary_function<HWND, void>
@@ -197,8 +206,11 @@ private:
     class_type &operator =(class_type const&);
 };
 
-/// Functor used to enable or disable windows
-///
+/** \brief Functor used to enable or disable windows
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 // [[synesis:class:unary-functor: window_enable]]
 struct window_enable
     : public std::unary_function<HWND, void>

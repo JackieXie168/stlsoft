@@ -4,7 +4,7 @@
  * Purpose:     Const and non-const reference & pointer proxy classes.
  *
  * Created:     28th April 2000
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ARGUMENT_PROXIES_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ARGUMENT_PROXIES_MINOR     1
 # define STLSOFT_VER_STLSOFT_HPP_ARGUMENT_PROXIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ARGUMENT_PROXIES_EDIT      119
+# define STLSOFT_VER_STLSOFT_HPP_ARGUMENT_PROXIES_EDIT      120
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,7 +73,10 @@ namespace stlsoft
  * Classes
  */
 
-/// Acts as a proxy for a pointer
+/** \brief Acts as a proxy for a pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // pointer_proxy
 template <ss_typename_param_k A>
 class pointer_proxy
@@ -108,7 +111,10 @@ private:
     class_type const &operator =(class_type const &);
 };
 
-/// Acts as a proxy for a pointer-to-const
+/** \brief Acts as a proxy for a pointer-to-const
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // const_pointer_proxy
 template <ss_typename_param_k A>
 class const_pointer_proxy
@@ -144,7 +150,10 @@ private:
 };
 
 
-/// Acts as a proxy for a reference
+/** \brief Acts as a proxy for a reference
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // reference_proxy
 template <ss_typename_param_k A>
 class reference_proxy
@@ -180,7 +189,10 @@ private:
 };
 
 
-/// Acts as a proxy for a reference-to-const
+/** \brief Acts as a proxy for a reference-to-const
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // const_reference_proxy
 template <ss_typename_param_k A>
 class const_reference_proxy
@@ -216,7 +228,10 @@ private:
 };
 
 
-/// Acts as a proxy for a value
+/** \brief Acts as a proxy for a value
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // value_proxy
 template <ss_typename_param_k A>
 class value_proxy
@@ -254,35 +269,50 @@ private:
  * Forwarding functions
  */
 
-/// Creator function for the pointer_proxy
+/** \brief Creator function for the pointer_proxy
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k A>
 inline pointer_proxy<A> ptr_proxy(A *a)
 {
     return pointer_proxy<A>(a);
 }
 
-/// Creator function for the const_pointer_proxy
+/** \brief Creator function for the const_pointer_proxy
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k A>
 inline const_pointer_proxy<A> const_ptr_proxy(A const *a)
 {
     return const_pointer_proxy<A>(a);
 }
 
-/// Creator function for the reference_proxy
+/** \brief Creator function for the reference_proxy
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k A>
 inline reference_proxy<A> ref_proxy(A &a)
 {
     return reference_proxy<A>(a);
 }
 
-/// Creator function for the const_reference_proxy
+/** \brief Creator function for the const_reference_proxy
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k A>
 inline const_reference_proxy<A> const_ref_proxy(A &a)
 {
     return const_reference_proxy<A>(a);
 }
 
-/// Creator function for the value_proxy
+/** \brief Creator function for the value_proxy
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k A>
 inline value_proxy<A> val_proxy(A a)
 {

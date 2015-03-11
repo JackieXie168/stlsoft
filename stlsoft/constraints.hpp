@@ -4,7 +4,7 @@
  * Purpose:     Compile-time template constraints templates.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Peter Bannister for having the clear thinking to see the
  *              obvious (but only in hindsight) tactic of overloading the
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_MINOR      1
 # define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_REVISION   3
-# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       87
+# define STLSOFT_VER_STLSOFT_HPP_CONSTRAINTS_EDIT       88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,13 +104,16 @@ namespace stlsoft
 
 // must_have_base
 //
-/// Constraint to ensure that the one type is convertible to another via inheritance
-///
-/// \param D The derived type
-/// \param B The base type
-///
-/// \note This is borrowed from Bjarne Stroustrup's idea as posted to comp.lang.c++.moderated
-/// 17th February 2001.
+/** \brief Constraint to ensure that the one type is convertible to another via inheritance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param D The derived type
+ * \param B The base type
+ *
+ * \note This is borrowed from Bjarne Stroustrup's idea as posted to comp.lang.c++.moderated
+ * 17th February 2001.
+ */
 template<   ss_typename_param_k D
         ,   ss_typename_param_k B
         >
@@ -136,16 +139,19 @@ private:
 
 // must_be_derived
 //
-/// Constraint to ensure that the one type is convertible to another via inheritance,
-/// but is not the same type
-///
-/// \note This extension to the must_have_base class was proposed by Peter Bannister
-/// after reading Chapter 1 of Imperfect C++ (http://imperfectcplusplus.com/)
-///
-/// \param D The derived type
-/// \param B The base type
-///
-/// \note This is borrowed from
+/** \brief Constraint to ensure that the one type is convertible to another via inheritance,
+ * but is not the same type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note This extension to the must_have_base class was proposed by Peter Bannister
+ * after reading Chapter 1 of Imperfect C++ (http://imperfectcplusplus.com/)
+ *
+ * \param D The derived type
+ * \param B The base type
+ *
+ * \note This is borrowed from
+ */
 template<   ss_typename_param_k D
         ,   ss_typename_param_k B
         >
@@ -183,8 +189,11 @@ private:
 
 // must_be_same_size
 //
-/// \param T1 The parameterising type of the veneer
-/// \param T2 The veneer type
+/** \brief \param T1 The parameterising type of the veneer
+ * \param T2 The veneer type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k T1
         ,   ss_typename_param_k T2
         >
@@ -214,8 +223,11 @@ private:
 };
 
 
-/// Constraint to enforce that a given type is an array, or pointer, or user defined type
-/// which is amenable to subsripting (i.e. defines <code>operator[]</code> or <code>operator X*()</code>)
+/** \brief Constraint to enforce that a given type is an array, or pointer, or user defined type
+ * which is amenable to subsripting (i.e. defines <code>operator[]</code> or <code>operator X*()</code>)
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct must_be_subscriptable
 {
@@ -234,8 +246,11 @@ private:
     }
 };
 
-/// Constraint to enforce that a given type is an actual array or pointer, rather than
-/// a user-defined type with
+/** \brief Constraint to enforce that a given type is an actual array or pointer, rather than
+ * a user-defined type with
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k T>
 struct must_subscript_as_decayable_pointer
 {
@@ -259,9 +274,12 @@ private:
 
 // must_be_pod
 //
-/// Constraint to ensure that a type is a built-in or trivial type.
-///
-/// \param T The type
+/** \brief Constraint to ensure that a type is a built-in or trivial type.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The type
+ */
 // This class can be used to constrain a type to be of either built-in, e.g.
 // int, or of a trivial type, i.e. aggregate types or types with publicly
 // accessible default contructors and assignment operators
@@ -317,9 +335,12 @@ private:
 
 // must_be_pod_or_void
 //
-/// Constraint to ensure that a type is a built-in or trivial type, or is void.
-///
-/// \param T The type
+/** \brief Constraint to ensure that a type is a built-in or trivial type, or is void.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The type
+ */
 // This class can be used to constrain a type to be of either built-in, e.g.
 // int, or of a trivial type, i.e. aggregate types or types with publicly
 // accessible default contructors and assignment operators
@@ -376,8 +397,11 @@ union must_be_pod_or_void<void>
 
 #if 0
 
-/// This type is used as a tag parent to hide implicit comparison of types that
-/// provide implicit converion operators.
+/** \brief This type is used as a tag parent to hide implicit comparison of types that
+ * provide implicit converion operators.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 #ifdef NIC_TEMPLATE_VERSION
 //struct nic_null_
@@ -405,7 +429,10 @@ private:
 #endif /* 0 */
 };
 
-/// This specialisation allows it to
+/** \brief This specialisation allows it to
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 STLSOFT_TEMPLATE_SPECIALISATION
 struct not_implicitly_comparable<nic_null_>
 {

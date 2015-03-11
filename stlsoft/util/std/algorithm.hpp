@@ -4,7 +4,7 @@
  * Purpose:     Contains various standard functions, or their equivalents.
  *
  * Created:     17th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_MAJOR       3
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_MINOR       2
 # define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_EDIT        68
+# define STLSOFT_VER_STLSOFT_UTIL_STD_HPP_ALGORITHM_EDIT        69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,14 +111,20 @@ void std_advance_impl(I *&i, ss_size_t n, T2 const **)
  * Functions
  */
 
-/// \brief Equivalent to std::advance()
+/** \brief Equivalent to std::advance()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<ss_typename_param_k I>
 void std_advance(I &i, ss_size_t n)
 {
     std_advance_impl(i, n, &i);
 }
 
-/// \brief Equivalent to std::copy()
+/** \brief Equivalent to std::copy()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k O
         >
@@ -132,7 +138,10 @@ inline O std_copy(I first, I last, O dest)
     return dest;
 }
 
-/// \brief Equivalent to std::count_if()
+/** \brief Equivalent to std::count_if()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k P
         >
@@ -155,7 +164,10 @@ inline ss_size_t std_count_if(I first, I to, P pred)
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
-/// \brief Equivalent to std::fill()
+/** \brief Equivalent to std::fill()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k O
         ,   ss_typename_param_k V
         >
@@ -171,7 +183,10 @@ inline void std_fill(O first, O last, V const &v)
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
-/// \brief Equivalent to std::fill_n()
+/** \brief Equivalent to std::fill_n()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k O
         ,   ss_typename_param_k V
         >
@@ -187,7 +202,10 @@ inline void std_fill_n(O dest, ss_size_t n, V const &v)
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
-/// \brief Equivalent to std::for_each()
+/** \brief Equivalent to std::for_each()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
@@ -205,7 +223,10 @@ inline F std_for_each(I first, I last, F f)
 #endif /* STLSOFT_CF_std_NAMESPACE */
 }
 
-/// \brief Equivalent to std::replace()
+/** \brief Equivalent to std::replace()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k T
         >

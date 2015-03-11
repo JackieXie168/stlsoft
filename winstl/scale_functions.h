@@ -4,7 +4,7 @@
  * Purpose:     Contains scale functions.
  *
  * Created:     7th February 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_MAJOR      3
 # define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_MINOR      1
 # define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_REVISION   1
-# define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_EDIT       38
+# define WINSTL_VER_WINSTL_H_SCALE_FUNCTIONS_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,13 +126,19 @@ STLSOFT_INLINE ws_sint_t winstl__calc_RECT_height(RECT const *rect)
  * This attribute shim calculates the width of an entity.
  */
 
-/// Calculates the width of a \c SIZE instance
+/** \brief Calculates the width of a \c SIZE instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ws_sint_t calc_width(SIZE const &size)
 {
     return winstl__calc_SIZE_width(&size);
 }
 
-/// Calculates the width of a \c RECT instance
+/** \brief Calculates the width of a \c RECT instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ws_sint_t calc_width(RECT const &rc)
 {
     return winstl__calc_RECT_width(&rc);
@@ -144,13 +150,19 @@ inline ws_sint_t calc_width(RECT const &rc)
  * This attribute shim calculates the height of an entity.
  */
 
-/// Calculates the height of a \c SIZE instance
+/** \brief Calculates the height of a \c SIZE instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ws_sint_t calc_height(SIZE const &size)
 {
     return winstl__calc_SIZE_height(&size);
 }
 
-/// Calculates the height of a \c RECT instance
+/** \brief Calculates the height of a \c RECT instance
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline ws_sint_t calc_height(RECT const &rc)
 {
     return winstl__calc_RECT_height(&rc);

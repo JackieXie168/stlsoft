@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     23rd June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      188
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      189
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,12 +161,12 @@ inline void atomic_decrement(atomic_int_t volatile *pl)
 
 inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n)
 {
-	return stlsoft_static_cast(atomic_int_t, STLSOFT_NS_GLOBAL(InterlockedExchange)(stlsoft_c_cast(LPLONG, pv), n));
+    return stlsoft_static_cast(atomic_int_t, STLSOFT_NS_GLOBAL(InterlockedExchange)(stlsoft_c_cast(LPLONG, pv), n));
 }
 
 inline atomic_int_t atomic_read(atomic_int_t volatile *pv)
 {
-	return *pv;
+    return *pv;
 }
 
 inline atomic_int_t atomic_preadd(atomic_int_t volatile *pl, atomic_int_t n);
@@ -283,8 +283,11 @@ inline void atomic_decrement(atomic_int_t volatile *pl)
  *
  * \ingroup group__library__synch
  */
-/// Note: atomic_write() for PowerPC is not yet defined. If you wish to suggest an
-/// implementation, it will be most welcome.
+/** \brief Note: atomic_write() for PowerPC is not yet defined. If you wish to suggest an
+ * implementation, it will be most welcome.
+ *
+ * \ingroup group__library__synch
+ */
 inline atomic_int_t atomic_write(atomic_int_t volatile *pv, atomic_int_t n);
 
 /** \brief 

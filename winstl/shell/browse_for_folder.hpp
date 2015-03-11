@@ -4,7 +4,7 @@
  * Purpose:     Shell browsing functions.
  *
  * Created:     2nd March 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MAJOR    4
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_MINOR    1
 # define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_REVISION 1
-# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     50
+# define WINSTL_VER_WINSTL_SHELL_HPP_BROWSE_FOR_FOLDER_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,12 +107,13 @@ namespace winstl_project
 // struct shell_browse_traits
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for accessing the correct browse information functions for a given character type
-///
-/// \ingroup group__library__windows_shell
-///
-/// shell_browse_traits is a traits class for determining the correct browse
-/// information structures and functions for a given character type.
+/** \brief Traits for accessing the correct browse information functions for a given character type
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * shell_browse_traits is a traits class for determining the correct browse
+ * information structures and functions for a given character type.
+ */
 template <ss_typename_param_k C>
 struct shell_browse_traits
 {
@@ -248,15 +249,16 @@ inline ws_bool_t shell_browse_impl( C const         *title
 
 
 // function browse_for_folder
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
-/// \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
-/// \param hwndOwner The parent of the browse dialog. May be null
-/// \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+ * \param hwndOwner The parent of the browse dialog. May be null
+ * \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
@@ -265,16 +267,17 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, H
     return shell_browse_impl(stlsoft_ns_qual(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, static_cast<C const*>(NULL));
 }
 
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
-/// \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
-/// \param hwndOwner The parent of the browse dialog. May be null
-/// \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
-/// \param defaultFolder The default folder to select when the browse window opens
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+ * \param hwndOwner The parent of the browse dialog. May be null
+ * \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
+ * \param defaultFolder The default folder to select when the browse window opens
+ */
 template<   ss_typename_param_k S0
         ,   ss_typename_param_k C
         ,   ss_typename_param_k S1
@@ -284,14 +287,15 @@ inline ws_bool_t browse_for_folder(const S0 &title, C *displayName, UINT flags, 
     return shell_browse_impl(stlsoft_ns_qual(c_str_ptr)(title), displayName, flags, hwndOwner, pidlRoot, stlsoft_ns_qual(c_str_ptr)(defaultFolder));
 }
 
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
-/// \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
-/// \param hwndOwner The parent of the browse dialog. May be null
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+ * \param hwndOwner The parent of the browse dialog. May be null
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
@@ -300,14 +304,15 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, H
     return browse_for_folder(title, displayName, flags, hwndOwner, static_cast<LPCITEMIDLIST>(0));
 }
 
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
-/// \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
-/// \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+ * \param pidlRoot Pointer to an ITEMIDLIST structure (PIDL) specifying the location of the root folder from which to start browsing. May be null
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
@@ -316,13 +321,14 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags, L
     return browse_for_folder(title, displayName, flags, 0, pidlRoot);
 }
 
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
-/// \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >
@@ -334,14 +340,15 @@ inline ws_bool_t browse_for_folder(const S &title, C *displayName, UINT flags)
 #if !defined(STLSOFT_COMPILER_IS_MWERKS) && \
     (   !defined(STLSOFT_COMPILER_IS_MSVC) || \
         _MSC_VER != 1300)
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
-/// \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
-/// \param defaultFolder The default folder to select when the browse window opens
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ * \param flags Combination of the <b>BIF_*</b> flags for the Win32 \c SHBrowseForFolder() function
+ * \param defaultFolder The default folder to select when the browse window opens
+ */
 template<   ss_typename_param_k S0
         ,   ss_typename_param_k C
         ,   ss_typename_param_k S1
@@ -356,12 +363,13 @@ inline ws_bool_t browse_for_folder(  const S0    &title
 }
 #endif /* compiler */
 
-/// \brief Browses the shell namespace according to the given parameters
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param title The title for the browse dialog
-/// \param displayName Buffer to receive the display name
+/** \brief Browses the shell namespace according to the given parameters
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param title The title for the browse dialog
+ * \param displayName Buffer to receive the display name
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         >

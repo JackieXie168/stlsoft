@@ -9,34 +9,34 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_rangelib_filtered_range(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_rangelib_filtered_range(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "RangeLib", "filtered_range", __FILE__);
+			unittest_initialiser	init(r, "RangeLib", "filtered_range", __FILE__);
 
 #if 0
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
+			if(NULL != pi1)
+			{
+				ator1.construct(pi1, 1968);
 
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed ", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(1968 != *pi1)
+				{
+					r->report("construct() failed ", __LINE__);
+					bSuccess = false;
+				}
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_rangelib_filtered_range(test_rangelib_filtered_range);
-    } // anonymous namespace
+		unittest_registrar	  unittest_rangelib_filtered_range(test_rangelib_filtered_range);
+	} // anonymous namespace
 
 } // namespace unittest
 

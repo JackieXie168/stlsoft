@@ -95,7 +95,7 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1100
 # include <winstl/window_access.hpp>        // for get_hwnd()
 #endif /* !WINSTL_INCL_WINSTL_HPP_WINDOW_ACCESS */
 #ifndef WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS
-# include <winstl/conversion/char_conversions.hpp>	// for winstl::a2w, w2a
+# include <winstl/conversion/char_conversions.hpp>  // for winstl::a2w, w2a
 #endif /* !WINSTL_INCL_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS */
 #ifndef WINSTL_INCL_WINSTL_CONTROLS_H_FUNCTIONS
 # include <winstl/controls/functions.h>     // for winstl::listbox_add_string, ...

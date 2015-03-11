@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     24th May 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MAJOR      4
 # define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_MINOR      2
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   3
-# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       93
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_REVISION   5
+# define COMSTL_VER_COMSTL_HPP_STRING_ACCESS_EDIT       96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +59,9 @@
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_H_BSTR_FUNCTIONS
-# include <comstl/bstr_functions.h>
-#endif /* !COMSTL_INCL_COMSTL_H_BSTR_FUNCTIONS */
+#ifndef COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS
+# include <comstl/string/bstr_functions.h>
+#endif /* !COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -128,9 +128,12 @@ inline cs_size_t guid2string_a(GUID const &guid, cs_char_a_t buff[1 + COMSTL_CCH
 
 /* GUID */
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr_null() function, such that the text of a given GUID
-/// may be accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr_null() function, such that the text of a given GUID
+ * may be accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 class c_str_ptr_GUID_proxy
 {
@@ -198,9 +201,12 @@ inline c_str_ptr_GUID_proxy<cs_char_w_t>::c_str_ptr_GUID_proxy(GUID const &guid)
 
 /* VARIANT */
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr_null() function, such that the text of a given variant
-/// may be accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr_null() function, such that the text of a given variant
+ * may be accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_null_VARIANT_proxy
 {
 public:
@@ -286,9 +292,12 @@ private:
     void operator =(class_type const &rhs);
 };
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr_w() function, such that the text of a given variant
-/// may be accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr_w() function, such that the text of a given variant
+ * may be accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_VARIANT_proxy_w
 {
 public:
@@ -349,9 +358,12 @@ private:
     void operator =(class_type const &rhs);
 };
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr_a() function, such that the text of a given variant
-/// may be accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr_a() function, such that the text of a given variant
+ * may be accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_VARIANT_proxy_a
 {
 public:
@@ -601,25 +613,37 @@ inline S &operator <<(S & s, c_str_VARIANT_proxy_a const &shim)
  */
 
 /* GUID */
-/// \brief Returns the corresponding ANSI C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding ANSI C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_null_a(GUID const &guid)
 {
     return c_str_ptr_GUID_proxy<cs_char_a_t>(guid);
 }
 
-/// \brief Returns the corresponding Unicode C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding Unicode C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_null_w(GUID const &guid)
 {
     return c_str_ptr_GUID_proxy<cs_char_w_t>(guid);
 }
 
-/// \brief Returns the corresponding C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(GUID const &guid)
 {
     return c_str_ptr_GUID_proxy<cs_char_o_t>(guid);
 }
 
-/// \brief Returns the corresponding C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(GUID const &guid)
 {
 #ifdef UNICODE
@@ -630,7 +654,10 @@ inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(GUID const &guid)
 }
 
 /* VARIANT */
-/// \brief Returns the corresponding ANSI C-string pointer of the VARIANT \c v, or a null pointer
+/** \brief Returns the corresponding ANSI C-string pointer of the VARIANT \c v, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 //inline c_str_null_VARIANT_proxy<cs_char_a_t> c_str_ptr_null_a(VARIANT const &v);
 //inline c_str_null_VARIANT_proxy<cs_char_w_t> c_str_ptr_null_w(VARIANT const &v);
 //inline c_str_null_VARIANT_proxy<cs_char_o_t> c_str_ptr_null_o(VARIANT const &v);
@@ -672,25 +699,37 @@ inline c_str_null_VARIANT_proxy c_str_ptr_null_w(VARIANT const &v)
  */
 
 /* GUID */
-/// \brief Returns the corresponding ANSI C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding ANSI C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_a(GUID const &guid)
 {
     return c_str_ptr_GUID_proxy<cs_char_a_t>(guid);
 }
 
-/// \brief Returns the corresponding Unicode C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding Unicode C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_ptr_w(GUID const &guid)
 {
     return c_str_ptr_GUID_proxy<cs_char_w_t>(guid);
 }
 
-/// \brief Returns the corresponding C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(GUID const &guid)
 {
     return c_str_ptr_GUID_proxy<cs_char_o_t>(guid);
 }
 
-/// \brief Returns the corresponding C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(GUID const &guid)
 {
 #ifdef UNICODE
@@ -700,25 +739,37 @@ inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(GUID const &guid)
 #endif /* UNICODE */
 }
 
-/// \brief Returns the corresponding possibly unterminated ANSI C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding possibly unterminated ANSI C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_data_a(GUID const &guid)
 {
     return c_str_ptr_a(guid);
 }
 
-/// \brief Returns the corresponding possibly unterminated Unicode C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding possibly unterminated Unicode C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_w_t> c_str_data_w(GUID const &guid)
 {
     return c_str_ptr_w(guid);
 }
 
-/// \brief Returns the corresponding possibly unterminated C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding possibly unterminated C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(GUID const &guid)
 {
     return c_str_ptr_o(guid);
 }
 
-/// \brief Returns the corresponding possibly unterminated C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding possibly unterminated C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(GUID const &guid)
 {
 #ifdef UNICODE
@@ -729,7 +780,10 @@ inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(GUID const &guid)
 }
 
 /* VARIANT */
-/// \brief Returns the corresponding ANSI C-string pointer of the VARIANT \c v
+/** \brief Returns the corresponding ANSI C-string pointer of the VARIANT \c v
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_VARIANT_proxy_a c_str_ptr_a(VARIANT const &v)
 {
     VARIANT vs;
@@ -747,7 +801,10 @@ inline c_str_VARIANT_proxy_a c_str_ptr_a(VARIANT const &v)
     return c_str_VARIANT_proxy_a(c_str_VARIANT_proxy_w(vs.bstrVal));
 }
 
-/// \brief Returns the corresponding Unicode C-string pointer of the VARIANT \c v
+/** \brief Returns the corresponding Unicode C-string pointer of the VARIANT \c v
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_VARIANT_proxy_w c_str_ptr_w(VARIANT const &v)
 {
     VARIANT vs;
@@ -765,20 +822,29 @@ inline c_str_VARIANT_proxy_w c_str_ptr_w(VARIANT const &v)
     return c_str_VARIANT_proxy_w(vs.bstrVal);
 }
 
-/// \brief Returns the corresponding possibly unterminated ANSI C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding possibly unterminated ANSI C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_VARIANT_proxy_a c_str_data_a(VARIANT const &v)
 {
     return c_str_ptr_a(v);
 }
 
-/// \brief Returns the corresponding possibly unterminated Unicode C-string pointer of the GUID \c guid
+/** \brief Returns the corresponding possibly unterminated Unicode C-string pointer of the GUID \c guid
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_VARIANT_proxy_w c_str_data_w(VARIANT const &v)
 {
     return c_str_ptr_w(v);
 }
 
 
-/// \brief Returns the corresponding C-string pointer of the VARIANT \c v
+/** \brief Returns the corresponding C-string pointer of the VARIANT \c v
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 #ifdef UNICODE
 inline c_str_VARIANT_proxy_w c_str_ptr(VARIANT const &v)
 #else /* ? UNICODE */
@@ -792,7 +858,10 @@ inline c_str_VARIANT_proxy_a c_str_ptr(VARIANT const &v)
 #endif /* UNICODE */
 }
 
-/// \brief Returns the corresponding possibly unterminated C-string pointer of the VARIANT \c v
+/** \brief Returns the corresponding possibly unterminated C-string pointer of the VARIANT \c v
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 #ifdef UNICODE
 inline c_str_VARIANT_proxy_w c_str_data(VARIANT const &v)
 #else /* ? UNICODE */
@@ -814,32 +883,47 @@ inline c_str_VARIANT_proxy_a c_str_data(VARIANT const &v)
  */
 
 /* GUID */
-/// \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len_a(GUID const &/* guid */)
 {
     return COMSTL_CCH_GUID;
 }
 
-/// \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len_w(GUID const &/* guid */)
 {
     return COMSTL_CCH_GUID;
 }
 
-/// \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len_o(GUID const &/* guid */)
 {
     return COMSTL_CCH_GUID;
 }
 
-/// \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len(GUID const &/* guid */)
 {
     return COMSTL_CCH_GUID;
 }
 
 /* VARIANT */
-/// \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len(VARIANT const &v)
 {
     cs_size_t   len;
@@ -877,91 +961,23 @@ inline cs_size_t c_str_len(VARIANT const &v)
     return len;
 }
 
-/// \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len_a(VARIANT const &v)
 {
     return c_str_len(v);
 }
 
-/// \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline cs_size_t c_str_len_w(VARIANT const &v)
 {
     return c_str_len(v);
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_size
- *
- * This can be applied to an expression, and the return value is the number of
- * bytes required to store the character string in the expression, NOT including
- * the null-terminating character.
- */
-
-/* GUID */
-#if 0
-/// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size_a(GUID const &guid)
-{
-    return c_str_len_a(guid) *sizeof(cs_char_a_t);
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size_w(GUID const &guid)
-{
-    return c_str_len_w(guid) * sizeof(cs_char_w_t);
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size_o(GUID const &guid)
-{
-    return c_str_len_o(guid) * sizeof(cs_char_o_t);
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the GUID \c guid, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size(GUID const &guid)
-{
-#ifdef UNICODE
-    return c_str_size_w(guid);
-#else /* ? UNICODE */
-    return c_str_size_a(guid);
-#endif /* UNICODE */
-}
-#endif /* 0 */
-
-/* VARIANT */
-#if 0
-/// \brief Returns the size (in bytes) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size_a(VARIANT const &v)
-{
-    return c_str_len(v) * sizeof(cs_char_a_t);
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size_w(VARIANT const &v)
-{
-    return c_str_len(v) * sizeof(OLECHAR);
-}
-#endif /* 0 */
-
-#if 0
-/// \brief Returns the size (in bytes) of the VARIANT \c v, <b><i>not</i></b> including the null-terminating character
-inline cs_size_t c_str_size(VARIANT const &v)
-{
-#ifdef UNICODE
-    return c_str_size_w(v);
-#else /* ? UNICODE */
-    return c_str_size_a(v);
-#endif /* UNICODE */
-}
-#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -1018,13 +1034,6 @@ using ::comstl::c_str_len_a;
 using ::comstl::c_str_len_w;
 using ::comstl::c_str_len_o;
 using ::comstl::c_str_len;
-
-#if 0
-using ::comstl::c_str_size_a;
-using ::comstl::c_str_size_w;
-using ::comstl::c_str_size_o;
-using ::comstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

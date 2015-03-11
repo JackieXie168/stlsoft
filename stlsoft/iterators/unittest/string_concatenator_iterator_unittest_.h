@@ -11,95 +11,95 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_iterators_string_concatenator_iterator(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_iterators_string_concatenator_iterator(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "iterators/string_concatenator_iterator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "iterators/string_concatenator_iterator", __FILE__);
 
-            typedef std::string             string_t;
-            typedef std::vector<string_t>   strings_t;
+			typedef std::string 			string_t;
+			typedef std::vector<string_t>	strings_t;
 
-            {
-                strings_t       strings;
-                string_t        result;
+			{
+				strings_t		strings;
+				string_t		result;
 
-                strings.push_back("abc");
-                strings.push_back("def");
-                strings.push_back("ghi");
+				strings.push_back("abc");
+				strings.push_back("def");
+				strings.push_back("ghi");
 
-                std::copy(  strings.begin(), strings.end()
-                        ,   stlsoft::string_concatenator(result, ","));
+				std::copy(	strings.begin(), strings.end()
+						,	stlsoft::string_concatenator(result, ","));
 
-                if(result != "abc,def,ghi")
-                {
-                    r->report("string_concatenator() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(result != "abc,def,ghi")
+				{
+					r->report("string_concatenator() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            {
-                strings_t       strings;
-                string_t        result;
+			{
+				strings_t		strings;
+				string_t		result;
 
-                strings.push_back("abc");
-                strings.push_back("def");
-                strings.push_back("ghi");
+				strings.push_back("abc");
+				strings.push_back("def");
+				strings.push_back("ghi");
 
-                std::copy(  strings.begin(), strings.end()
-                        ,   stlsoft::make_string_concatenator_iterator(result, ","));
+				std::copy(	strings.begin(), strings.end()
+						,	stlsoft::make_string_concatenator_iterator(result, ","));
 
-                if(result != "abc,def,ghi")
-                {
-                    r->report("string_concatenator() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(result != "abc,def,ghi")
+				{
+					r->report("string_concatenator() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            {
-                strings_t       strings;
-                string_t        result;
-                const string_t  sep(",");
+			{
+				strings_t		strings;
+				string_t		result;
+				const string_t	sep(",");
 
-                strings.push_back("abc");
-                strings.push_back("def");
-                strings.push_back("ghi");
+				strings.push_back("abc");
+				strings.push_back("def");
+				strings.push_back("ghi");
 
-                std::copy(  strings.begin(), strings.end()
-                        ,   stlsoft::string_concatenator(result, sep));
+				std::copy(	strings.begin(), strings.end()
+						,	stlsoft::string_concatenator(result, sep));
 
-                if(result != "abc,def,ghi")
-                {
-                    r->report("string_concatenator() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(result != "abc,def,ghi")
+				{
+					r->report("string_concatenator() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            {
-                strings_t       strings;
-                string_t        result;
-                const string_t  sep(",");
+			{
+				strings_t		strings;
+				string_t		result;
+				const string_t	sep(",");
 
-                strings.push_back("abc");
-                strings.push_back("def");
-                strings.push_back("ghi");
+				strings.push_back("abc");
+				strings.push_back("def");
+				strings.push_back("ghi");
 
-                std::copy(  strings.begin(), strings.end()
-                        ,   stlsoft::make_string_concatenator_iterator(result, sep));
+				std::copy(	strings.begin(), strings.end()
+						,	stlsoft::make_string_concatenator_iterator(result, sep));
 
-                if(result != "abc,def,ghi")
-                {
-                    r->report("string_concatenator() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(result != "abc,def,ghi")
+				{
+					r->report("string_concatenator() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_iterators_string_concatenator_iterator(test_stlsoft_iterators_string_concatenator_iterator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_iterators_string_concatenator_iterator(test_stlsoft_iterators_string_concatenator_iterator);
+	} // anonymous namespace
 
 } // namespace unittest

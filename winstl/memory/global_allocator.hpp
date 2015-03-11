@@ -4,7 +4,7 @@
  * Purpose:     global_allocator class.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MAJOR    4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_REVISION 1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     68
+# define WINSTL_VER_WINSTL_MEMORY_HPP_GLOBAL_ALLOCATOR_EDIT     69
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,11 +91,12 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief STL Allocator based on the Win32 Global() API
-///
-/// \ingroup group__library__memory
-///
-/// \param T The value_type of the allocator
+/** \brief STL Allocator based on the Win32 Global() API
+ *
+ * \ingroup group__library__memory
+ *
+ * \param T The value_type of the allocator
+ */
 template <ss_typename_param_k T>
 class global_allocator
     : public allocator_base<T, global_allocator<T> >

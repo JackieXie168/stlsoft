@@ -4,7 +4,7 @@
  * Purpose:     Scoped thread-safe access locking class.
  *
  * Created:     7th November 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MAJOR     2
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_MINOR     0
 # define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_REVISION  1
-# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      11
+# define STLSOFT_VER_STLSOFT_SYNCH_HPP_CHECKOUT_TOKEN_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,24 +122,24 @@ class checkout_token
 /// \name Member Types
 /// @{
 public:
-	/// \brief The type whose resources are to be protected
+    /// \brief The type whose resources are to be protected
     typedef CT                      accessed_class_type;
-	/// \brief 
+    /// \brief 
     typedef MT                      accessed_member_type;
-	/// \brief The current instantation of the type
+    /// \brief The current instantation of the type
     typedef checkout_token<CT, MT>  class_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-	/// \brief Locks 
+    /// \brief Locks 
     checkout_token(accessed_class_type &ac, accessed_member_type am)
         : m_ac(ac)
         , m_am(am)
         , m_lock(ac)
     {}
-	/// \brief Cop
+    /// \brief Cop
     checkout_token(class_type const &rhs)
         : m_ac(rhs.m_ac)
         , m_am(rhs.m_am)

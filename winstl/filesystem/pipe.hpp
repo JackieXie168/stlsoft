@@ -4,7 +4,7 @@
  * Purpose:     pipe class, based on Windows anonymous pipe.
  *
  * Created:     19th June 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MAJOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_MINOR    0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_REVISION 1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     26
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PIPE_EDIT     27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,7 +98,10 @@ namespace winstl_project
 # pragma message(_sscomp_fileline_message("This needs to be parameterised with a winstl::system_resource_policy, which would control whether to throw if MX create fails"))
 #endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
 
-/// Class which wraps the Win32 pipe kernel object
+/** \brief Class which wraps the Win32 pipe kernel object
+ *
+ * \ingroup group__library__file_system
+ */
 class pipe
 {
 /// \name Member Types

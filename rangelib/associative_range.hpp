@@ -4,7 +4,7 @@
  * Purpose:     Associative container range adaptor.
  *
  * Created:     1st October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_MINOR       4
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    1
-# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        20
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_REVISION    3
+# define RANGELIB_VER_RANGELIB_HPP_ASSOCIATIVE_RANGE_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META
 # include <stlsoft/meta.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
@@ -85,9 +85,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #  include <stlsoft/meta/member_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS */
-# ifndef STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR
-#  include <stlsoft/associative_mapped_type_detector.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR */
+# ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR
+#  include <stlsoft/collections/associative_mapped_type_detector.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR */
 #else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 # if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
 #  if STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION <= STLSOFT_CF_DINKUMWARE_VC_VERSION_6_0
@@ -130,7 +130,10 @@ namespace rangelib_project
 
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 
-/// Traits class for determining the attributes of range-adapted associative container types
+/** \brief Traits class for determining the attributes of range-adapted associative container types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k S
         ,   bool                B_CONST
         >
@@ -263,27 +266,30 @@ public:
 };
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
 
-/// \brief This class adapts an STL associative instance into a Range
-///
-/// \param S The associative class
-/// \param T The associative range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type
-///
-/// It is categoried as an Iterable Range
-///
-/// It could be used as follows
-/// \htmlonly
-/// <code>
-/// <pre>
-/// void dump_elements(std::vector&lt;int&gt; const &numbers)
-/// {
-///   for(associative_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
-///   {
-///     std::cout &lt;&lt; &r; // Dump the current value to stdout
-///   }
-/// }
-/// </pre>
-/// </code>
-/// \endhtmlonly
+/** \brief This class adapts an STL associative instance into a Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param S The associative class
+ * \param T The associative range traits, used to deduce the Range's iterator, const_iterator, reference, const_reference and value_type
+ *
+ * It is categoried as an Iterable Range
+ *
+ * It could be used as follows
+ * \htmlonly
+ * <code>
+ * <pre>
+ * void dump_elements(std::vector&lt;int&gt; const &numbers)
+ * {
+ *   for(associative_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
+ *   {
+ *     std::cout &lt;&lt; &r; // Dump the current value to stdout
+ *   }
+ * }
+ * </pre>
+ * </code>
+ * \endhtmlonly
+ */
 template<   ss_typename_param_k S
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
         ,   ss_typename_param_k T = associative_range_traits<S, is_const<S>::value>    // Determines whether the associative is const

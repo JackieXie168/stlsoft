@@ -4,7 +4,7 @@
  * Purpose:     Window enable-state scoping class.
  *
  * Created:     5th January 1996
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_REVISION 1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_EDIT     81
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ENABLE_SCOPE_EDIT     82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,10 +90,13 @@ namespace winstl_project
  */
 
 // window_enable_scope
-/// Provides scoping of the enable status of a window.
-///
-/// This class provides scoping of the enable status of a window via the API
-/// function EnableWindow().
+/** \brief Provides scoping of the enable status of a window.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class provides scoping of the enable status of a window via the API
+ * function EnableWindow().
+ */
 class window_enable_scope
 {
 public:

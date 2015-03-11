@@ -5,7 +5,7 @@
  *              specialisations.
  *
  * Created:     1st December 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MAJOR    3
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_MINOR    4
 # define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_REVISION 1
-# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     52
+# define MFCSTL_VER_H_MFCSTL_ARRAY_ADAPTOR_EDIT     53
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -211,23 +211,26 @@ struct array_adaptor_traits<CArray<V, A> >
 #endif // __AFXTEMPL_H__
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Adapts MFC Array class instances to the STL container concept
-///
-/// This class takes a container type, e.g. CStringArray, as its primary (and
-/// only non-default) template argument, C. The second template parameter, T,
-/// defaults to array_adaptor_traits<C>, for which specialisations are provided
-/// for the following types
-///
-///  - CObArray      (stores pointers to CObject, or derived, instances)
-///  - CPtrArray     (stores raw pointers, ie. void*)
-///  - CStringArray  (stores strings, in the form of CString)
-///
-/// and for compilers that support partial specialisation
-///
-///  - CArray<V, A>  (stores instances of V, with argument type A)
-///
-/// \param C The container type
-/// \param T The traits type. With translators that support default template arguments, this is defaulted to array_adaptor_traits<C>
+/** \brief Adapts MFC Array class instances to the STL container concept
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class takes a container type, e.g. CStringArray, as its primary (and
+ * only non-default) template argument, C. The second template parameter, T,
+ * defaults to array_adaptor_traits<C>, for which specialisations are provided
+ * for the following types
+ *
+ *  - CObArray      (stores pointers to CObject, or derived, instances)
+ *  - CPtrArray     (stores raw pointers, ie. void*)
+ *  - CStringArray  (stores strings, in the form of CString)
+ *
+ * and for compilers that support partial specialisation
+ *
+ *  - CArray<V, A>  (stores instances of V, with argument type A)
+ *
+ * \param C The container type
+ * \param T The traits type. With translators that support default template arguments, this is defaulted to array_adaptor_traits<C>
+ */
 
 template<   class C                             // The container type
         ,   class T = array_adaptor_traits<C>   // The traits type
@@ -482,7 +485,10 @@ public:
         size_type       m_index;
     };
 
-/// The reverse non-mutating (const) iterator type
+/** \brief The reverse non-mutating (const) iterator type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 #if defined(STLSOFT_CF_BIDIRECTIONAL_ITERATOR_SUPPORT)
     typedef stlsoft_ns_qual(const_reverse_bidirectional_iterator_base)< const_iterator,
                                                                         value_type,

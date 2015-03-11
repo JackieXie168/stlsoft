@@ -4,7 +4,7 @@
  * Purpose:     String function objects
  *
  * Created:     22nd April 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       0
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        20
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -169,7 +169,10 @@ private:
     const ss_size_t m_prefixLen;
 };
 
-/// \note This is a work-in-progress, and is subject to change in a later release
+/** \brief \note This is a work-in-progress, and is subject to change in a later release
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 inline string_begins_with_function<C> string_begins_with(C const *prefix)
 {

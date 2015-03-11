@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_iterator type.
  *
  * Created:     9th February 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/typefixer/iterator.hpp
-///
-/// Definition of the fixer_iterator type.
+/** \file stlsoft/typefixer/iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::typefixer::iterator
+ *   typefixer class template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_H_STLSOFT_TYPEFIXER_ITERATOR
 #define STLSOFT_INCL_H_STLSOFT_TYPEFIXER_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_ITERATOR_MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_ITERATOR_MINOR     3
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_ITERATOR_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_ITERATOR_EDIT      14
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_ITERATOR_EDIT      15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,11 +94,14 @@ namespace typefixer
  * Classes
  */
 
-/// \brief Type-fixer for \c iterator member type
-///
-/// If type \c T has a \c iterator member type, then the type of
-/// <code>fixer_iterator<T>::iterator</code> is
-/// <code>T::iterator</code>, otherwise it is \c void
+/** \brief Type-fixer for \c iterator member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c iterator member type, then the type of
+ * <code>fixer_iterator<T>::iterator</code> is
+ * <code>T::iterator</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_iterator
@@ -114,11 +120,14 @@ struct fixer_iterator<T, false>
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Type-fixer for \c const_iterator member type
-///
-/// If type \c T has a \c const_iterator member type, then the type of
-/// <code>fixer_const_iterator<T>::const_iterator</code> is
-/// <code>T::const_iterator</code>, otherwise it is \c void
+/** \brief Type-fixer for \c const_iterator member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c const_iterator member type, then the type of
+ * <code>fixer_const_iterator<T>::const_iterator</code> is
+ * <code>T::const_iterator</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_const_iterator

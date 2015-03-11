@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MAJOR    4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_MINOR    1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_REVISION 2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT     32
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_ENVIRONMENT_BLOCK_EDIT     33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,23 +90,30 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
+/** \brief \weakgroup libraries STLSoft Libraries
+ * \brief The individual libraries
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup libraries_system System Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating operating-system specific constructs
-/// @{
+/** \brief \weakgroup libraries_system System Library
+ * \ingroup libraries
+ * \brief This library provides facilities for defining and manipulating operating-system specific constructs
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// Class used for preparing environment blocks
-///
-/// \param C The character type
-/// \param T The traits type. Defaults to char_traits<C>. On translators that do not support default template parameters, this must be explicitly specified.
-/// \param A The allocator type. Defaults to stlsoft::allocator_selector<C>::allocator_type. On translators that do not support default template parameters, this must be explicitly specified.
+/** \brief Class used for preparing environment blocks
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The character type
+ * \param T The traits type. Defaults to char_traits<C>. On translators that do not support default template parameters, this must be explicitly specified.
+ * \param A The allocator type. Defaults to stlsoft::allocator_selector<C>::allocator_type. On translators that do not support default template parameters, this must be explicitly specified.
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = char_traits<C>
@@ -315,7 +322,10 @@ private:
 
  /// Instantiation of the basic_path template for the ANSI character type \c char
 typedef basic_environment_block<ss_char_a_t>    environment_block_a;
-/// Instantiation of the basic_environment_block template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_environment_block template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 typedef basic_environment_block<ss_char_w_t>    environment_block_w;
 
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */

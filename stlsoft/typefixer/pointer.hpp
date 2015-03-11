@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_pointer and fixer_const_pointer types.
  *
  * Created:     9th February 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/typefixer/pointer.hpp
-///
-/// Definition of the fixer_pointer and fixer_const_pointer types.
+/** \file stlsoft/typefixer/pointer.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::typefixer::pointer
+ *   typefixer class template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
 #define STLSOFT_INCL_STLSOFT_TYPEFIXER_HPP_POINTER
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_MAJOR    3
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_MINOR    2
 # define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_REVISION 1
-# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_EDIT     25
+# define STLSOFT_VER_STLSOFT_TYPEFIXER_HPP_POINTER_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,11 +97,14 @@ namespace typefixer
  * Classes
  */
 
-/// \brief Type-fixer for \c pointer member type
-///
-/// If type \c T has a \c pointer member type, then the type of
-/// <code>fixer_pointer<T>::pointer</code> is
-/// <code>T::pointer</code>, otherwise it is \c void
+/** \brief Type-fixer for \c pointer member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c pointer member type, then the type of
+ * <code>fixer_pointer<T>::pointer</code> is
+ * <code>T::pointer</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_pointer
@@ -118,11 +124,14 @@ struct fixer_pointer<T, false>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// \brief Type-fixer for \c const_pointer member type
-///
-/// If type \c T has a \c const_pointer member type, then the type of
-/// <code>fixer_const_pointer<T>::const_pointer</code> is
-/// <code>T::const_pointer</code>, otherwise it is \c void
+/** \brief Type-fixer for \c const_pointer member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c const_pointer member type, then the type of
+ * <code>fixer_const_pointer<T>::const_pointer</code> is
+ * <code>T::const_pointer</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_const_pointer

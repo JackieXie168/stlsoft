@@ -4,7 +4,7 @@
  * Purpose:     stlsoft_malloc_allocator class - uses malloc()/free().
  *
  * Created:     2nd January 2001
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_MAJOR      4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_REVISION   1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_EDIT       72
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_MALLOC_ALLOCATOR_EDIT       73
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,11 +82,12 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief STL Allocator based on the C runtime \c malloc() & \c free() functions
-///
-/// \ingroup group__library__memory
-///
-/// \param T The value_type of the allocator
+/** \brief STL Allocator based on the C runtime \c malloc() & \c free() functions
+ *
+ * \ingroup group__library__memory
+ *
+ * \param T The value_type of the allocator
+ */
 template <ss_typename_param_k T>
 class malloc_allocator
     : public allocator_base<T, malloc_allocator<T> >

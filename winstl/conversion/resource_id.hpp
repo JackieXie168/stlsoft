@@ -5,7 +5,7 @@
  *              identifiers.
  *
  * Created:     11th April 2005
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MAJOR     2
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_MINOR     0
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_REVISION  1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      9
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_RESOURCE_ID_EDIT      10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -140,11 +140,20 @@ private:
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \brief Instantiation for use with the ANSI \c char type.
+/** \brief Instantiation for use with the ANSI \c char type.
+ *
+ * \ingroup group__library__conversion
+ */
 typedef basic_resource_id<ws_char_a_t>  resource_id_a;
-/// \brief Instantiation for use with the Unicode \c wchar_t type.
+/** \brief Instantiation for use with the Unicode \c wchar_t type.
+ *
+ * \ingroup group__library__conversion
+ */
 typedef basic_resource_id<ws_char_w_t>  resource_id_w;
-/// \brief Instantiation for use with the Windows \c TCHAR type.
+/** \brief Instantiation for use with the Windows \c TCHAR type.
+ *
+ * \ingroup group__library__conversion
+ */
 typedef basic_resource_id<TCHAR>        resource_id;
 
 /* ////////////////////////////////////////////////////////////////////// */

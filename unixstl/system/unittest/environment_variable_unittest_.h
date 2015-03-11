@@ -11,30 +11,30 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_system_environment_variable(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_system_environment_variable(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "system/environment_variable", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "system/environment_variable", __FILE__);
 
-            typedef basic_environment_variable<char>    env_var_t;
+			typedef basic_environment_variable<char>	env_var_t;
 
-            env_var_t   path("PATH");
+			env_var_t	path("PATH");
 
-            if(0 != strcmp(getenv("PATH"), path))
-            {
-                r->report("basic_environment_variable<char> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != strcmp(getenv("PATH"), path))
+			{
+				r->report("basic_environment_variable<char> failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_system_environment_variable(test_unixstl_system_environment_variable);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_system_environment_variable(test_unixstl_system_environment_variable);
+	} // anonymous namespace
 
 }// namespace unittest

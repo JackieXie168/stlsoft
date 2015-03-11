@@ -9,42 +9,42 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_registry_reg_key_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_registry_reg_key_sequence(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "registry/reg_key_sequence", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "registry/reg_key_sequence", __FILE__);
 
-            if(0)
-            {
-                reg_key_sequence_a    seq_a(HKEY_CURRENT_USER, "SOFTWARE");
+			if(0)
+			{
+				reg_key_sequence_a	  seq_a(HKEY_CURRENT_USER, "SOFTWARE");
 
-                reg_key_sequence_a::const_iterator    b   =   seq_a.begin();
-                reg_key_sequence_a::const_iterator    e   =   seq_a.end();
+				reg_key_sequence_a::const_iterator	  b   =   seq_a.begin();
+				reg_key_sequence_a::const_iterator	  e   =   seq_a.end();
 
-                for(; b != e; ++b)
-                {
-                    reg_key_sequence_a::value_type    v   =   *b;
-                }
-            }
+				for(; b != e; ++b)
+				{
+					reg_key_sequence_a::value_type	  v   =   *b;
+				}
+			}
 
 #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_registry_reg_key_sequence(test_winstl_registry_reg_key_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_registry_reg_key_sequence(test_winstl_registry_reg_key_sequence);
+	} // anonymous namespace
 
 } // namespace unittest
 

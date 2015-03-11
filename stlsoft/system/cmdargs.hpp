@@ -4,7 +4,7 @@
  * Purpose:     Command-line sequences class.
  *
  * Created:     25th June 2005
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_MINOR       0
 # define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_REVISION    1
-# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        17
+# define STLSOFT_VER_STLSOFT_SYSTEM_HPP_CMDARGS_EDIT        18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,16 +96,17 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief Facade class that presents argc+argv command line parameters as two separate
-/// sequences of options (those arguments with - or -- prefixes) and values
-/// (those without)
-///
-/// \ingroup group__library__system
-///
-/// \note The cmdargs instance maintains views onto the actual arguments in
-///   the argv array. Therefore, the behaviour is undefined if any code modifies
-///   the strings pointed to by the elements in the argv array, or repoints any
-///   of the argv elements to different strings.
+/** \brief Facade class that presents argc+argv command line parameters as two separate
+ * sequences of options (those arguments with - or -- prefixes) and values
+ * (those without)
+ *
+ * \ingroup group__library__system
+ *
+ * \note The cmdargs instance maintains views onto the actual arguments in
+ *   the argv array. Therefore, the behaviour is undefined if any code modifies
+ *   the strings pointed to by the elements in the argv array, or repoints any
+ *   of the argv elements to different strings.
+ */
 class cmdargs
 {
 public:

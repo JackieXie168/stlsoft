@@ -4,7 +4,7 @@
  * Purpose:     Contains common type and feature discriminations for the Registry Library.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_MINOR      0
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_REVISION   2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_EDIT       51
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_DEFS_EDIT       52
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,10 +118,11 @@ namespace winstl_project
  * Constants
  */
 
-/// \brief Number of characters in internal buffer of auto_buffer used throughout
-///   the Registry library.
-///
-/// \ingroup group__library__windows_registry
+/** \brief Number of characters in internal buffer of auto_buffer used throughout
+ *   the Registry library.
+ *
+ * \ingroup group__library__windows_registry
+ */
 const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -146,8 +147,11 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 
 // ANSI
 
-/// For all compilers this is basic_string<ws_char_a_t> except Visual C++ 4.2
-/// for which it is string
+/** \brief For all compilers this is basic_string<ws_char_a_t> except Visual C++ 4.2
+ * for which it is string
+ *
+ * \ingroup group__library__windows_registry
+ */
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
   typedef string                                            reg_string_a_t;
@@ -159,8 +163,11 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 
 // Unicode
 
-/// For all compilers this is basic_string<ws_char_w_t> except Visual C++ 4.2
-/// for which it is wstring
+/** \brief For all compilers this is basic_string<ws_char_w_t> except Visual C++ 4.2
+ * for which it is wstring
+ *
+ * \ingroup group__library__windows_registry
+ */
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
   typedef wstring                                           reg_string_w_t;
@@ -170,8 +177,11 @@ const ws_size_t CCH_REG_API_AUTO_BUFFER     =   512;
 
 // TCHAR
 
-/// For all compilers this is basic_string<ws_char_w_t> except Visual C++ 4.2
-/// for which it is wstring
+/** \brief For all compilers this is basic_string<ws_char_w_t> except Visual C++ 4.2
+ * for which it is wstring
+ *
+ * \ingroup group__library__windows_registry
+ */
 # if defined(STLSOFT_COMPILER_IS_MSVC) && \
      _MSC_VER < 1100
 #  ifdef UNICODE

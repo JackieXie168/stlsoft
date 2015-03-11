@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     13th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      2
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   4
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       85
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   5
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,9 +97,12 @@ namespace atlstl_project
 /* CWindow */
 
 #ifdef __ATLWIN_H__
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr_null() function, such that the window text of a given window
-/// may be accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr_null() function, such that the window text of a given window
+ * may be accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_ptr_null_CWindow_proxy
 {
 private:
@@ -175,9 +178,12 @@ private:
     void operator =(class_type const &rhs);
 };
 
-/// This class provides an intermediary object that may be returned by the
-/// c_str_ptr() function, such that the window text of a given window may be
-/// accessed as a null-terminated string.
+/** \brief This class provides an intermediary object that may be returned by the
+ * c_str_ptr() function, such that the window text of a given window may be
+ * accessed as a null-terminated string.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class c_str_ptr_CWindow_proxy
 {
 private:
@@ -311,12 +317,18 @@ inline S &operator <<(S & s, c_str_ptr_CWindow_proxy const &shim)
 
 /* CWindow */
 #ifdef __ATLWIN_H__
-/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_null_CWindow_proxy c_str_ptr_null(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr_null_CWindow_proxy(w);
 }
-/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 # ifdef UNICODE
 inline c_str_ptr_null_CWindow_proxy c_str_ptr_null_w(atlstl_ns_qual_atl(CWindow) const &w)
 # else /* ? UNICODE */
@@ -328,7 +340,10 @@ inline c_str_ptr_null_CWindow_proxy c_str_ptr_null_a(atlstl_ns_qual_atl(CWindow)
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
-/// \brief Returns the corresponding C-string pointer of the CComBSTR \c s, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CComBSTR \c s, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline LPCOLESTR c_str_ptr_null(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     /* NULL is a valid BSTR value, so may return that */
@@ -348,12 +363,18 @@ inline LPCOLESTR c_str_ptr_null_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CWindow */
 #ifdef __ATLWIN_H__
-/// \brief Returns the corresponding C-string pointer of the text of the CWindow \c w
+/** \brief Returns the corresponding C-string pointer of the text of the CWindow \c w
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_CWindow_proxy c_str_ptr(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr_CWindow_proxy(w);
 }
-/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 # ifdef UNICODE
 inline c_str_ptr_CWindow_proxy c_str_ptr_w(atlstl_ns_qual_atl(CWindow) const &w)
 # else /* ? UNICODE */
@@ -365,7 +386,10 @@ inline c_str_ptr_CWindow_proxy c_str_ptr_a(atlstl_ns_qual_atl(CWindow) const &w)
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
-/// \brief Returns the corresponding C-string pointer of the CComBSTR \c s
+/** \brief Returns the corresponding C-string pointer of the CComBSTR \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline LPCOLESTR c_str_ptr(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     /* NULL is a valid BSTR value, so check for that */
@@ -385,12 +409,18 @@ inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CWindow */
 #ifdef __ATLWIN_H__
-/// \brief Returns the corresponding possibly un-terminated C-string pointer of the text of the CWindow \c w
+/** \brief Returns the corresponding possibly un-terminated C-string pointer of the text of the CWindow \c w
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline c_str_ptr_CWindow_proxy c_str_data(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr(w);
 }
-/// \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 # ifdef UNICODE
 inline c_str_ptr_CWindow_proxy c_str_data_w(atlstl_ns_qual_atl(CWindow) const &w)
 # else /* ? UNICODE */
@@ -401,7 +431,10 @@ inline c_str_ptr_CWindow_proxy c_str_data_a(atlstl_ns_qual_atl(CWindow) const &w
 }
 #endif /* __ATLWIN_H__ */
 
-/// \brief Returns the corresponding possibly un-terminated C-string pointer of the CComBSTR \c s
+/** \brief Returns the corresponding possibly un-terminated C-string pointer of the CComBSTR \c s
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline LPCOLESTR c_str_data(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_ptr(s);
@@ -420,7 +453,10 @@ inline LPCOLESTR c_str_data_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 
 /* CWindow */
 #ifdef __ATLWIN_H__
-/// \brief Returns the length (in characters) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline as_size_t c_str_len(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return static_cast<as_size_t>(w.GetWindowTextLength());
@@ -428,39 +464,14 @@ inline as_size_t c_str_len(atlstl_ns_qual_atl(CWindow) const &w)
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
-/// \brief Returns the length (in characters) of the CComBSTR \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief Returns the length (in characters) of the CComBSTR \c s, <b><i>not</i></b> including the null-terminating character
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 inline as_size_t c_str_len(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return s.Length();
 }
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_size
- *
- * This can be applied to an expression, and the return value is the number of
- * bytes required to store the character string in the expression, NOT including
- * the null-terminating character.
- */
-
-/* CWindow */
-#ifdef __ATLWIN_H__
-#if 0
-/// \brief Returns the size (in bytes) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
-inline as_size_t c_str_size(atlstl_ns_qual_atl(CWindow) const &w)
-{
-    return c_str_len(w) * sizeof(TCHAR);
-}
-#endif /* 0 */
-#endif /* __ATLWIN_H__ */
-
-/* CComBSTR */
-#if 0
-/// \brief Returns the size (in bytes) of the CComBSTR \c s, <b><i>not</i></b> including the null-terminating character
-inline as_size_t c_str_size(atlstl_ns_qual_atl(CComBSTR) const &s)
-{
-    return c_str_len(s) * sizeof(OLECHAR);
-}
-#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -520,10 +531,6 @@ using ::atlstl::c_str_data_a;
 using ::atlstl::c_str_data_w;
 
 using ::atlstl::c_str_len;
-
-#if 0
-using ::atlstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

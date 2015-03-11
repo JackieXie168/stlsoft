@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_integral_type.hpp (formerly stlsoft_meta.h; originally MTBase.h, ::SynesisStl)
+ * File:        stlsoft/meta/is_integral_type.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     Tests whether a type is integral.
  *
  * Created:     19th November 1998
- * Updated:     20th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/is_integral_type.hpp
-///
-/// Tests whether a type is integral.
+/** \file stlsoft/meta/is_integral_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::is_integral_type meta class
+ *  template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
 #define STLSOFT_INCL_STLSOFT_META_HPP_IS_INTEGRAL_TYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_MINOR    0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_REVISION 3
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     121
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_INTEGRAL_TYPE_EDIT     122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,7 +69,7 @@
 # include <stlsoft/meta/util/meta_.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
-# include <stlsoft/meta/yesno.hpp>      // for yes_type, no_type
+# include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,7 +85,11 @@ namespace stlsoft
  * Classes
  */
 
-/// traits type used to determine whether a given type is integral
+/** \brief Traits type used to determine whether the given type is an
+ *    integral type.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct is_integral_type
 {

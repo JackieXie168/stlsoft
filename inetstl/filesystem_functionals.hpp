@@ -4,7 +4,7 @@
  * Purpose:     File-system functionals.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MAJOR       3
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_MINOR       2
 # define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_REVISION    1
-# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        22
+# define INETSTL_VER_INETSTL_HPP_FILESYSTEM_FUNCTIONALS_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,11 +97,14 @@ namespace inetstl_project
  * Classes
  */
 
-/// Function object that compares two file-system paths
-///
-/// \param C The character type
-/// \param A1 The left-hand argument type; defaults to C const*
-/// \param A2 The right-hand argument type; defaults to C const*
+/** \brief Function object that compares two file-system paths
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The character type
+ * \param A1 The left-hand argument type; defaults to C const*
+ * \param A2 The right-hand argument type; defaults to C const*
+ */
 // [[synesis:class:function-class:binary-predicate: path_compare<T<C>, T<A1>, T<A2>>]]
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A1 = C const *
@@ -161,10 +164,13 @@ private:
     }
 };
 
-/// Predicate that indicates whether a given path exists
-///
-/// \param C The character type
-/// \param A The argument type; defaults to C const*
+/** \brief Predicate that indicates whether a given path exists
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The character type
+ * \param A The argument type; defaults to C const*
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A = C const*
         >

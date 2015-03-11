@@ -4,7 +4,7 @@
  * Purpose:     Interface-specific predicates and functions.
  *
  * Created:     14th June 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MAJOR     3
 # define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_MINOR     1
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  1
-# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      56
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_REVISION  2
+# define COMSTL_VER_HPP_INTERFACE_FUNCTIONALS_EDIT      59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,6 +62,11 @@
 STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 4)
  */
 
+/*
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+ */
+
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
@@ -69,9 +74,9 @@ STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 
 #ifndef COMSTL_INCL_COMSTL_H_COMSTL
 # include <comstl/comstl.h>
 #endif /* !COMSTL_INCL_COMSTL_H_COMSTL */
-#ifndef COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS
-# include <comstl/refcount_functions.h> // for safe_addref(), safe_release()
-#endif /* !COMSTL_INCL_COMSTL_H_REFCOUNT_FUNCTIONS */
+#ifndef COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS
+# include <comstl/util/refcount_functions.h>
+#endif /* !COMSTL_INCL_COMSTL_UTIL_H_REFCOUNT_FUNCTIONS */
 #include <functional>
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,15 +105,18 @@ namespace comstl_project
  * Functionals
  */
 
-/// \brief Releases COM interfaces
-///
-/// This function object releases COM interfaces by calling Release()
-/// on them. Note that the function object benignly ignores null interface
-/// pointers.
-///
-/// \param I The COM interface on which to parameterise the template
+/** \brief Releases COM interfaces
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object releases COM interfaces by calling Release()
+ * on them. Note that the function object benignly ignores null interface
+ * pointers.
+ *
+ * \param I The COM interface on which to parameterise the template
+ */
 template <ss_typename_param_k I>
-// [[synesis:class:unnary-functor: interface_release]]
+// [[synesis:class:unary-functor: interface_release]]
 struct interface_release
     : public comstl_ns_qual_std(unary_function)<I*, void>
 {
@@ -124,15 +132,18 @@ public:
     }
 };
 
-/// \brief Adds references to COM interfaces
-///
-/// This function object adds a reference to COM interfaces by calling AddRef()
-/// on them. Note that the function object benignly ignores null interface
-/// pointers.
-///
-/// \param I The COM interface on which to parameterise the template
+/** \brief Adds references to COM interfaces
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object adds a reference to COM interfaces by calling AddRef()
+ * on them. Note that the function object benignly ignores null interface
+ * pointers.
+ *
+ * \param I The COM interface on which to parameterise the template
+ */
 template <ss_typename_param_k I>
-// [[synesis:class:unnary-functor: interface_addref]]
+// [[synesis:class:unary-functor: interface_addref]]
 struct interface_addref
     : public comstl_ns_qual_std(unary_function)<I*, void>
 {

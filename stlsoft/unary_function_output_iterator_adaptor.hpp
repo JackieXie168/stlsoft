@@ -4,7 +4,7 @@
  * Purpose:     Class that adapts a unary function to an output iterator.
  *
  * Created:     20th July 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_REVISION    1
-# define STLSOFT_VER_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT        6
+# define STLSOFT_VER_STLSOFT_HPP_UNARY_FUNCTION_OUTPUT_ITERATOR_ADAPTOR_EDIT        7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,12 +77,15 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief This class provides adaptation to OutputIterator of a unary function
-/// using CRTP/SCTP.
-///
-/// \param F The Unary Function class type
-///
-///
+/** \brief This class provides adaptation to OutputIterator of a unary function
+ * using CRTP/SCTP.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param F The Unary Function class type
+ *
+ *
+ */
 template <ss_typename_param_k F>
 struct unary_function_output_iterator_adaptor
 {

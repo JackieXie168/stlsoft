@@ -4,7 +4,7 @@
  * Purpose:     Random number range class.
  *
  * Created:     31st May 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_MINOR      2
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   1
-# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       20
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_REVISION   2
+# define RANGELIB_VER_RANGELIB_HPP_RANDOM_RANGE_EDIT       22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -71,9 +71,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES
 # include <rangelib/range_categories.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGE_CATEGORIES */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 #include <stdlib.h>                     // for rand(), srand()
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,22 +102,25 @@ namespace rangelib_project
  * Classes
  */
 
-/// This range class represents a range of random numbers.
-///
-/// It is categoried as a Notional Range
-///
-/// It could be used as follows
-/// \htmlonly
-/// <code>
-/// <pre>
-///   // Create a range of 10 values, whose value are between -100 and +100
-///   stlsoft::random_range   r(10, -100, +100);
-///
-///   // Dump them to stdout
-///   stlsoft::r_copy(r, std::ostream_iterator&lt;int>(" "));
-/// </pre>
-/// </code>
-/// \endhtmlonly
+/** \brief This range class represents a range of random numbers.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * It is categoried as a Notional Range
+ *
+ * It could be used as follows
+ * \htmlonly
+ * <code>
+ * <pre>
+ *   // Create a range of 10 values, whose value are between -100 and +100
+ *   stlsoft::random_range   r(10, -100, +100);
+ *
+ *   // Dump them to stdout
+ *   stlsoft::r_copy(r, std::ostream_iterator&lt;int>(" "));
+ * </pre>
+ * </code>
+ * \endhtmlonly
+ */
 class random_range
     : public notional_range_tag
 {
@@ -235,6 +238,7 @@ public:
 /// @}
 
 /// \name Implementation
+/// @{
 private:
     static value_type next_value_(value_type minValue, value_type maxValue)
     {

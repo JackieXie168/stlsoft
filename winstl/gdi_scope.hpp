@@ -4,7 +4,7 @@
  * Purpose:     GDI scope class.
  *
  * Created:     20th October 1994
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_GDI_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_HPP_GDI_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_GDI_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_GDI_SCOPE_EDIT       37
+# define WINSTL_VER_WINSTL_HPP_GDI_SCOPE_EDIT       38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,7 +86,10 @@ namespace winstl_project
  * Classes
  */
 
-/// Scopes the device context of a window
+/** \brief Scopes the device context of a window
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class HDC_scope
 {
 /// \name Types

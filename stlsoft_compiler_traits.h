@@ -4,7 +4,7 @@
  * Purpose:     compiler_traits classes.
  *
  * Created:     15th November 2003
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,9 +48,18 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_MAJOR    3
 # define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_MINOR    3
-# define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_EDIT     19
+# define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_REVISION 2
+# define STLSOFT_VER_H_STLSOFT_COMPILER_TRAITS_EDIT     21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/* 
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -81,7 +90,10 @@ namespace stlsoft
  * Classes
  */
 
-/// traits class for (current) compiler
+/** \brief traits class for (current) compiler
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct compiler_traits
     : public compiler_optimisation_traits
 {};

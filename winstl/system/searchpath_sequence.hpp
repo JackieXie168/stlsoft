@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     12th July 2002
- * Updated:     13th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MAJOR    4
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_MINOR    0
 # define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_REVISION 2
-# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     77
+# define WINSTL_VER_SYSTEM_HPP_SEARCHPATH_SEQUENCE_EDIT     78
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,12 +118,13 @@ namespace winstl_project
  */
 
 // class basic_searchpath_sequence
-/// Presents an STL-like sequence interface to the search path sequence for the current process
-///
-/// \ingroup group__library__system
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
+/** \brief Presents an STL-like sequence interface to the search path sequence for the current process
+ *
+ * \ingroup group__library__system
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this defaults to filesystem_traits<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = filesystem_traits<C>
@@ -449,11 +450,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_searchpath_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_searchpath_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_searchpath_sequence<ws_char_a_t, filesystem_traits<ws_char_a_t> > searchpath_sequence_a;
-/// Instantiation of the basic_searchpath_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_searchpath_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_searchpath_sequence<ws_char_w_t, filesystem_traits<ws_char_w_t> > searchpath_sequence_w;
-/// Instantiation of the basic_searchpath_sequence template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_searchpath_sequence template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_searchpath_sequence<TCHAR, filesystem_traits<TCHAR> >             searchpath_sequence;
 
 ////////////////////////////////////////////////////////////////////////////

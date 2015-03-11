@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for the SYSTEMTIME and FILETIME structures.
  *
  * Created:     2nd December 2004
- * Updated:     20th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MAJOR     1
 # define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_MINOR     3
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  6
-# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      29
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_REVISION  8
+# define WINSTL_VER_WINSTL_HPP_TIME_STRING_ACCESS_EDIT      32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING
 # include <stlsoft/string/shim_string.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SHIM_STRING */
-#ifndef WINSTL_INCL_WINSTL_H_TIME_FORMAT_FUNCTIONS
-# include <winstl/time_format_functions.h>
-#endif /* !WINSTL_INCL_WINSTL_H_TIME_FORMAT_FUNCTIONS */
+#ifndef WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS
+# include <winstl/time/format_functions.h>
+#endif /* !WINSTL_INCL_WINSTL_TIME_H_FORMAT_FUNCTIONS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -473,15 +473,13 @@ inline ws_size_t c_str_len(FILETIME const &t)
 }
 
 /* /////////////////////////////////////////////////////////////////////////
- * c_str_size
- */
-
-
-/* /////////////////////////////////////////////////////////////////////////
  * Stream inserter
  */
 
-/// An inserter function for SYSTEMTIME into output streams
+/** \brief An inserter function for SYSTEMTIME into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, SYSTEMTIME const &addr)
 {
@@ -490,7 +488,10 @@ inline S &operator <<(S &s, SYSTEMTIME const &addr)
     return s;
 }
 
-/// An inserter function for SYSTEMTIME into output streams
+/** \brief An inserter function for SYSTEMTIME into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, FILETIME const &addr)
 {
@@ -510,7 +511,10 @@ inline S &operator <<(S &s, FILETIME const &addr)
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
 
-/// An inserter function for SYSTEMTIME into output streams
+/** \brief An inserter function for SYSTEMTIME into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, SYSTEMTIME const &st)
 {
@@ -519,7 +523,10 @@ inline S &operator <<(S &s, SYSTEMTIME const &st)
     return s;
 }
 
-/// An inserter function for FILETIME into output streams
+/** \brief An inserter function for FILETIME into output streams
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 inline S &operator <<(S &s, FILETIME const &st)
 {

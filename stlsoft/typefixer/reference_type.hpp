@@ -4,7 +4,7 @@
  * Purpose:     Definition of the fixer_reference_type and fixer_const_reference_type types.
  *
  * Created:     9th February 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/typefixer/reference_type.hpp
-///
-/// Definition of the fixer_reference and fixer_const_reference_type types.
+/** \file stlsoft/typefixer/reference_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::typefixer::reference_type
+ *   typefixer class template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_H_STLSOFT_TYPEFIXER_REFERENCETYPE
 #define STLSOFT_INCL_H_STLSOFT_TYPEFIXER_REFERENCETYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_MAJOR     1
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_MINOR     4
 # define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_REVISION  1
-# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_EDIT      26
+# define STLSOFT_VER_H_STLSOFT_TYPEFIXER_REFERENCETYPE_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,11 +94,14 @@ namespace typefixer
  * Classes
  */
 
-/// \brief Type-fixer for \c reference_type member type
-///
-/// If type \c T has a \c reference_type member type, then the type of
-/// <code>fixer_reference_type<T>::reference_type</code> is
-/// <code>T::reference_type</code>, otherwise it is \c void
+/** \brief Type-fixer for \c reference_type member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c reference_type member type, then the type of
+ * <code>fixer_reference_type<T>::reference_type</code> is
+ * <code>T::reference_type</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_reference_type
@@ -115,11 +121,14 @@ struct fixer_reference_type<T, false>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// \brief Type-fixer for \c const_reference_type member type
-///
-/// If type \c T has a \c const_reference_type member type, then the type of
-/// <code>fixer_const_reference_type<T>::const_reference_type</code> is
-/// <code>T::const_reference_type</code>, otherwise it is \c void
+/** \brief Type-fixer for \c const_reference_type member type
+ *
+ * \ingroup group__library__meta
+ *
+ * If type \c T has a \c const_reference_type member type, then the type of
+ * <code>fixer_const_reference_type<T>::const_reference_type</code> is
+ * <code>T::const_reference_type</code>, otherwise it is \c void
+ */
 
 template <ss_typename_param_k T, ss_bool_t>
 struct fixer_const_reference_type

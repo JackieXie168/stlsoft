@@ -11,42 +11,42 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_synch_spin_mutex(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_synch_spin_mutex(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "synch/spin_mutex", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "synch/spin_mutex", __FILE__);
 
-            spin_mutex::atomic_int_type i   =   0;
-            spin_mutex                  mx(&i);
+			spin_mutex::atomic_int_type i	=	0;
+			spin_mutex					mx(&i);
 
-            mx.lock();
-            if(1 != mx.spun_count())
-            {
-                r->report("lock() - unlock() sequence failed: wrong spun count", __LINE__);
-                bSuccess = false;
-            }
-            mx.unlock();
-            if(0 != mx.spun_count())
-            {
-                r->report("lock() - unlock() sequence failed: wrong spun count", __LINE__);
-                bSuccess = false;
-            }
+			mx.lock();
+			if(1 != mx.spun_count())
+			{
+				r->report("lock() - unlock() sequence failed: wrong spun count", __LINE__);
+				bSuccess = false;
+			}
+			mx.unlock();
+			if(0 != mx.spun_count())
+			{
+				r->report("lock() - unlock() sequence failed: wrong spun count", __LINE__);
+				bSuccess = false;
+			}
 
-            if(0 != i)
-            {
-                r->report("lock() - unlock() sequence failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != i)
+			{
+				r->report("lock() - unlock() sequence failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_synch_spin_mutex(test_unixstl_synch_spin_mutex);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_synch_spin_mutex(test_unixstl_synch_spin_mutex);
+	} // anonymous namespace
 
 } // namespace unittest

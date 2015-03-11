@@ -11,26 +11,26 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_system_info(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_system_system_info(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/system_info", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/system_info", __FILE__);
 
-            system_info::number_of_processors();
-            system_info::page_size();
-            system_info::allocation_granularity();
-            system_info::get_systeminfo();
+			system_info::number_of_processors();
+			system_info::page_size();
+			system_info::allocation_granularity();
+			system_info::get_systeminfo();
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_system_system_info(test_winstl_system_system_info);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_system_system_info(test_winstl_system_system_info);
+	} // anonymous namespace
 
 } // namespace unittest
 

@@ -1,5 +1,5 @@
 
-// Updated:	14th June 2006
+// Updated: 14th June 2006
 
 #if !defined(COMSTL_INCL_COMSTL_STRING_H_BSTR_FUNCTIONS)
 # error This file cannot be directly included, and should only be included within comstl/string/bstr_functions.h

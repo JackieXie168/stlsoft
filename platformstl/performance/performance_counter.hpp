@@ -103,21 +103,21 @@ namespace platformstl_project
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-	/** \brief A performance counter class
-	 *
-	 * The class is not actually defined in the
-	 * \link ::platformstl platformstl\endlink namespace. Rather, it
-	 * resolves to the appropriate type for the given platform, relying on
-	 * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
-	 * of the resolved platform-specific types.
-	 *
-	 * When compiling on UNIX platforms, the platformstl::performance_counter
-	 * type resolves to the unixstl::performance_counter class. On Windows
-	 * platforms it resolves to the winstl::performance_counter class. It is
-	 * not defined for other platforms.
-	 */
-	class performance_counter
-	{};
+    /** \brief A performance counter class
+     *
+     * The class is not actually defined in the
+     * \link ::platformstl platformstl\endlink namespace. Rather, it
+     * resolves to the appropriate type for the given platform, relying on
+     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * of the resolved platform-specific types.
+     *
+     * When compiling on UNIX platforms, the platformstl::performance_counter
+     * type resolves to the unixstl::performance_counter class. On Windows
+     * platforms it resolves to the winstl::performance_counter class. It is
+     * not defined for other platforms.
+     */
+    class performance_counter
+    {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 

@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    1
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        74
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        75
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,16 +96,23 @@ namespace stlsoft
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup algorithms Algorithms
-/// \brief STL-compatible algorithms
+/** \brief \weakgroup algorithms Algorithms
+ * \brief STL-compatible algorithms
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup utilities Utilities
-/// \brief Utility functions and constructs used throughout the STLSoft libraries
+/** \brief \weakgroup utilities Utilities
+ * \brief Utility functions and constructs used throughout the STLSoft libraries
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup pod_algorithms POD Algorithms
-/// \brief Algorithms for manipulating POD types
-/// \ingroup algorithms
-/// @{
+/** \brief \weakgroup pod_algorithms POD Algorithms
+ * \brief Algorithms for manipulating POD types
+ * \ingroup algorithms
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Algorithms
@@ -360,7 +367,10 @@ inline void pod_fill_n(unsigned char *dest, ss_size_t n, int value)
 
 ////////////////////////////////////////////////////////////////////////////
 
-/// @} // end of group pod_algorithms
+/** \brief @} // end of group pod_algorithms
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

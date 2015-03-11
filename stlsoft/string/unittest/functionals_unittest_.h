@@ -11,18 +11,18 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_string_functionals(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_string_functionals(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "string/functionals", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "string/functionals", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_string_functionals(test_stlsoft_string_functionals);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_string_functionals(test_stlsoft_string_functionals);
+	} // anonymous namespace
 
 } // namespace unittest

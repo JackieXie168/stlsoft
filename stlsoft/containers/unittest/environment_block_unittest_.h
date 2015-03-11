@@ -9,22 +9,22 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_containers_environment_block(unittest_reporter *r)
-        {
+	namespace
+	{
+		ss_bool_t test_stlsoft_containers_environment_block(unittest_reporter *r)
+		{
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-            using stlsoft::unittest::unittest_initialiser;
+			using stlsoft::unittest::unittest_initialiser;
 #endif /* compiler */
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "containers/environment_block", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "containers/environment_block", __FILE__);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_containers_environment_block(test_stlsoft_containers_environment_block);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_containers_environment_block(test_stlsoft_containers_environment_block);
+	} // anonymous namespace
 
 } // namespace unittest

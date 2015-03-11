@@ -11,70 +11,70 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_stlsoft_options_verifier(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_stlsoft_options_verifier(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "stlsoft/options_verifier", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "stlsoft/options_verifier", __FILE__);
 
 #if 0
-            try
-            {
-                const int   i   =   4;
+			try
+			{
+				const int	i	=	4;
 
 # if 0
-                verify_options(i, "i was not a valid value"), 0, 1, 2, 3, 4;
+				verify_options(i, "i was not a valid value"), 0, 1, 2, 3, 4;
 # else /* ? 0 */
-                verify_options(i, "i was not a valid value") == 0 || 1 || 2 || 3 || 4;
+				verify_options(i, "i was not a valid value") == 0 || 1 || 2 || 3 || 4;
 # endif /* 0 */
-            }
-            catch(option_verification_exception &/* x */)
-            {
-                r->report("Option was erroneously reported as not in valid set", __LINE__);
-                bSuccess = false;
-            }
+			}
+			catch(option_verification_exception &/* x */)
+			{
+				r->report("Option was erroneously reported as not in valid set", __LINE__);
+				bSuccess = false;
+			}
 
-            try
-            {
-                const std::string   s   =   "ghi";
+			try
+			{
+				const std::string	s	=	"ghi";
 
 # if 0
-                verify_options(s, "s was not a valid value"), "abc", "def", "ghi", "jkl", "mno";
+				verify_options(s, "s was not a valid value"), "abc", "def", "ghi", "jkl", "mno";
 # else /* ? 0 */
-                verify_options(s, "s was not a valid value")== "abc" || "def" || "ghi" || "jkl" || "mno";
+				verify_options(s, "s was not a valid value")== "abc" || "def" || "ghi" || "jkl" || "mno";
 # endif /* 0 */
-            }
-            catch(option_verification_exception &/* x */)
-            {
-                r->report("Option was erroneously reported as not in valid set", __LINE__);
-                bSuccess = false;
-            }
+			}
+			catch(option_verification_exception &/* x */)
+			{
+				r->report("Option was erroneously reported as not in valid set", __LINE__);
+				bSuccess = false;
+			}
 
-            try
-            {
-                const int   i   =   4444;
+			try
+			{
+				const int	i	=	4444;
 
 # if 0
-                verify_options(i, "i was not a valid value"), 0, 1, 2, 3, 4;
+				verify_options(i, "i was not a valid value"), 0, 1, 2, 3, 4;
 # else /* ? 0 */
-                verify_options(i, "i was not a valid value") == 0 || 1 || 2 || 3 || 4;
+				verify_options(i, "i was not a valid value") == 0 || 1 || 2 || 3 || 4;
 # endif /* 0 */
 
-                r->report("Option was erroneously reported as in valid set", __LINE__);
-                bSuccess = false;
-            }
-            catch(option_verification_exception &/* x */)
-            {
-            }
+				r->report("Option was erroneously reported as in valid set", __LINE__);
+				bSuccess = false;
+			}
+			catch(option_verification_exception &/* x */)
+			{
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_stlsoft_options_verifier(test_stlsoft_stlsoft_options_verifier);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_stlsoft_options_verifier(test_stlsoft_stlsoft_options_verifier);
+	} // anonymous namespace
 
 } // namespace unittest
 

@@ -9,22 +9,22 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_pod_algorithms(unittest_reporter *r)
-        {
+	namespace
+	{
+		ss_bool_t test_stlsoft_pod_algorithms(unittest_reporter *r)
+		{
 #if !defined(STLSOFT_COMPILER_IS_WATCOM)
-            using ::stlsoft::unittest::unittest_initialiser;
-            using stlsoft::null_exception_policy;
+			using ::stlsoft::unittest::unittest_initialiser;
+			using stlsoft::null_exception_policy;
 #endif /* compiler */
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "pod_algorithms", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "pod_algorithms", __FILE__);
 
 			{ // Copying between elements of the same type
-				sint8_t			src[3] = { -1, 0, +1 };
-				sint8_t			dest[STLSOFT_NUM_ELEMENTS(src)];
+				sint8_t 		src[3] = { -1, 0, +1 };
+				sint8_t 		dest[STLSOFT_NUM_ELEMENTS(src)];
 
 				memset(&dest[0], 0, sizeof(dest));
 				pod_copy(&src[0], &src[STLSOFT_NUM_ELEMENTS(src)], &dest[0]);
@@ -64,10 +64,10 @@ namespace unittest
 				}
 			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_pod_algorithms(test_stlsoft_pod_algorithms);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_pod_algorithms(test_stlsoft_pod_algorithms);
+	} // anonymous namespace
 
 } // namespace unittest

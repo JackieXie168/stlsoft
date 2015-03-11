@@ -11,28 +11,28 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_synch_atomic_functions(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_synch_atomic_functions(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "synch/atomic_functions", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "synch/atomic_functions", __FILE__);
 
 #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_synch_atomic_functions(test_unixstl_synch_atomic_functions);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_synch_atomic_functions(test_unixstl_synch_atomic_functions);
+	} // anonymous namespace
 
 }// namespace unittest

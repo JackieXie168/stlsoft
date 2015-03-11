@@ -4,7 +4,7 @@
  * Purpose:     Contains the ptr_proxy template class.
  *
  * Created:     17th January 1999
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_MAJOR      3
 # define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_MINOR      0
 # define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_REVISION   2
-# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_EDIT       57
+# define STLSOFT_VER_STLSOFT_HPP_PTR_PROXY_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,10 +88,13 @@ class proxy_ptr;
  */
 
 // class ptr_proxy
-/// This class emulates a pointer in all respects, and is simply an aid to
-/// self-documentation.
-///
-/// \param T The value type
+/** \brief This class emulates a pointer in all respects, and is simply an aid to
+ * self-documentation.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ */
 template <ss_typename_param_k T>
 class ptr_proxy
 {
@@ -215,9 +218,12 @@ private:
 
 
 // class proxy_ptr
-/// This is the old form of ptr_proxy.
-///
-/// \deprecated Users should use ptr_proxy
+/** \brief This is the old form of ptr_proxy.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \deprecated Users should use ptr_proxy
+ */
 template <ss_typename_param_k T>
 class proxy_ptr
     : public ptr_proxy<T>

@@ -4,7 +4,7 @@
  * Purpose:     Contains the std_swap() function.
  *
  * Created:     27th June 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/util/std_swap.hpp
-///
-/// Contains the std_swap() function.
+/** \file stlsoft/util/std_swap.hpp
+ *
+ * \brief [C++ only] Swap utility functions.
+ *  (\ref group__library__utility "Utility" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
 #define STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MAJOR    1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_MINOR    2
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_REVISION 2
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     11
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_STD_SWAP_EDIT     12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,15 +117,18 @@ namespace stlsoft_nostd_util
 #endif /* STLSOFT_STD_SWAP_NO_USE_STD */
 
 
-/// Calls std::swap on the arguments, but may also use Koenig Lookup (Argument
-/// Dependent Lookup) to use a specialised form
-///
-/// \note For compilers, such as Open Watcom, that do not have a functional
-/// standard library implementation, the swap() implementation from
-/// stlsoft::stlsoft_nostd_util is used.
-///
-/// \param lhs The left hand parameter
-/// \param rhs The right hand parameter
+/** \brief Calls std::swap on the arguments, but may also use Koenig Lookup (Argument
+ * Dependent Lookup) to use a specialised form
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note For compilers, such as Open Watcom, that do not have a functional
+ * standard library implementation, the swap() implementation from
+ * stlsoft::stlsoft_nostd_util is used.
+ *
+ * \param lhs The left hand parameter
+ * \param rhs The right hand parameter
+ */
 template<ss_typename_param_k T>
 inline void std_swap(T &lhs, T &rhs)
 {

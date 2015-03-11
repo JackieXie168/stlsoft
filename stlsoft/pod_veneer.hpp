@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_veneer template class.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_MAJOR       3
 # define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_MINOR       1
 # define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_REVISION    2
-# define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_EDIT        41
+# define STLSOFT_VER_STLSOFT_HPP_POD_VENEER_EDIT        42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,39 +78,40 @@ namespace stlsoft
 
 // class pod_veneer
 
-/// Bolts construction and/or destruction to Plain Old Data types
-///
-/// The parameterisation of this <a href = "http://synesis.com.au/resources/articles/cpp/veneers.pdf">veneer</a>
-/// can be used to apply RRID or RAII semantics to a plain old data type. For
-/// example,
-///
-/// &nbsp;&nbsp;<code>struct Simple</code><br>
-/// &nbsp;&nbsp;<code>{</code><br>
-/// &nbsp;&nbsp;<code>public:</code><br>
-/// &nbsp;&nbsp;<code>&nbsp;&nbsp;char&nbsp;*buffer;</code><br>
-/// &nbsp;&nbsp;<code>};</code><br>
-/// &nbsp;&nbsp;<code></code><br>
-/// &nbsp;&nbsp;<code>void Init_Simple(Simple *simple);</code><br>
-/// &nbsp;&nbsp;<code>void Uninit_Simple(Simple *simple);</code><br>
-/// &nbsp;&nbsp;<code></code><br>
-/// &nbsp;&nbsp;<code>struct Simple_Init { void operator ()(Simple *simple) { Init_Simple(simple); } };</code><br>
-/// &nbsp;&nbsp;<code>struct Simple_Uninit { void operator ()(Simple *simple) { Uninit_Simple(simple); } };</code><br>
-/// &nbsp;&nbsp;<code></code><br>
-/// &nbsp;&nbsp;<code>void fn()</code><br>
-/// &nbsp;&nbsp;<code>{</code><br>
-/// &nbsp;&nbsp;<code>&nbsp;&nbsp;typedef&nbsp;&nbsp;&nbsp;pod_veneer<Simple, Simple_Init, Simple_Uninit>&nbsp;&nbsp;Simple_raii_t;</code><br>
-/// &nbsp;&nbsp;<code></code><br>
-/// &nbsp;&nbsp;<code>&nbsp;&nbsp;Simple_raii_t&nbsp;simple;&nbsp;// Init_Simple() called here</code><br>
-/// &nbsp;&nbsp;<code></code><br>
-/// &nbsp;&nbsp;<code>&nbsp;&nbsp;. . .</code><br>
-/// &nbsp;&nbsp;<code></code><br>
-/// &nbsp;&nbsp;<code>} // Uninit_Simple() called here</code><br>
-///
-/// \param T The POD type
-/// \param CF The function object type applied during construction
-/// \param DF The function object type applied during destruction
-///
-/// \ingroup concepts_veneer
+/** \brief Bolts construction and/or destruction to Plain Old Data types
+ *
+ * The parameterisation of this <a href = "http://synesis.com.au/resources/articles/cpp/veneers.pdf">veneer</a>
+ * can be used to apply RRID or RAII semantics to a plain old data type. For
+ * example,
+ *
+ * &nbsp;&nbsp;<code>struct Simple</code><br>
+ * &nbsp;&nbsp;<code>{</code><br>
+ * &nbsp;&nbsp;<code>public:</code><br>
+ * &nbsp;&nbsp;<code>&nbsp;&nbsp;char&nbsp;*buffer;</code><br>
+ * &nbsp;&nbsp;<code>};</code><br>
+ * &nbsp;&nbsp;<code></code><br>
+ * &nbsp;&nbsp;<code>void Init_Simple(Simple *simple);</code><br>
+ * &nbsp;&nbsp;<code>void Uninit_Simple(Simple *simple);</code><br>
+ * &nbsp;&nbsp;<code></code><br>
+ * &nbsp;&nbsp;<code>struct Simple_Init { void operator ()(Simple *simple) { Init_Simple(simple); } };</code><br>
+ * &nbsp;&nbsp;<code>struct Simple_Uninit { void operator ()(Simple *simple) { Uninit_Simple(simple); } };</code><br>
+ * &nbsp;&nbsp;<code></code><br>
+ * &nbsp;&nbsp;<code>void fn()</code><br>
+ * &nbsp;&nbsp;<code>{</code><br>
+ * &nbsp;&nbsp;<code>&nbsp;&nbsp;typedef&nbsp;&nbsp;&nbsp;pod_veneer<Simple, Simple_Init, Simple_Uninit>&nbsp;&nbsp;Simple_raii_t;</code><br>
+ * &nbsp;&nbsp;<code></code><br>
+ * &nbsp;&nbsp;<code>&nbsp;&nbsp;Simple_raii_t&nbsp;simple;&nbsp;// Init_Simple() called here</code><br>
+ * &nbsp;&nbsp;<code></code><br>
+ * &nbsp;&nbsp;<code>&nbsp;&nbsp;. . .</code><br>
+ * &nbsp;&nbsp;<code></code><br>
+ * &nbsp;&nbsp;<code>} // Uninit_Simple() called here</code><br>
+ *
+ * \param T The POD type
+ * \param CF The function object type applied during construction
+ * \param DF The function object type applied during destruction
+ *
+ * \ingroup concepts_veneer
+ */
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k CF

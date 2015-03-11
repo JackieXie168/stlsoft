@@ -11,15 +11,15 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_commandline_parser(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_system_commandline_parser(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/commandline_parser", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/commandline_parser", __FILE__);
 
 			{
 				commandline_parser	cp("");
@@ -42,12 +42,12 @@ namespace unittest
 			}
 
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_system_commandline_parser(test_winstl_system_commandline_parser);
+		unittest_registrar	  unittest_stlsoft_system_commandline_parser(test_winstl_system_commandline_parser);
 
-    } // anonymous namespace
+	} // anonymous namespace
 
 } // namespace unittest
 

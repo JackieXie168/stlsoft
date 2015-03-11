@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/select_first_type_if.hpp (formerly stlsoft_meta.h; originally MTBase.h, ::SynesisStl)
+ * File:        stlsoft/meta/select_first_type_if.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     Compile-time if component.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/select_first_type_if.hpp
-///
-/// Compile-time if component.
+/** \file stlsoft/meta/select_first_type_if.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::select_first_type_if
+ *  meta if component.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
 #define STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_MAJOR       3
 # define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_MINOR       18
 # define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_EDIT        117
+# define STLSOFT_VER_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF_EDIT        118
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,11 +92,16 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-/// This template provides compile-time type selection between the two types
-/// specified in its first two parameters, based on a (compile-time) boolean
-/// value specified as its third parameter. If the third parameter evaluates
-/// to non-zero, then the member type \c type is defined to be equivalent to
-/// the first type, otherwise it is defined to be equivalent to the second.
+/** \brief Compile-time if component
+ *
+ * \ingroup group__library__meta
+ *
+ * This template provides compile-time type selection between the two types
+ * specified in its first two parameters, based on a (compile-time) boolean
+ * value specified as its third parameter. If the third parameter evaluates
+ * to non-zero, then the member type \c type is defined to be equivalent to
+ * the first type, otherwise it is defined to be equivalent to the second.
+ */
 template<   ss_typename_param_k T1
         ,   ss_typename_param_k T2
         ,   bool                B //!< Selects T1

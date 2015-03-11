@@ -9,34 +9,34 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_cstring_maker(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_cstring_maker(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "string/cstring_maker", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "string/cstring_maker", __FILE__);
 
-            typedef cstring_maker<char>     string_maker_a_t;
-            typedef cstring_maker<wchar_t>  string_maker_w_t;
+			typedef cstring_maker<char> 	string_maker_a_t;
+			typedef cstring_maker<wchar_t>	string_maker_w_t;
 
-            char *s1    =   string_maker_a_t::dup("String #1");
+			char *s1	=	string_maker_a_t::dup("String #1");
 
-            if(NULL == s1)
-            {
-                r->report("dup (ANSI) failed", __LINE__);
-                bSuccess = false;
-            }
-            else
-            {
+			if(NULL == s1)
+			{
+				r->report("dup (ANSI) failed", __LINE__);
+				bSuccess = false;
+			}
+			else
+			{
 
-                string_maker_a_t::free(s1);
-            }
+				string_maker_a_t::free(s1);
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_atlstl_string_access(test_stlsoft_cstring_maker);
-    } // anonymous namespace
+		unittest_registrar	  unittest_atlstl_string_access(test_stlsoft_cstring_maker);
+	} // anonymous namespace
 
 } // namespace unittest

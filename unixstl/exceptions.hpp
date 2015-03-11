@@ -4,7 +4,7 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MAJOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_EDIT        35
+# define UNIXSTL_VER_UNIXSTL_HPP_EXCEPTIONS_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,10 @@ namespace unixstl_project
  * Classes
  */
 
-/// \brief Exception class for general Windows operating system failures
+/** \brief Exception class for general Windows operating system failures
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class unix_exception
     : public os_exception
 {
@@ -218,7 +221,10 @@ private:
  * Policies
  */
 
-/// The NULL exception type. It does not throw, and its throw type is empty.
+/** \brief The NULL exception type. It does not throw, and its throw type is empty.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:exception-policy: unix_exception_policy]]
 struct unix_exception_policy
 {

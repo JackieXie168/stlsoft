@@ -5,7 +5,7 @@
  *              iterator in order to obtain the value_type.
  *
  * Created:     28th January 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_MAJOR    1
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     14
+# define STLSOFT_VER_STLSOFT_HPP_ASSOCIATIVE_SELECT_ITERATOR_EDIT     15
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,10 @@ namespace stlsoft
  * Classes
  */
 
-/// Selects the \c first member of the type to which it is applied
+/** \brief Selects the \c first member of the type to which it is applied
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:function-class:unary-function: select_first<T<P>>]]
 template <class P>
 struct select_first
@@ -109,7 +112,10 @@ public:
     }
 };
 
-/// Selects the \c first second of the type to which it is applied
+/** \brief Selects the \c first second of the type to which it is applied
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:function-class:unary-function: select_second<T<P>>]]
 template <class P>
 struct select_second

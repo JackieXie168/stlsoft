@@ -45,7 +45,7 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MAJOR     1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_MINOR     0
-# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION	1
+# define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_REVISION  1
 # define PLATFORMSTL_VER_PLATFORMSTL_PERFORMANCE_HPP_PROCESSTIMES_COUNTER_EDIT      2
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -103,21 +103,21 @@ namespace platformstl_project
 
 #if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 
-	/** \brief A performance counter class that measures kernel and user activity.
-	 *
-	 * The class is not actually defined in the
-	 * \link ::platformstl platformstl\endlink namespace. Rather, it
-	 * resolves to the appropriate type for the given platform, relying on
-	 * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
-	 * of the resolved platform-specific types.
-	 *
-	 * When compiling on UNIX platforms, the platformstl::processtimes_counter
-	 * type resolves to the unixstl::processtimes_counter class. On Windows
-	 * platforms it resolves to the winstl::processtimes_counter class. It
-	 * is not defined for other platforms.
-	 */
-	class processtimes_counter
-	{};
+    /** \brief A performance counter class that measures kernel and user activity.
+     *
+     * The class is not actually defined in the
+     * \link ::platformstl platformstl\endlink namespace. Rather, it
+     * resolves to the appropriate type for the given platform, relying on
+     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * of the resolved platform-specific types.
+     *
+     * When compiling on UNIX platforms, the platformstl::processtimes_counter
+     * type resolves to the unixstl::processtimes_counter class. On Windows
+     * platforms it resolves to the winstl::processtimes_counter class. It
+     * is not defined for other platforms.
+     */
+    class processtimes_counter
+    {};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 

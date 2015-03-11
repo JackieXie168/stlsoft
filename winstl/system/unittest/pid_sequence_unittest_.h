@@ -9,36 +9,36 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_pid_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
-            using stlsoft::null_exception_policy;
+	namespace
+	{
+		ss_bool_t test_winstl_system_pid_sequence(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
+			using stlsoft::null_exception_policy;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/pid_sequence", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/pid_sequence", __FILE__);
 
-            winstl::pid_sequence    pids;
-            winstl::pid_sequence    pids2(pids);
+			winstl::pid_sequence	pids;
+			winstl::pid_sequence	pids2(pids);
 
-            if(pids.size() != pids2.size())
-            {
-                r->report("pid_sequence copy failed", __LINE__);
-                bSuccess = false;
-            }
+			if(pids.size() != pids2.size())
+			{
+				r->report("pid_sequence copy failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(!std::equal(pids.begin(), pids.end(), pids2.begin()))
-            {
-                r->report("pid_sequence copies contents' different", __LINE__);
-                bSuccess = false;
-            }
+			if(!std::equal(pids.begin(), pids.end(), pids2.begin()))
+			{
+				r->report("pid_sequence copies contents' different", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_system_pid_sequence(test_winstl_system_pid_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_system_pid_sequence(test_winstl_system_pid_sequence);
+	} // anonymous namespace
 
 } // namespace unittest

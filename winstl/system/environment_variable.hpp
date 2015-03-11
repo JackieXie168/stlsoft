@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     20th December 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR    4
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    0
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR    1
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     53
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,9 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
 
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem/filesystem_traits.hpp>      // for get_environment_variable()
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>      // for get_environment_variable()
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -118,17 +118,18 @@ namespace winstl_project
  * as a C-string of its value.
  */
 
-/// \brief Represents an environment variable
-///
-/// \ingroup group__library__system
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
+/** \brief Represents an environment variable
+ *
+ * \ingroup group__library__system
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments, this defaults to system_traits<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
+        ,   ss_typename_param_k T = system_traits<C>
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
+        ,   ss_typename_param_k T /* = system_traits<C> */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_environment_variable
@@ -225,12 +226,21 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_environment_variable template for the ANSI character type \c char
-typedef basic_environment_variable<ws_char_a_t, filesystem_traits<ws_char_a_t> >    environment_variable_a;
-/// Instantiation of the basic_environment_variable template for the Unicode character type \c wchar_t
-typedef basic_environment_variable<ws_char_w_t, filesystem_traits<ws_char_w_t> >    environment_variable_w;
-/// Instantiation of the basic_environment_variable template for the Win32 character type \c TCHAR
-typedef basic_environment_variable<TCHAR, filesystem_traits<TCHAR> >                environment_variable;
+/** \brief Instantiation of the basic_environment_variable template for the ANSI character type \c char
+ *
+ * \ingroup group__library__system
+ */
+typedef basic_environment_variable<ws_char_a_t, system_traits<ws_char_a_t> >    environment_variable_a;
+/** \brief Instantiation of the basic_environment_variable template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__system
+ */
+typedef basic_environment_variable<ws_char_w_t, system_traits<ws_char_w_t> >    environment_variable_w;
+/** \brief Instantiation of the basic_environment_variable template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__system
+ */
+typedef basic_environment_variable<TCHAR, system_traits<TCHAR> >                environment_variable;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Helper functions
@@ -239,8 +249,11 @@ typedef basic_environment_variable<TCHAR, filesystem_traits<TCHAR> >            
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER >= 1100
 
-/// This helper function makes an environment variable without needing to
-/// qualify the template parameter.
+/** \brief This helper function makes an environment variable without needing to
+ * qualify the template parameter.
+ *
+ * \ingroup group__library__system
+ */
 template<ss_typename_param_k C>
 inline basic_environment_variable<C> make_environment_variable(C const *path)
 {

@@ -4,7 +4,7 @@
  * Purpose:     Indexed range adaptor class.
  *
  * Created:     11th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MAJOR       2
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_MINOR       3
 # define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_REVISION    4
-# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        27
+# define RANGELIB_VER_RANGELIB_HPP_INDEXED_RANGE_EDIT        28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -122,10 +122,13 @@ namespace rangelib_project
  * Classes
  */
 
-/// \brief Adapts a range and provides an integral count alongside the range
-///
-/// \param R The adapted range type
-/// \param I The integer type
+/** \brief Adapts a range and provides an integral count alongside the range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param R The adapted range type
+ * \param I The integer type
+ */
 template<   class               R
         ,   ss_typename_param_k I   =   int
         >

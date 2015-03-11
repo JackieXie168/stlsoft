@@ -4,7 +4,7 @@
  * Purpose:     Range categories.
  *
  * Created:     4th November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_MAJOR      2
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_MINOR      1
 # define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_REVISION   1
-# define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_EDIT       19
+# define RANGELIB_VER_RANGELIB_HPP_RANGE_CATEGORIES_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,20 +95,32 @@ namespace rangelib_project
  * Classes
  */
 
-/// Denotes a deriving class as being a Notional Range
+/** \brief Denotes a deriving class as being a Notional Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct notional_range_tag
 {};
 
-/// Denotes a deriving class as being an Iterable Range
+/** \brief Denotes a deriving class as being an Iterable Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct iterable_range_tag
     : public notional_range_tag
 {};
 
-/// Denotes a deriving class as being an Indirect Range
+/** \brief Denotes a deriving class as being an Indirect Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct basic_indirect_range_tag
 {};
 
-/// Denotes a deriving class as being a Basic Indirect Range
+/** \brief Denotes a deriving class as being a Basic Indirect Range
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct indirect_range_tag
     : public basic_indirect_range_tag
 {};

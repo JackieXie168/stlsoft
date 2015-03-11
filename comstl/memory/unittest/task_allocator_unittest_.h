@@ -9,40 +9,40 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_comstl_memory_task_allocator(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_comstl_memory_task_allocator(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "COMSTL", "memory/task_allocator", __FILE__);
+			unittest_initialiser	init(r, "COMSTL", "memory/task_allocator", __FILE__);
 
-            typedef task_allocator<int>  int_allocator_t;
+			typedef task_allocator<int>  int_allocator_t;
 
-            int_allocator_t ator1;
+			int_allocator_t ator1;
 
-            int     *pi1    =   ator1.allocate(100);
+			int 	*pi1	=	ator1.allocate(100);
 
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
+			if(NULL != pi1)
+			{
+				ator1.construct(pi1, 1968);
 
-                if(1968 != *pi1)
-                {
-                    r->report("construct() and allocate() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(1968 != *pi1)
+				{
+					r->report("construct() and allocate() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            ator1.deallocate(pi1);
+			ator1.deallocate(pi1);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_comstl_memory_task_allocator(test_comstl_memory_task_allocator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_comstl_memory_task_allocator(test_comstl_memory_task_allocator);
+	} // anonymous namespace
 
 } // namespace unittest
 

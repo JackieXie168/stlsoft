@@ -4,7 +4,7 @@
  * Purpose:     netapi_allocator class.
  *
  * Created:     23rd March 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MAJOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_MINOR    1
 # define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_REVISION 2
-# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     4
+# define WINSTL_VER_WINSTL_MEMORY_HPP_NETAPI_ALLOCATOR_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -92,11 +92,12 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief STL Allocator based on the Windows Network Management ApiBuffer API
-///
-/// \ingroup group__library__memory
-///
-/// \param T The value_type of the allocator
+/** \brief STL Allocator based on the Windows Network Management ApiBuffer API
+ *
+ * \ingroup group__library__memory
+ *
+ * \param T The value_type of the allocator
+ */
 template <ss_typename_param_k T>
 class netapi_allocator
     : public allocator_base<T, netapi_allocator<T> >

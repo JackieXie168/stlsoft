@@ -4,7 +4,7 @@
  * Purpose:     index_iterator class template.
  *
  * Created:     5th April 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/index_iterator.hpp
-///
-/// index_iterator class template.
+/** \file stlsoft/iterators/index_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::index_iterator iterator
+ *   adaptor class template.
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      17
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,19 +114,6 @@ STLSOFT_COMPILER_IS_WATCOM:
 namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
-
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup adaptors Adaptors
-/// \brief Adaptor functions and classes used throughout the STLSoft libraries
-
-/// \weakgroup adaptors_iterator Iterator Adaptors
-/// \brief Classes that provide iterator adaptation
-/// \ingroup iterators adaptors
-/// @{
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
@@ -397,12 +387,15 @@ private:
  * Creator functions
  */
 
-/// Creator function for index_iterator
-///
-/// \param it The iterator to index
-/// \param index The initial index of the iterator. Defaults to 0
-///
-/// \return An instance of the specialisation index_iterator&lt;I&gt;
+/** \brief Creator function for index_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param it The iterator to index
+ * \param index The initial index of the iterator. Defaults to 0
+ *
+ * \return An instance of the specialisation index_iterator&lt;I&gt;
+ */
 template<   ss_typename_param_k I
         >
 inline index_iterator<I> make_index_iterator(I it, ss_ptrdiff_t index = 0)
@@ -410,14 +403,17 @@ inline index_iterator<I> make_index_iterator(I it, ss_ptrdiff_t index = 0)
     return index_iterator<I>(it, index);
 }
 
-/// Creator function for index_iterator
-///
-/// \param it The iterator to index
-/// \param index The initial index of the iterator. Defaults to 0
-///
-/// \return An instance of the specialisation index_iterator&lt;T&gt;
-///
-/// \note Short-hand for make_index_iterator()
+/** \brief Creator function for index_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param it The iterator to index
+ * \param index The initial index of the iterator. Defaults to 0
+ *
+ * \return An instance of the specialisation index_iterator&lt;T&gt;
+ *
+ * \note Short-hand for make_index_iterator()
+ */
 template<   ss_typename_param_k I
         >
 inline index_iterator<I> indexer(I it, ss_ptrdiff_t index = 0)
@@ -520,10 +516,6 @@ inline ss_bool_t operator >=(index_iterator<I, T> const &lhs, index_iterator<I, 
 {
     return lhs.compare(rhs) >= 0;
 }
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

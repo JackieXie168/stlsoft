@@ -4,7 +4,7 @@
  * Purpose:     String container slice functions.
  *
  * Created:     25th April 2005
- * Updated:     10th June 2006
+ * Updated:     6th July 2006
  *
  * Thanks:      To Pablo Aguilar for inspiration for these functions.
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MAJOR    2
 # define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_MINOR    0
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 1
-# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     13
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_REVISION 2
+# define STLSOFT_VER_INCL_STLSOFT_STRING_HPP_CONTAINER_SLICE_FUNCTIONS_EDIT     14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,9 +86,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #  endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SIMPLE_STRING */
 # endif /* std::basic_string */
 #endif /* !STLSOFT_STRING_CONTAINER_SLICE_FNS_STRING_TEMPLATE */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_MINMAX
-# include <stlsoft/minmax.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_MINMAX */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX
+# include <stlsoft/util/minmax.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_MINMAX */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */

@@ -4,7 +4,7 @@
  * Purpose:     Very efficient integer to string conversion functions.
  *
  * Created:     7th April 2002
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_MINOR     0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      67
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_INTEGER_TO_STRING_EDIT      68
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -118,7 +118,10 @@ namespace constants
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/// Provides an indexable sequence of digit characters
+/** \brief Provides an indexable sequence of digit characters
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 #ifdef STLSOFT_CF_TEMPLATE_TYPE_REQUIRED_IN_ARGS
 inline C const *get_digit_character(C * )
@@ -165,17 +168,20 @@ inline C const *get_digit_character()
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-/// Highly efficient conversion of unsigned integers to string
-///
-/// \note The function does not check that cchBuf is sufficient for conversion
-/// of the particular integer type, except for a debug version
-/// <code>assert()</code>. It is the programmer's responsibility to ensure that
-/// the supplied buffer is large enough for the conversion. This can be done
-/// with the use of the printf_traits templates.
-///
-/// \param buf A buffer of sufficient space within which to convert the integer
-/// \param cchBuf The number of characters available in \c buf
-/// \param i The integer to convert
+/** \brief Highly efficient conversion of unsigned integers to string
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note The function does not check that cchBuf is sufficient for conversion
+ * of the particular integer type, except for a debug version
+ * <code>assert()</code>. It is the programmer's responsibility to ensure that
+ * the supplied buffer is large enough for the conversion. This can be done
+ * with the use of the printf_traits templates.
+ *
+ * \param buf A buffer of sufficient space within which to convert the integer
+ * \param cchBuf The number of characters available in \c buf
+ * \param i The integer to convert
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k I
         >
@@ -213,18 +219,21 @@ inline C const *unsigned_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 }
 
 
-/// Highly efficient conversion of unsigned integers to string
-///
-/// \note The function does not check that cchBuf is sufficient for conversion
-/// of the particular integer type, except for a debug version
-/// <code>assert()</code>. It is the programmer's responsibility to ensure that
-/// the supplied buffer is large enough for the conversion. This can be done
-/// with the use of the printf_traits templates.
-///
-/// \param buf A buffer of sufficient space within which to convert the integer
-/// \param cchBuf The number of characters available in \c buf
-/// \param i The integer to convert
-/// \param cchRes Receives the number of characters written
+/** \brief Highly efficient conversion of unsigned integers to string
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note The function does not check that cchBuf is sufficient for conversion
+ * of the particular integer type, except for a debug version
+ * <code>assert()</code>. It is the programmer's responsibility to ensure that
+ * the supplied buffer is large enough for the conversion. This can be done
+ * with the use of the printf_traits templates.
+ *
+ * \param buf A buffer of sufficient space within which to convert the integer
+ * \param cchBuf The number of characters available in \c buf
+ * \param i The integer to convert
+ * \param cchRes Receives the number of characters written
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k I
         >
@@ -238,17 +247,20 @@ inline C const *unsigned_integer_to_string(C *buf, ss_size_t cchBuf, I i, ss_siz
 }
 
 
-/// Highly efficient conversion of signed integers to string
-///
-/// \note The function does not check that cchBuf is sufficient for conversion
-/// of the particular integer type, except for a debug version
-/// <code>assert()</code>. It is the programmer's responsibility to ensure that
-/// the supplied buffer is large enough for the conversion. This can be done
-/// with the use of the printf_traits templates.
-///
-/// \param buf A buffer of sufficient space within which to convert the integer
-/// \param cchBuf The number of characters available in \c buf
-/// \param i The integer to convert
+/** \brief Highly efficient conversion of signed integers to string
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note The function does not check that cchBuf is sufficient for conversion
+ * of the particular integer type, except for a debug version
+ * <code>assert()</code>. It is the programmer's responsibility to ensure that
+ * the supplied buffer is large enough for the conversion. This can be done
+ * with the use of the printf_traits templates.
+ *
+ * \param buf A buffer of sufficient space within which to convert the integer
+ * \param cchBuf The number of characters available in \c buf
+ * \param i The integer to convert
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k I
         >
@@ -356,18 +368,21 @@ inline C const *signed_integer_to_string(C *buf, ss_size_t cchBuf, I i)
 #endif /* !STLSOFT_CF_NEGATIVE_MODULUS_POSITIVE_GIVES_NEGATIVE_RESULT */
 }
 
-/// Highly efficient conversion of signed integers to string
-///
-/// \note The function does not check that cchBuf is sufficient for conversion
-/// of the particular integer type, except for a debug version
-/// <code>assert()</code>. It is the programmer's responsibility to ensure that
-/// the supplied buffer is large enough for the conversion. This can be done
-/// with the use of the printf_traits templates.
-///
-/// \param buf A buffer of sufficient space within which to convert the integer
-/// \param cchBuf The number of characters available in \c buf
-/// \param i The integer to convert
-/// \param cchRes Receives the number of characters written
+/** \brief Highly efficient conversion of signed integers to string
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note The function does not check that cchBuf is sufficient for conversion
+ * of the particular integer type, except for a debug version
+ * <code>assert()</code>. It is the programmer's responsibility to ensure that
+ * the supplied buffer is large enough for the conversion. This can be done
+ * with the use of the printf_traits templates.
+ *
+ * \param buf A buffer of sufficient space within which to convert the integer
+ * \param cchBuf The number of characters available in \c buf
+ * \param i The integer to convert
+ * \param cchRes Receives the number of characters written
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k I
         >

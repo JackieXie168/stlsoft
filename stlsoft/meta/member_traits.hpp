@@ -5,7 +5,7 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,12 +39,16 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/member_traits.hpp
-///
-/// An amalgamation of meta traits that's been pending reification for too long.
-///
-/// It defines the member_traits template, which is used to detect the members
-/// supported by a given type.
+/** \file stlsoft/meta/member_traits.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::member_traits component.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
+
+// An amalgamation of meta traits that's been pending reification for too long.
+//
+// It defines the member_traits template, which is used to detect the members
+// supported by a given type.
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #define STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
@@ -53,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    2
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        27
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,21 +101,25 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief A structure that can be used to report whether various well-known
-/// facets of a type are supported
-///
-/// member_traits may be used in the compile-time evaluation of whether a given
-/// type has certain members, as follows:
-///
-/// \htmlonly
-/// <pre>
-///
-///
-///
-///
-///
-/// </pre>
-/// \endhtmlonly
+/** \brief A structure that can be used to report whether various well-known
+ * facets of a type are supported
+ *
+ * \ingroup group__library__meta
+ *
+ *
+ * member_traits may be used in the compile-time evaluation of whether a given
+ * type has certain members, as follows:
+ *
+ * \htmlonly
+ * <pre>
+ *
+ *
+ *
+ *
+ *
+ * </pre>
+ * \endhtmlonly
+ */
 
 template<ss_typename_param_k T>
 struct member_traits

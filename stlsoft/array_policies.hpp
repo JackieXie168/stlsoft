@@ -5,7 +5,7 @@
  *              frame) classes.
  *
  * Created:     1st September 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MAJOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_MINOR     2
 # define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_EDIT      121
+# define STLSOFT_VER_STLSOFT_HPP_ARRAY_POLICIES_EDIT      122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,12 +78,15 @@ namespace stlsoft
  * Construction policy classes
  */
 
-/// Traits class that controls whether elements in STLSoft arrays are in-place constructed and destroyed
-///
-/// Defaults to true, indicating that construction and destruction will be
-/// performed, but is false for all supported integral and boolean types
-///
-/// \param T The type
+/** \brief Traits class that controls whether elements in STLSoft arrays are in-place constructed and destroyed
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * Defaults to true, indicating that construction and destruction will be
+ * performed, but is false for all supported integral and boolean types
+ *
+ * \param T The type
+ */
 template <ss_typename_param_k T>
 struct do_construction
 {
@@ -140,7 +143,10 @@ struct do_construction<ss_bool_t>   { enum { value = false }; typedef no_type ty
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// Stipulates that array elements are always constructed
+/** \brief Stipulates that array elements are always constructed
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct do_construction_always
 {
     enum { value = true };
@@ -148,7 +154,10 @@ struct do_construction_always
     typedef yes_type    type;
 };
 
-/// Stipulates that array elements are never constructed
+/** \brief Stipulates that array elements are never constructed
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 struct do_construction_never
 {
     enum { value = false };

@@ -11,28 +11,28 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_filesystem_pipe(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_filesystem_pipe(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "filesystem/pipe", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "filesystem/pipe", __FILE__);
 
 #if 0
-            if(<<TODO>>)
-            {
-                r->report("<<TODO>> failed", __LINE__);
-                bSuccess = false;
-            }
+			if(<<TODO>>)
+			{
+				r->report("<<TODO>> failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_filesystem_pipe(test_unixstl_filesystem_pipe);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_filesystem_pipe(test_unixstl_filesystem_pipe);
+	} // anonymous namespace
 
 }// namespace unittest

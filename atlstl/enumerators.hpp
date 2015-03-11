@@ -4,7 +4,7 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -44,8 +44,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_MAJOR    3
 # define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_MINOR    0
-# define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_REVISION 3
-# define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_EDIT     49
+# define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_REVISION 4
+# define ATLSTL_VER_ATLSTL_HPP_ENUMERATORS_EDIT     51
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -54,9 +54,9 @@
 #ifndef ATLSTL_INCL_ATLSTL_HPP_ATLSTL
 # include <atlstl/atlstl.hpp>
 #endif /* !ATLSTL_INCL_ATLSTL_HPP_ATLSTL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_REF_PTR
-# include <stlsoft/ref_ptr.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_REF_PTR */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
+# include <stlsoft/smartptr/ref_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTION_ADAPTORS_HPP_REF2PTR
 # include <stlsoft/function_adaptors/ref2ptr.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_FUNCTION_ADAPTORS_HPP_REF2PTR */

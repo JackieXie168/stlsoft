@@ -4,7 +4,7 @@
  * Purpose:     proxy_iterator template class.
  *
  * Created:     28th June 2004
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MAJOR       2
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_MINOR       5
 # define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_REVISION    2
-# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        43
+# define STLSOFT_VER_H_STLSOFT_PROXY_ITERATOR_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -99,6 +99,8 @@ namespace stlsoft
 
 /** \brief Provides translation between the elements in a range and a different value type
  *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
  * \param R The element type. This type is the element in the underlying sequence
  * \param V The value type. This is the type to which the element type is translated
  * \param T The traits_type. This type provides a static method \c make_value(), which
@@ -106,8 +108,9 @@ namespace stlsoft
  * \param C The iterator category
  * \param R The reference type
  * \param P The pointer type
+ *
+ * \note Iterator for proxy_sequence
  */
-/// Iterator for proxy_sequence
 template<   ss_typename_param_k E
         ,   ss_typename_param_k V
         ,   ss_typename_param_k T

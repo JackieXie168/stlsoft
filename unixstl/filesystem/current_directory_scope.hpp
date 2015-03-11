@@ -4,7 +4,7 @@
  * Purpose:     Current working directory scoping class.
  *
  * Created:     12th November 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MAJOR       5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        99
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_REVISION    5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE_EDIT        102
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,9 +74,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS
 # include <unixstl/string_access.hpp>     // for string access shims
 #endif /* !UNIXSTL_INCL_UNIXSTL_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL
-# include <stlsoft/operator_bool.hpp>     // for operator_bool_generator
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_OPERATOR_BOOL */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
+# include <stlsoft/util/operator_bool.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -198,11 +198,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_current_directory_scope template for the ANSI character type \c char
+/** \brief Instantiation of the basic_current_directory_scope template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_current_directory_scope<us_char_a_t, filesystem_traits<us_char_a_t> >     current_directory_scope_a;
-/// Instantiation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_current_directory_scope template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_current_directory_scope<us_char_w_t, filesystem_traits<us_char_w_t> >     current_directory_scope_w;
-/// Instantiation of the basic_current_directory_scope template for the ambient UNIX character type \c char
+/** \brief Instantiation of the basic_current_directory_scope template for the ambient UNIX character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_current_directory_scope<char, filesystem_traits<char> >                   current_directory_scope;
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -241,15 +250,8 @@ inline us_size_t c_str_len(basic_current_directory_scope<C, T> const &b)
     return stlsoft_ns_qual(c_str_len)(b.get_previous());
 }
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline us_size_t c_str_size(basic_current_directory_scope<C, T> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.get_previous());
-}
-#endif /* 0 */
+
+
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -369,10 +371,6 @@ using ::unixstl::c_str_ptr;
 using ::unixstl::c_str_data;
 
 using ::unixstl::c_str_len;
-
-#if 0
-using ::unixstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

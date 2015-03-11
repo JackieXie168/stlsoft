@@ -4,7 +4,7 @@
  * Purpose:     Mappings to string string functions
  *
  * Created:     2nd December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Anton Sekeris for providing good advice on the naming scheme
  *              for the stlsoft/std headers
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MAJOR      1
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_MINOR      4
 # define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_REVISION   1
-# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       19
+# define STLSOFT_VER_STLSOFT_STD_HPP_CSTRING_EDIT       20
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -421,7 +421,10 @@ char *  __cdecl strpbrk(const char *, const char *);
 /// @}
 
 
-/// strdup()
+/** \brief strdup()
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 #ifndef _STLSOFT_NO_NAMESPACE
 namespace std_impl
@@ -466,10 +469,13 @@ namespace std_impl
 } // namespace std_impl
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/// Duplicates the given string
-///
-/// \note The returned string is allocated by the standard strdup() function,
-/// which uses malloc() to allocate the memory, and so must be freed using free()
+/** \brief Duplicates the given string
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \note The returned string is allocated by the standard strdup() function,
+ * which uses malloc() to allocate the memory, and so must be freed using free()
+ */
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 template <ss_typename_param_k S>
 inline ss_typename_type_k string_traits<S>::char_type *strdup(S const &s)

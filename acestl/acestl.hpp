@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th September 2004
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_ACESTL_MINOR     6
 # define ACESTL_VER_ACESTL_HPP_ACESTL_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      26
+# define ACESTL_VER_ACESTL_HPP_ACESTL_EDIT      27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file acestl/acestl.hpp \brief [C++ only] The root header for the \ref group__project__acestl "ACESTL" project. */
@@ -167,20 +167,29 @@
  * The macro acestl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param expr Must be non-zero, or an assertion will be fired
+/** \brief Defines a runtime assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ */
 #define ACESTL_ASSERT(expr)                STLSOFT_ASSERT(expr)
 
-/// Defines a runtime assertion, with message
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-/// \param msg The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
 #define ACESTL_MESSAGE_ASSERT(msg, expr)   STLSOFT_MESSAGE_ASSERT(msg, expr)
 
-/// Defines a compile-time assertion
-///
-/// \param expr Must be non-zero, or compilation will fail
+/** \brief Defines a compile-time assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or compilation will fail
+ */
 #define ACESTL_STATIC_ASSERT(expr)         STLSOFT_STATIC_ASSERT(expr)
 
 
@@ -422,9 +431,12 @@ typedef as_streamoff_t      streamoff_t;        //!< streamoff
 # define acestl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8) stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param ar An array whose dimension is to be evaluated
+ */
 #define ACESTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define acestl_num_elements(ar)                        ACESTL_NUM_ELEMENTS(ar)

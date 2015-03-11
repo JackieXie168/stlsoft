@@ -9,37 +9,37 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_synch_thread_mutex(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_synch_thread_mutex(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "synch/thread_mutex", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "synch/thread_mutex", __FILE__);
 
-            thread_mutex   mx_r;
+			thread_mutex   mx_r;
 
-            mx_r.lock();
+			mx_r.lock();
 #if defined(__WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT)
-            if(!mx_r.try_lock())
-            {
-                r->report("process_mutex (recursive) could not lock recursively ", __LINE__);
-                bSuccess = false;
-            }
-            else
-            {
-                mx_r.unlock();
-            }
+			if(!mx_r.try_lock())
+			{
+				r->report("process_mutex (recursive) could not lock recursively ", __LINE__);
+				bSuccess = false;
+			}
+			else
+			{
+				mx_r.unlock();
+			}
 #endif /* __WINSTL_THREAD_MUTEX_TRY_LOCK_SUPPORT */
-            mx_r.unlock();
+			mx_r.unlock();
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_synch_thread_mutex(test_winstl_synch_thread_mutex);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_synch_thread_mutex(test_winstl_synch_thread_mutex);
+	} // anonymous namespace
 
 } // namespace unittest
 

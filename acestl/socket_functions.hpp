@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_SOCK (and derived) classes
  *
  * Created:     28th November 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_MAJOR      1
 # define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_REVISION   6
-# define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_EDIT       16
+# define ACESTL_VER_ACESTL_HPP_SOCKET_FUNCTIONS_EDIT       17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,42 +84,31 @@ namespace acestl_project
 # endif /* _STLSOFT_NO_NAMESPACE */
 #endif /* !_ACESTL_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
-
-/// \weakgroup libraries_networking Networking Library
-/// \ingroup libraries
-/// \brief This library provides facilities for network element manipulation
-
-/// \defgroup acestl_networking_library Networking Library (ACESTL)
-/// \ingroup ACESTL libraries_networking functions
-/// \brief This library provides facilities for network element manipulation with ACE
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Functions
  */
 
-/// \brief Closes a socket and deregisters it from the reactor
-///
-/// \param sk Reference to the socket to close
-/// \param reactor Reactor from which the socket will be deregistered. May be NULL
-///
-/// \return true if the socket was previously closed, false otherwise. There is no error return
-///
-/// Usage is simple. Just specify the socket to close and the reactor with which it
-/// is registered.
-///
-/// \htmlonly
-/// <pre>
-///
-/// // close and deregister m_upstreamPeer and m_downstreamPeer (both ACE_SOCK_Stream)
-/// acestl::close_and_deregister(m_peer, reactor());
-///
-/// </pre>
-/// \endhtmlonly
+/** \brief Closes a socket and deregisters it from the reactor
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param sk Reference to the socket to close
+ * \param reactor Reactor from which the socket will be deregistered. May be NULL
+ *
+ * \return true if the socket was previously closed, false otherwise. There is no error return
+ *
+ * Usage is simple. Just specify the socket to close and the reactor with which it
+ * is registered.
+ *
+ * \htmlonly
+ * <pre>
+ *
+ * // close and deregister m_upstreamPeer and m_downstreamPeer (both ACE_SOCK_Stream)
+ * acestl::close_and_deregister(m_peer, reactor());
+ *
+ * </pre>
+ * \endhtmlonly
+ */
 inline as_bool_t close_and_deregister(ACE_SOCK &sk, ACE_Reactor *reactor)
 {
     if(ACE_INVALID_HANDLE == sk.get_handle())

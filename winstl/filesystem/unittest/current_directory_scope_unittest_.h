@@ -9,49 +9,49 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_current_directory_scope(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_current_directory_scope(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "filesystem/current_directory_scope", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "filesystem/current_directory_scope", __FILE__);
 
-            typedef basic_current_directory_scope<char>     current_directory_scope;
+			typedef basic_current_directory_scope<char> 	current_directory_scope;
 
-            {
-                char    szCwd[1 + _MAX_PATH];
-                char    szRoot[1 + _MAX_PATH];
-                char    *lpFilePart;
+			{
+				char	szCwd[1 + _MAX_PATH];
+				char	szRoot[1 + _MAX_PATH];
+				char	*lpFilePart;
 
-                ::GetCurrentDirectoryA(STLSOFT_NUM_ELEMENTS(szCwd), szCwd);
-                ::GetFullPathNameA("\\", STLSOFT_NUM_ELEMENTS(szRoot), szRoot, &lpFilePart);
+				::GetCurrentDirectoryA(STLSOFT_NUM_ELEMENTS(szCwd), szCwd);
+				::GetFullPathNameA("\\", STLSOFT_NUM_ELEMENTS(szRoot), szRoot, &lpFilePart);
 
-                current_directory_scope cds(szRoot);
+				current_directory_scope cds(szRoot);
 
-                if(0 != strcmp(szCwd, cds.get_previous()))
-                {
-                    r->report("current_directory_scope failed", __LINE__);
-                    bSuccess = false;
-                }
+				if(0 != strcmp(szCwd, cds.get_previous()))
+				{
+					r->report("current_directory_scope failed", __LINE__);
+					bSuccess = false;
+				}
 
-                {
-                    current_directory_scope cds2(szCwd);
+				{
+					current_directory_scope cds2(szCwd);
 
-                    if(0 != strcmp(szRoot, cds2.get_previous()))
-                    {
-                        r->report("current_directory_scope failed", __LINE__);
-                        bSuccess = false;
-                    }
-                }
-            }
+					if(0 != strcmp(szRoot, cds2.get_previous()))
+					{
+						r->report("current_directory_scope failed", __LINE__);
+						bSuccess = false;
+					}
+				}
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_current_directory_scope(test_winstl_current_directory_scope);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_current_directory_scope(test_winstl_current_directory_scope);
+	} // anonymous namespace
 
 } // namespace unittest

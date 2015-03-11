@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MAJOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_MINOR     3
 # define MFCSTL_VER_MFCSTL_HPP_MFCSTL_REVISION  1
-# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      79
+# define MFCSTL_VER_MFCSTL_HPP_MFCSTL_EDIT      80
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file mfcstl/mfcstl.hpp \brief [C++ only; requires MFC library] The root header for the \ref group__project__mfcstl "MFCSTL" project. */
@@ -214,20 +214,29 @@
  * The macro mfcstl_assert provides standard debug-mode assert functionality.
  */
 
-/// Defines a runtime assertion
-///
-/// \param expr Must be non-zero, or an assertion will be fired
+/** \brief Defines a runtime assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ */
 #define MFCSTL_ASSERT(expr)                 STLSOFT_ASSERT(expr)
 
-/// Defines a runtime assertion, with message
-///
-/// \param expr Must be non-zero, or an assertion will be fired
-/// \param msg The literal character string message to be included in the assertion
+/** \brief Defines a runtime assertion, with message
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or an assertion will be fired
+ * \param msg The literal character string message to be included in the assertion
+ */
 #define MFCSTL_MESSAGE_ASSERT(msg, expr)    STLSOFT_MESSAGE_ASSERT(msg, expr)
 
-/// Defines a compile-time assertion
-///
-/// \param expr Must be non-zero, or compilation will fail
+/** \brief Defines a compile-time assertion
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param expr Must be non-zero, or compilation will fail
+ */
 #define MFCSTL_STATIC_ASSERT(expr)          STLSOFT_STATIC_ASSERT(expr)
 
 
@@ -444,9 +453,12 @@ typedef stlsoft_ns_qual(ss_streamoff_t)     ms_streamoff_t; //!< streamoff
 #define mfcstl_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)  stlsoft_throw_8(x1, x2, x3, x4, x5, x6, x7, x8)
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// Evaluates, at compile time, to the number of elements within the given vector entity
-///
-/// \param ar An array whose dimension is to be evaluated
+/** \brief Evaluates, at compile time, to the number of elements within the given vector entity
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param ar An array whose dimension is to be evaluated
+ */
 #define MFCSTL_NUM_ELEMENTS(ar)                         STLSOFT_NUM_ELEMENTS(ar)
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define mfcstl_num_elements(ar)                        MFCSTL_NUM_ELEMENTS(ar)

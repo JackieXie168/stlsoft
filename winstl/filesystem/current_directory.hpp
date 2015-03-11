@@ -5,7 +5,7 @@
  *              directory.
  *
  * Created:     10th December 2002
- * Updated:     10th June 2006
+ * Updated:     6th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR       0
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION    2
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT        59
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_MINOR       1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_REVISION    1
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,16 +72,20 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 #ifndef WINSTL_INCL_WINSTL_H_WINSTL
 # include <winstl/winstl.h>
 #endif /* !WINSTL_INCL_WINSTL_H_WINSTL */
-
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE
+# include <stlsoft/string/special_string_instance.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SPECIAL_STRING_INSTANCE */
 #ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
 # include <winstl/filesystem/filesystem_traits.hpp>
 #endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER
-# include <winstl/filesystem/file_path_buffer.hpp>
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER */
-#ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
-# include <winstl/string_access.hpp>        // for string access shims
-#endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
+#ifndef WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR
+# include <winstl/memory/processheap_allocator.hpp>
+#endif /* !WINSTL_INCL_WINSTL_MEMORY_HPP_PROCESSHEAP_ALLOCATOR */
+
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+  // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
+# include <winstl/synch/spin_mutex.hpp>
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -106,173 +110,60 @@ namespace winstl_project
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * basic_current_directory
- *
- * This class wraps the GetCurrentDirectory() API function, and effectively acts
- * as a C-string of its value.
+ * Classes
  */
 
-/// \brief \ref group__pattern__special_string_instance "Special String Instance"
-///  that represents the current directory
-///
-/// \ingroup group__library__file_system
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments, this defaults to filesystem_traits<C>
-template<   ss_typename_param_k C
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        >
-class basic_current_directory
+/** \brief \ref group__pattern__special_string_instance "Special String Instance"
+ *   policy template for eliciting the <b>current</b> directory.
+ *
+ * \ingroup group__library__system
+ */
+template <ss_typename_param_k C>
+struct cwd_policy
 {
-public:
-    /// The char type
-    typedef C                               char_type;
-    /// The traits type
-    typedef T                               traits_type;
-    /// The current parameterisation of the type
-    typedef basic_current_directory<C, T>   class_type;
-    /// The size type
-    typedef ws_size_t                       size_type;
+    typedef C                           char_type;
+    typedef processheap_allocator<C>    allocator_type;
+    typedef ss_size_t                   size_type;
+    typedef size_type                   (*pfn_type)(char_type *, size_type);
+#if defined(STLSOFT_COMPILER_IS_BORLAND)
+    // Borland is a bit of a thicky, and requires a (valid) spin_mutex_type
+    typedef winstl::spin_mutex          spin_mutex_type;
+#endif /* compiler */
 
-// Construction
-public:
-    /// Default constructor
-    basic_current_directory();
+    enum { internalBufferSize       =   128 };
 
-// Operations
-public:
-    /// Gets the current directory into the given buffer
-    static size_type   get_path(ws_char_a_t *buffer, size_type cchBuffer);
-    /// Gets the current directory into the given buffer
-    static size_type   get_path(ws_char_w_t *buffer, size_type cchBuffer);
+    enum { allowImplicitConversion  =   1   };
 
-// Attributes
-public:
-    /// Returns a non-mutable (const) pointer to the path
-    char_type const *get_path() const;
-    /// Returns a pointer to a nul-terminated string
-    char_type const *c_str() const;
-    /// Returns the length of the converted path
-    size_type       length() const;
+    enum { sharedState              =   0   };
 
-// Conversions
-public:
-    /// Implicit conversion to a non-mutable (const) pointer to the path
-    operator char_type const *() const
+    static pfn_type     get_fn()
     {
-        return get_path();
+        return winstl::filesystem_traits<char_type>::get_current_directory;
     }
-
-// Members
-private:
-    basic_file_path_buffer<char_type>   m_dir;
-    size_type const                     m_len;
-
-// Not to be implemented
-private:
-    basic_current_directory(class_type const &);
-    class_type &operator =(class_type const &);
 };
 
 /* /////////////////////////////////////////////////////////////////////////
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_current_directory template for the ANSI character type \c char
-typedef basic_current_directory<ws_char_a_t, filesystem_traits<ws_char_a_t> >     current_directory_a;
-/// Instantiation of the basic_current_directory template for the Unicode character type \c wchar_t
-typedef basic_current_directory<ws_char_w_t, filesystem_traits<ws_char_w_t> >     current_directory_w;
-/// Instantiation of the basic_current_directory template for the Win32 character type \c TCHAR
-typedef basic_current_directory<TCHAR, filesystem_traits<TCHAR> >                 current_directory;
-
-/* /////////////////////////////////////////////////////////////////////////
- * Support for PlatformSTL redefinition by inheritance+namespace, for confused
- * compilers (e.g. VC++ 6)
+/** \brief A \ref group__pattern__special_string_instance "Special String Instance"
+ *   that represents the <b>current</b> directory; ANSI specialisation.
+ *
+ * \ingroup group__library__system
  */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-    template<   ss_typename_param_k C
-#ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
-#else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
-#endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-            >
-    class basic_current_directory__
-        : public basic_current_directory<C, T>
-    {
-    private:
-        typedef basic_current_directory<C, T>                           parent_class_type;
-    public:
-        typedef ss_typename_type_k parent_class_type::char_type         char_type;
-        typedef ss_typename_type_k parent_class_type::traits_type       traits_type;
-        typedef basic_current_directory__<C, T>                         class_type;
-        typedef ss_typename_type_k parent_class_type::size_type         size_type;
-    };
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Shims
+typedef stlsoft_ns_qual(special_string_instance_0)< cwd_policy<ws_char_a_t> >   current_directory_a;
+/** \brief A \ref group__pattern__special_string_instance "Special String Instance"
+ *   that represents the <b>current</b> directory; 'Unicode' specialisation.
+ *
+ * \ingroup group__library__system
  */
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const *c_str_ptr_null(basic_current_directory<C, T> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const *c_str_ptr(basic_current_directory<C, T> const &b)
-{
-    return b.c_str();
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline C const *c_str_data(basic_current_directory<C, T> const &b)
-{
-    return b.c_str();
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_size_t c_str_len(basic_current_directory<C, T> const &b)
-{
-    return stlsoft_ns_qual(c_str_len)(b.c_str());
-}
-
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ws_size_t c_str_size(basic_current_directory<C, T> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.c_str());
-}
-#endif /* 0 */
-
-template<   ss_typename_param_k S
-        ,   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline S &operator <<(S & s, basic_current_directory<C, T> const &b)
-{
-    s << b.c_str();
-
-    return s;
-}
+typedef stlsoft_ns_qual(special_string_instance_0)< cwd_policy<ws_char_w_t> >   current_directory_w;
+/** \brief A \ref group__pattern__special_string_instance "Special String Instance"
+ *   that represents the <b>current</b> directory; TCHAR specialisation.
+ *
+ * \ingroup group__library__system
+ */
+typedef stlsoft_ns_qual(special_string_instance_0)< cwd_policy<TCHAR> >         current_directory;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Unit-testing
@@ -281,61 +172,6 @@ inline S &operator <<(S & s, basic_current_directory<C, T> const &b)
 #ifdef STLSOFT_UNITTEST
 # include "./unittest/current_directory_unittest_.h"
 #endif /* STLSOFT_UNITTEST */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Implementation
- */
-
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline basic_current_directory<C, T>::basic_current_directory()
-    : m_len(get_path(&m_dir[0], m_dir.size()))
-{}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline /* static */ ss_typename_type_k basic_current_directory<C, T>::size_type basic_current_directory<C, T>::get_path(ws_char_a_t *buffer, ss_typename_type_k basic_current_directory<C, T>::size_type cchBuffer)
-{
-    return static_cast<size_type>(::GetCurrentDirectoryA(cchBuffer, buffer));
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline /* static */ ss_typename_type_k basic_current_directory<C, T>::size_type basic_current_directory<C, T>::get_path(ws_char_w_t *buffer, ss_typename_type_k basic_current_directory<C, T>::size_type cchBuffer)
-{
-    return static_cast<size_type>(::GetCurrentDirectoryW(cchBuffer, buffer));
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_current_directory<C, T>::char_type const *basic_current_directory<C, T>::get_path() const
-{
-    return stlsoft_ns_qual(c_str_ptr)(m_dir);
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_current_directory<C, T>::char_type const *basic_current_directory<C, T>::c_str() const
-{
-    return get_path();
-}
-
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k T
-        >
-inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current_directory<C, T>::length() const
-{
-    return m_len;
-}
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -347,43 +183,6 @@ inline ss_typename_type_k basic_current_directory<C, T>::size_type basic_current
 } // namespace winstl_project
 } // namespace stlsoft
 # endif /* _STLSOFT_NO_NAMESPACE */
-#endif /* !_WINSTL_NO_NAMESPACE */
-
-/* /////////////////////////////////////////////////////////////////////////
- * Namespace
- *
- * The string access shims exist either in the stlsoft namespace, or in the
- * global namespace. This is required by the lookup rules.
- *
- */
-
-#ifndef _WINSTL_NO_NAMESPACE
-# if !defined(_STLSOFT_NO_NAMESPACE) && \
-     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-namespace stlsoft
-{
-# else /* ? _STLSOFT_NO_NAMESPACE */
-/* There is no stlsoft namespace, so must define in the global namespace */
-# endif /* !_STLSOFT_NO_NAMESPACE */
-
-using ::winstl::c_str_ptr_null;
-
-using ::winstl::c_str_ptr;
-
-using ::winstl::c_str_data;
-
-using ::winstl::c_str_len;
-
-#if 0
-using ::winstl::c_str_size;
-#endif /* 0 */
-
-# if !defined(_STLSOFT_NO_NAMESPACE) && \
-     !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
-} // namespace stlsoft
-# else /* ? _STLSOFT_NO_NAMESPACE */
-/* There is no stlsoft namespace, so must define in the global namespace */
-# endif /* !_STLSOFT_NO_NAMESPACE */
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* ////////////////////////////////////////////////////////////////////// */

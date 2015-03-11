@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     14th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       47
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   4
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -322,11 +322,20 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/// Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+/** \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer_a;
-/// Instantiation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_file_path_buffer template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_file_path_buffer<us_char_w_t, stlsoft_ns_qual(allocator_selector)<us_char_w_t>::allocator_type>   file_path_buffer_w;
-/// Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+/** \brief Instantiation of the basic_file_path_buffer template for the ANSI character type \c char
+ *
+ * \ingroup group__library__file_system
+ */
 typedef basic_file_path_buffer<us_char_a_t, stlsoft_ns_qual(allocator_selector)<us_char_a_t>::allocator_type>   file_path_buffer;
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -442,15 +451,6 @@ inline us_size_t c_str_len(basic_file_path_buffer<C, A> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k A
-        >
-inline us_size_t c_str_size(basic_file_path_buffer<C, A> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.c_str());
-}
-#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
@@ -533,10 +533,6 @@ using ::unixstl::c_str_data_a;
 using ::unixstl::c_str_data_w;
 
 using ::unixstl::c_str_len;
-
-#if 0
-using ::unixstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

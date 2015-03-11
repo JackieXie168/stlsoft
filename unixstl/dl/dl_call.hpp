@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     19th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       0
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    3
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        20
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    4
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,13 +67,18 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_DL_HPP_MODULE
 # include <unixstl/dl/module.hpp>
 #endif /* !UNIXSTL_INCL_UNIXSTL_D:_HPP_MODULE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
+# include <stlsoft/meta/is_function_pointer_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE
+# include <stlsoft/meta/is_fundamental_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNDAMENTAL_TYPE */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
+# include <stlsoft/meta/is_pointer_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-// TODO: Make these includes more specific
-#ifndef STLSOFT_INCL_H_STLSOFT_META 
-# include <stlsoft_meta.h>
-#endif /* !STLSOFT_INCL_H_STLSOFT_META */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -266,13 +271,15 @@ inline dl_call_traits::entry_point_type lookup_symbol_(dl_call_traits::library_h
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \name Invocators
-///
-/// \ingroup group__library__dl
-///
-/// These calling convention-specific functions perform the invocation of the
-/// given function pointer with the requisite arguments.
-/// @{
+/** \name Invocators
+ *
+ * \ingroup group__library__dl
+ *
+ * These calling convention-specific functions perform the invocation of the
+ * given function pointer with the requisite arguments.
+ *
+ * @{
+ */
 
 //[<[STLSOFT-AUTO:DL_CALL-INVOCATORS:BEGIN]>]
 
@@ -743,13 +750,15 @@ inline R dl_call_invoke_cdecl(dl_call_traits::entry_point_type fp, A0 a0, A1 a1,
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \name Dispatchers
-///
-/// \ingroup group__library__dl
-///
-/// These calling convention-agnostic functions dispatch the function to the
-/// appropriate invocator, with the requisite arguments.
-/// @{
+/** \name Dispatchers
+ *
+ * \ingroup group__library__dl
+ *
+ * These calling convention-agnostic functions dispatch the function to the
+ * appropriate invocator, with the requisite arguments.
+ *
+ * @{
+ */
 
 //[<[STLSOFT-AUTO:DL_CALL-DISPATCHERS:BEGIN]>]
 
@@ -1154,13 +1163,15 @@ inline R dl_call_dispatch_32(dl_call_traits::entry_point_type fp, A0 a0, A1 a1, 
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \name Lookup-ers
-///
-/// \ingroup group__library__dl
-///
-/// These calling convention-agnostic functions look up the symbol from the
-/// library handle, and then call the dispatcher.
-/// @{
+/** \name Lookup-ers
+ *
+ * \ingroup group__library__dl
+ *
+ * These calling convention-agnostic functions look up the symbol from the
+ * library handle, and then call the dispatcher.
+ *
+ * @{
+ */
 
 //[<[STLSOFT-AUTO:DL_CALL-LOOKUPS:BEGIN]>]
 
@@ -1696,13 +1707,15 @@ inline R dl_call_lookup_32(  void        *hinst
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \name Module-ers
-///
-/// \ingroup group__library__dl
-///
-/// These calling convention-agnostic functions acquire the instance handle for
-/// the library, and then call the lookup-ers.
-/// @{
+/** \name Module-ers
+ *
+ * \ingroup group__library__dl
+ *
+ * These calling convention-agnostic functions acquire the instance handle for
+ * the library, and then call the lookup-ers.
+ *
+ * @{
+ */
 
 //[<[STLSOFT-AUTO:DL_CALL-MODULES:BEGIN]>]
 
@@ -2502,14 +2515,15 @@ inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \name API functions
-/// These functions
-///
-/// \ingroup group__library__dl
-///
-/// Their action is to determine (at compile-time) the type of the library
-/// argument, and then invoke the appropriate dl_call_MOD() overload
-/// @{
+/** \name API functions
+ *
+ * \ingroup group__library__dl
+ *
+ * Their action is to determine (at compile-time) the type of the library
+ * argument, and then invoke the appropriate dl_call_MOD() overload
+ *
+ * @{
+ */
 
 //[<[STLSOFT-AUTO:DL_CALL-FUNCTIONS:BEGIN]>]
 

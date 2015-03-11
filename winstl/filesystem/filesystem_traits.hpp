@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     15th November 2002
- * Updated:     17th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR       4
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       2
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR       4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION    1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        93
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT        97
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -66,6 +66,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 #include <string.h>
 #include <wchar.h>
 
@@ -159,9 +162,12 @@ namespace winstl_project
  */
 template <ss_typename_param_k C>
 struct filesystem_traits
+    : public system_traits<C>
 {
 /// \name Types
 /// @{
+private:
+    typedef system_traits<C>                        parent_class_type;
 public:
     /// \brief The character type
     typedef C                                       char_type;
@@ -197,43 +203,6 @@ public:
     {
         maxPathLength   =   1 + _MAX_PATH       //!< The maximum length of a path for the current file system
     };
-/// @}
-
-/// \name General string handling
-/// @{
-public:
-    /// \brief Copies the contents of \c src to \c dest
-    static char_type    *str_copy(char_type *dest, char_type const *src);
-    /// \brief Copies the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_copy(char_type *dest, char_type const *src, size_type cch);
-    /// \brief Appends the contents of \c src to \c dest
-    static char_type    *str_cat(char_type *dest, char_type const *src);
-    /// \brief Appends the contents of \c src to \c dest, up to cch \c characters
-    static char_type    *str_n_cat(char_type *dest, char_type const *src, size_type cch);
-    /// \brief Comparies the contents of \c src and \c dest
-    static int_type     str_compare(char_type const *s1, char_type const *s2);
-    /// \brief Comparies the contents of \c src and \c dest in a case-insensitive fashion
-    static int_type     str_compare_no_case(char_type const *s1, char_type const *s2);
-    /// \brief Comparies the contents of \c src and \c dest up to \c cch characters
-    static int_type     str_n_compare(char_type const *s1, char_type const *s2, size_type cch);
-    /// \brief Evaluates the length of \c src
-    static size_type    str_len(char_type const *src);
-    /// \brief Finds the given character \c ch in \c s
-    static char_type    *str_chr(char_type const *s, char_type ch);
-    /// \brief Finds the rightmost instance \c ch in \c s
-    static char_type    *str_rchr(char_type const *s, char_type ch);
-    /// \brief Finds the given substring \c sub in \c s
-    static char_type    *str_str(char_type const *s, char_type const *sub);
-    /// \brief Finds one of a set of characters in \c s
-    static char_type    *str_pbrk(char_type const *s, char_type const *charSet);
-    /// \brief \brief Returns a pointer to the end of the string
-    static char_type    *str_end(char_type const *s);
-/// @}
-
-/// \name Locale management
-/// @{
-public:
-    static int_type     get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData);
 /// @}
 
 /// \name File-system entry names
@@ -306,12 +275,16 @@ public:
     /// \brief Gets the full path name into the given buffer, returning a pointer to the file-part
     static size_type    get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer, char_type **ppFile);
     /// \brief Gets the full path name into the given buffer
+    static size_type    get_full_path_name(char_type const *fileName, char_type *buffer, size_type cchBuffer);
+    /// \brief Gets the full path name into the given buffer
+    ///
+    /// \deprecated The other overload is now the preferred form
     static size_type    get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer);
-    /// \brief Gets the short path name into the given buffer
-    static size_type    get_short_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer);
     /// \brief Gets the short path name into the given buffer
     ///
     /// \deprecated The other overload is now the preferred form
+    static size_type    get_short_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer);
+    /// \brief Gets the short path name into the given buffer
     static size_type    get_short_path_name(char_type const *fileName, char_type *buffer, size_type cchBuffer);
 /// @}
 
@@ -343,35 +316,17 @@ public:
 #endif // !_WINSTL_NO_FINDVOLUME_API
 /// @}
 
-/// \name Module Paths
-/// @{
-public:
-    /// \brief Gets the full path name of the given module
-    static size_type    get_module_filename(HINSTANCE hModule, char_type *buffer, size_type cchBuffer);
-    /// \brief Gets the full path name of the system directory
-    static size_type    get_system_directory(char_type *buffer, size_type cchBuffer);
-    /// \brief Gets the full path name of the windows directory
-    static size_type    get_windows_directory(char_type *buffer, size_type cchBuffer);
-/// @}
-
-/// \name Dynamic Loading
-/// @{
-public:
-    /// \brief Loads the given executable module
-    static module_type  load_library(char_type const *name);
-    /// \brief Closes the given executable module
-    static bool_type    free_library(module_type hModule);
-    /// \brief Retrieves the given symbol from the library
-    static FARPROC      find_symbol(module_type hModule, char const *symbolName);
-/// @}
-
 /// \name File-system control
 /// @{
 public:
     /// \brief Sets the current directory to \c dir
     static bool_type    set_current_directory(char_type const *dir);
     /// \brief Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
+    ///
+    /// \deprecated The other overload is now the preferred form
     static size_type    get_current_directory(size_type cchBuffer, char_type *buffer);
+    /// \brief Retrieves the name of the current directory into \c buffer up to a maximum of \c cchBuffer characters
+    static size_type    get_current_directory(char_type *buffer, size_type cchBuffer);
 /// @}
 
 /// \name File-system state
@@ -432,36 +387,12 @@ public:
 
     /// \brief Create / open a file
     static file_handle_type create_file(char_type const *fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, HANDLE hTemplateFile);
-    /// \brief Closes the given operating system handle
-    static bool_type        close_handle(HANDLE h);
     /// \brief Closes the given file handle
     static bool_type        close_file(file_handle_type h);
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     /// \brief Gets the size of the file
     static ws_uint64_t      get_file_size(file_handle_type h);
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-/// @}
-
-/// \name Error
-/// @{
-public:
-    /// \brief Gives the last error
-    static error_type   get_last_error();
-    /// \brief Sets the last error
-    static void         set_last_error(error_type er = error_type());
-/// @}
-
-/// \name Environment
-/// @{
-public:
-    /// \brief Gets an environment variable into the given buffer
-    ///
-    /// \param name The name of the variable to find
-    /// \param buffer The buffer in which to write the variable. If this is NULL, then the required length is returned
-    /// \param cchBuffer The size of the buffer, in characters
-    static size_type    get_environment_variable(char_type const *name, char_type *buffer, size_type cchBuffer);
-    /// Expands environment strings in \c src into \c buffer, up to a maximum \c cchDest characters
-    static size_type    expand_environment_strings(char_type const *src, char_type *buffer, size_type cchBuffer);
 /// @}
 };
 
@@ -471,13 +402,13 @@ template <ss_typename_param_k C>
 struct filesystem_traits;
 
 struct filesystem_traits_
+    : public system_traits_
 {
 public:
     typedef ws_size_t                   size_type;
     typedef ws_ptrdiff_t                difference_type;
     typedef filesystem_traits_          class_type;
     typedef BY_HANDLE_FILE_INFORMATION  fstat_data_type;
-
     typedef ws_int_t                    int_type;
     typedef ws_bool_t                   bool_type;
     typedef HANDLE                      file_handle_type;
@@ -490,11 +421,6 @@ public:
     };
 
 public:
-    static bool_type close_handle(HANDLE h)
-    {
-        return FALSE != ::CloseHandle(h);
-    }
-
     static bool_type fstat(file_handle_type fd, fstat_data_type *fstat_data)
     {
         return FALSE != ::GetFileInformationByHandle(fd, fstat_data);
@@ -517,17 +443,6 @@ public:
         return FILE_ATTRIBUTE_READONLY == (stat_data->dwFileAttributes & FILE_ATTRIBUTE_READONLY);
     }
 
-    static bool_type free_library(module_type hModule)
-    {
-        return FALSE != ::FreeLibrary(hModule);
-    }
-
-    static FARPROC find_symbol(module_type hModule, char const *symbolName)
-    {
-        return ::GetProcAddress(hModule, symbolName);
-    }
-
-
 #ifdef STLSOFT_CF_64BIT_INT_SUPPORT
     static ws_uint64_t  get_file_size(file_handle_type h)
     {
@@ -543,20 +458,11 @@ public:
         return (static_cast<ws_uint64_t>(dwHigh) << 32) | dwLow;
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
-    static error_type get_last_error()
-    {
-        return ::GetLastError();
-    }
-
-    static void set_last_error(error_type er)
-    {
-        ::SetLastError(er);
-    }
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<ws_char_a_t>
+    : public system_traits<ws_char_a_t>
 {
 public:
     typedef ws_char_a_t                             char_type;
@@ -584,84 +490,6 @@ public:
     };
 
 public:
-    // General string handling
-    static char_type *str_copy(char_type *dest, char_type const *src)
-    {
-        return ::lstrcpyA(dest, src);
-    }
-
-    static char_type *str_n_copy(char_type *dest, char_type const *src, size_type cch)
-    {
-        return ::strncpy(dest, src, cch);
-    }
-
-    static char_type *str_cat(char_type *dest, char_type const *src)
-    {
-        return ::lstrcatA(dest, src);
-    }
-
-    static char_type *str_n_cat(char_type *dest, char_type const *src, size_type cch)
-    {
-        return ::strncat(dest, src, cch);
-    }
-
-    static int_type str_compare(char_type const *s1, char_type const *s2)
-    {
-        return ::lstrcmpA(s1, s2);
-    }
-
-    static int_type str_compare_no_case(char_type const *s1, char_type const *s2)
-    {
-        return ::lstrcmpiA(s1, s2);
-    }
-
-    static int_type str_n_compare(char_type const *s1, char_type const *s2, size_type cch)
-    {
-        return ::strncmp(s1, s2, cch);
-    }
-
-    static size_type str_len(char_type const *src)
-    {
-        return static_cast<size_type>(::lstrlenA(src));
-    }
-
-    static char_type *str_chr(char_type const *s, char_type ch)
-    {
-        return const_cast<char_type*>(::strchr(s, ch));
-    }
-
-    static char_type *str_rchr(char_type const *s, char_type ch)
-    {
-        return const_cast<char_type*>(::strrchr(s, ch));
-    }
-
-    static char_type *str_str(char_type const *s, char_type const *sub)
-    {
-        return const_cast<char_type*>(::strstr(s, sub));
-    }
-
-    static char_type *str_pbrk(char_type const *s, char_type const *charSet)
-    {
-        return const_cast<char_type*>(::strpbrk(s, charSet));
-    }
-
-    static char_type *str_end(char_type const *s)
-    {
-        WINSTL_ASSERT(NULL != s);
-
-        for(; *s != '\0'; ++s)
-        {}
-
-        return const_cast<char_type*>(s);
-    }
-
-    // Locale management
-    static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
-    {
-        return GetLocaleInfoA(locale, type, data, cchData);
-    }
-
-    // File-system entry names
     static char_type *ensure_dir_end(char_type *dir)
     {
         WINSTL_ASSERT(NULL != dir);
@@ -682,8 +510,6 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end    =   str_end(dir);
-
         // Don't trim drive roots ...
         if( isalpha(dir[0]) &&
             ':' == dir[1] &&
@@ -700,6 +526,8 @@ public:
         {
             return dir;
         }
+
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1068,7 +896,7 @@ public:
     }
 #endif /* compiler */
 
-    static size_type get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
+    static size_type get_full_path_name(char_type const *fileName, char_type *buffer, size_type cchBuffer)
     {
         WINSTL_ASSERT(NULL != fileName);
 
@@ -1082,6 +910,11 @@ public:
         }
 
         return get_full_path_name(fileName, cchBuffer, buffer, &pFile);
+    }
+
+    static size_type get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
+    {
+        return get_full_path_name(fileName, buffer, cchBuffer);
     }
 
     static size_type get_short_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
@@ -1139,49 +972,20 @@ public:
     }
 #endif // !_WINSTL_NO_FINDVOLUME_API
 
-    // Modules
-
-    static size_type get_module_filename(HINSTANCE hModule, char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetModuleFileNameA(hModule, buffer, cchBuffer);
-    }
-
-    static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetSystemDirectoryA(buffer, cchBuffer);
-    }
-
-    static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetWindowsDirectoryA(buffer, cchBuffer);
-    }
-
-    // Dynamic Loading
-
-    static module_type load_library(char_type const *name)
-    {
-        return ::LoadLibraryA(name);
-    }
-
-    static bool_type free_library(module_type hModule)
-    {
-        return filesystem_traits_::free_library(hModule);
-    }
-
-    static FARPROC find_symbol(module_type hModule, char const *symbolName)
-    {
-        return filesystem_traits_::find_symbol(hModule, symbolName);
-    }
-
     // File-system state
     static bool_type set_current_directory(char_type const *dir)
     {
         return ::SetCurrentDirectoryA(dir) != FALSE;
     }
 
-    static size_type get_current_directory(size_type cchBuffer, char_type *buffer)
+    static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
     {
         return ::GetCurrentDirectoryA(cchBuffer, buffer);
+    }
+
+    static size_type get_current_directory(size_type cchBuffer, char_type *buffer)
+    {
+        return class_type::get_current_directory(buffer, cchBuffer);
     }
 
     static bool_type file_exists(char_type const *fileName)
@@ -1352,8 +1156,6 @@ public:
         return (drive[0] = driveLetter, ::GetDriveTypeA(drive));
     }
 
-    // File-system control
-
     static bool_type    create_directory(char_type const *dir)
     {
         return FALSE != ::CreateDirectoryA(dir, NULL);
@@ -1389,16 +1191,9 @@ public:
         return FALSE != ::CopyFileA(sourceName, newName, bFailIfExists);
     }
 
-    // File functions
-
     static file_handle_type create_file(char_type const *fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, file_handle_type hTemplateFile)
     {
         return ::CreateFileA(fileName, desiredAccess, shareMode, sa, creationDisposition, flagAndAttributes, hTemplateFile);
-    }
-
-    static bool_type close_handle(HANDLE h)
-    {
-        return filesystem_traits_::close_handle(h);
     }
 
     static bool_type close_file(file_handle_type h)
@@ -1412,34 +1207,11 @@ public:
         return filesystem_traits_::get_file_size(h);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
-    // Error
-
-    static error_type get_last_error()
-    {
-        return filesystem_traits_::get_last_error();
-    }
-
-    static void set_last_error(error_type er = error_type())
-    {
-        filesystem_traits_::set_last_error(er);
-    }
-
-    // Environment
-
-    static size_type get_environment_variable(char_type const *name, char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetEnvironmentVariableA(name, buffer, cchBuffer);
-    }
-
-    static size_type expand_environment_strings(char_type const *src, char_type *dest, size_type cch_dest)
-    {
-        return static_cast<size_type>(::ExpandEnvironmentStringsA(src, dest, cch_dest));
-    }
 };
 
 STLSOFT_TEMPLATE_SPECIALISATION
 struct filesystem_traits<ws_char_w_t>
+    : public system_traits<ws_char_w_t>
 {
 public:
     typedef ws_char_w_t                             char_type;
@@ -1463,87 +1235,10 @@ public:
 
     enum
     {
-        maxPathLength   =   1 + _MAX_PATH       //!< The maximum length of a path for the current file system
+        maxPathLength   =   1 + CONST_NT_MAX_PATH   //!< The maximum length of a path for the current file system
     };
 
 public:
-    // General string handling
-    static char_type *str_copy(char_type *dest, char_type const *src)
-    {
-        return ::lstrcpyW(dest, src);
-    }
-
-    static char_type *str_n_copy(char_type *dest, char_type const *src, size_type cch)
-    {
-        return ::wcsncpy(dest, src, cch);
-    }
-
-    static char_type *str_cat(char_type *dest, char_type const *src)
-    {
-        return ::lstrcatW(dest, src);
-    }
-
-    static char_type *str_n_cat(char_type *dest, char_type const *src, size_type cch)
-    {
-        return ::wcsncat(dest, src, cch);
-    }
-
-    static int_type str_compare(char_type const *s1, char_type const *s2)
-    {
-        return ::lstrcmpW(s1, s2);
-    }
-
-    static int_type str_compare_no_case(char_type const *s1, char_type const *s2)
-    {
-        return ::lstrcmpiW(s1, s2);
-    }
-
-    static int_type str_n_compare(char_type const *s1, char_type const *s2, size_type cch)
-    {
-        return ::wcsncmp(s1, s2, cch);
-    }
-
-    static size_type str_len(char_type const *src)
-    {
-        return static_cast<size_type>(::lstrlenW(src));
-    }
-
-    static char_type *str_chr(char_type const *s, char_type ch)
-    {
-        return const_cast<char_type*>(::wcschr(s, ch));
-    }
-
-    static char_type *str_rchr(char_type const *s, char_type ch)
-    {
-        return const_cast<char_type*>(::wcsrchr(s, ch));
-    }
-
-    static char_type *str_str(char_type const *s, char_type const *sub)
-    {
-        return const_cast<char_type*>(::wcsstr(s, sub));
-    }
-
-    static char_type *str_pbrk(char_type const *s, char_type const *charSet)
-    {
-        return const_cast<char_type*>(::wcspbrk(s, charSet));
-    }
-
-    static char_type *str_end(char_type const *s)
-    {
-        WINSTL_ASSERT(NULL != s);
-
-        for(; *s != L'\0'; ++s)
-        {}
-
-        return const_cast<char_type*>(s);
-    }
-
-    // Locale management
-    static int_type get_locale_info(LCID locale, LCTYPE type, char_type *data, int_type cchData)
-    {
-        return ::GetLocaleInfoW(locale, type, data, cchData);
-    }
-
     // File-system entry names
     static char_type *ensure_dir_end(char_type *dir)
     {
@@ -1565,8 +1260,7 @@ public:
     {
         WINSTL_ASSERT(NULL != dir);
 
-        char_type   *end    =   str_end(dir);
-
+        // Don't trim drive roots ...
         if( isalpha(dir[0]) &&
             L':' == dir[1] &&
             is_path_name_separator(dir[2]) &&
@@ -1575,12 +1269,15 @@ public:
             return dir;
         }
 
+        // ... or UNC roots
         if( L'\\' == dir[0] &&
             L'\\' == dir[1] &&
             L'\0' == dir[3])
         {
             return dir;
         }
+
+        char_type   *end    =   str_end(dir);
 
         if( dir < end &&
             is_path_name_separator(*(end - 1)))
@@ -1714,11 +1411,16 @@ public:
         return ::GetFullPathNameW(fileName, cchBuffer, buffer, ppFile);
     }
 
-    static size_type get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
+    static size_type get_full_path_name(char_type const *fileName, char_type *buffer, size_type cchBuffer)
     {
         char_type *pFile;
 
         return get_full_path_name(fileName, cchBuffer, buffer, &pFile);
+    }
+
+    static size_type get_full_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
+    {
+        return get_full_path_name(fileName, buffer, cchBuffer);
     }
 
     static size_type get_short_path_name(char_type const *fileName, size_type cchBuffer, char_type *buffer)
@@ -1776,48 +1478,20 @@ public:
     }
 #endif // !_WINSTL_NO_FINDVOLUME_API
 
-    // Modules
-    static size_type get_module_filename(HINSTANCE hModule, char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetModuleFileNameW(hModule, buffer, cchBuffer);
-    }
-
-    static size_type get_system_directory(char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetSystemDirectoryW(buffer, cchBuffer);
-    }
-
-    static size_type get_windows_directory(char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetWindowsDirectoryW(buffer, cchBuffer);
-    }
-
-    // Dynamic Loading
-
-    static module_type load_library(char_type const *name)
-    {
-        return ::LoadLibraryW(name);
-    }
-
-    static bool_type free_library(module_type hModule)
-    {
-        return filesystem_traits_::free_library(hModule);
-    }
-
-    static FARPROC find_symbol(module_type hModule, char const *symbolName)
-    {
-        return filesystem_traits_::find_symbol(hModule, symbolName);
-    }
-
     // File-system state
     static bool_type set_current_directory(char_type const *dir)
     {
         return ::SetCurrentDirectoryW(dir) != FALSE;
     }
 
-    static size_type get_current_directory(size_type cchBuffer, char_type *buffer)
+    static size_type get_current_directory(char_type *buffer, size_type cchBuffer)
     {
         return ::GetCurrentDirectoryW(cchBuffer, buffer);
+    }
+
+    static size_type get_current_directory(size_type cchBuffer, char_type *buffer)
+    {
+        return class_type::get_current_directory(buffer, cchBuffer);
     }
 
     static bool_type file_exists(char_type const *fileName)
@@ -2025,17 +1699,11 @@ public:
         return FALSE != ::CopyFileW(sourceName, newName, bFailIfExists);
     }
 
-    // File functions
-
     static file_handle_type create_file(char_type const *fileName, size_type desiredAccess, size_type shareMode, LPSECURITY_ATTRIBUTES sa, size_type creationDisposition, size_type flagAndAttributes, file_handle_type hTemplateFile)
     {
         return ::CreateFileW(fileName, desiredAccess, shareMode, sa, creationDisposition, flagAndAttributes, hTemplateFile);
     }
 
-    static bool_type close_handle(HANDLE h)
-    {
-        return filesystem_traits_::close_handle(h);
-    }
     static bool_type close_file(file_handle_type h)
     {
         return filesystem_traits_::close_handle(h);
@@ -2047,30 +1715,6 @@ public:
         return filesystem_traits_::get_file_size(h);
     }
 #endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-
-    // Error
-
-    static error_type get_last_error()
-    {
-        return filesystem_traits_::get_last_error();
-    }
-
-    static void set_last_error(error_type er = error_type())
-    {
-        filesystem_traits_::set_last_error(er);
-    }
-
-    // Environment
-
-    static size_type get_environment_variable(char_type const *name, char_type *buffer, size_type cchBuffer)
-    {
-        return ::GetEnvironmentVariableW(name, buffer, cchBuffer);
-    }
-
-    static size_type expand_environment_strings(char_type const *src, char_type *dest, size_type cch_dest)
-    {
-        return static_cast<size_type>(::ExpandEnvironmentStringsW(src, dest, cch_dest));
-    }
 };
 
 #endif /* STLSOFT_DOCUMENTATION_SKIP_SECTION */

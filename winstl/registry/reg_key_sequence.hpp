@@ -13,7 +13,7 @@
  *              basic_reg_key_sequence class interface.
  *
  * Created:     19th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MAJOR      3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_MINOR      6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       109
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_REVISION   4
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_KEY_SEQUENCE_EDIT       112
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,12 +94,12 @@
 #ifndef STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS
 # include <stlsoft/collections/collections.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_COLLECTIONS_HPP_COLLECTIONS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_REF_PTR
-# include <stlsoft/ref_ptr.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_REF_PTR */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE
-# include <stlsoft/scoped_handle.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_SCOPED_HANDLE */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR
+# include <stlsoft/smartptr/ref_ptr.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR */
+#ifndef STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE
+# include <stlsoft/smartptr/scoped_handle.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -126,13 +126,14 @@ namespace winstl_project
 /* ////////////////////////////////////////////////////////////////////// */
 
 // class basic_reg_key_sequence
-/// \brief Presents an STL-like sequence interface over the sub-keys of a given registry key
-///
-/// \ingroup group__library__windows_registry
-///
-/// \param C The character type
-/// \param T The traits type. On translators that support default template arguments this defaults to reg_traits<C>
-/// \param A The allocator type. On translators that support default template arguments this defaults to processheap_allocator<C>
+/** \brief Presents an STL-like sequence interface over the sub-keys of a given registry key
+ *
+ * \ingroup group__library__windows_registry
+ *
+ * \param C The character type
+ * \param T The traits type. On translators that support default template arguments this defaults to reg_traits<C>
+ * \param A The allocator type. On translators that support default template arguments this defaults to processheap_allocator<C>
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = reg_traits<C>
@@ -337,22 +338,32 @@ private:
 };
 
 /* Typedefs to commonly encountered types. */
-/// Instantiation of the basic_reg_key_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_reg_key_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_key_sequence<ws_char_a_t, reg_traits<ws_char_a_t>, processheap_allocator<ws_char_a_t> > reg_key_sequence_a;
-/// Instantiation of the basic_reg_key_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_reg_key_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_key_sequence<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_allocator<ws_char_w_t> > reg_key_sequence_w;
-/// Instantiation of the basic_reg_key_sequence template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_reg_key_sequence template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__windows_registry
+ */
 typedef basic_reg_key_sequence<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >                   reg_key_sequence;
 
 // class basic_reg_key_sequence_iterator
-/// \brief Iterator for the basic_reg_key_sequence class
-///
-/// \ingroup group__library__windows_registry
-///
-/// \param C The character type
-/// \param T The traits type
-/// \param V The value type
-/// \param A The allocator type
+/** \brief Iterator for the basic_reg_key_sequence class
+ *
+ * \ingroup group__library__windows_registry
+ *
+ * \param C The character type
+ * \param T The traits type
+ * \param V The value type
+ * \param A The allocator type
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k V

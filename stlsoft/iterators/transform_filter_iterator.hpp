@@ -4,7 +4,7 @@
  * Purpose:     A combination of the transform_iterator and the filter_iterator.
  *
  * Created:     2nd January 2006
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/transform_filter_iterator.hpp
-///
-/// A combination of the transform_iterator and the filter_iterator.
+/** \file stlsoft/iterators/transform_filter_iterator.hpp
+ *
+ * \brief [C++ only] Functions for simultaneous transformation and filtering
+ *   of iterator ranges.
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_REVISION  2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_EDIT      5
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_FILTER_ITERATOR_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,29 +91,21 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup adaptors Adaptors
-/// \brief Adaptor functions and classes used throughout the STLSoft libraries
-
-/// \weakgroup adaptors_iterator Iterator Adaptors
-/// \brief Classes that provide iterator adaptation
-/// \ingroup iterators adaptors
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Creator functions
  */
 
-/// Creator function for transform_iterator + filter_iterator
-///
-/// \param i The iterator to transform
-/// \param pr The predicate used to filter the underlying range
-///
-/// \return An instance of the specialisation filter_iterator&lt;T, P&gt;
+/** \brief Creator function for transform_iterator + filter_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param from The iterator marking the start of the range to transform and filter
+ * \param to The iterator marking (one past) the end of the range to transform and filter
+ * \param pr The predicate used to filter the given range
+ * \param fn The predicate used to transform values of the filtered range
+ *
+ * \return An instance of the specialisation filter_iterator&lt;T, P&gt;
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         ,   ss_typename_param_k P
@@ -127,14 +122,19 @@ inline transform_iterator<filter_iterator<I, P>, F> make_transform_filter_iterat
     return transformer(filter(from, to, pr), fn);
 }
 
-/// Creator function for transform_iterator + filter_iterator
-///
-/// \param i The iterator to transform
-/// \param pr The predicate used to filter the underlying range
-///
-/// \return An instance of the specialisation filter_iterator&lt;T, P&gt;
-///
-/// \note Short-hand for make_filter_iterator()
+/** \brief Creator function for transform_iterator + filter_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param from The iterator marking the start of the range to transform and filter
+ * \param to The iterator marking (one past) the end of the range to transform and filter
+ * \param pr The predicate used to filter the given range
+ * \param fn The predicate used to transform values of the filtered range
+ *
+ * \return An instance of the specialisation filter_iterator&lt;T, P&gt;
+ *
+ * \note Short-hand for make_filter_iterator()
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         ,   ss_typename_param_k P
@@ -143,10 +143,6 @@ inline transform_iterator<filter_iterator<I, P>, F> transform_filter(I from, I t
 {
     return make_transform_filter_iterator(from, to, fn, pr);
 }
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

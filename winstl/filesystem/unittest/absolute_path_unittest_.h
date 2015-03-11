@@ -9,30 +9,30 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_absolute_path(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_absolute_path(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "filesystem/absolute_path", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "filesystem/absolute_path", __FILE__);
 
-            TCHAR   cwd[1 + _MAX_PATH];
+			TCHAR	cwd[1 + _MAX_PATH];
 
-            ::GetCurrentDirectory(STLSOFT_NUM_ELEMENTS(cwd), cwd);
+			::GetCurrentDirectory(STLSOFT_NUM_ELEMENTS(cwd), cwd);
 
-            if(0 != lstrcmp(cwd, absolute_path(".")))
-            {
-                r->report("absolute path for \".\" failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != ::lstrcmp(cwd, absolute_path(".").c_str()))
+			{
+				r->report("absolute path for \".\" failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_absolute_path(test_winstl_absolute_path);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_absolute_path(test_winstl_absolute_path);
+	} // anonymous namespace
 
 } // namespace unittest

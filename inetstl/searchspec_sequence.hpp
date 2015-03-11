@@ -15,7 +15,7 @@
  *              2003 issue of Windows Developer Network (http://windevnet.com).
  *
  * Created:     1st May 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -59,8 +59,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MAJOR      4
 # define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_MINOR      3
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   3
-# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       38
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_REVISION   4
+# define STLSOFT_VER_INETSTL_HPP_SEARCHSPEC_SEQUENCE_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,9 +84,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER
-# include <stlsoft/string_tokeniser.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_TOKENISER */
+#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER
+# include <stlsoft/string/string_tokeniser.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_STRING_TOKENISER */
 
 //#include <inetstl_string_access.h>
 
@@ -136,7 +136,10 @@ inline void call_set_null(T *&pt, void (T::*F)())
  * Classes
  */
 
-/// Provides multi-pattern functionality over a file-system search sequence class
+/** \brief Provides multi-pattern functionality over a file-system search sequence class
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k S>
 class searchspec_sequence
     : public stlsoft_ns_qual(stl_collection_tag)

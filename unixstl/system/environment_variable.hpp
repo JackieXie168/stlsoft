@@ -4,7 +4,7 @@
  * Purpose:     Simple class that provides access to an environment variable.
  *
  * Created:     2nd November 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      0
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_MINOR      1
 # define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_REVISION   1
-# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       55
+# define UNIXSTL_VER_UNIXSTL_SYSTEM_HPP_ENVIRONMENT_VARIABLE_EDIT       57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -62,9 +62,9 @@
 #ifndef UNIXSTL_INCL_UNIXSTL_H_UNIXSTL
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
-#ifndef UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
-# include <unixstl/filesystem/filesystem_traits.hpp>       // for get_environment_variable()
-#endif /* !UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
+#ifndef UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <unixstl/system/system_traits.hpp>       // for get_environment_variable()
+#endif /* !UNIXSTL_INCL_UNIXSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS
 # include <stlsoft/string_access.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_STRING_ACCESS */
@@ -112,15 +112,15 @@ namespace unixstl_project
  * \ingroup group__library__system
  *
  * \param C The character type
- * \param T The traits type. Defaults to filesystem_traits<C>. On translators that do not support default template arguments, it must be explicitly stipulated
+ * \param T The traits type. Defaults to system_traits<C>. On translators that do not support default template arguments, it must be explicitly stipulated
  * \param A The allocator class. Defaults to stlsoft::allocator_selector<C>::allocator_type. On translators that do not support default template arguments, it is not part of the template parameter list.
  */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
-        ,   ss_typename_param_k T = filesystem_traits<C>
+        ,   ss_typename_param_k T = system_traits<C>
         ,   ss_typename_param_k A = ss_typename_type_def_k stlsoft_ns_qual(allocator_selector)<C>::allocator_type
 #else /* ? STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
-        ,   ss_typename_param_k T /* = filesystem_traits<C> */
+        ,   ss_typename_param_k T /* = system_traits<C> */
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
 class basic_environment_variable
@@ -208,12 +208,21 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_environment_variable template for the ANSI character type \c char
-typedef basic_environment_variable<us_char_a_t, filesystem_traits<us_char_a_t> >    environment_variable_a;
-/// Instantiation of the basic_environment_variable template for the Unicode character type \c wchar_t
-typedef basic_environment_variable<us_char_w_t, filesystem_traits<us_char_w_t> >    environment_variable_w;
-/// Instantiation of the basic_environment_variable template for the 'default' character type \c char
-typedef basic_environment_variable<char, filesystem_traits<char> >                  environment_variable;
+/** \brief Instantiation of the basic_environment_variable template for the ANSI character type \c char
+ *
+ * \ingroup group__library__system
+ */
+typedef basic_environment_variable<us_char_a_t, system_traits<us_char_a_t> >    environment_variable_a;
+/** \brief Instantiation of the basic_environment_variable template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__system
+ */
+typedef basic_environment_variable<us_char_w_t, system_traits<us_char_w_t> >    environment_variable_w;
+/** \brief Instantiation of the basic_environment_variable template for the 'default' character type \c char
+ *
+ * \ingroup group__library__system
+ */
+typedef basic_environment_variable<char, system_traits<char> >                  environment_variable;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Helper functions
@@ -222,8 +231,11 @@ typedef basic_environment_variable<char, filesystem_traits<char> >              
 #if !defined(STLSOFT_COMPILER_IS_MSVC) || \
     _MSC_VER >= 1100
 
-/// This helper function makes an environment variable without needing to
-/// qualify the template parameter.
+/** \brief This helper function makes an environment variable without needing to
+ * qualify the template parameter.
+ *
+ * \ingroup group__library__system
+ */
 template<ss_typename_param_k C>
 inline basic_environment_variable<C> make_environment_variable(C const *path)
 {

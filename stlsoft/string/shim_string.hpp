@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        27
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        29
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -291,18 +291,6 @@ inline ss_size_t c_str_len(basic_shim_string<C, N, U, A, T> const &ss)
     return ss.size();
 }
 
-#if 0
-template<   ss_typename_param_k C
-        ,   ss_size_t           N
-        ,   ss_bool_t           U
-        ,   ss_typename_param_k A
-        ,   ss_typename_param_k T
-        >
-inline ss_size_t c_str_size(basic_shim_string<C, N, U, A, T> const &ss)
-{
-    return ss.size() * sizeof(C);
-}
-#endif /* 0 */
 
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C

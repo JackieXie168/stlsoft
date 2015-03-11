@@ -11,36 +11,36 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_unixstl_string_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_unixstl_string_access(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "UNIXSTL", "string_access", __FILE__);
+			unittest_initialiser	init(r, "UNIXSTL", "string_access", __FILE__);
 
-            struct dirent   de;
+			struct dirent	de;
 
-            strcpy(de.d_name, "/home/stlsoft");
+			strcpy(de.d_name, "/home/stlsoft");
 
-            if(0 != strcmp("/home/stlsoft", c_str_ptr(de)))
-            {
-                r->report("c_str_ptr(dirent &) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != strcmp("/home/stlsoft", c_str_ptr(de)))
+			{
+				r->report("c_str_ptr(dirent &) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(0 != strcmp("/home/stlsoft", c_str_ptr(&de)))
-            {
-                r->report("c_str_ptr(dirent *) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != strcmp("/home/stlsoft", c_str_ptr(&de)))
+			{
+				r->report("c_str_ptr(dirent *) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_unixstl_string_access(test_unixstl_string_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_unixstl_string_access(test_unixstl_string_access);
+	} // anonymous namespace
 
 }// namespace unittest

@@ -4,7 +4,7 @@
  * Purpose:     TOOLHELP thread sequence class.
  *
  * Created:     21st May 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_MAJOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_MINOR       1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_EDIT        4
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_THREAD_SEQUENCE_EDIT        5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,16 +108,18 @@ namespace winstl_project
 #include <winstl/toolhelp/sequence_value_traits.hpp>
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief An STL collection for accessing thread information for a given process.
-///
-/// \ingroup group__library__windows_toolhelp
+/** \brief An STL collection for accessing thread information for a given process.
+ *
+ * \ingroup group__library__windows_toolhelp
+ */
 typedef th_sequence_base<THREADENTRY32>             thread_sequence;
 
-/// \brief Attribute shim for retrieving the process id associated with the THREADENTRY32 instance
-///
-/// \ingroup group__library__windows_toolhelp
-///
-/// \param te The THREADENTRY32 instance
+/** \brief Attribute shim for retrieving the process id associated with the THREADENTRY32 instance
+ *
+ * \ingroup group__library__windows_toolhelp
+ *
+ * \param te The THREADENTRY32 instance
+ */
 inline DWORD get_pid(THREADENTRY32 const &te)
 {
     return te.th32OwnerProcessID;

@@ -9,85 +9,85 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_system_version_info(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_system_version_info(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "system/version_info", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "system/version_info", __FILE__);
 
-            version_info            vi1("USER32");
-            ss_size_t               l       =   vi1.Length();
-            ss_size_t               vl      =   vi1.ValueLength();
-            ss_size_t               t       =   vi1.Type();
-            wchar_t const           *key    =   vi1.Key();
-            fixed_file_info         ffi     =   vi1.FixedFileInfo();
+			version_info			vi1("USER32");
+			ss_size_t				l		=	vi1.Length();
+			ss_size_t				vl		=	vi1.ValueLength();
+			ss_size_t				t		=	vi1.Type();
+			wchar_t const			*key	=	vi1.Key();
+			fixed_file_info 		ffi 	=	vi1.FixedFileInfo();
 
-            STLSOFT_SUPPRESS_UNUSED(l);
-            STLSOFT_SUPPRESS_UNUSED(vl);
-            STLSOFT_SUPPRESS_UNUSED(t);
-            STLSOFT_SUPPRESS_UNUSED(key);
-            STLSOFT_SUPPRESS_UNUSED(ffi);
+			STLSOFT_SUPPRESS_UNUSED(l);
+			STLSOFT_SUPPRESS_UNUSED(vl);
+			STLSOFT_SUPPRESS_UNUSED(t);
+			STLSOFT_SUPPRESS_UNUSED(key);
+			STLSOFT_SUPPRESS_UNUSED(ffi);
 
-            if(vi1.HasVarFileInfo())
-            {
-                VsVarFileInfo       vfi =   vi1.VarFileInfo();
+			if(vi1.HasVarFileInfo())
+			{
+				VsVarFileInfo		vfi =	vi1.VarFileInfo();
 
-                VsVarFileInfo::const_iterator   b   =   vfi.begin();
-                VsVarFileInfo::const_iterator   e   =   vfi.end();
+				VsVarFileInfo::const_iterator	b	=	vfi.begin();
+				VsVarFileInfo::const_iterator	e	=	vfi.end();
 
-                for(; b != e; ++b)
-                {
-                    VsVar   var =   *b;
+				for(; b != e; ++b)
+				{
+					VsVar	var =	*b;
 
-                    for(size_t i = 0; i < var.length(); ++i)
-                    {
-                        VsVar::LangCodePage lcp =   var[i];
+					for(size_t i = 0; i < var.length(); ++i)
+					{
+						VsVar::LangCodePage lcp =	var[i];
 
-                        STLSOFT_SUPPRESS_UNUSED(lcp);
-                    }
-                }
-            }
+						STLSOFT_SUPPRESS_UNUSED(lcp);
+					}
+				}
+			}
 
-            if(vi1.HasStringFileInfo())
-            {
-                VsStringFileInfo    sfi =   vi1.StringFileInfo();
+			if(vi1.HasStringFileInfo())
+			{
+				VsStringFileInfo	sfi =	vi1.StringFileInfo();
 
-                VsStringFileInfo::const_iterator    b   =   sfi.begin();
-                VsStringFileInfo::const_iterator    e   =   sfi.end();
+				VsStringFileInfo::const_iterator	b	=	sfi.begin();
+				VsStringFileInfo::const_iterator	e	=	sfi.end();
 
-                for(; b != e; ++b)
-                {
-                    VsStringTable   st  =   *b;
+				for(; b != e; ++b)
+				{
+					VsStringTable	st	=	*b;
 
-                    VsStringTable::const_iterator   b   =   st.begin();
-                    VsStringTable::const_iterator   e   =   st.end();
+					VsStringTable::const_iterator	b	=	st.begin();
+					VsStringTable::const_iterator	e	=	st.end();
 
-                    for(; b != e; ++b)
-                    {
-                        VsString    str =   *b;
+					for(; b != e; ++b)
+					{
+						VsString	str =	*b;
 
-                        str.name();
-                        str.value();
-                    }
-                }
-            }
+						str.name();
+						str.value();
+					}
+				}
+			}
 
-    #if 0
-            if(  )
-            {
-                r->report("construct() failed", __LINE__);
-                bSuccess = false;
-            }
-    #endif /* 0 */
+	#if 0
+			if(  )
+			{
+				r->report("construct() failed", __LINE__);
+				bSuccess = false;
+			}
+	#endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_system_version_info(test_winstl_system_version_info);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_system_version_info(test_winstl_system_version_info);
+	} // anonymous namespace
 
 } // namespace unittest

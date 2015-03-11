@@ -4,7 +4,7 @@
  * Purpose:     Type conversions for Windows.
  *
  * Created:     31st May 2003
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    4
 # define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    0
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
-# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     69
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
+# define WINSTL_VER_WINSTL_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -138,11 +138,11 @@ class ansi2Unicode
 private:
     typedef auto_buffer_old<ws_char_w_t, processheap_allocator<ws_char_w_t>, CCH>   parent_class_type;
 public:
-	/// \brief The character type
+    /// \brief The character type
     typedef ws_char_w_t                                                             char_type;
-	/// \brief The size type
+    /// \brief The size type
     typedef ss_typename_type_k parent_class_type::size_type                         size_type;
-	/// \brief The pointer type
+    /// \brief The pointer type
     typedef ss_typename_type_k parent_class_type::pointer                           pointer;
 /// @}
 
@@ -241,11 +241,11 @@ class unicode2Ansi
 private:
     typedef auto_buffer_old<ws_char_a_t, processheap_allocator<ws_char_a_t>, CCH>   parent_class_type;
 public:
-	/// \brief The character type
+    /// \brief The character type
     typedef ws_char_a_t                                                             char_type;
-	/// \brief The size type
+    /// \brief The size type
     typedef ss_typename_type_k parent_class_type::size_type                         size_type;
-	/// \brief The pointer type
+    /// \brief The pointer type
     typedef ss_typename_type_k parent_class_type::pointer                           pointer;
 /// @}
 
@@ -432,14 +432,7 @@ inline ws_size_t c_str_len(ansi2Unicode<CCH> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
-#if 0
-template<   ws_size_t   CCH
-        >
-inline ws_size_t c_str_size(ansi2Unicode<CCH> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.c_str());
-}
-#endif /* 0 */
+
 
 template<   ss_typename_param_k S
         ,   ws_size_t   CCH
@@ -497,14 +490,7 @@ inline ws_size_t c_str_len(unicode2Ansi<CCH> const &b)
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
-#if 0
-template<   ws_size_t   CCH
-        >
-inline ws_size_t c_str_size(unicode2Ansi<CCH> const &b)
-{
-    return stlsoft_ns_qual(c_str_size)(b.c_str());
-}
-#endif /* 0 */
+
 
 template<   ss_typename_param_k S
         ,   ws_size_t   CCH
@@ -563,10 +549,6 @@ using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
-
-#if 0
-using ::winstl::c_str_size;
-#endif /* 0 */
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

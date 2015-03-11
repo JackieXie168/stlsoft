@@ -4,7 +4,7 @@
  * Purpose:     Window icon scoping class.
  *
  * Created:     30th June 1999
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MAJOR      3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_MINOR      2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_REVISION   1
-# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       41
+# define WINSTL_VER_WINSTL_HPP_WINDOW_ICON_SCOPE_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,10 +93,13 @@ namespace winstl_project
  */
 
 // window_icon_scope
-/// \brief Provides scoping of the icon(s) of a window.
-///
-/// This class provides scoping of the icon(s) of a window via the WM_SETICON
-/// message.
+/** \brief Provides scoping of the icon(s) of a window.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This class provides scoping of the icon(s) of a window via the WM_SETICON
+ * message.
+ */
 class window_icon_scope
 {
 public:

@@ -4,7 +4,7 @@
  * Purpose:     Traits for detecting characteristics of adapted iterators.
  *
  * Created:     9th July 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/adapted_iterator_traits.hpp
-///
-/// Traits for detecting characteristics of adapted iterators.
+/** \file stlsoft/iterators/adapted_iterator_traits.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::adapted_iterator_traits
+ *   class template.
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MAJOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_MINOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_REVISION 5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     36
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_ADAPTED_ITERATOR_TRAITS_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,7 +129,10 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-/// Traits for adapted_iterator_traits
+/** \brief Traits for adapted_iterator_traits
+ *
+ * \ingroup group__library__iterators
+ */
 template <ss_typename_param_k I>
 struct adapted_iterator_traits
 {
@@ -151,15 +157,15 @@ private:
 public:
     /// \brief The iterator category
     ///
-    /// This is simply the member \c iterator_category of the adapted iterator type
+    /// This is simply the member <code>iterator_category</code> of the adapted iterator type
     typedef ss_typename_type_k I::iterator_category                                     iterator_category;
     /// \brief The value type
     ///
-    /// This is simply the member \c value_type of the adapted iterator type
+    /// This is simply the member <code>value_type</code> of the adapted iterator type
     typedef ss_typename_type_k I::value_type                                            value_type;
     /// \brief The difference type
     ///
-    /// This is the member \c value_type of the adapted iterator type, if it is defined, or \c ptrdiff_t if not.
+    /// This is the member <code>value_type</code> of the adapted iterator type, if it is defined, or <code>ptrdiff_t</code> if not.
     typedef ss_typename_type_k select_first_type_if<ss_typename_type_k typefixer::fixer_difference_type<I, HAS_MEMBER_DIFFERENCE_TYPE>::difference_type
                                                 ,   ss_ptrdiff_t
                                                 ,   HAS_MEMBER_DIFFERENCE_TYPE
@@ -199,8 +205,8 @@ private:
 public:
     /// \brief The pointer type
     ///
-    /// This is the member \c pointer of the adapted iterator type, if it is defined. If not, it is defined to
-    /// be \c void, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint
+    /// This is the member <code>pointer</code> of the adapted iterator type, if it is defined. If not, it is defined to
+    /// be <code>void</code>, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint
     /// to prevent the base iterator type being adapted (which is nice).
     typedef ss_typename_type_k select_first_type_if<putative_pointer_
                                                 ,   void
@@ -213,8 +219,8 @@ public:
 public:
     /// \brief The reference type
     ///
-    /// This is the member \c reference of the adapted iterator type, if it is defined. If not, it is defined to
-    /// be \c void, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint
+    /// This is the member <code>reference</code> of the adapted iterator type, if it is defined. If not, it is defined to
+    /// be <code>void</code>, so as to prevent any dangerous use of it. This will likely act as a compile-time constraint
     /// to prevent the base iterator type being adapted (which is nice).
     typedef ss_typename_type_k select_first_type_if<putative_reference_
                                                 ,   void
@@ -264,9 +270,9 @@ private:
 public:
     /// \brief The const_pointer type
     ///
-    /// This is either void, if the iterator element reference category is Void or BVT, otherwise
+    /// This is either void, if the iterator element reference category is <b>Void</b> or <b>BVT</b>, otherwise
     /// it's <code>"<i>value_type</i>" const*</code>, where <code>"<i>value_type</i>"</code> is the
-    /// deduced value type obtained from \c pointer.
+    /// deduced value type obtained from <code>pointer</code>.
     typedef ss_typename_type_k select_first_type_if<void
                                                 ,   pointer_base_type_ const *
                                                 ,   REF_CAT_IS_VOID || REF_CAT_IS_BVT
@@ -274,9 +280,9 @@ public:
 
     /// \brief The const_reference type
     ///
-    /// This is either void, if the iterator element reference category is Void or BVT, otherwise
+    /// This is either void, if the iterator element reference category is <b>Void</b> or <b>BVT</b>, otherwise
     /// it's <code>"<i>value_type</i>" const*</code>, where <code>"<i>value_type</i>"</code> is the
-    /// deduced value type obtained from \c reference.
+    /// deduced value type obtained from <code>reference</code>.
     typedef ss_typename_type_k select_first_type_if<void
                                                 ,   ss_typename_type_k add_const_ref<reference_base_type_>::type
                                                 ,   REF_CAT_IS_VOID || REF_CAT_IS_BVT
@@ -285,18 +291,18 @@ public:
 public:
     /// \brief The effective reference type
     ///
-    /// If the base iterator element reference category is Transient or higher, then this is
-    /// the reference member of the base iterator. Otherwise, if the reference category is BVT
-    /// then this is value_type. Otherwise (if the reference category is Void), then this is void
+    /// If the base iterator element reference category is <b>Transient</b> or higher, then this is
+    /// the reference member of the base iterator. Otherwise, if the reference category is <b>BVT</b>
+    /// then this is value_type. Otherwise (if the reference category is <b>Void</b>), then this is void
     typedef ss_typename_type_k select_first_type_if<value_type
                                                 ,   reference
                                                 ,   REF_CAT_IS_BVT
                                                 >::type                                 effective_reference;
     /// \brief The effective const_reference type
     ///
-    /// If the base iterator element reference category is Transient or higher, then this is
-    /// const_reference. Otherwise, if the reference category is BVT then this is value_type. Otherwise
-    /// (if the reference category is Void), then this is void
+    /// If the base iterator element reference category is <b>Transient</b> or higher, then this is
+    /// const_reference. Otherwise, if the reference category is <b>BVT</b> then this is value_type. Otherwise
+    /// (if the reference category is <b>Void</b>), then this is void
     typedef ss_typename_type_k select_first_type_if<ss_typename_type_k add_const<value_type>::type
                                                 ,   const_reference
                                                 ,   REF_CAT_IS_BVT
@@ -304,18 +310,18 @@ public:
 
     /// \brief The effective pointer type
     ///
-    /// If the base iterator element pointer category is Transient or higher, then this is
-    /// the pointer member of the base iterator. Otherwise, if the pointer category is BVT
-    /// then this is void. Otherwise (if the pointer category is Void), then this is void
+    /// If the base iterator element pointer category is <b>Transient</b> or higher, then this is
+    /// the pointer member of the base iterator. Otherwise, if the pointer category is <b>BVT</b>
+    /// then this is void. Otherwise (if the pointer category is <b>Void</b>), then this is void
     typedef ss_typename_type_k select_first_type_if<void
                                                 ,   pointer
                                                 ,   REF_CAT_IS_BVT
                                                 >::type                                 effective_pointer;
     /// \brief The effective const_pointer type
     ///
-    /// If the base iterator element pointer category is Transient or higher, then this is
-    /// const_pointer. Otherwise, if the pointer category is BVT then this is void. Otherwise
-    /// (if the pointer category is Void), then this is void
+    /// If the base iterator element pointer category is <b>Transient</b> or higher, then this is
+    /// const_pointer. Otherwise, if the pointer category is <b>BVT</b> then this is void. Otherwise
+    /// (if the pointer category is <b>Void</b>), then this is void
     typedef ss_typename_type_k select_first_type_if<void
                                                 ,   const_pointer
                                                 ,   REF_CAT_IS_BVT

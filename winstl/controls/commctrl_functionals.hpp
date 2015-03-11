@@ -4,7 +4,7 @@
  * Purpose:     Functionals for application to common controls.
  *
  * Created:     8th October 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MAJOR      4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_MINOR      0
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_REVISION	1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       61
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_REVISION   1
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_COMMCTRL_FUNCTIONALS_EDIT       62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,9 +114,10 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Function object used to insert items into list views
-///
-/// \ingroup group__library__windows_controls
+/** \brief Function object used to insert items into list views
+ *
+ * \ingroup group__library__windows_controls
+ */
 template <ws_bool_t BACK = true>
 // [[synesis:class:unary-functor: listview_inserter]]
 struct listview_inserter
@@ -221,19 +222,22 @@ inline ws_int_t listview_inserter<true>::insert_index() const
     return static_cast<ws_int_t>(::SendMessage(m_hwndListview, LVM_GETITEMCOUNT, 0, 0L));   // Back insertion
 }
 
-/// \brief Function object used to insert items at the front of list-views
-///
-/// \ingroup group__library__windows_controls
+/** \brief Function object used to insert items at the front of list-views
+ *
+ * \ingroup group__library__windows_controls
+ */
 typedef listview_inserter<false>    listview_front_inserter;
-/// \brief Function object used to insert items at the back of list-views
-///
-/// \ingroup group__library__windows_controls
+/** \brief Function object used to insert items at the back of list-views
+ *
+ * \ingroup group__library__windows_controls
+ */
 typedef listview_inserter<true>     listview_back_inserter;
 
 
-/// Function object used to insert items into tree views
-///
-/// \ingroup group__library__windows_controls
+/** \brief Function object used to insert items into tree views
+ *
+ * \ingroup group__library__windows_controls
+ */
 // [[synesis:class:unary-functor: treeview_inserter]]
 struct treeview_inserter
     : public stlsoft_ns_qual(unary_function_output_iterator_adaptor)<treeview_inserter>

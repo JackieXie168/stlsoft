@@ -9,34 +9,34 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_iterators_filter_iterator(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_stlsoft_iterators_filter_iterator(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "iterators/filter_iterator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "iterators/filter_iterator", __FILE__);
 
 #if 0
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
+			if(NULL != pi1)
+			{
+				ator1.construct(pi1, 1968);
 
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed ", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(1968 != *pi1)
+				{
+					r->report("construct() failed ", __LINE__);
+					bSuccess = false;
+				}
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_iterators_filter_iterator(test_stlsoft_iterators_filter_iterator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_iterators_filter_iterator(test_stlsoft_iterators_filter_iterator);
+	} // anonymous namespace
 
 } // namespace unittest
 

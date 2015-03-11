@@ -5,7 +5,7 @@
  *              the values from the iterator's underlying sequence.
  *
  * Created:     6th February 1999
- * Updated:     13th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -39,9 +39,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/transform_iterator.hpp
-///
-/// An iterator adaptor that uses a predicate to filter desired values from the iterator's underlying sequence.
+/** \file stlsoft/iterators/transform_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::transform_iterator
+ *   iterator adaptor class template.
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR
@@ -50,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_MINOR     0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_REVISION  13
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      106
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_TRANSFORM_ITERATOR_EDIT      107
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,19 +109,6 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup adaptors Adaptors
-/// \brief Adaptor functions and classes used throughout the STLSoft libraries
-
-/// \weakgroup adaptors_iterator Iterator Adaptors
-/// \brief Classes that provide iterator adaptation
-/// \ingroup iterators adaptors
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
@@ -132,15 +122,19 @@ public:
 #endif /* 0 */
 
 
-/// Transforms the elements of an iterator
-///
-/// I The iterator to transform
-/// F The unary function that will be used to transform the values
-///
-/// \note The iterator provides the same iterator category as the base iterator type I
-///  (which is mapped to the member type \c iterator_type), but it always provides
-///  By-Value Temporary (BVT) element references, so its pointer and reference member types
-///  are always void.
+/** \brief An iterator adaptor that uses a predicate to filter desired
+ *    values from the iterator's underlying sequence.
+ *
+ * \ingroup group__library__iterators
+ *
+ * I The iterator to transform
+ * F The unary function that will be used to transform the values
+ *
+ * \note The iterator provides the same iterator category as the base iterator type I
+ *  (which is mapped to the member type \c iterator_type), but it always provides
+ *  By-Value Temporary (BVT) element references, so its pointer and reference member types
+ *  are always void.
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
@@ -385,12 +379,15 @@ private:
  * Creator functions
  */
 
-/// Creator function for transform_iterator
-///
-/// \param it The iterator to transform
-/// \param fn The function object used to effect the transformation
-///
-/// \return An instance of the specialisation transform_iterator&lt;T, F&gt;
+/** \brief Creator function for transform_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param it The iterator to transform
+ * \param fn The function object used to effect the transformation
+ *
+ * \return An instance of the specialisation transform_iterator&lt;T, F&gt;
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
@@ -399,14 +396,17 @@ inline transform_iterator<I, F> make_transform_iterator(I it, F fn)
     return transform_iterator<I, F>(it, fn);
 }
 
-/// Creator function for transform_iterator
-///
-/// \param it The iterator to transform
-/// \param fn The function object used to effect the transformation
-///
-/// \return An instance of the specialisation transform_iterator&lt;T, F&gt;
-///
-/// \note Short-hand for make_transform_iterator()
+/** \brief Creator function for transform_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param it The iterator to transform
+ * \param fn The function object used to effect the transformation
+ *
+ * \return An instance of the specialisation transform_iterator&lt;T, F&gt;
+ *
+ * \note Short-hand for make_transform_iterator()
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k F
         >
@@ -542,10 +542,6 @@ inline ss_bool_t operator >=(transform_iterator<I, F> const &lhs, transform_iter
 }
 
 #endif /* !STLSOFT_ITER_TXFM_ITER_OLD_DW */
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

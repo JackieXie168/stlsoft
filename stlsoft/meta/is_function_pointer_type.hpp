@@ -4,7 +4,7 @@
  * Purpose:     is_function_pointer_type meta class.
  *
  * Created:     4th November 2005
- * Updated:     10th June 2006
+ * Updated:     2nd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/is_function_pointer_type.hpp
-///
-/// Options verification.
+/** \file stlsoft/meta/is_function_pointer_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::is_function_pointer_type meta class
+ *  template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
 #define STLSOFT_INCL_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_MAJOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_MINOR    1
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_EDIT     4
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_FUNCTION_POINTER_TYPE_EDIT     5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -59,9 +62,21 @@
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES
 # include <stlsoft/meta/n_types.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_N_TYPES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+# include <stlsoft/meta/select_first_type_if.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_YESNO
+# include <stlsoft/meta/yesno.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_YESNO */
+#ifndef STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
+# include <stlsoft/meta/util/meta_.hpp>
+#endif /* STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -1106,7 +1121,11 @@ one_type is_function_pointer_type_func(R (*)(A0, A1, A2, A3, A4, A5, A6, A7, A8,
 
 two_type is_function_pointer_type_func(...);
 
-/// traits type used to determine whether the given type is a pointer
+/** \brief Traits type used to determine whether the given type is a
+ *   function pointer.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct is_function_pointer_type
 {
@@ -1116,6 +1135,10 @@ private:
     static T    t;
 public:
     enum { value = sizeof(is_function_pointer_type_func(t)) == sizeof(one_type) };
+
+#ifdef STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF
+    typedef ss_typename_type_k select_first_type_if<yes_type, no_type, value>::type     type;
+#endif /* STLSOFT_META_HAS_SELECT_FIRST_TYPE_IF */
 };
 
 /* ////////////////////////////////////////////////////////////////////// */

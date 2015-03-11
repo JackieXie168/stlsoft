@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       0
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       1
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        57
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        59
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -65,12 +65,9 @@
 #ifndef WINSTL_INCL_WINSTL_H_FUNCTIONS
 # include <winstl/functions.h>              // for winstl::FormatMessage()
 #endif /* !WINSTL_INCL_WINSTL_H_FUNCTIONS */
-#ifdef __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE
-# pragma message(_sscomp_fileline_message("Move load_library() into system_traits"))
-#endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
-#ifndef WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS
-# include <winstl/filesystem/filesystem_traits.hpp>    // for load_library()
-#endif /* !WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS */
+#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS
+# include <winstl/system/system_traits.hpp>    // for load_library()
+#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_SYSTEM_TRAITS */
 #ifndef WINSTL_INCL_WINSTL_HPP_STRING_ACCESS
 # include <winstl/string_access.hpp>        // for string access shims
 #endif /* !WINSTL_INCL_WINSTL_HPP_STRING_ACCESS */
@@ -139,7 +136,7 @@ namespace winstl_project
  *  <a href = "http://pantheios.org/">Pantheios</a> logging library.)
  */
 template<   ss_typename_param_k C
-        ,   ss_typename_param_k T = filesystem_traits<C>
+        ,   ss_typename_param_k T = system_traits<C>
         >
 class basic_error_desc
 {
@@ -178,8 +175,8 @@ public:
     basic_error_desc(HRESULT hr, char_type const *modulePath = NULL);
 
     /// \brief Loads the error string associated with the given code from
-	///  the first module in the given container of paths that contains a
-	///  mapping.
+    ///  the first module in the given container of paths that contains a
+    ///  mapping.
     ///
     /// \param error The Win32 error whose string equivalent will be searched
     /// \param modulePaths A sequence container of paths, which will be searched
@@ -253,11 +250,20 @@ public:
 };
 
 /* Typedefs to commonly encountered types. */
-/// Instantiation of the basic_error_desc template for the ANSI character type \c char
+/** \brief Instantiation of the basic_error_desc template for the ANSI character type \c char
+ *
+ * \ingroup group__library__error
+ */
 typedef basic_error_desc<ws_char_a_t>   error_desc_a;
-/// Instantiation of the basic_error_desc template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_error_desc template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__error
+ */
 typedef basic_error_desc<ws_char_w_t>   error_desc_w;
-/// Instantiation of the basic_error_desc template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_error_desc template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__error
+ */
 typedef basic_error_desc<TCHAR>         error_desc;
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -409,7 +415,10 @@ inline ss_typename_type_k basic_error_desc<C, T>::size_type basic_error_desc<C, 
 
 #ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
-/// \brief Returns the corresponding C-string pointer of \c e
+/** \brief Returns the corresponding C-string pointer of \c e
+ *
+ * \ingroup group__library__error
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -436,7 +445,10 @@ inline ws_char_w_t const *c_str_ptr_null_w(basic_error_desc<ws_char_w_t, T> cons
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Returns the corresponding C-string pointer of \c e
+/** \brief Returns the corresponding C-string pointer of \c e
+ *
+ * \ingroup group__library__error
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -457,7 +469,10 @@ inline ws_char_w_t const *c_str_ptr_w(basic_error_desc<ws_char_w_t, T> const &e)
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Returns the corresponding C-string pointer of \c e
+/** \brief Returns the corresponding C-string pointer of \c e
+ *
+ * \ingroup group__library__error
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -478,7 +493,10 @@ inline ws_char_w_t const *c_str_data_w(basic_error_desc<ws_char_w_t, T> const &e
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Overload of the \ref group__concept__shim__c_str_len "c_str_len" String Attribute Shim.
+/** \brief Overload of the \ref group__concept__shim__c_str_len "c_str_len" String Attribute Shim.
+ *
+ * \ingroup group__library__error
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
@@ -488,7 +506,10 @@ inline ws_size_t c_str_len(basic_error_desc<C, T> const &e)
 }
 
 
-/// \brief Returns the corresponding C-string pointer of \c e
+/** \brief Returns the corresponding C-string pointer of \c e
+ *
+ * \ingroup group__library__error
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >

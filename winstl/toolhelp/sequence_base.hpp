@@ -4,7 +4,7 @@
  * Purpose:     TOOLHELP sequence_base class template.
  *
  * Created:     21st May 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_REVISION  2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      5
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_SEQUENCE_BASE_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -120,9 +120,10 @@ struct th_sequence_value_traits;
     //  #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_FLAG    TH32CS_SNAPMODULE
     //  #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_USE_PID
 
-/// \brief Iterator class for the th_sequence_base class template and its specialisations.
-///
-/// \ingroup group__library__windows_toolhelp
+/** \brief Iterator class for the th_sequence_base class template and its specialisations.
+ *
+ * \ingroup group__library__windows_toolhelp
+ */
 template<ss_typename_param_k V>
 class th_sequence_const_iterator
     : public stlsoft_ns_qual(iterator_base)<winstl_ns_qual_std(input_iterator_tag)
@@ -240,9 +241,10 @@ struct sequence_doesnt_use_pid;
 struct sequence_doesnt_use_pid {};
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Class template for TOOLHELP STL collections.
-///
-/// \ingroup group__library__windows_toolhelp
+/** \brief Class template for TOOLHELP STL collections.
+ *
+ * \ingroup group__library__windows_toolhelp
+ */
 template<   ss_typename_param_k V
         ,   ss_typename_param_k E = throw_exception_policy<toolhelp_exception>
         >

@@ -9,75 +9,75 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_acestl_message_queue_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_acestl_message_queue_sequence(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "ACESTL", "message_queue_sequence", __FILE__);
+			unittest_initialiser	init(r, "ACESTL", "message_queue_sequence", __FILE__);
 
-            typedef ACE_DEFAULT_MESSAGE_QUEUE_TYPE      mq_t;
-            typedef message_queue_sequence<ACE_SYNCH>   mqs_t;
+			typedef ACE_DEFAULT_MESSAGE_QUEUE_TYPE		mq_t;
+			typedef message_queue_sequence<ACE_SYNCH>	mqs_t;
 
-            mq_t    mq;
-            mqs_t   mqs(mq);
+			mq_t	mq;
+			mqs_t	mqs(mq);
 
-            {
-                mqs_t::iterator  b   =   mqs.begin();
-                mqs_t::iterator  b2;
+			{
+				mqs_t::iterator  b	 =	 mqs.begin();
+				mqs_t::iterator  b2;
 
-                b2  =   b2;
-                b   =   b;
-                b2  =   b;
-                b2  =   mqs.begin();
-            }
-            {
-                mqs_t::iterator  b   =   mqs.begin();
-                mqs_t::iterator  e   =   mqs.end();
+				b2	=	b2;
+				b	=	b;
+				b2	=	b;
+				b2	=	mqs.begin();
+			}
+			{
+				mqs_t::iterator  b	 =	 mqs.begin();
+				mqs_t::iterator  e	 =	 mqs.end();
 
-                for(; b != e; ++b)
-                {}
-            }
+				for(; b != e; ++b)
+				{}
+			}
 
-            ACE_Message_Block   *block1 =   make_copied_Message_Block("some contents.", 14);
-            ACE_Message_Block   *block2 =   make_copied_Message_Block("some more contents.", 19);
+			ACE_Message_Block	*block1 =	make_copied_Message_Block("some contents.", 14);
+			ACE_Message_Block	*block2 =	make_copied_Message_Block("some more contents.", 19);
 
-            mq.enqueue(block1);
-            mq.enqueue(block2);
+			mq.enqueue(block1);
+			mq.enqueue(block2);
 
-            {
-                mqs_t::iterator  b   =   mqs.begin();
-                mqs_t::iterator  b2;
+			{
+				mqs_t::iterator  b	 =	 mqs.begin();
+				mqs_t::iterator  b2;
 
-                b2  =   b2;
-                b   =   b;
-                b2  =   b;
-                b2  =   mqs.begin();
-            }
-            {
-                mqs_t::iterator  b   =   mqs.begin();
-                mqs_t::iterator  e   =   mqs.end();
+				b2	=	b2;
+				b	=	b;
+				b2	=	b;
+				b2	=	mqs.begin();
+			}
+			{
+				mqs_t::iterator  b	 =	 mqs.begin();
+				mqs_t::iterator  e	 =	 mqs.end();
 
-                for(; b != e; ++b)
-                {}
-            }
+				for(; b != e; ++b)
+				{}
+			}
 
 #if 0
-            typedef message_queue_sequence<char>    env_var_t;
+			typedef message_queue_sequence<char>	env_var_t;
 
-            {
-                r->report("message_queue_sequence<char> failed ", __LINE__);
-                bSuccess = false;
-            }
+			{
+				r->report("message_queue_sequence<char> failed ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_acestl_message_queue_sequence(test_acestl_message_queue_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_acestl_message_queue_sequence(test_acestl_message_queue_sequence);
+	} // anonymous namespace
 
 } // namespace unittest

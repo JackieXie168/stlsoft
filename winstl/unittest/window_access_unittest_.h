@@ -9,29 +9,29 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_window_access(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_window_access(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "window_access", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "window_access", __FILE__);
 
-            HWND    hwndDesktopWindow   =   ::GetDesktopWindow();
+			HWND	hwndDesktopWindow	=	::GetDesktopWindow();
 
-            if(get_hwnd(hwndDesktopWindow) != hwndDesktopWindow)
-            {
-                r->report("get_hwnd(HWND) failed", __LINE__);
-                bSuccess = false;
-            }
+			if(get_hwnd(hwndDesktopWindow) != hwndDesktopWindow)
+			{
+				r->report("get_hwnd(HWND) failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_window_access(test_winstl_window_access);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_window_access(test_winstl_window_access);
+	} // anonymous namespace
 
 } // namespace unittest
 

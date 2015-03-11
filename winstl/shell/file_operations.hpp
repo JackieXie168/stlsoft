@@ -4,7 +4,7 @@
  * Purpose:     Shell file operations.
  *
  * Created:     12th December 1996
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo Aguilar for default folder enhancements.
  *
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_MINOR      1
 # define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_REVISION   2
-# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       81
+# define WINSTL_VER_WINSTL_SHELL_HPP_FILE_OPERATIONS_EDIT       82
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -206,345 +206,361 @@ inline int shell_delete_w_(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from)
 {
     return shell_delete_a_(NULL, from, NULL, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, ws_bool_t &bAborted)
 {
     return shell_delete_a_(NULL, from, NULL, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, FILEOP_FLAGS flags)
 {
     return shell_delete_a_(NULL, from, NULL, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_a_(NULL, from, NULL, flags, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitle)
 {
     return shell_delete_a_(NULL, from, progressTitle, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitle, ws_bool_t &bAborted)
 {
     return shell_delete_a_(NULL, from, progressTitle, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitle, FILEOP_FLAGS flags)
 {
     return shell_delete_a_(NULL, from, progressTitle, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_a_t const *from, ws_char_a_t const *progressTitle, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_a_(NULL, from, progressTitle, flags, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from)
 {
     return shell_delete_a_(hwnd, from, NULL, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_bool_t &bAborted)
 {
     return shell_delete_a_(hwnd, from, NULL, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, FILEOP_FLAGS flags)
 {
     return shell_delete_a_(hwnd, from, NULL, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_a_(hwnd, from, NULL, flags, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *progressTitle)
 {
     return shell_delete_a_(hwnd, from, progressTitle, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *progressTitle, ws_bool_t &bAborted)
 {
     return shell_delete_a_(hwnd, from, progressTitle, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *progressTitle, FILEOP_FLAGS flags)
 {
     return shell_delete_a_(hwnd, from, progressTitle, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *progressTitle, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_a_(hwnd, from, progressTitle, flags, &bAborted);
@@ -552,345 +568,361 @@ inline int shell_delete(HWND hwnd, ws_char_a_t const *from, ws_char_a_t const *p
 
 
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from)
 {
     return shell_delete_w_(NULL, from, NULL, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, ws_bool_t &bAborted)
 {
     return shell_delete_w_(NULL, from, NULL, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, FILEOP_FLAGS flags)
 {
     return shell_delete_w_(NULL, from, NULL, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_w_(NULL, from, NULL, flags, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitle)
 {
     return shell_delete_w_(NULL, from, progressTitle, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitle, ws_bool_t &bAborted)
 {
     return shell_delete_w_(NULL, from, progressTitle, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitle, FILEOP_FLAGS flags)
 {
     return shell_delete_w_(NULL, from, progressTitle, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(ws_char_w_t const *from, ws_char_w_t const *progressTitle, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_w_(NULL, from, progressTitle, flags, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from)
 {
     return shell_delete_w_(hwnd, from, NULL, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_bool_t &bAborted)
 {
     return shell_delete_w_(hwnd, from, NULL, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, FILEOP_FLAGS flags)
 {
     return shell_delete_w_(hwnd, from, NULL, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored.
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_w_(hwnd, from, NULL, flags, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *progressTitle)
 {
     return shell_delete_w_(hwnd, from, progressTitle, 0, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *progressTitle, ws_bool_t &bAborted)
 {
     return shell_delete_w_(hwnd, from, progressTitle, 0, &bAborted);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *progressTitle, FILEOP_FLAGS flags)
 {
     return shell_delete_w_(hwnd, from, progressTitle, flags, NULL);
 }
 
-/// \brief Requests the shell to delete the given file
-///
-/// \ingroup group__library__windows_shell
-///
-/// \param hwnd Handle to the window that will act as the parent to any dialogs displayed
-/// \param from The file to delete
-/// \param progressTitle String to be displayed describing the operation
-/// \param flags One or more of the FILEOP_FLAGS values.
-/// \param bAborted A Boolean that will indicate whether the operation was aborted
-///
-/// \note Throws std::bad_alloc on allocation failure on translators that support it
-///
-/// \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
-///
-/// \return A status code indicating the success of the operation
-///
-/// \retval 0 The operation completed successfully
-/// \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
-/// \retval !0 Any other Win32 error code
+/** \brief Requests the shell to delete the given file
+ *
+ * \ingroup group__library__windows_shell
+ *
+ * \param hwnd Handle to the window that will act as the parent to any dialogs displayed
+ * \param from The file to delete
+ * \param progressTitle String to be displayed describing the operation
+ * \param flags One or more of the FILEOP_FLAGS values.
+ * \param bAborted A Boolean that will indicate whether the operation was aborted
+ *
+ * \note Throws std::bad_alloc on allocation failure on translators that support it
+ *
+ * \note The FOF_WANTMAPPINGHANDLE flag is always ignored. The flag FOF_SIMPLEPROGRESS is automatically added if progressTitle is non-NULL
+ *
+ * \return A status code indicating the success of the operation
+ *
+ * \retval 0 The operation completed successfully
+ * \retval ERROR_NOT_ENOUGH_MEMORY This is returned only when compiling with translators that do not support throwing std::bad_alloc on memory allocation failure
+ * \retval !0 Any other Win32 error code
+ */
 inline int shell_delete(HWND hwnd, ws_char_w_t const *from, ws_char_w_t const *progressTitle, FILEOP_FLAGS flags, ws_bool_t &bAborted)
 {
     return shell_delete_w_(hwnd, from, progressTitle, flags, &bAborted);

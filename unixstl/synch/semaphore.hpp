@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on POSIX semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_REVISION 2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     5
+# define UNIXSTL_VER_UNIXSTL_SYNCH_HPP_SEMAPHORE_EDIT     6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -203,8 +203,6 @@ public:
     }
     /// \brief Releases an aquired lock on the semaphore, increasing the
     ///  semaphore's counter by one.
-    ///
-    /// \note Equivalent to \link unixstl::semaphore::unlock(count_type) unlock()\endlink.
     void unlock()
     {
         UNIXSTL_ASSERT(NULL != m_sem);
@@ -335,7 +333,10 @@ using ::stlsoft::unlock_instance;
  */
 
 // class lock_traits
-/// Traits for the semaphore class (for compilers that do not support Koenig Lookup)
+/** \brief Traits for the semaphore class (for compilers that do not support Koenig Lookup)
+ *
+ * \ingroup group__library__synch
+ */
 struct semaphore_lock_traits
 {
 public:

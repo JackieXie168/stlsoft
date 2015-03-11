@@ -11,38 +11,38 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_stlsoft_memory_new_allocator(unittest_reporter *r)
-        {
-            ss_bool_t               bSuccess    =   true;
+	namespace
+	{
+		ss_bool_t test_stlsoft_memory_new_allocator(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "STLSoft", "memory/new_allocator", __FILE__);
+			unittest_initialiser	init(r, "STLSoft", "memory/new_allocator", __FILE__);
 
-            typedef new_allocator<int>  int_allocator_t;
+			typedef new_allocator<int>	int_allocator_t;
 
-            int_allocator_t ator1;
+			int_allocator_t ator1;
 
-            int     *pi1    =   ator1.allocate(100);
+			int 	*pi1	=	ator1.allocate(100);
 
-            if(NULL != pi1)
-            {
-                ator1.construct(pi1, 1968);
+			if(NULL != pi1)
+			{
+				ator1.construct(pi1, 1968);
 
-                if(1968 != *pi1)
-                {
-                    r->report("construct() failed", __LINE__);
-                    bSuccess = false;
-                }
-            }
+				if(1968 != *pi1)
+				{
+					r->report("construct() failed", __LINE__);
+					bSuccess = false;
+				}
+			}
 
-            ator1.deallocate(pi1);
+			ator1.deallocate(pi1);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_stlsoft_memory_new_allocator(test_stlsoft_memory_new_allocator);
-    } // anonymous namespace
+		unittest_registrar	  unittest_stlsoft_memory_new_allocator(test_stlsoft_memory_new_allocator);
+	} // anonymous namespace
 
 } // namespace unittest
 

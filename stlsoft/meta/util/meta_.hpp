@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/util/meta_.hpp originally stlsoft_meta.h; originally MTBase.h, ::SynesisStl)
+ * File:        stlsoft/meta/util/meta_.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     Basic meta programming constructs.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/util/meta_.hpp
-///
-/// Basic meta programming constructs.
+/** \file stlsoft/meta/util/meta_.hpp
+ *
+ * \brief [C++ only] Definition of basic meta programming constructs.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
 #define STLSOFT_INCL_STLSOFT_META_UTIL_HPP_META_
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MAJOR      4
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__MINOR      0
 # define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__REVISION   1
-# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       119
+# define STLSOFT_VER_STLSOFT_META_UTIL_HPP_META__EDIT       121
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,11 +75,12 @@ namespace stlsoft
  * Macros
  */
 
-/// \def STLSOFT_GEN_TRAIT_SPECIALISATION
-/// \ingroup code_modification_macros
-///
-/// \brief Used to define a specialisation of a traits type
-///
+/** \brief \def STLSOFT_GEN_TRAIT_SPECIALISATION
+ * \ingroup code_modification_macros
+ *
+ * \brief Used to define a specialisation of a traits type
+ *
+ */
 #define STLSOFT_GEN_TRAIT_SPECIALISATION(TR, T, V)  \
                                                     \
     STLSOFT_TEMPLATE_SPECIALISATION                 \
@@ -87,11 +90,12 @@ namespace stlsoft
     };
 
 
-/// \def STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE
-/// \ingroup code_modification_macros
-///
-/// \brief Used to define a specialisation of a traits type that contains a member type
-///
+/** \brief \def STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE
+ * \ingroup code_modification_macros
+ *
+ * \brief Used to define a specialisation of a traits type that contains a member type
+ *
+ */
 #define STLSOFT_GEN_TRAIT_SPECIALISATION_WITH_TYPE(TR, T, V, MT)    \
                                                                     \
     STLSOFT_TEMPLATE_SPECIALISATION                                 \
@@ -106,7 +110,10 @@ namespace stlsoft
  * Typedefs and basic support types
  */
 
-/// \brief Converts compile time constants to type
+/** \brief Converts compile time constants to type.
+ *
+ * \ingroup group__library__meta
+ */
 template <int N>
 struct int_to_type
 {};

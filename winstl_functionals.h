@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     19th January 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_MAJOR      2
 # define WINSTL_VER_H_WINSTL_FUNCTIONALS_MINOR      4
-# define WINSTL_VER_H_WINSTL_FUNCTIONALS_REVISION   1
-# define WINSTL_VER_H_WINSTL_FUNCTIONALS_EDIT       65
+# define WINSTL_VER_H_WINSTL_FUNCTIONALS_REVISION   2
+# define WINSTL_VER_H_WINSTL_FUNCTIONALS_EDIT       67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -61,6 +61,11 @@
 STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1200
 [Incompatibilies-end]
  */
+
+/*
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -109,9 +114,12 @@ namespace winstl_project
  * Classes
  */
 
-/// Function object that compares two file-system paths
-///
-/// \param C The character type
+/** \brief Function object that compares two file-system paths
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The character type
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A1 = C const *
         ,   ss_typename_param_k A2 = C const *

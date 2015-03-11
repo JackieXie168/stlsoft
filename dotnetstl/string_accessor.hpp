@@ -4,7 +4,7 @@
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_MAJOR      3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_MINOR      2
 # define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_REVISION   1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_EDIT       38
+# define DOTNETSTL_VER_DOTNETSTL_HPP_STRING_ACCESSOR_EDIT       39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,7 +88,10 @@ namespace dotnetstl_project
  * Classes
  */
 
-/// Template providing scoped C-string access to a String
+/** \brief Template providing scoped C-string access to a String
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ss_typename_param_k C>
 class c_string_accessor
 {

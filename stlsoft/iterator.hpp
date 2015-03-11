@@ -5,7 +5,7 @@
  *              library inconsistencies.
  *
  * Created:     2nd January 2000
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MAJOR     4
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_HPP_ITERATOR_REVISION  6
-# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      92
+# define STLSOFT_VER_STLSOFT_HPP_ITERATOR_EDIT      93
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -420,17 +420,23 @@ namespace stlsoft
  */
 
 // class iterator_base
-/// Base type for <b><code>iterator</code></b> types
+/** \brief Base type for <b><code>iterator</code></b> types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 //
-/// This class abstract std::iterator functionality for deriving classes, hiding
-/// the inconsistencies and incompatibilities of the various compilers and/or
-/// libraries supported by the STLSoft libraries.
-///
-/// \param C The iterator category
-/// \param V The value type
-/// \param D The distance type
-/// \param P The pointer type
-/// \param R The reference type
+/** \brief This class abstract std::iterator functionality for deriving classes, hiding
+ * the inconsistencies and incompatibilities of the various compilers and/or
+ * libraries supported by the STLSoft libraries.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The iterator category
+ * \param V The value type
+ * \param D The distance type
+ * \param P The pointer type
+ * \param R The reference type
+ */
 template<   ss_typename_param_k C   /* iterator category */
         ,   ss_typename_param_k V   /* value type */
         ,   ss_typename_param_k D   /* distance type */
@@ -544,17 +550,23 @@ public:
 // compilers and/or libraries supported by the STLSoft libraries.
 
 // class reverse_iterator_base
-/// Base type for <b><code>reverse_iterator</code></b> types
+/** \brief Base type for <b><code>reverse_iterator</code></b> types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 //
-/// This class acts as the base for reverse iterators, insulating deriving
-/// classes from the inconsistencies and incompatibilities of the various
-/// compilers and/or libraries supported by the STLSoft libraries.
-///
-/// \param I The iterator type
-/// \param V The value type
-/// \param R The reference type
-/// \param P The pointer type
-/// \param D The distance type
+/** \brief This class acts as the base for reverse iterators, insulating deriving
+ * classes from the inconsistencies and incompatibilities of the various
+ * compilers and/or libraries supported by the STLSoft libraries.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ * \param V The value type
+ * \param R The reference type
+ * \param P The pointer type
+ * \param D The distance type
+ */
 template<   ss_typename_param_k I   /* iterator */
         ,   ss_typename_param_k V   /* value type */
         ,   ss_typename_param_k R   /* reference */
@@ -594,17 +606,23 @@ public:
 };
 
 // class const_reverse_iterator_base
-/// Base type for <b><code>const_reverse_iterator</code></b> types
+/** \brief Base type for <b><code>const_reverse_iterator</code></b> types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 //
-/// This class acts as the base for const reverse iterators, insulating deriving
-/// classes from the inconsistencies and incompatibilities of the various
-/// compilers and/or libraries supported by the STLSoft libraries.
-///
-/// \param I The iterator type
-/// \param V The value type
-/// \param R The reference type
-/// \param P The pointer type
-/// \param D The distance type
+/** \brief This class acts as the base for const reverse iterators, insulating deriving
+ * classes from the inconsistencies and incompatibilities of the various
+ * compilers and/or libraries supported by the STLSoft libraries.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ * \param V The value type
+ * \param R The reference type
+ * \param P The pointer type
+ * \param D The distance type
+ */
 template<   ss_typename_param_k I   /* iterator */
         ,   ss_typename_param_k V   /* value type */
         ,   ss_typename_param_k R   /* reference */
@@ -645,17 +663,23 @@ public:
 };
 
 // class reverse_bidirectional_iterator_base
-/// Base type for <b><code>reverse_bidirectional_iterator</code></b> types
+/** \brief Base type for <b><code>reverse_bidirectional_iterator</code></b> types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 //
-/// This class acts as the base for reverse bidirectional iterators,
-/// insulating deriving classes from the inconsistencies and incompatibilities
-/// of the various compilers and/or libraries supported by the STLSoft libraries.
-///
-/// \param I The iterator type
-/// \param V The value type
-/// \param R The reference type
-/// \param P The pointer type
-/// \param D The distance type
+/** \brief This class acts as the base for reverse bidirectional iterators,
+ * insulating deriving classes from the inconsistencies and incompatibilities
+ * of the various compilers and/or libraries supported by the STLSoft libraries.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ * \param V The value type
+ * \param R The reference type
+ * \param P The pointer type
+ * \param D The distance type
+ */
 template<   ss_typename_param_k I   /* iterator */
         ,   ss_typename_param_k V   /* value type */
         ,   ss_typename_param_k R   /* reference */
@@ -696,17 +720,23 @@ public:
 };
 
 // class const_reverse_bidirectional_iterator_base
-/// Base type for <b><code>const_reverse_bidirectional_iterator</code></b> types
+/** \brief Base type for <b><code>const_reverse_bidirectional_iterator</code></b> types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 //
-/// This class acts as the base for const reverse bidirectional iterators,
-/// insulating deriving classes from the inconsistencies and incompatibilities
-/// of the various compilers and/or libraries supported by the STLSoft libraries.
-///
-/// \param I The iterator type
-/// \param V The value type
-/// \param R The reference type
-/// \param P The pointer type
-/// \param D The distance type
+/** \brief This class acts as the base for const reverse bidirectional iterators,
+ * insulating deriving classes from the inconsistencies and incompatibilities
+ * of the various compilers and/or libraries supported by the STLSoft libraries.
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ * \param V The value type
+ * \param R The reference type
+ * \param P The pointer type
+ * \param D The distance type
+ */
 template<   ss_typename_param_k I   /* iterator */
         ,   ss_typename_param_k V   /* value type */
         ,   ss_typename_param_k R   /* reference */
@@ -819,11 +849,14 @@ namespace stlsoft
 
 #endif /* !__STLSOFT_CF_MIGHT_BE_DINKUMWARE_MS_NAUGHTIES */
 
-/// Pointer iterator type
-///
-/// \param V The value type
-/// \param P The pointer type
-/// \param R The reference type
+/** \brief Pointer iterator type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param V The value type
+ * \param P The pointer type
+ * \param R The reference type
+ */
 template<   ss_typename_param_k V
         ,   ss_typename_param_k P
         ,   ss_typename_param_k R
@@ -878,10 +911,13 @@ inline ptrdiff_t* distance_type(pointer_iterator<V, P, R>::type const &)
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// Iterator category obtainer
-///
-/// \param I The iterator type
-/// \param i The iterator instance
+/** \brief Iterator category obtainer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ * \param i The iterator instance
+ */
 
 #if defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC)
 # define stlsoft_iterator_query_category(I, i)      (stlsoft_ns_qual_std(_Iter_cat)(i))

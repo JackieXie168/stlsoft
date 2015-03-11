@@ -11,40 +11,40 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_filesystem_findvolume_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_filesystem_findvolume_sequence(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "filesystem/findvolume_sequence", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "filesystem/findvolume_sequence", __FILE__);
 
-            findvolume_sequence_a   fvsa;
-            findvolume_sequence_w   fvsw;
+			findvolume_sequence_a	fvsa;
+			findvolume_sequence_w	fvsw;
 
-            {
+			{
 
-                findvolume_sequence_a::const_iterator   b   =   fvsa.begin();
-                findvolume_sequence_a::const_iterator   b2;
+				findvolume_sequence_a::const_iterator	b	=	fvsa.begin();
+				findvolume_sequence_a::const_iterator	b2;
 
-                b2  =   b;
-                b   =   b;
-                b   =   b2;
-                b2  =   fvsa.begin();
-            }
+				b2	=	b;
+				b	=	b;
+				b	=	b2;
+				b2	=	fvsa.begin();
+			}
 
-            if(fvsa.empty() != fvsw.empty())
-            {
-                r->report("findvolume_sequence(ANSI)::empty() != findvolume_sequence(Unicode)::empty()", __LINE__);
-                bSuccess = false;
-            }
+			if(fvsa.empty() != fvsw.empty())
+			{
+				r->report("findvolume_sequence(ANSI)::empty() != findvolume_sequence(Unicode)::empty()", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_filesystem_findvolume_sequence(test_winstl_filesystem_findvolume_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_filesystem_findvolume_sequence(test_winstl_filesystem_findvolume_sequence);
+	} // anonymous namespace
 
 } // namespace unittest

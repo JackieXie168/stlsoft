@@ -4,7 +4,7 @@
  * Purpose:     TOOLHELP process sequence class.
  *
  * Created:     21st May 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -56,7 +56,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_MAJOR      1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_MINOR      1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_REVISION   1
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_EDIT       4
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_PROCESS_SEQUENCE_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,16 +108,18 @@ namespace winstl_project
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_CREATE_SNAPSHOT_FAIL_MESSAGE    TEXT("Could not create process list snapshot")
 #include <winstl/toolhelp/sequence_value_traits.hpp>
 
-/// \brief An STL collection for accessing process information.
-///
-/// \ingroup group__library__windows_toolhelp
+/** \brief An STL collection for accessing process information.
+ *
+ * \ingroup group__library__windows_toolhelp
+ */
 typedef th_sequence_base<PROCESSENTRY32>            process_sequence;
 
-/// \brief Attribute shim for retrieving the process id associated with the PROCESSENTRY32 instance
-///
-/// \ingroup group__library__windows_toolhelp
-///
-/// \param pe The PROCESSENTRY32 instance
+/** \brief Attribute shim for retrieving the process id associated with the PROCESSENTRY32 instance
+ *
+ * \ingroup group__library__windows_toolhelp
+ *
+ * \param pe The PROCESSENTRY32 instance
+ */
 inline DWORD get_pid(PROCESSENTRY32 const& pe)
 {
     return pe.th32ProcessID;

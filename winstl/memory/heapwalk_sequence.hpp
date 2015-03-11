@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    1
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        49
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -165,9 +165,8 @@ public:
     typedef heapwalk_sequence_const_iterator    const_iterator;
     /// \brief The non-mutating (const) reference type
     typedef entry_type const                    &const_reference;
-
-// Construction
 /// @}
+
 /// \name Construction
 /// @{
 public:
@@ -179,9 +178,8 @@ public:
     ss_explicit_k heapwalk_sequence(HANDLE hHeap);
     /// Destructor
     ~heapwalk_sequence() stlsoft_throw_0();
-
-// Iteration
 /// @}
+
 /// \name Iteration
 /// @{
 public:
@@ -216,8 +214,11 @@ private:
 };
 
 // class heapwalk_sequence_const_iterator
-/// Iterator for the heapwalk_sequence class
-///
+/** \brief Iterator for the heapwalk_sequence class
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ */
 class heapwalk_sequence_const_iterator
     : public stlsoft_ns_qual(iterator_base) <   winstl_ns_qual_std(forward_iterator_tag)
                                             ,   PROCESS_HEAP_ENTRY const

@@ -4,7 +4,7 @@
  * Purpose:     cstring_concatenator_iterator class template.
  *
  * Created:     20th June 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/iterators/cstring_concatenator_iterator.hpp
-///
-/// cstring_concatenator_iterator class template.
+/** \file stlsoft/iterators/cstring_concatenator_iterator.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::cstring_concatenator_iterator
+ *   class template
+ *  (\ref group__library__iterators "Iterators" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR
 #define STLSOFT_INCL_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MAJOR      2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_MINOR      0
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_REVISION   8
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       20
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_CSTRING_CONCATENATOR_ITERATOR_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,25 +91,18 @@ namespace stlsoft
 {
 #endif /* _STLSOFT_NO_NAMESPACE */
 
-/* ////////////////////////////////////////////////////////////////////// */
-
-/// \weakgroup iterators Iterators
-/// \brief STL-compatible iterators
-
-/// \weakgroup iterators_output Output Iterators
-/// \brief Classes that provide Output Iteration functionality
-/// \ingroup iterators
-/// @{
-
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
 
-/// This output iterator adaptor template wraps a C-style string pointer as an
-/// output iterator, to enable a C-style string to be built up as a result of the
-/// application of an algorithm.
-///
-/// \param C The character type of the C-string
+/** \brief This output iterator adaptor template wraps a C-style string pointer as an
+ * output iterator, to enable a C-style string to be built up as a result of the
+ * application of an algorithm.
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param C The character type of the C-string
+ */
 template <ss_typename_param_k C>
 // [[synesis:class:iterator: cstring_concatenator_iterator<T<C>>]]
 class cstring_concatenator_iterator
@@ -230,26 +226,32 @@ private:
 };
 
 #if 0
-/// Creates an instance of the cstring_concatenator_iterator from the given
-/// c-string pointer
-///
-/// \param s The C-string which in which will be written the results of the
-/// application of the iterator's dereference. May not be NULL
-/// \param numWritten An optional paramter to receive a count of how many
-/// bytes were written by the iterator. <b>Note</b>: the variable pointed to
-/// by this parameter is <i>not</i> set to 0 by the concatenator class. It
-/// must be initialised in by the caller
+/** \brief Creates an instance of the cstring_concatenator_iterator from the given
+ * c-string pointer
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param s The C-string which in which will be written the results of the
+ * application of the iterator's dereference. May not be NULL
+ * \param numWritten An optional paramter to receive a count of how many
+ * bytes were written by the iterator. <b>Note</b>: the variable pointed to
+ * by this parameter is <i>not</i> set to 0 by the concatenator class. It
+ * must be initialised in by the caller
+ */
 template <ss_typename_param_k C>
 inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t &numWritten)
 {
     return cstring_concatenator_iterator<C>(s, &numWritten);
 }
 
-/// Creates an instance of the cstring_concatenator_iterator from the given
-/// c-string pointer
-///
-/// \param s The C-string which in which will be written the results of the
-/// application of the iterator's dereference. May not be NULL
+/** \brief Creates an instance of the cstring_concatenator_iterator from the given
+ * c-string pointer
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param s The C-string which in which will be written the results of the
+ * application of the iterator's dereference. May not be NULL
+ */
 template <ss_typename_param_k C>
 inline cstring_concatenator_iterator<C> cstring_concatenator(C *s)
 {
@@ -258,29 +260,35 @@ inline cstring_concatenator_iterator<C> cstring_concatenator(C *s)
 
 #else /* ? 0 */
 
-/// \brief Creator function for cstring_concatenator_iterator
-///
-/// \param s Pointer to the string buffer into which elements will be concatenated
-/// \param pNumWritten Optional pointer to receive the number of characters written to the buffer
-///
-/// \return An instance of the specialisation cstring_concatenator_iterator&lt;C&gt;
+/** \brief Creator function for cstring_concatenator_iterator
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param s Pointer to the string buffer into which elements will be concatenated
+ * \param pNumWritten Optional pointer to receive the number of characters written to the buffer
+ *
+ * \return An instance of the specialisation cstring_concatenator_iterator&lt;C&gt;
+ */
 template <ss_typename_param_k C>
 inline cstring_concatenator_iterator<C> make_cstring_concatenator_iterator(C *s, ss_size_t *pNumWritten = NULL)
 {
     return cstring_concatenator_iterator<C>(s, pNumWritten);
 }
 
-/// Creates an instance of the cstring_concatenator_iterator from the given
-/// c-string pointer
-///
-/// \param s The C-string which in which will be written the results of the
-/// application of the iterator's dereference. May not be NULL
-/// \param pNumWritten An optional paramter to receive a count of how many
-/// bytes were written by the iterator. <b>Note</b>: the variable pointed to
-/// by this parameter is <i>not</i> set to 0 by the concatenator class. It
-/// must be initialised in by the caller
-///
-/// \note Short-hand for make_cstring_concatenator_iterator()
+/** \brief Creates an instance of the cstring_concatenator_iterator from the given
+ * c-string pointer
+ *
+ * \ingroup group__library__iterators
+ *
+ * \param s The C-string which in which will be written the results of the
+ * application of the iterator's dereference. May not be NULL
+ * \param pNumWritten An optional paramter to receive a count of how many
+ * bytes were written by the iterator. <b>Note</b>: the variable pointed to
+ * by this parameter is <i>not</i> set to 0 by the concatenator class. It
+ * must be initialised in by the caller
+ *
+ * \note Short-hand for make_cstring_concatenator_iterator()
+ */
 template <ss_typename_param_k C>
 inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t *pNumWritten = NULL)
 {
@@ -288,10 +296,6 @@ inline cstring_concatenator_iterator<C> cstring_concatenator(C *s, ss_size_t *pN
 }
 
 #endif /* 0 */
-
-////////////////////////////////////////////////////////////////////////////
-
-/// @} // end of group
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

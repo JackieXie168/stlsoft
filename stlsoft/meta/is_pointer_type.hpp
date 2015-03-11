@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        stlsoft/meta/is_pointer_type.hpp (formerly part of stlsoft_meta.h)
+ * File:        stlsoft/meta/is_pointer_type.hpp (originally MTBase.h, ::SynesisStl)
  *
  * Purpose:     Tests whether a type is a pointer.
  *
  * Created:     19th November 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/meta/is_pointer_type.hpp
-///
-/// Tests whether a type is a pointer.
+/** \file stlsoft/meta/is_pointer_type.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::is_pointer_type meta class
+ *  template.
+ *  (\ref group__library__meta "Template Meta-programming" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
 #define STLSOFT_INCL_STLSOFT_META_HPP_IS_POINTER_TYPE
@@ -49,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_MAJOR       4
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_MINOR       0
 # define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_EDIT        112
+# define STLSOFT_VER_STLSOFT_META_HPP_IS_POINTER_TYPE_EDIT        114
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,14 +81,21 @@ namespace stlsoft
 
 // is_pointer_type
 //
-/// Tests whether a type is a pointer type
+/** \brief Tests whether a type is a pointer type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 template <ss_typename_param_k U>
 one_t is_pointer_type_func(U const volatile *);
 
 two_t is_pointer_type_func(...);
 
-/// traits type used to determine whether the given type is a pointer
+/** \brief Traits type used to determine whether the given type is a
+ *   pointer.
+ *
+ * \ingroup group__library__meta
+ */
 template <ss_typename_param_k T>
 struct is_pointer_type
 {

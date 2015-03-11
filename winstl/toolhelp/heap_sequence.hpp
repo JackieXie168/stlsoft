@@ -4,7 +4,7 @@
  * Purpose:     TOOLHELP heap sequence class.
  *
  * Created:     21st May 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Thanks:      To Pablo for contributing this great library.
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_MAJOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_MINOR     1
 # define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_REVISION  2
-# define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_EDIT      5
+# define WINSTL_VER_WINSTL_TOOLHELP_HPP_HEAP_SEQUENCE_EDIT      6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -107,9 +107,10 @@ namespace winstl_project
 #define WINSTL_TH_API_SEQUENCE_VALUE_TRAITS_CREATE_SNAPSHOT_FAIL_MESSAGE    TEXT("Could not create heap list snapshot")
 #include <winstl/toolhelp/sequence_value_traits.hpp>
 
-/// \brief An STL collection for accessing heap information.
-///
-/// \ingroup group__library__windows_toolhelp
+/** \brief An STL collection for accessing heap information.
+ *
+ * \ingroup group__library__windows_toolhelp
+ */
 typedef th_sequence_base<HEAPLIST32>                heap_sequence;
 
 /** \brief [IMPLEMENTATION] Specialisation of
@@ -121,11 +122,12 @@ STLSOFT_TEMPLATE_SPECIALISATION
 struct sequence_doesnt_use_pid<HEAPLIST32>
 {};
 
-/// \brief Attribute shim for retrieving the process id associated with the HEAPLIST32 instance
-///
-/// \ingroup group__library__windows_toolhelp
-///
-/// \param hl The HEAPLIST32 instance
+/** \brief Attribute shim for retrieving the process id associated with the HEAPLIST32 instance
+ *
+ * \ingroup group__library__windows_toolhelp
+ *
+ * \param hl The HEAPLIST32 instance
+ */
 inline DWORD get_pid(HEAPLIST32 const& hl)
 {
     return hl.th32ProcessID;

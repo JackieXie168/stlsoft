@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     24th August 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,7 +50,7 @@
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_MINOR    2
 # define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_REVISION 2
-# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_EDIT     23
+# define WINSTL_VER_WINSTL_HPP_WINDOW_TRAITS_EDIT     24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,10 +94,13 @@ namespace winstl_project
  */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for accessing the correct registry functions for a given character type
-///
-/// window_traits is a traits class for determining the correct window manipulation
-/// structures and functions for a given character type.
+/** \brief Traits for accessing the correct registry functions for a given character type
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * window_traits is a traits class for determining the correct window manipulation
+ * structures and functions for a given character type.
+ */
 template <ss_typename_param_k C>
 struct window_traits
 {

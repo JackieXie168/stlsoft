@@ -9,29 +9,29 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_acestl_custom_event_handler(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_acestl_custom_event_handler(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "ACESTL", "custom_event_handler", __FILE__);
+			unittest_initialiser	init(r, "ACESTL", "custom_event_handler", __FILE__);
 
 #if 0
-            typedef custom_event_handler<char>    env_var_t;
+			typedef custom_event_handler<char>	  env_var_t;
 
-            {
-                r->report("custom_event_handler<char> failed ", __LINE__);
-                bSuccess = false;
-            }
+			{
+				r->report("custom_event_handler<char> failed ", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_acestl_custom_event_handler(test_acestl_custom_event_handler);
-    } // anonymous namespace
+		unittest_registrar	  unittest_acestl_custom_event_handler(test_acestl_custom_event_handler);
+	} // anonymous namespace
 
 } // namespace unittest

@@ -4,7 +4,7 @@
  * Purpose:     String utility functions for copying.
  *
  * Created:     13th June 2006
- * Updated:     14th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -89,9 +89,9 @@ namespace stlsoft
  *  contents. May be NULL, in which case the function returns \c cchSource.
  * \param cchDest The maximum number of characters to be written into
  *  \c dest.
- * \param src. Pointer to character buffer whose contents will be copied
+ * \param src Pointer to character buffer whose contents will be copied
  *  into \c dest. May not be NULL.
- * \param cchSource. The number of characters in \c src.
+ * \param cchSource The number of characters in \c src.
  *
  */
 template <ss_typename_param_k C>

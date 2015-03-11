@@ -11,23 +11,23 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_mfcstl_containers_carray_traits(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_mfcstl_containers_carray_traits(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "MFCSTL", "containers/carray_traits", __FILE__);
+			unittest_initialiser	init(r, "MFCSTL", "containers/carray_traits", __FILE__);
 
-            STLSOFT_SUPPRESS_UNUSED(bSuccess);
+			STLSOFT_SUPPRESS_UNUSED(bSuccess);
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_mfcstl_containers_carray_traits(test_mfcstl_containers_carray_traits);
-    } // anonymous namespace
+		unittest_registrar	  unittest_mfcstl_containers_carray_traits(test_mfcstl_containers_carray_traits);
+	} // anonymous namespace
 
 } // namespace unittest
 

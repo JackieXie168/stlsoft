@@ -4,7 +4,7 @@
  * Purpose:     afx_allocator class.
  *
  * Created:     5th August 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MAJOR       2
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_MINOR       0
 # define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_REVISION    1
-# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        8
+# define MFCSTL_VER_MFCSTL_MEMORY_HPP_AFX_ALLOCATOR_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -93,11 +93,12 @@ namespace mfcstl_project
  * Classes
  */
 
-/// \brief STL Allocator based on the MFC memory framework
-///
-/// \ingroup group__library__memory
-///
-/// \param T The value_type of the allocator
+/** \brief STL Allocator based on the MFC memory framework
+ *
+ * \ingroup group__library__memory
+ *
+ * \param T The value_type of the allocator
+ */
 template <ss_typename_param_k T>
 class afx_allocator
     : public allocator_base<T, afx_allocator<T> >

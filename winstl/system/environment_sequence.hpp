@@ -4,7 +4,7 @@
  * Purpose:     basic_environment_sequence class.
  *
  * Created:     31st December 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_REVISION 1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     64
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_SEQUENCE_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,19 +110,20 @@ namespace winstl_project
  * Classes
  */
 
-/// STL-like sequence for the system environment variables
-///
-/// \ingroup group__library__system
-///
-/// \param C The character type
-///
-/// \note Even though Win32 treats environment variables in a case-insensitive
-/// manner, it is possible for the raw environment information (access via the
-/// GetEnvironmentStrings() function) to contain multiple entries whose names
-/// differ only by case. Thus, later versions of the sequence class support the
-/// \c ignoreCase member constant, which is passed by default to the
-/// constructor, in order to facilitate "normal" Win32 operation while
-/// supporting all possible modes.
+/** \brief STL-like sequence for the system environment variables
+ *
+ * \ingroup group__library__system
+ *
+ * \param C The character type
+ *
+ * \note Even though Win32 treats environment variables in a case-insensitive
+ * manner, it is possible for the raw environment information (access via the
+ * GetEnvironmentStrings() function) to contain multiple entries whose names
+ * differ only by case. Thus, later versions of the sequence class support the
+ * \c ignoreCase member constant, which is passed by default to the
+ * constructor, in order to facilitate "normal" Win32 operation while
+ * supporting all possible modes.
+ */
 template <ss_typename_param_k C>
 class basic_environment_sequence
     : public stlsoft_ns_qual(stl_collection_tag)
@@ -232,8 +233,11 @@ public:
     const_iterator  find(char_type const *name, char_type const *value) const;
 /// @}
 
-/// Size
-/// @{
+/** \brief Size
+ * @{
+ *
+ * \ingroup group__library__system
+ */
 public:
     /// Returns the number of elements in the enviroment sequence
     size_type size() const;
@@ -310,11 +314,20 @@ private:
  * Typedefs for commonly encountered types
  */
 
-/// Instantiation of the basic_environment_sequence template for the ANSI character type \c char
+/** \brief Instantiation of the basic_environment_sequence template for the ANSI character type \c char
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_environment_sequence<ws_char_a_t>     environment_sequence_a;
-/// Instantiation of the basic_environment_sequence template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_environment_sequence template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_environment_sequence<ws_char_w_t>     environment_sequence_w;
-/// Instantiation of the basic_environment_sequence template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_environment_sequence template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_environment_sequence<TCHAR>           environment_sequence;
 
 ////////////////////////////////////////////////////////////////////////////

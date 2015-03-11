@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     1
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      165
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      166
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -175,11 +175,14 @@ class static_array_5d;
 // Classes
 
 // class static_array_1d
-/// 1 dimensional static array
-///
-/// \param T The value type
-/// \param N0 The first dimension extent
-/// \param P The construction policy type
+/** \brief 1 dimensional static array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param N0 The first dimension extent
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
         ,   ss_size_t N0
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
@@ -308,12 +311,15 @@ private:
 };
 
 // class static_array_2d
-/// 2 dimensional static array
-///
-/// \param T The value type
-/// \param N0 The first dimension extent
-/// \param N1 The second dimension extent
-/// \param P The construction policy type
+/** \brief 2 dimensional static array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param N0 The first dimension extent
+ * \param N1 The second dimension extent
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
         ,   ss_size_t N0
         ,   ss_size_t N1
@@ -452,13 +458,16 @@ private:
 };
 
 // class static_array_3d
-/// 3 dimensional static array
-///
-/// \param T The value type
-/// \param N0 The first dimension extent
-/// \param N1 The second dimension extent
-/// \param N2 The third dimension extent
-/// \param P The construction policy type
+/** \brief 3 dimensional static array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param N0 The first dimension extent
+ * \param N1 The second dimension extent
+ * \param N2 The third dimension extent
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
         ,   ss_size_t N0
         ,   ss_size_t N1
@@ -600,13 +609,16 @@ private:
 
 
 // class static_array_4d
-/// 4 dimensional static array
-///
-/// \param T The value type
-/// \param N0 The first dimension extent
-/// \param N1 The second dimension extent
-/// \param N2 The third dimension extent
-/// \param P The construction policy type
+/** \brief 4 dimensional static array
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param T The value type
+ * \param N0 The first dimension extent
+ * \param N1 The second dimension extent
+ * \param N2 The third dimension extent
+ * \param P The construction policy type
+ */
 template<   ss_typename_param_k T
         ,   ss_size_t N0
         ,   ss_size_t N1

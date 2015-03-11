@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for GNU C/C++.
  *
  * Created:     7th February 2003
- * Updated:     10th June 2006
+ * Updated:     3rd July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,8 +56,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MAJOR      3
 # define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_MINOR      7
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       53
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_REVISION   2
+# define STLSOFT_VER_H_STLSOFT_CCCAP_GCC_EDIT       54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,8 +81,8 @@
  */
 
 #if __GNUC__ > 3 || \
-	(	__GNUC__ == 3 && \
-		__GNUC_MINOR__ >= 4)
+    (   __GNUC__ == 3 && \
+        __GNUC_MINOR__ >= 4)
 # define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
 #endif /* __GNUC__ */
 
@@ -96,8 +96,13 @@
 #endif /* __cplusplus */
 
 /* wchar_t */
-/* #define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
-# define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT */
+
+#if __GNUC__ > 3 || \
+    (   __GNUC__ == 3 && \
+        __GNUC_MINOR__ >= 2)
+# define __STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+# define STLSOFT_CF_NATIVE_WCHAR_T_SUPPORT
+#endif /* 3.4+ */
 
 /* 8-bit integer */
 #define STLSOFT_CF_8BIT_INT_SUPPORT
@@ -202,7 +207,7 @@
 #define __STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 #define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX
 
-#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT	/* obsolete */
+#define __STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT    /* obsolete */
 #define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
 #define __STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT

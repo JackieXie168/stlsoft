@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Queue class.
  *
  * Created:     16th December 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_MAJOR     1
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_MINOR     0
 # define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_REVISION  3
-# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_EDIT      11
+# define ACESTL_VER_ACESTL_HPP_MESSAGE_QUEUE_STATE_ACCESS_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -85,23 +85,31 @@ namespace acestl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/// \weakgroup libraries STLSoft Libraries
-/// \brief The individual libraries
+/** \brief \weakgroup libraries STLSoft Libraries
+ * \brief The individual libraries
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
-/// \weakgroup libraries_messaging Messaging Library
-/// \ingroup libraries
-/// \brief This library provides facilities for defining and manipulating messaging constructs
+/** \brief \weakgroup libraries_messaging Messaging Library
+ * \ingroup libraries
+ * \brief This library provides facilities for defining and manipulating messaging constructs
+ */
 
-/// \defgroup acestl_messaging_library Messaging Library (ACESTL)
-/// \ingroup ACESTL libraries_messaging
-/// \brief This library provides facilities for defining and manipulating messaging constructs with ACE
-/// @{
+/** \brief \defgroup acestl_messaging_library Messaging Library (ACESTL)
+ * \ingroup ACESTL libraries_messaging
+ * \brief This library provides facilities for defining and manipulating messaging constructs with ACE
+ * @{
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
 
-/// State access shim
+/** \brief State access shim
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <ACE_SYNCH_DECL>
 inline as_bool_t is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const &q)
 {
@@ -112,7 +120,10 @@ inline as_bool_t is_empty(ACE_Message_Queue<ACE_SYNCH_USE> const &q)
 
 ////////////////////////////////////////////////////////////////////////////
 
-/// @} // acestl_messaging_library
+/** \brief @} // acestl_messaging_library
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

@@ -4,7 +4,7 @@
  * Purpose:     A number of useful functionals .
  *
  * Created:     2nd November 2003
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_MAJOR    2
 # define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_MINOR    3
 # define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_REVISION 1
-# define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_EDIT     33
+# define UNIXSTL_VER_H_UNIXSTL_FUNCTIONALS_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,9 +94,12 @@ namespace unixstl_project
  * Classes
  */
 
-/// Function object that compares two file-system paths
-///
-/// \param C The character type
+/** \brief Function object that compares two file-system paths
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param C The character type
+ */
 template<   ss_typename_param_k C
         >
 struct compare_path

@@ -4,7 +4,7 @@
  * Purpose:     Contains COM specific predicates and functionals.
  *
  * Created:     14th June 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_MAJOR      3
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_MINOR      2
 # define COMSTL_VER_H_COMSTL_FUNCTIONALS_REVISION   1
-# define COMSTL_VER_H_COMSTL_FUNCTIONALS_EDIT       57
+# define COMSTL_VER_H_COMSTL_FUNCTIONALS_EDIT       58
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,9 +114,12 @@ namespace comstl_project
  * Functionals
  */
 
-/// \brief Helper function for std_mem_fun_t
-///
-/// \deprecated Users should now use stlsoft::mem_fun()
+/** \brief Helper function for std_mem_fun_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \deprecated Users should now use stlsoft::mem_fun()
+ */
 template <class R, class T>
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     (   __GNUC__ < 3 || \
@@ -132,12 +135,15 @@ inline stlsoft_ns_qual(stdcall_mem_fun_t)<R, T> std_mem_fun(R (STDAPICALLTYPE T:
 
 
 
-/// \brief An adaptor for member functions of COM interfaces
-///
-/// This function object calls a COM STDAPI (__stdcall) function on an object.
-///
-/// \param T The object class on which the function will be applied
-/// \param R The return type of the function to be applied
+/** \brief An adaptor for member functions of COM interfaces
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * This function object calls a COM STDAPI (__stdcall) function on an object.
+ *
+ * \param T The object class on which the function will be applied
+ * \param R The return type of the function to be applied
+ */
 // [[synesis:class:unary-functor: std_mem_fun_ref_t]]
 template< ss_typename_param_k R
         , ss_typename_param_k T
@@ -177,7 +183,10 @@ private:
     method_type m_f;
 };
 
-/// \brief Helper function for std_mem_fun_ref_t
+/** \brief Helper function for std_mem_fun_ref_t
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template <class R, class T>
 #if defined(STLSOFT_COMPILER_IS_GCC) && \
     (   __GNUC__ < 3 || \

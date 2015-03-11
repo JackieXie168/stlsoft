@@ -7,7 +7,7 @@
  *              in making these functions rather than macros.
  *
  * Created:     16th January 2002
- * Updated:     18th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_EDIT     46
+# define STLSOFT_VER_STLSOFT_H_LIMIT_TRAITS_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -176,20 +176,23 @@ namespace stlsoft
 #ifdef __cplusplus
 
 # ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/// \brief Traits for determining the minimum and maximum values of types
-///
-/// limit_traits is a traits class for acquiring the minimum and maximum values
-/// of types.
-///
-/// &nbsp;&nbsp;<code>limit_traits<ss_sint16_t>::minimum() == -32768</code><br>
-/// &nbsp;&nbsp;<code>limit_traits<ss_sint16_t>::maximum() == 32767</code><br>
-///
-/// \param T The type
-///
-/// \note Provides nothing that is not in std::numeric_limits, but uses
-///  minimum() and maximum() rather than min() and max(), since some
-///  compilers are not well-behaved in making these functions rather than
-///  macros.
+/** \brief Traits for determining the minimum and maximum values of types
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * limit_traits is a traits class for acquiring the minimum and maximum values
+ * of types.
+ *
+ * &nbsp;&nbsp;<code>limit_traits<ss_sint16_t>::minimum() == -32768</code><br>
+ * &nbsp;&nbsp;<code>limit_traits<ss_sint16_t>::maximum() == 32767</code><br>
+ *
+ * \param T The type
+ *
+ * \note Provides nothing that is not in std::numeric_limits, but uses
+ *  minimum() and maximum() rather than min() and max(), since some
+ *  compilers are not well-behaved in making these functions rather than
+ *  macros.
+ */
 template <ss_typename_param_k T>
 struct limit_traits
 {

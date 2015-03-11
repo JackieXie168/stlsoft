@@ -4,7 +4,7 @@
  * Purpose:     Allocator commmon features.
  *
  * Created:     20th August 2003
- * Updated:     11th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MAJOR    4
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_REVISION 2
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     33
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -89,23 +89,24 @@ namespace stlsoft
  * Classes
  */
 
-/// \brief STL Allocator base class adaptor, providing much of the boilerplate
-/// functionality of an STL-compliant Allocator class.
-///
-/// \ingroup group__library__memory
-///
-/// \note This uses the SCTP/CRTP (Simulated Compile-time Polymorphism / Curiously
-/// Recurring Template Pattern) technique, such that derived classes inherit from
-/// parameterisations of the adaptor template which specify their fully derived
-/// template-id as the first parameter
-///
-/// \note By default, an allocation failure results in a thrown std::bad_alloc. If
-/// the compiler does not throwing std::bad_alloc by default, this behaviour can be
-/// forced by defining STLSOFT_FORCE_ATORS_THROW_BAD_ALLOC. std::bad_alloc can be
-/// suppressed in all circumstances by defining STLSOFT_FORCE_ATORS_RETURN_NULL.
-///
-/// \param T The allocator value_type
-/// \param A The adapted/derived allocator type
+/** \brief STL Allocator base class adaptor, providing much of the boilerplate
+ * functionality of an STL-compliant Allocator class.
+ *
+ * \ingroup group__library__memory
+ *
+ * \note This uses the SCTP/CRTP (Simulated Compile-time Polymorphism / Curiously
+ * Recurring Template Pattern) technique, such that derived classes inherit from
+ * parameterisations of the adaptor template which specify their fully derived
+ * template-id as the first parameter
+ *
+ * \note By default, an allocation failure results in a thrown std::bad_alloc. If
+ * the compiler does not throwing std::bad_alloc by default, this behaviour can be
+ * forced by defining STLSOFT_FORCE_ATORS_THROW_BAD_ALLOC. std::bad_alloc can be
+ * suppressed in all circumstances by defining STLSOFT_FORCE_ATORS_RETURN_NULL.
+ *
+ * \param T The allocator value_type
+ * \param A The adapted/derived allocator type
+ */
 
 template<   ss_typename_param_k T
         ,   ss_typename_param_k A

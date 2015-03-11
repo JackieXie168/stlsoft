@@ -9,35 +9,35 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_dotnetstl_string_accessor(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_dotnetstl_string_accessor(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, ".netSTL", "string_accessor", __FILE__);
+			unittest_initialiser	init(r, ".netSTL", "string_accessor", __FILE__);
 
-            System::String  *s1 =   new System::String("String #1");
-            System::String  *s2 =   new System::String("String #2");
+			System::String	*s1 =	new System::String("String #1");
+			System::String	*s2 =	new System::String("String #2");
 
-            if(0 != strcmp(c_string_accessor<char>(s1), "String #1"))
-            {
-                r->report("c_string_accessor<char>() failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != strcmp(c_string_accessor<char>(s1), "String #1"))
+			{
+				r->report("c_string_accessor<char>() failed", __LINE__);
+				bSuccess = false;
+			}
 
-            if(0 != wcscmp(c_string_accessor<wchar_t>(s2), L"String #2"))
-            {
-                r->report("c_string_accessor<char>() failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != wcscmp(c_string_accessor<wchar_t>(s2), L"String #2"))
+			{
+				r->report("c_string_accessor<char>() failed", __LINE__);
+				bSuccess = false;
+			}
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_dotnetstl_string_accessor(test_dotnetstl_string_accessor);
-    } // anonymous namespace
+		unittest_registrar	  unittest_dotnetstl_string_accessor(test_dotnetstl_string_accessor);
+	} // anonymous namespace
 
 } // namespace unittest

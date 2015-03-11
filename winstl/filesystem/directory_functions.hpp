@@ -4,7 +4,7 @@
  * Purpose:     Functions for manipulating directories.
  *
  * Created:     7th February 2002
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MAJOR     5
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_MINOR     0
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      36
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_DIRECTORY_FUNCTIONS_EDIT      37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -445,82 +445,86 @@ inline ws_dword_t remove_directory_recurse_impl(C const *dir, ws_int_t (*pfn)(vo
  * Functions
  */
 
-/// \brief Creates the given directory, including all its parent directories, applying
-/// the given mode.
-///
-/// \ingroup group__library__file_system
-///
-/// \param dir The path of the directory to create
-/// \param lpsa The security attributes with which each directory is to be created
+/** \brief Creates the given directory, including all its parent directories, applying
+ * the given mode.
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param dir The path of the directory to create
+ * \param lpsa The security attributes with which each directory is to be created
+ */
 inline ws_bool_t create_directory_recurse(ws_char_a_t const *dir, LPSECURITY_ATTRIBUTES lpsa = NULL)
 {
     return create_directory_recurse_impl(dir, lpsa);
 }
 
-/// \brief Creates the given directory, including all its parent directories, applying
-/// the given mode.
-///
-/// \ingroup group__library__file_system
-///
-/// \param dir The path of the directory to create
-/// \param lpsa The security attributes with which each directory is to be created
+/** \brief Creates the given directory, including all its parent directories, applying
+ * the given mode.
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param dir The path of the directory to create
+ * \param lpsa The security attributes with which each directory is to be created
+ */
 inline ws_bool_t create_directory_recurse(ws_char_w_t const *dir, LPSECURITY_ATTRIBUTES lpsa = NULL)
 {
     return create_directory_recurse_impl(dir, lpsa);
 }
 
-/// \brief Creates the given directory, including all its parent directories, applying
-/// the given mode.
-///
-/// \ingroup group__library__file_system
-///
-/// \param dir The path of the directory to create
-/// \param lpsa The security attributes with which each directory is to be created
+/** \brief Creates the given directory, including all its parent directories, applying
+ * the given mode.
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param dir The path of the directory to create
+ * \param lpsa The security attributes with which each directory is to be created
+ */
 template <ss_typename_param_k S>
 inline ws_bool_t create_directory_recurse(S const &dir, LPSECURITY_ATTRIBUTES lpsa = NULL)
 {
     return create_directory_recurse(stlsoft_ns_qual(c_str_ptr)(dir), lpsa);
 }
 
-/// \brief Removes the given directory, and all its subdirectories.
-///
-/// \ingroup group__library__file_system
-///
-/// \param dir The path of the directory to remove
-/// \param pfn Pointer to a callback function, which will receive notifications
-///         and requests for file/directory deletion. The semantics of the
-///         parameters are specified in the note below
-/// \param param Caller-supplied parameter, passed through to the callback
-///         function
-///
-/// \note If no callback function is specified, then the function will remove
-///        only empty subdirectories, i.e. no files will be removed. To remove
-///        files, a function must be
-///
-/// \note The semantics of the callback function's parameters are as follows:
-/// \par If the err param is ~0 (-1 on UNIX), then the dir param specifies
-///       the name of the current directory being traversed. All other params
-///       are unspecified. The return value is ignored.
-/// \par If the err param is 0 and the st param is NULL, then dir specifies
-///       the name of a directory that has been successfully removed. All
-///       other params are unspecified. The return value is ignored.
-/// \par If the err param is 0 and the st param is not NULL, then dir specifies
-///       the name of the currently traversing directory, st specifies the
-///       stat information and the name of the entry within directory dir that
-///       is a candidate for removal. Return >0 to enable removal of this
-///       entry, or 0 to prevent removal and cancel the overall operation, or
-///       <0 to prevent removal and continue.
-///       All other params are unspecified. The return value is ignored.
-/// \par If the err param is any other value, and the st param is NULL, then
-///       the dir param specifies the name of a directory that could not be
-///       deleted and err specifies the errno value associated with the failure.
-///       All other params are unspecified. The return value is ignored.
-/// \par If the err param is any other value, and the st param is not NULL, then
-///       the dir param specifies the name of a directory within which an entry
-///       could not be deleted, st specifies the stat information and the name
-///       of the entry that could not be deleted, and err specifies the errno
-///       value associated with the failure. All other params are unspecified.
-///       The return value is ignored.
+/** \brief Removes the given directory, and all its subdirectories.
+ *
+ * \ingroup group__library__file_system
+ *
+ * \param dir The path of the directory to remove
+ * \param pfn Pointer to a callback function, which will receive notifications
+ *         and requests for file/directory deletion. The semantics of the
+ *         parameters are specified in the note below
+ * \param param Caller-supplied parameter, passed through to the callback
+ *         function
+ *
+ * \note If no callback function is specified, then the function will remove
+ *        only empty subdirectories, i.e. no files will be removed. To remove
+ *        files, a function must be
+ *
+ * \note The semantics of the callback function's parameters are as follows:
+ * \par If the err param is ~0 (-1 on UNIX), then the dir param specifies
+ *       the name of the current directory being traversed. All other params
+ *       are unspecified. The return value is ignored.
+ * \par If the err param is 0 and the st param is NULL, then dir specifies
+ *       the name of a directory that has been successfully removed. All
+ *       other params are unspecified. The return value is ignored.
+ * \par If the err param is 0 and the st param is not NULL, then dir specifies
+ *       the name of the currently traversing directory, st specifies the
+ *       stat information and the name of the entry within directory dir that
+ *       is a candidate for removal. Return >0 to enable removal of this
+ *       entry, or 0 to prevent removal and cancel the overall operation, or
+ *       <0 to prevent removal and continue.
+ *       All other params are unspecified. The return value is ignored.
+ * \par If the err param is any other value, and the st param is NULL, then
+ *       the dir param specifies the name of a directory that could not be
+ *       deleted and err specifies the errno value associated with the failure.
+ *       All other params are unspecified. The return value is ignored.
+ * \par If the err param is any other value, and the st param is not NULL, then
+ *       the dir param specifies the name of a directory within which an entry
+ *       could not be deleted, st specifies the stat information and the name
+ *       of the entry that could not be deleted, and err specifies the errno
+ *       value associated with the failure. All other params are unspecified.
+ *       The return value is ignored.
+ */
 inline ws_bool_t remove_directory_recurse(  ws_char_a_t const   *dir
                                         ,   ws_int_t            (*pfn)(void *param, ws_char_a_t const *subDir, WIN32_FIND_DATAA const *st, DWORD err)
                                         ,   void                *param)
@@ -534,17 +538,19 @@ inline ws_bool_t remove_directory_recurse(  ws_char_a_t const   *dir
     return ERROR_SUCCESS == dwRet;
 }
 
-/// \brief Removes the given directory, and all its subdirectories.
-///
-/// \ingroup group__library__file_system
+/** \brief Removes the given directory, and all its subdirectories.
+ *
+ * \ingroup group__library__file_system
+ */
 inline ws_bool_t remove_directory_recurse(ws_char_a_t const *dir)
 {
     return remove_directory_recurse(dir, NULL, NULL);
 }
 
-/// \brief Removes the given directory, and all its subdirectories.
-///
-/// \ingroup group__library__file_system
+/** \brief Removes the given directory, and all its subdirectories.
+ *
+ * \ingroup group__library__file_system
+ */
 inline ws_bool_t remove_directory_recurse(  ws_char_w_t const   *dir
                                         ,   ws_int_t            (*pfn)(void *param, ws_char_w_t const *subDir, WIN32_FIND_DATAW const *st, DWORD err)
                                         ,   void                *param)
@@ -558,17 +564,19 @@ inline ws_bool_t remove_directory_recurse(  ws_char_w_t const   *dir
     return ERROR_SUCCESS == dwRet;
 }
 
-/// \brief Removes the given directory, and all its subdirectories.
-///
-/// \ingroup group__library__file_system
+/** \brief Removes the given directory, and all its subdirectories.
+ *
+ * \ingroup group__library__file_system
+ */
 inline ws_bool_t remove_directory_recurse(ws_char_w_t const *dir)
 {
     return remove_directory_recurse(dir, NULL, NULL);
 }
 
-/// \brief Removes the given directory, and all its subdirectories.
-///
-/// \ingroup group__library__file_system
+/** \brief Removes the given directory, and all its subdirectories.
+ *
+ * \ingroup group__library__file_system
+ */
 template <ss_typename_param_k S>
 inline ws_bool_t remove_directory_recurse(S const &dir)
 {

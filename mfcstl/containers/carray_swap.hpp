@@ -69,7 +69,7 @@
 
 // All version of MFC up to and including 8.0 support swap-by-members
 #if _MFC_VER <= 0x0800 && \
-	!defined(MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT)
+    !defined(MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT)
 # define MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT
 #endif /* _MFC_VER <= 0x0800 && !MFCSTL_CARRAY_SWAP_MEMBERS_SUPPORT */
 

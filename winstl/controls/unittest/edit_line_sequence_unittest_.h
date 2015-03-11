@@ -11,28 +11,28 @@
 
 namespace unittest
 {
-    namespace
-    {
-        ss_bool_t test_winstl_controls_edit_line_sequence(unittest_reporter *r)
-        {
-            using stlsoft::unittest::unittest_initialiser;
+	namespace
+	{
+		ss_bool_t test_winstl_controls_edit_line_sequence(unittest_reporter *r)
+		{
+			using stlsoft::unittest::unittest_initialiser;
 
-            ss_bool_t               bSuccess    =   true;
+			ss_bool_t				bSuccess	=	true;
 
-            unittest_initialiser    init(r, "WinSTL", "controls/edit_line_sequence", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "controls/edit_line_sequence", __FILE__);
 
 #if 0
-            if(0 != i)
-            {
-                r->report("lock() - unlock() sequence failed", __LINE__);
-                bSuccess = false;
-            }
+			if(0 != i)
+			{
+				r->report("lock() - unlock() sequence failed", __LINE__);
+				bSuccess = false;
+			}
 #endif /* 0 */
 
-            return bSuccess;
-        }
+			return bSuccess;
+		}
 
-        unittest_registrar    unittest_winstl_controls_edit_line_sequence(test_winstl_controls_edit_line_sequence);
-    } // anonymous namespace
+		unittest_registrar	  unittest_winstl_controls_edit_line_sequence(test_winstl_controls_edit_line_sequence);
+	} // anonymous namespace
 
 } // namespace unittest

@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_environment_block class.
  *
  * Created:     25th June 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MAJOR       4
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_MINOR       0
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_REVISION    1
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        43
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_ENVIRONMENT_BLOCK_EDIT        44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,35 +105,36 @@ namespace winstl_project
  * Classes
  */
 
-/// \brief Class used for preparing environment blocks compatible with the Windows
-/// CreateProcess() function.
-///
-/// \ingroup group__library__system
-///
-/// It is used as follows:
-/// \htmlonly
-/// <pre>
-///
-/// winstl::environment_block   env;
-///
-/// env.push_back("Name1", "Value1"); // Insert separate name and value
-/// env.push_back("Name2=Value2");    // Insert composite name and value
-///
-/// ::CreateProcess(  . . . // application name
-///                ,  . . . // command line
-///                ,  . . . // process attributes
-///                ,  . . . // thread attributes
-///                ,  . . . // handle inherit boolean
-///                ,  . . . // creation flags
-///                ,  const_cast&lt;void*&gt;(env.base()) // The environment
-///                ,  . . . // current directory
-///                ,  . . . // statup info
-///                ,  . . . // process info);
-///
-/// </pre>
-/// \endhtmlonly
-///
-///
+/** \brief Class used for preparing environment blocks compatible with the Windows
+ * CreateProcess() function.
+ *
+ * \ingroup group__library__system
+ *
+ * It is used as follows:
+ * \htmlonly
+ * <pre>
+ *
+ * winstl::environment_block   env;
+ *
+ * env.push_back("Name1", "Value1"); // Insert separate name and value
+ * env.push_back("Name2=Value2");    // Insert composite name and value
+ *
+ * ::CreateProcess(  . . . // application name
+ *                ,  . . . // command line
+ *                ,  . . . // process attributes
+ *                ,  . . . // thread attributes
+ *                ,  . . . // handle inherit boolean
+ *                ,  . . . // creation flags
+ *                ,  const_cast&lt;void*&gt;(env.base()) // The environment
+ *                ,  . . . // current directory
+ *                ,  . . . // statup info
+ *                ,  . . . // process info);
+ *
+ * </pre>
+ * \endhtmlonly
+ *
+ *
+ */
 template<   ss_typename_param_k C
 #ifdef STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT
         ,   ss_typename_param_k T = char_traits<C>
@@ -365,7 +366,10 @@ public:
     }
 /// @}
 
-/// Members
+/** \brief Members
+ *
+ * \ingroup group__library__system
+ */
 private:
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
                                             ,   allocator_type
@@ -383,9 +387,15 @@ private:
 
  /// Instantiation of the basic_path template for the ANSI character type \c char
 typedef basic_environment_block<ws_char_a_t>    environment_block_a;
-/// Instantiation of the basic_environment_block template for the Unicode character type \c wchar_t
+/** \brief Instantiation of the basic_environment_block template for the Unicode character type \c wchar_t
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_environment_block<ws_char_w_t>    environment_block_w;
-/// Instantiation of the basic_environment_block template for the Win32 character type \c TCHAR
+/** \brief Instantiation of the basic_environment_block template for the Win32 character type \c TCHAR
+ *
+ * \ingroup group__library__system
+ */
 typedef basic_environment_block<TCHAR>          environment_block;
 
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */

@@ -4,7 +4,7 @@
  * Purpose:     Options verification.
  *
  * Created:     9th November 2004
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MAJOR     1
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_MINOR     4
 # define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_REVISION  1
-# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      29
+# define STLSOFT_VER_STLSOFT_HPP_OPTIONS_VERIFIER_EDIT      30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,7 +102,10 @@ namespace stlsoft
  * Classes
  */
 
-/// Exception thrown by the options_verifier class template
+/** \brief Exception thrown by the options_verifier class template
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 class option_verification_exception
     : public stlsoft_ns_qual_std(runtime_error)
 {
@@ -138,7 +141,10 @@ public:
     }
 };
 
-/// Exception policy for options verification
+/** \brief Exception policy for options verification
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 // [[synesis:class:exception-policy: option_verification_policy]]
 struct option_verification_policy
 {
@@ -159,7 +165,10 @@ namespace options_verifier_internal_ns
 #endif /* STLSOFT_OPTIONS_VERIFIER_REQUIRES_SEPARATE_NS */
 
 
-/// Verifies that a given variable is equal to one of a set of options
+/** \brief Verifies that a given variable is equal to one of a set of options
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k XP  =   option_verification_policy
         >
@@ -291,7 +300,10 @@ inline options_verifier<T, XP> &operator ,(options_verifier<T, XP> &ov, U const 
 }
 
 #if 1
-/// Acts as a temporary reference to the options_verifier
+/** \brief Acts as a temporary reference to the options_verifier
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k U
         >

@@ -4,7 +4,7 @@
  * Purpose:     "Old" Dinkumware library iterator capability discrimination.
  *
  * Created:     31st December 2005
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MAJOR      1
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_MINOR      0
 # define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_REVISION   5
-# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       10
+# define STLSOFT_VER_STLSOFT_UTIL_STD_DINKUMWARE_ITERATOR_TRAITS_EDIT       11
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -170,9 +170,12 @@ struct Dinkumware_iterator_test<I, 1>
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
-/// Determines whether the iterator is mutating or non-mutating
-///
-/// \param I The iterator type
+/** \brief Determines whether the iterator is mutating or non-mutating
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param I The iterator type
+ */
 template <ss_typename_param_k I>
 struct Dinkumware_iterator_traits
 {

@@ -4,7 +4,7 @@
  * Purpose:     A useful tool for accessing a String object's content as a c-string.
  *
  * Created:     24th June 2003
- * Updated:     10th June 2006
+ * Updated:     7th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,7 +49,7 @@
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DISPOSE_FUNCTIONS_MAJOR    3
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DISPOSE_FUNCTIONS_MINOR    1
 # define DOTNETSTL_VER_DOTNETSTL_HPP_DISPOSE_FUNCTIONS_REVISION 1
-# define DOTNETSTL_VER_DOTNETSTL_HPP_DISPOSE_FUNCTIONS_EDIT     25
+# define DOTNETSTL_VER_DOTNETSTL_HPP_DISPOSE_FUNCTIONS_EDIT     26
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,9 +81,12 @@ namespace dotnetstl_project
  * Classes
  */
 
-/// \brief Disposes the managed type, and resets the pointer
-///
-/// \param pt The pointer on which to call Dispose(). Can be null, but otherwise must be convertible to IDispose
+/** \brief Disposes the managed type, and resets the pointer
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param pt The pointer on which to call Dispose(). Can be null, but otherwise must be convertible to IDispose
+ */
 template <ss_typename_param_k T>
 inline void dispose_set_null(T *&pt)
 {
@@ -96,9 +99,12 @@ inline void dispose_set_null(T *&pt)
     }
 }
 
-/// \brief Disposes all the items in a container
-///
-/// \param pc The container on whose items to call Dispose().
+/** \brief Disposes all the items in a container
+ *
+ * \ingroup group__library__<<LIBRARY-ID>>
+ *
+ * \param pc The container on whose items to call Dispose().
+ */
 template <ss_typename_param_k C>
 inline void dispose_contents(C *pc)
 {
