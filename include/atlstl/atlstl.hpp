@@ -5,11 +5,11 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd September 2008
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -48,7 +48,7 @@
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MAJOR     3
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_MINOR     4
 # define ATLSTL_VER_ATLSTL_HPP_ATLSTL_REVISION  3
-# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      103
+# define ATLSTL_VER_ATLSTL_HPP_ATLSTL_EDIT      104
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file atlstl/atlstl.hpp
@@ -226,7 +226,7 @@ extern CComModule _Module;
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Debugging
+ * Contract Enforcement
  *
  * The macro atlstl_assert provides standard debug-mode assert functionality.
  */

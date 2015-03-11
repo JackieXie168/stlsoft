@@ -4,11 +4,11 @@
  * Purpose:     Compiler feature discrimination for Watcom C/C++.
  *
  * Created:     7th February 2003
- * Updated:     13th May 2008
+ * Updated:     8th June 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       17
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_MINOR       18
 # define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        75
+# define STLSOFT_VER_H_STLSOFT_CCCAP_WATCOM_EDIT        76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -374,6 +374,7 @@
  * Calling convention
  */
 
+#define STLSOFT_CF_THISCALL_SUPPORTED
 #define STLSOFT_CF_CDECL_SUPPORTED
 #define STLSOFT_CF_STDCALL_SUPPORTED
 

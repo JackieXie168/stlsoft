@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  16th June 2009
+; Updated:  24th July 2009
 
 ============================================================================
 
@@ -16,6 +16,83 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.86 (24th July 2009)
+
+Summary:
+========
+
+ * added STLSOFT_CF_THISCALL_SUPPORTED
+ * added thiscall overloads of mem_fun_ref() and mem_fun_ref_void()
+ * Borland compatibility for scoped_handle
+ * fix to unixstl::filesystem_traits::get_full_path_name() (to detect when path contains reserved characters)
+
+Changes:
+========
+
+ general:
+ =======
+
+ ~ include/acestl/acestl.hpp:
+ ~ include/atlstl/atlstl.hpp:
+ ~ include/comstl/comstl.h:
+ ~ include/dotnetstl/dotnetstl.hpp:
+ ~ include/inetstl/inetstl.h:
+ ~ include/mfcstl/mfcstl.hpp:
+ ~ include/unixstl/unixstl.h:
+ ~ include/winstl/error/error_desc.hpp:
+ ~ include/winstl/winstl.h:
+ ~ include/wtlstl/wtlstl.hpp:
+    ~ minor documentation change
+
+ STLSoft:
+ ========
+
+ ~ include/stlsoft/functional/method_adaptors.hpp:
+    ~ thiscall overloads of mem_fun_ref() and mem_fun_ref_void()
+
+ ~ include/stlsoft/internal/cccap/borland.h:
+ ~ include/stlsoft/internal/cccap/como.h:
+ ~ include/stlsoft/internal/cccap/dmc.h:
+ ~ include/stlsoft/internal/cccap/mwerks.h:
+ ~ include/stlsoft/internal/cccap/vectorc.h:
+ ~ include/stlsoft/internal/cccap/watcom.h:
+    + added compiler feature symbol STLSOFT_CF_THISCALL_SUPPORTED
+
+ ~ include/stlsoft/internal/cccap/gcc.h:
+ ~ include/stlsoft/internal/cccap/msvc.h:
+    + added compiler feature symbol STLSOFT_CF_THISCALL_SUPPORTED
+    ~ trivial formatting changes
+
+ ~ include/stlsoft/internal/cccap/intel.h:
+    + added compiler feature symbol STLSOFT_CF_THISCALL_SUPPORTED
+    ~ changed compiler discrimination features to STLSoft 1.10 mode
+
+ ~ include/stlsoft/smartptr/scoped_handle_borland_.hpp:
+    ~ Borland 5.5(.1) compatibility
+
+ PlatformSTL:
+ ============
+
+ ~ include/platformstl/platformstl.h:
+    + PlatformSTL contract enforcement macros
+
+ UNIXSTL:
+ ========
+
+ ~ include/unixstl/error/exceptions.hpp:
+    ~ suppresses "safe string" library warnings, when compiling with VC++
+
+ ~ include/unixstl/filesystem/filesystem_traits.hpp:
+    ~ get_full_path_name() now fails, and sets errno to ENOENT, if path contains a reserved character (one in "<>|*?")
+
+ WinSTL:
+ =======
+
+ ~ include/winstl/filesystem/path.hpp:
+    ~ minor changes to exception-specifications
 
 ============================================================================
 

@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     4th March 2009
+ * Updated:     21st July 2009
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
@@ -63,9 +63,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     19
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  5
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      107
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     20
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      111
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -112,19 +112,19 @@
 
 #if _MSC_VER >= 900
 # define STLSOFT_PPF_pragma_once_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_PPF_COUNTER_SYMBOL_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_PPF_FUNCTION_SYMBOL_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1400
 # define STLSOFT_PPF_VARIADIC_MACROS_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for built-in types
@@ -147,7 +147,9 @@
 # define STLSOFT_CF_BUILTIN_wchar_t_SUPPORT
 #endif /* _NATIVE_WCHAR_T_DEFINED */
 
-/* # define STLSOFT_CF_BUILTIN_long_long_SUPPORT */
+/*
+# define STLSOFT_CF_BUILTIN_long_long_SUPPORT
+*/
 
 #define STLSOFT_CF_BUILTIN___int8_SUPPORT
 
@@ -157,7 +159,7 @@
 
 #if _MSC_VER >= 1020
 # define STLSOFT_CF_BUILTIN___int64_SUPPORT
-#endif /* _MSC_VER >= 1020 */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Built-in type characteristics
@@ -188,7 +190,7 @@
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_return_void_SUPPORT
-#endif /* _MSC_VER >= 1300 */
+#endif /* compiler */
 
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
@@ -244,11 +246,13 @@
 # define STLSOFT_CF_EXCEPTION_SUPPORT
 # if _MSC_VER >= 1100
 #  define STLSOFT_CF_EXCEPTION_SIGNATURE_SUPPORT
-# endif /* _MSC_VER */
-/* # define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE */
+# endif /* compiler */
+/*
+# define STLSOFT_CF_EXCEPTION_SPEC_EXPENSIVE
+*/
 # if _MSC_VER >= 1300
 #  define STLSOFT_CF_EXCEPTION_OPERATOR_NEW_THROWS_BAD_ALLOC
-# endif /* _MSC_VER */
+# endif /* compiler */
 #endif /* _CPPUNWIND */
 
 #ifdef _CPPRTTI
@@ -257,7 +261,7 @@
 
 #if _MSC_VER >= 1020
 # define STLSOFT_CF_NAMESPACE_SUPPORT
-#endif /* _MSC_VER >= 1020 */
+#endif /* compiler */
 
 #if _MSC_VER < 1100
  /* Since Visual C++ 4.2 and earlier do not correctly support using declarations
@@ -265,49 +269,51 @@
   * too painful to use, so namespaces are suppressed.
   */
 # define _STLSOFT_NO_NAMESPACES
-#endif /* _MSC_VER < 1100 */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_MEMBER_CONSTANT_SUPPORT
-#endif /* _MSC_VER > 1300 */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_EXPLICIT_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_TEMPLATE_QUALIFIER_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TYPENAME_PARAM_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1200
 # define STLSOFT_CF_TYPENAME_TYPE_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_TYPENAME_TYPE_DEF_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
-/* #  define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT */
+/*
+# define STLSOFT_CF_TYPENAME_TYPE_MIL_KEYWORD_SUPPORT
+*/
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_TYPENAME_TYPE_RET_KEYWORD_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1310
 # define STLSOFT_CF_ADL_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if defined(_MSC_EXTENSIONS) && \
     _MSC_VER < 1310
@@ -317,11 +323,11 @@
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_OPERATOR_BOOL_AS_OPERATOR_POINTER_TO_MEMBER_SUPPORT
 # define STLSOFT_CF_OPERATOR_NOT_VIA_OPERATOR_POINTER_TO_MEMBER_SUPPORT
-#endif /* _MSC_VER >= 1300 */
+#endif /* compiler */
 
 #if _MSC_VER <= 1200
 # define STLSOFT_CF_REQUIRE_RETURN_ALWAYS
-#endif /* _MSC_VER <= 1200 */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Support for C++ language features - 2
@@ -352,89 +358,88 @@
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_SPECIALISATION_SYNTAX_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1310
 # define STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_FUNCTION_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_CLASS_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_MEMBER_CLASS_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_MEMBER_FUNCTION_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1200
 # define STLSOFT_CF_TEMPLATE_MEMBER_RANGE_FUNCTION_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /* Although VC++ 5.0 does work with this in isolated cases, in practice it experiences
  * too many internal compiler errors, or compiler lock-ups, to make it tolerable
  */
 #if _MSC_VER > 1100
 # define STLSOFT_CF_TEMPLATE_CTOR_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_TEMPLATE_TEMPLATE_SUPPORT
-#endif /* _MSC_VER */
-
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_FUNDAMENTAL_PARAMETER_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_TYPE_PARAMETER_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1310
 # define STLSOFT_CF_TEMPLATE_MEMBER_FUNCTION_PARAMETER_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_DEFAULT_FUNDAMENTAL_PARAMETER_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /* Although VC++ 5.0 does work with this in isolated cases, in practice it experiences
  * too many internal compiler errors, or compiler lock-ups, to make it tolerable
  */
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_DEFAULT_TYPE_PARAMETER_SUPPORT
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER < 1100
 # define STLSOFT_CF_TEMPLATE_FUNCTION_TEMPLATE_REQUIRES_TEMPLATE_PARAMETERS_IN_FUNCTION_PARAMETER_LIST
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_TEMPLATE_MEMBER_FUNCTION_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_MEMBER_FUNCTION
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1310
 # define STLSOFT_CF_TEMPLATE_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_CONSTRUCTOR
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /* This caters for the case where a copy constructor and a template copy constructor -
  * as in the case of an allocator class template - may not overload.
  */
 #if _MSC_VER >= 1300
 # define STLSOFT_CF_TEMPLATE_COPY_CONSTRUCTOR_TEMPLATE_OVERLOAD_DISCRIMINATED_AGAINST_NON_TEMPLATE_COPY_CONSTRUCTOR
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Inline assembler
@@ -459,6 +464,8 @@
  * On IA64/x64 there is only a single calling convention. Calling convention
  * keywords are ignored.
  */
+
+#define STLSOFT_CF_THISCALL_SUPPORTED
 
 #if defined(_M_IX86)
 
@@ -523,11 +530,11 @@
 # define STLSOFT_UI08_T_BASE_TYPE   unsigned    __int8
 # if _MSC_VER == 1200
 #  define STLSOFT_CF_CHAR_DISTINCT_INT_TYPE
-# endif /* _MSC_VER */
-#else /* ? _MSC_VER */
+# endif /* compiler */
+#else /* ? compiler */
 # define STLSOFT_SI08_T_BASE_TYPE   signed      char
 # define STLSOFT_UI08_T_BASE_TYPE   unsigned    char
-#endif /* _MSC_VER >= 1020 */
+#endif /* compiler */
 
 /* 16-bit integer */
 #define STLSOFT_CF_16BIT_INT_SUPPORT
@@ -536,11 +543,11 @@
 # define STLSOFT_UI16_T_BASE_TYPE   unsigned    __int16
 # if _MSC_VER == 1200
 #  define STLSOFT_CF_SHORT_DISTINCT_INT_TYPE
-# endif /* _MSC_VER */
-#else /* ? _MSC_VER */
+# endif /* compiler */
+#else /* ? compiler */
 # define STLSOFT_SI16_T_BASE_TYPE   signed      short
 # define STLSOFT_UI16_T_BASE_TYPE   unsigned    short
-#endif /* _MSC_VER >= 1020 */
+#endif /* compiler */
 
 /* 32-bit integer */
 #define STLSOFT_CF_32BIT_INT_SUPPORT
@@ -549,13 +556,13 @@
 # define STLSOFT_UI32_T_BASE_TYPE   unsigned    __int32
 # if _MSC_VER == 1200
 #  define STLSOFT_CF_INT_DISTINCT_INT_TYPE
-# endif /* _MSC_VER */
+# endif /* compiler */
 # define STLSOFT_CF_LONG_DISTINCT_INT_TYPE
-#else /* ? _MSC_VER */
+#else /* ? compiler */
 # define STLSOFT_SI32_T_BASE_TYPE   signed      long
 # define STLSOFT_UI32_T_BASE_TYPE   unsigned    long
 # define STLSOFT_CF_INT_DISTINCT_INT_TYPE
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /* 64-bit integer */
 #if _MSC_VER >= 1020
@@ -563,18 +570,7 @@
 # define STLSOFT_CF_64BIT_INT_IS___int64
 # define STLSOFT_SI64_T_BASE_TYPE   signed      __int64
 # define STLSOFT_UI64_T_BASE_TYPE   unsigned    __int64
-#endif /* _MSC_VER >= 1020 */
-
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
-/* ////////////////////////////////////////////////////////////////////// */
+#endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Still to-be-determined features
@@ -604,14 +600,14 @@
 # if defined(_WCHAR_T_DEFINED)
 #  define STLSOFT_CF_TYPEDEF_WCHAR_T_SUPPORT
 # endif /* _WCHAR_T_DEFINED */
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 /*  */
 #if (   _MSC_VER >= 1100 && \
         _MSC_VER < 1310) || \
     _MSC_VER == 1500
 # define STLSOFT_CF_FUNCTION_SIGNATURE_FULL_ARG_QUALIFICATION_REQUIRED
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
@@ -620,19 +616,19 @@
 # ifdef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 #  undef STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT
 # endif /* STLSOFT_CF_TEMPLATE_OUTOFCLASSFN_QUALIFIED_TYPE_SUPPORT */
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_std_NAMESPACE
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 #define STLSOFT_CF_std_char_traits_AVAILABLE
 
 #if _MSC_VER >= 1100
 # define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_NON_TEMPLATE
 # define STLSOFT_CF_PARENT_TYPES_CAN_BE_USED_IN_TEMPLATE
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 
 
@@ -642,11 +638,13 @@
 # define STLSOFT_CF_ALLOCATOR_BASE_EXPENSIVE
 #endif /* !_ATL_MIN_CRT */
 
-/* #define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR */
+/*
+# define STLSOFT_CF_COMPILER_WARNS_NO_PUBLIC_DTOR
+*/
 
 #if _MSC_VER < 1100
 # define STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
-#endif /* _MSC_VER */
+#endif /* compiler */
 
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -659,15 +657,15 @@
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
   *
-  * Suppose you have a function _DisplayAssert(), which has the
+  * Suppose you have a function DisplayAssert_(), which has the
   * following signature:
   *
-  *   void _DisplayAssert(char const* file, int line, char const* expression);
+  *   void DisplayAssert_(char const* file, int line, char const* expression);
   *
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(_DisplayAssert(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
@@ -711,7 +709,7 @@
 /* Suppresses: "'<function>' has C-linkage specified, but returns UDT '<udt>' which is incompatible with C" */
 #if _MSC_VER < 1200
 # pragma warning(disable : 4190)
-#endif /* _MSC_VER < 1100 */
+#endif /* compiler */
 
 /* Suppresses: "nonstandard extension used : nameless struct/union" */
 #pragma warning(disable : 4201)
@@ -719,12 +717,12 @@
 /* Suppresses: "nonstandard extension used : 'xxxx' keyword is reserved for future use" */
 #if _MSC_VER < 1100
 # pragma warning(disable : 4237)
-#endif /* _MSC_VER < 1100 */
+#endif /* compiler */
 
 /* Suppresses: "C++ Exception Specification ignored" */
 #if _MSC_VER < 1300
 # pragma warning(disable : 4284)
-#endif /* _MSC_VER < 1300 */
+#endif /* compiler */
 
 /* Suppresses: "C++ Exception Specification ignored" */
 #pragma warning(disable : 4290)
@@ -751,17 +749,17 @@
 
 /* Suppresses: "#pragma warning : there is no warning number 'XXXX'" */
 # pragma warning(disable: 4619)
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
 /* Suppresses: "C++ language change: to explicitly specialize class template 'X' use the following syntax: template<> struct X<Y>" */
 #if _MSC_VER < 1310
 # pragma warning(disable : 4663)
-#endif /* _MSC_VER < 1310 */
+#endif /* compiler */
 
 /* Suppresses: "'function' : resolved overload was found by argument-dependent lookup" */
 #if _MSC_VER >= 1310
 # pragma warning(disable : 4675)
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
 /* Suppresses: "function not expanded" */
 #pragma warning(disable : 4710)
@@ -772,7 +770,7 @@
 #if _MSC_VER >= 1310
 /* Suppresses: "'bytes' bytes padding added after member 'member'" */
 # pragma warning(disable : 4820)
-#endif /* _MSC_VER >= 1310 */
+#endif /* compiler */
 
 #if _MSC_VER < 1300
 # ifdef __cplusplus
@@ -783,7 +781,7 @@
 #  include <utility>     // This is included so we get past the MSVC promotion of 4284 before we then disable it again
 # endif /* __cplusplus */
 # pragma warning(disable : 4284)
-#endif /* _MSC_VER < 1300 */
+#endif /* compiler */
 
 #if _MSC_VER < 1300 && \
     defined(_DEBUG)
@@ -806,4 +804,4 @@
 
 #include <stlsoft/internal/cccap/obsolete.h>
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

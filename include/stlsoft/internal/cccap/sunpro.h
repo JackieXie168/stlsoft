@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for SunPro C / SunPro C++.
  *
  * Created:     24th April 2008
- * Updated:     7th May 2009
+ * Updated:     21st July 2009
  *
  * Thanks to:   Jonathan Wakely and Lars Ivar Igesund for help with
  *              getting STLSoft (and Pantheios) compatible with Solaris.
@@ -63,7 +63,7 @@
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MAJOR      1
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_MINOR      0
 # define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_REVISION   3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       5
+# define STLSOFT_VER_H_STLSOFT_CCCAP_SUNPRO_EDIT       7
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -383,15 +383,15 @@
   * requires that you have defined _STLSOFT_CUSTOM_ASSERT() as a macro
   * taking 1 parameter (the condition to assert).
   *
-  * Suppose you have a function _DisplayAssert(), which has the
+  * Suppose you have a function DisplayAssert_(), which has the
   * following signature:
   *
-  *   void _DisplayAssert(char const* file, int line, char const* expression);
+  *   void DisplayAssert_(char const* file, int line, char const* expression);
   *
   * Presumably you would also have your own assert macro, say MY_ASSERT(),
   * defined as:
   *
-  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(_DisplayAssert(__FILE__, __LINE__, #_x))) : ((void)0)))
+  *   #define MY_ASSERT(_x) ((void)((!(_x)) ? ((void)(DisplayAssert_(__FILE__, __LINE__, #_x))) : ((void)0)))
   *
   * so you would simply need to define _STLSOFT_CUSTOM_ASSERT() in terms of
   * MY_ASSERT(), as in:
@@ -464,4 +464,4 @@
 #undef _STLSOFT_SUNPRO_VER_MAJOR
 #undef _STLSOFT_SUNPRO_VER_MINOR
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

@@ -5,7 +5,7 @@
  *              resource types; special implementation for Borland.
  *
  * Created:     1st November 1994
- * Updated:     9th February 2009
+ * Updated:     10th July 2009
  *
  * Thanks to:   Maciej Kaniewski, for requesting Borland compatibility (in
  *              order to use FastFormat and Pantheios)
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MAJOR      6
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__MINOR      1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__REVISION   1
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       668
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__REVISION   2
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_BORLAND__EDIT       669
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,6 +151,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -217,6 +219,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -283,6 +287,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -347,6 +353,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -410,6 +418,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -473,6 +483,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -536,6 +548,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -599,6 +613,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -662,6 +678,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -724,6 +742,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -785,6 +805,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -846,6 +868,8 @@ struct scoped_handle_borland_impl_
         {
 #ifndef USE_INTERNAL_MEMORY
             ::operator delete(pv);
+#else /* ? USE_INTERNAL_MEMORY */
+            STLSOFT_SUPPRESS_UNUSED(pv);
 #endif /* USE_INTERNAL_MEMORY */
         }
 #ifndef __BORLANDC__
@@ -1070,7 +1094,10 @@ private:
     union
     {
         long double ld;
+#if !defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    __BORLANDC__ > 0x0560
         ss_byte_t   cdecl_R[cdecl_function_type_size];
+#endif /* compiler */
 
     }                       m_bytes;
 

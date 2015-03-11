@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     6th May 2009
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    6
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 14
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     250
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 15
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     252
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -296,9 +296,13 @@ public:
     /// Ensures that the path does not have a trailing path name separator
     ///
     /// \note Does not trim the separator character from the root designator
-    class_type& pop_sep();
+    ///
+    /// \note This method is idempotent.
+    class_type& pop_sep() stlsoft_throw_0();
     /// Removes the extension, if any, from the file component of the path
-    class_type& pop_ext();
+    ///
+    /// \note This method is idempotent.
+    class_type& pop_ext() stlsoft_throw_0();
 
     /// Equivalent to push()
     class_type& operator /=(char_type const* rhs);
@@ -1406,7 +1410,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_path<C, T, A>& basic_path<C, T, A>::pop_sep()
+inline basic_path<C, T, A>& basic_path<C, T, A>::pop_sep() stlsoft_throw_0()
 {
     if(0 != m_len)
     {
@@ -1444,7 +1448,7 @@ template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         ,   ss_typename_param_k A
         >
-inline basic_path<C, T, A>& basic_path<C, T, A>::pop_ext()
+inline basic_path<C, T, A>& basic_path<C, T, A>::pop_ext() stlsoft_throw_0()
 {
     { for(ws_size_t len = m_len; 0 != len; --len)
     {

@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd May 2009
+ * Updated:     21st July 2009
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,7 +48,7 @@
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       9
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        173
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        174
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -393,7 +393,7 @@
 #endif /* WINSTL_FORCE_UDATE || compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Debugging
+ * Contract Enforcement
  *
  * The macro winstl_assert provides standard debug-mode assert functionality.
  */
@@ -921,4 +921,4 @@ namespace winstl = ::stlsoft::winstl_project;
 
 #endif /* WINSTL_INCL_WINSTL_H_WINSTL */
 
-/* ////////////////////////////////////////////////////////////////////// */
+/* ///////////////////////////// end of file //////////////////////////// */

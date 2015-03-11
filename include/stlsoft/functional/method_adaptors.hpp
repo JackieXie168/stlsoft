@@ -4,11 +4,11 @@
  * Purpose:     Contains the stlsoft::mem_fun calling convention-aware function adaptors.
  *
  * Created:     13th June 1999
- * Updated:     9th March 2008
+ * Updated:     8th June 2009
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2009, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MAJOR      4
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_MINOR      1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   2
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       60
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_REVISION   3
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_METHOD_ADAPTORS_EDIT       61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,6 +98,119 @@ namespace stlsoft
 /* /////////////////////////////////////////////////////////////////////////
  * Classes
  */
+
+// thiscall
+#ifdef STLSOFT_CF_THISCALL_SUPPORTED
+/** \brief A function class that invokes a <b>cdecl</b> calling convention
+ *    0-parameter mutating (non-const) member function on its pointer argument.
+ *
+ * \ingroup group__library__functional
+ */
+// [[synesis:class:function-class:unary-function: thiscall_mem_fun_t<T<R>, T<A>>]]
+template< ss_typename_param_k R
+        , ss_typename_param_k T
+        >
+struct thiscall_mem_fun_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, R>
+{
+public:
+    typedef R           return_type;
+    typedef T           operand_class_type;
+    typedef return_type (T::*method_type)();
+public:
+    ss_explicit_k thiscall_mem_fun_t(method_type func)
+        : m_func(func)
+    {}
+    return_type operator ()(operand_class_type *pt) const
+    {
+        return (pt->*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+/** \brief A function class that invokes a <b>cdecl</b> calling convention
+ *    0-parameter non-mutating (const) member function on its pointer argument.
+ *
+ * \ingroup group__library__functional
+ */
+// [[synesis:class:function-class:unary-function: thiscall_mem_fun_t<T<R>, T<A>>]]
+template< ss_typename_param_k R
+        , ss_typename_param_k T
+        >
+struct thiscall_mem_fun_const_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, R>
+{
+public:
+    typedef R           return_type;
+    typedef T           operand_class_type;
+# ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+    typedef return_type (T::*method_type)() const;
+# else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+    typedef return_type (T::*method_type)() const;
+# endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+public:
+    ss_explicit_k thiscall_mem_fun_const_t(method_type func)
+        : m_func(func)
+    {}
+    return_type operator ()(operand_class_type const* pt) const
+    {
+        return (pt->*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+# ifndef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+
+template< ss_typename_param_k T
+        >
+struct thiscall_mem_fun_void_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, void>
+{
+public:
+    typedef void        return_type;
+    typedef T           operand_class_type;
+#  ifdef STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED
+    typedef return_type (T::*method_type)();
+#  else /* ? STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+    typedef return_type (T::*method_type)();
+#  endif /* STLSOFT_CF_CALLING_CONVENTION_OUTSIDE_BRACE_REQUIRED */
+public:
+    ss_explicit_k thiscall_mem_fun_void_t(method_type func)
+        : m_func(func)
+    {}
+    void operator ()(operand_class_type *pt) const
+    {
+        (pt->*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+template< ss_typename_param_k T
+        >
+struct thiscall_mem_fun_const_void_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, void>
+{
+public:
+    typedef void        return_type;
+    typedef T           operand_class_type;
+    typedef return_type (T::*method_type)() const;
+public:
+    ss_explicit_k thiscall_mem_fun_const_void_t(method_type func)
+        : m_func(func)
+    {}
+    void operator ()(operand_class_type const* pt) const
+    {
+        (pt->*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+# endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_THISCALL_SUPPORTED */
 
 // cdecl
 
@@ -473,6 +586,111 @@ private:
 
 #endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
+
+
+#ifdef STLSOFT_CF_THISCALL_SUPPORTED
+/** \brief A function class that invokes a <b>cdecl</b> calling convention
+ *    0-parameter mutating (non-const) member function on its pointer argument.
+ *
+ * \ingroup group__library__functional
+ */
+// [[synesis:class:function-class:unary-function: thiscall_mem_fun_ref_t<T<R>, T<A>>]]
+template< ss_typename_param_k R
+        , ss_typename_param_k T
+        >
+struct thiscall_mem_fun_ref_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, R>
+{
+public:
+    typedef R           return_type;
+    typedef T           operand_class_type;
+    typedef return_type (T::*method_type)();
+public:
+    ss_explicit_k thiscall_mem_fun_ref_t(method_type func)
+        : m_func(func)
+    {}
+    return_type operator ()(operand_class_type& rt) const
+    {
+        return (rt.*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+/** \brief A function class that invokes a <b>thiscall</b> calling convention
+ *    0-parameter non-mutating (const) member function on its pointer argument.
+ *
+ * \ingroup group__library__functional
+ */
+// [[synesis:class:function-class:unary-function: thiscall_mem_fun_ref_t<T<R>, T<A>>]]
+template< ss_typename_param_k R
+        , ss_typename_param_k T
+        >
+struct thiscall_mem_fun_ref_const_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, R>
+{
+public:
+    typedef R           return_type;
+    typedef T           operand_class_type;
+    typedef return_type (T::*method_type)() const;
+public:
+    ss_explicit_k thiscall_mem_fun_ref_const_t(method_type func)
+        : m_func(func)
+    {}
+    return_type operator ()(operand_class_type const& rt) const
+    {
+        return (rt.*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+# ifndef STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID
+
+template< ss_typename_param_k T
+        >
+struct thiscall_mem_fun_ref_void_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, void>
+{
+public:
+    typedef void        return_type;
+    typedef T           operand_class_type;
+    typedef return_type (T::*method_type)();
+public:
+    ss_explicit_k thiscall_mem_fun_ref_void_t(method_type func)
+        : m_func(func)
+    {}
+    void operator ()(operand_class_type& rt) const
+    {
+        (rt.*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+template< ss_typename_param_k T
+        >
+struct thiscall_mem_fun_ref_const_void_t
+    : public stlsoft_ns_qual_std(unary_function)<T*, void>
+{
+public:
+    typedef void        return_type;
+    typedef T           operand_class_type;
+    typedef return_type (T::*method_type)() const;
+public:
+    ss_explicit_k thiscall_mem_fun_ref_const_void_t(method_type func)
+        : m_func(func)
+    {}
+    void operator ()(operand_class_type const& rt) const
+    {
+        (rt.*m_func)();
+    }
+private:
+    method_type m_func;
+};
+
+# endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_THISCALL_SUPPORTED */
 
 
 
@@ -1228,6 +1446,93 @@ inline stdcall_mem_fun_const_void_t<T> mem_fun_void(void (STLSOFT_STDCALL T::*fu
 
 
 
+#ifdef STLSOFT_CF_THISCALL_SUPPORTED
+
+/** \brief Creator function to adapt a pointer to a 0-parameter mutating
+ *    (non-const) member function, for use with a reference to the class.
+ *
+ * \ingroup group__library__functional
+ */
+template< ss_typename_param_k R
+        , ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_t<R, T> mem_fun_ref(R (T::*func)())
+{
+    return thiscall_mem_fun_ref_t<R, T>(func);
+}
+
+#if defined(STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID)
+
+/* We just provide mem_fun_ref_void() that returns 'normal' type. */
+
+template< ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_t<void, T> mem_fun_ref_void(void (T::*func)())
+{
+    return thiscall_mem_fun_ref_t<void, T>(func);
+}
+
+#else /* ? STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+
+template< ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_void_t<T> mem_fun_ref(void (T::*func)())
+{
+    return thiscall_mem_fun_ref_void_t<T>(func);
+}
+
+template< ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_void_t<T> mem_fun_ref_void(void (T::*func)())
+{
+    return thiscall_mem_fun_ref_void_t<T>(func);
+}
+
+#endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+
+
+/** \brief Creator function to adapt a pointer to a 0-parameter non-mutating
+ *    (const) member function, for use with a reference to the class.
+ *
+ * \ingroup group__library__functional
+ */
+template< ss_typename_param_k R
+        , ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_const_t<R, T> mem_fun_ref(R (T::*func)() const)
+{
+    return thiscall_mem_fun_ref_const_t<R, T>(func);
+}
+
+#if defined(STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID)
+
+/* We just provide mem_fun_ref_void() that returns 'normal' type. */
+
+template< ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_const_t<void, T> mem_fun_ref_void(void (T::*func)() const)
+{
+    return thiscall_mem_fun_ref_const_t<void, T>(func);
+}
+
+#else /* ? STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+
+template< ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref(void (T::*func)() const)
+{
+    return thiscall_mem_fun_ref_const_void_t<T>(func);
+}
+
+template< ss_typename_param_k T
+        >
+inline thiscall_mem_fun_ref_const_void_t<T> mem_fun_ref_void(void (T::*func)() const)
+{
+    return thiscall_mem_fun_ref_const_void_t<T>(func);
+}
+
+# endif /* STLSOFT_CF_COMPILER_SUPPORTS_RETURN_VOID */
+#endif /* STLSOFT_CF_THISCALL_SUPPORTED */
 
 // cdecl
 #ifdef STLSOFT_CF_CDECL_SUPPORTED
