@@ -2,12 +2,14 @@
 STLSoft - News
 
 ; Created:  29th March 2002
-; Updated:  4th May 2008
+; Updated:  11th May 2008
 
 ============================================================================
 
 
 News:
+
+  11th May 2008        -   Release of STLSoft 1.9.39
 
   4th May 2008         -   Release of STLSoft 1.9.38
 

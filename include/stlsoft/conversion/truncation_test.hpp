@@ -4,11 +4,11 @@
  * Purpose:     Runtime checking for numeric conversions.
  *
  * Created:     10th August 2006
- * Updated:     24th January 2007
+ * Updated:     10th May 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2006-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2006-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MAJOR      1
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_MINOR      0
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   3
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       41
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_REVISION   4
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_TRUNCATION_TEST_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -441,7 +441,20 @@ inline bool truncation_test_(FROM from, TO dummy = TO())    // The use of the du
 
     typedef ss_typename_param_k value_to_yesno_type<types_are_statically_compatible>::type  yesno_t;
 
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     defined(_Wp64) && \
+     !defined(_WIN64)
+#  pragma warning(push)
+#  pragma warning(disable : 4267)
+# endif /* VC++ + Win32 + _Wp32 */
+
     return truncation_test_helper_runtime_test<TO>(from, yesno_t(), dummy);
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     defined(_Wp64) && \
+     !defined(_WIN64)
+#  pragma warning(pop)
+# endif /* VC++ + Win32 + _Wp32 */
 }
 
 

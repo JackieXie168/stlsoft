@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     22nd April 2008
+ * Updated:     7th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
 # define WINSTL_VER_WINSTL_H_WINSTL_MINOR       8
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        168
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        169
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -714,6 +714,13 @@ typedef stlsoft_ns_qual(ss_size_t)          ws_size_t;      /**!< size. */
 typedef stlsoft_ns_qual(ss_ptrdiff_t)       ws_ptrdiff_t;   /**!< ptr diff. */
 typedef stlsoft_ns_qual(ss_streampos_t)     ws_streampos_t; /**!< streampos. */
 typedef stlsoft_ns_qual(ss_streamoff_t)     ws_streamoff_t; /**!< streamoff. */
+#ifdef WINSTL_OS_IS_WIN64
+typedef stlsoft_ns_qual(ss_sint64_t)        ws_sptrint_t;
+typedef stlsoft_ns_qual(ss_uint64_t)        ws_uptrint_t;
+#else /* ? WINSTL_OS_IS_WIN64 */
+typedef stlsoft_ns_qual(ss_sint32_t)        ws_sptrint_t;
+typedef stlsoft_ns_qual(ss_uint32_t)        ws_uptrint_t;
+#endif /* WINSTL_OS_IS_WIN64 */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -748,6 +755,8 @@ typedef ws_dword_t          dword_t;            /**!< dword. */
 typedef ws_streampos_t      streampos_t;        /**!< streampos. */
 typedef ws_streamoff_t      streamoff_t;        /**!< streamoff. */
 # endif /* compiler */
+typedef ws_sptrint_t        sptrint_t;
+typedef ws_uptrint_t        uptrint_t;
 #endif /* !_WINSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -846,7 +855,11 @@ const ws_size_t CONST_NT_MAX_PATH       =   WINSTL_CONST_NT_MAX_PATH;
  *  of <a href = "http://www.imperfectcplusplus.com/" target="blank">Imperfect C++</a>
  *  for a discussion of these issues.)
  */
+#ifdef _Wp64
+inline bool BOOL2bool(ws_int_t bVal)
+#else /* ? _Wp64 */
 inline bool BOOL2bool(BOOL bVal)
+#endif /* _Wp64 */
 {
     return bVal != FALSE;
 }

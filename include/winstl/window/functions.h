@@ -4,7 +4,7 @@
  * Purpose:     Window functions.
  *
  * Created:     7th May 2000
- * Updated:     22nd April 2008
+ * Updated:     11th May 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_MINOR     0
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  8
-# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      63
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_REVISION  9
+# define WINSTL_VER_WINSTL_WINDOW_H_FUNCTIONS_EDIT      64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -95,7 +95,7 @@ namespace winstl_project
 
 #ifndef NOWINOFFSETS
 
-STLSOFT_INLINE ws_long_t winstl__GetStyle(HWND h)
+STLSOFT_INLINE ws_sptrint_t winstl__GetStyle(HWND h)
 {
     return STLSOFT_NS_GLOBAL(GetWindowLong)(h, GWL_STYLE);
 }
@@ -104,7 +104,7 @@ STLSOFT_INLINE ws_long_t winstl__GetStyle(HWND h)
  *
  * \ingroup group__library__windows_window
  */
-STLSOFT_INLINE ws_long_t winstl__GetExStyle(HWND h)
+STLSOFT_INLINE ws_sptrint_t winstl__GetExStyle(HWND h)
 {
     return STLSOFT_NS_GLOBAL(GetWindowLong)(h, GWL_EXSTYLE);
 }
@@ -113,25 +113,25 @@ STLSOFT_INLINE ws_long_t winstl__GetExStyle(HWND h)
  *
  * \ingroup group__library__windows_window
  */
-STLSOFT_INLINE ws_long_t winstl__SetStyle(HWND h, ws_long_t s)
+STLSOFT_INLINE ws_sptrint_t winstl__SetStyle(HWND h, ws_sptrint_t s)
 {
-    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, GWL_STYLE, stlsoft_static_cast(ws_long_t, s));
+    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, GWL_STYLE, stlsoft_static_cast(ws_sptrint_t, s));
 }
 
 /** Sets the extended style of the window
  *
  * \ingroup group__library__windows_window
  */
-STLSOFT_INLINE ws_long_t winstl__SetExStyle(HWND h, ws_long_t x)
+STLSOFT_INLINE ws_sptrint_t winstl__SetExStyle(HWND h, ws_sptrint_t x)
 {
-    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, GWL_EXSTYLE, stlsoft_static_cast(ws_long_t, x));
+    return STLSOFT_NS_GLOBAL(SetWindowLong)(h, GWL_EXSTYLE, stlsoft_static_cast(ws_sptrint_t, x));
 }
 
 /** Modifies the style of the window
  *
  * \ingroup group__library__windows_window
  */
-STLSOFT_INLINE ws_long_t winstl__ModifyStyle(HWND h, ws_long_t sRem, ws_long_t sAdd)
+STLSOFT_INLINE ws_sptrint_t winstl__ModifyStyle(HWND h, ws_sptrint_t sRem, ws_sptrint_t sAdd)
 {
     return winstl__SetStyle(h, (winstl__GetStyle(h) & ~sRem) | sAdd);
 }
@@ -140,7 +140,7 @@ STLSOFT_INLINE ws_long_t winstl__ModifyStyle(HWND h, ws_long_t sRem, ws_long_t s
  *
  * \ingroup group__library__windows_window
  */
-STLSOFT_INLINE ws_long_t winstl__ModifyExStyle(HWND h, ws_long_t sRem, ws_long_t sAdd)
+STLSOFT_INLINE ws_sptrint_t winstl__ModifyExStyle(HWND h, ws_sptrint_t sRem, ws_sptrint_t sAdd)
 {
     return winstl__SetExStyle(h, (winstl__GetExStyle(h) & ~sRem) | sAdd);
 }
@@ -186,7 +186,7 @@ STLSOFT_INLINE ws_int_t winstl__IsWindowClassW(HWND hwnd, ws_char_w_t const* nam
  *
  * \ingroup group__library__windows_window
  */
-STLSOFT_INLINE void winstl__EnableDlgItem(HWND hwnd, int id, ws_int_t bEnable)
+STLSOFT_INLINE void winstl__EnableDlgItem(HWND hwnd, int id, BOOL bEnable)
 {
     STLSOFT_NS_GLOBAL(EnableWindow)(STLSOFT_NS_GLOBAL(GetDlgItem)(hwnd, id), bEnable);
 }
@@ -219,12 +219,14 @@ STLSOFT_INLINE ws_int_t winstl__GetDlgItemTextLength(HWND hwnd, int id)
  */
 STLSOFT_INLINE HINSTANCE winstl__GetWindowInstance(HWND hwnd)
 {
-#if defined(_WIN64) || \
+#if defined(WINSTL_OS_IS_WIN64) || \
     defined(_Wp64)
-    return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLongPtr)(hwnd, GWLP_HINSTANCE));
+    LONG_PTR    l = STLSOFT_NS_GLOBAL(GetWindowLongPtr)(hwnd, GWLP_HINSTANCE);
 #else /* ? width */
-    return stlsoft_reinterpret_cast(HINSTANCE, STLSOFT_NS_GLOBAL(GetWindowLong)(hwnd, GWL_HINSTANCE));
+    LONG        l = STLSOFT_NS_GLOBAL(GetWindowLong)(hwnd, GWL_HINSTANCE);
 #endif /* width */
+
+    return stlsoft_reinterpret_cast(HINSTANCE, l);
 }
 
 #endif /* !NOWINOFFSETS */
@@ -250,7 +252,7 @@ namespace winstl
  *
  * \ingroup group__library__windows_window
  */
-inline ws_long_t GetStyle(HWND h)
+inline ws_sptrint_t GetStyle(HWND h)
 {
     return winstl__GetStyle(h);
 }
@@ -259,7 +261,7 @@ inline ws_long_t GetStyle(HWND h)
  *
  * \ingroup group__library__windows_window
  */
-inline ws_long_t GetExStyle(HWND h)
+inline ws_sptrint_t GetExStyle(HWND h)
 {
     return winstl__GetExStyle(h);
 }
@@ -268,7 +270,7 @@ inline ws_long_t GetExStyle(HWND h)
  *
  * \ingroup group__library__windows_window
  */
-inline ws_long_t SetStyle(HWND h, ws_long_t s)
+inline ws_sptrint_t SetStyle(HWND h, ws_sptrint_t s)
 {
     return winstl__SetStyle(h, s);
 }
@@ -277,7 +279,7 @@ inline ws_long_t SetStyle(HWND h, ws_long_t s)
  *
  * \ingroup group__library__windows_window
  */
-inline ws_long_t SetExStyle(HWND h, ws_long_t x)
+inline ws_sptrint_t SetExStyle(HWND h, ws_sptrint_t x)
 {
     return winstl__SetExStyle(h, x);
 }
@@ -286,7 +288,7 @@ inline ws_long_t SetExStyle(HWND h, ws_long_t x)
  *
  * \ingroup group__library__windows_window
  */
-inline ws_long_t ModifyStyle(HWND h, ws_long_t sRem, ws_long_t sAdd)
+inline ws_sptrint_t ModifyStyle(HWND h, ws_sptrint_t sRem, ws_sptrint_t sAdd)
 {
     return winstl__ModifyStyle(h, sRem, sAdd);
 }
@@ -295,7 +297,7 @@ inline ws_long_t ModifyStyle(HWND h, ws_long_t sRem, ws_long_t sAdd)
  *
  * \ingroup group__library__windows_window
  */
-inline ws_long_t ModifyExStyle(HWND h, ws_long_t sRem, ws_long_t sAdd)
+inline ws_sptrint_t ModifyExStyle(HWND h, ws_sptrint_t sRem, ws_sptrint_t sAdd)
 {
     return winstl__ModifyExStyle(h, sRem, sAdd);
 }
@@ -375,22 +377,24 @@ inline HICON set_window_icon(HWND hwnd, int iconType, HICON hicon)
 
 # if defined(STLSOFT_COMPILER_IS_BORLAND) && \
      __BORLANDC__ < 0x0564
-    /* This is needed here to prevent the Borland compiler from confused it with the winstl one! */
+    /* This is needed here to prevent the Borland compiler from confusing it with the winstl one! */
     using ::SendMessage;
 # endif /* compiler */
 
-/*#if defined(_WIN64) || \
-//    defined(_Wp64)
-//    LRESULT l = ::SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon));
-//
-//  HICON   h = LRESULT2HICON(LRESULT(l));
-//
-//  stlsoft_ns_qual(union_caster)<HICON, LRESULT, false>(0);
-//
-//    return LRESULT2HICON(l);
-//#else / * ? width */
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     defined(_Wp64) && \
+     !defined(_WIN64)
+#  pragma warning(push)
+#  pragma warning(disable : 4244)
+# endif /* VC++ + Win32 + _Wp32 */
+
     return LRESULT2HICON(::SendMessage(hwnd, WM_SETICON, static_cast<WPARAM>(iconType), HICON2LPARAM(hicon)));
-/*#endif / * width */
+
+# if defined(STLSOFT_COMPILER_IS_MSVC) && \
+     defined(_Wp64) && \
+     !defined(_WIN64)
+#  pragma warning(pop)
+# endif /* VC++ + Win32 + _Wp32 */
 }
 
 inline HICON set_window_icon(HWND hwnd, int iconType, HINSTANCE hinst, LPCTSTR iconName)
