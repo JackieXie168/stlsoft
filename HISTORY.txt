@@ -2,9 +2,23 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  7th June 2010
+; Updated:  21st June 2010
 
 ============================================================================
+
+
+21st June 2010 - 1.9.99 released
+--------------------------------
+
+	* added filesystem_traits::str_fs_compare() (UNIXSTL & WinSTL)
+	* added filesystem_traits::str_fs_n_compare() (UNIXSTL & WinSTL)
+	* added str_n_compare_no_case declaration to system_traits (UNIXSTL & WinSTL)
+ * added assoc_select_first() and assoc_select_second() creator functions for associative_select_iterator
+ * incorporated Manfred Ehrhart's fixes for associative_select_iterator
+ * Borland/GCC-compatibility fixes
+ * GCC-compatibility fixes
+	* nullptr support correction for VC++
+ * various minor fixes
 
 
 7th June 2010 - 1.9.98 released

@@ -2,7 +2,7 @@
 STLSoft - Known Issues:
 
 ; Created:  29th March 2002
-; Updated:  7th June 2010
+; Updated:  21st June 2010
 
 ============================================================================
 
@@ -21,6 +21,10 @@ STLSoft 1.9 Known Issues:
 
  * The documentation is still hopeless. This will be addressed in the
    release of 1.10.
+
+ * Several unixstl::system_traits methods are declared but not defined, with
+   the intention to flesh them out from Linux system calls (and have
+   emulations/workarounds for other architectures)
 
 STLSoft 1.9 Suspected Issues:
 -----------------------------

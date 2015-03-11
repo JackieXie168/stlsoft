@@ -4,7 +4,7 @@
  * Purpose:     Definition of stlsoft::read_line() function template.
  *
  * Created:     2nd January 2007
- * Updated:     11th May 2010
+ * Updated:     9th June 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  1
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      12
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  2
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,11 +98,16 @@ struct read_line_flags
 {
     enum flags_t
     {
-        recogniseCrAsEOL    =   0x0001, /*!< Recognises a sole carriage return ('\r') character as a line feed */
+        /** Recognises a sole carriage return (<code>'\r'</code>) character as the end-of-line marker */
+        recogniseCrAsEOL    =   0x0001,
+        /** Recognises a sole line feed (<code>'\r'</code>) character as the end-of-line marker */
         recogniseLfAsEOL    =   0x0002,
+        /** Recognises the carriage return + line feed sequence (<code>"\r\n"</code>) as the end-of-line marker */
         recogniseCrLfAsEOL  =   0x0004,
+        /** Recognises a sole carriage return (<code>'\r'</code>) character, or a sole line feed (<code>'\r'</code>) character or the carriage return + line feed sequence (<code>"\r\n"</code>) as the end-of-line marker */
         recogniseAll        =   (recogniseCrAsEOL | recogniseLfAsEOL | recogniseCrLfAsEOL),
 
+        /** Flags mask */
         mask                =   0x0007
     };
 };
@@ -118,7 +123,7 @@ inline read_line_flags::flags_t operator |(read_line_flags::flags_t const& lhs, 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-struct read_line_impl
+namespace readers
 {
     class read_from_FILE
     {
@@ -276,6 +281,10 @@ struct read_line_impl
         ss_size_t           m_current;
     };
 
+} /* namespace readers */
+
+namespace read_line_impl
+{
     template<   ss_typename_param_k S
             ,   ss_typename_param_k P
             >
@@ -369,7 +378,8 @@ struct read_line_impl
 
         return !line.empty();
     }
-};
+
+} /* namespace read_line_impl */
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
@@ -391,14 +401,18 @@ struct read_line_impl
  * \retval true The parsing is not complete
  * \retval false The parsing is complete
  *
- * \remarks The function can any or all of the following as line-termination
- *   sequences: carriage-return ('\r'), line-feed ('\n'), or
+ * \remarks The function can recognise any or all of the following as
+ *   line-termination sequences: carriage-return ('\r'), line-feed ('\n'), or
  *   carriage-return+line-feed ("\r\n").
  */
 template <ss_typename_param_k S>
-ss_bool_t read_line(FILE* stm, S& line, read_line_flags::flags_t flags = read_line_flags::recogniseAll)
+ss_bool_t read_line(
+    FILE*                       stm
+,   S&                          line
+,   read_line_flags::flags_t    flags = read_line_flags::recogniseAll
+)
 {
-    read_line_impl::read_from_FILE  policy(stm);
+    readers::read_from_FILE  policy(stm);
 
     return read_line_impl::read_line(policy, line, flags);
 }
@@ -408,9 +422,14 @@ ss_bool_t read_line(FILE* stm, S& line, read_line_flags::flags_t flags = read_li
 template<   ss_typename_param_k I
         ,   ss_typename_param_k S
         >
-ss_bool_t read_line(I from, I to, S& line, read_line_flags::flags_t flags = read_line_flags::recogniseAll)
+ss_bool_t read_line(
+    I                           from
+,   I                           to
+,   S&                          line
+,   read_line_flags::flags_t    flags = read_line_flags::recogniseAll
+)
 {
-    read_line_impl::read_from_iterator_range<I> policy(from, to);
+    readers::read_from_iterator_range<I> policy(from, to);
 
     return read_line_impl::read_line(policy, line, flags);
 }

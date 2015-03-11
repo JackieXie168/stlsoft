@@ -5,7 +5,7 @@
  *              Unicode specialisations thereof.
  *
  * Created:     30th April 1999
- * Updated:     31st March 2010
+ * Updated:     16th June 2010
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MAJOR    4
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_MINOR    2
 # define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_REVISION 2
-# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     75
+# define INETSTL_VER_INETSTL_FILESYSTEM_HPP_FILESYSTEM_TRAITS_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -161,11 +161,11 @@ public:
     /// Appends the contents of \c src to \c dest
     static char_type*   str_cat(char_type* dest, char_type const* src);
 #endif /* !STLSOFT_USING_SAFE_STR_FUNCTIONS || _CRT_SECURE_NO_DEPRECATE */
-    /// Comparies the contents of \c src and \c dest
+    /// Compares the contents of \c src and \c dest
     static int_type     str_compare(char_type const* s1, char_type const* s2);
-    /// Comparies the contents of \c src and \c dest in a case-insensitive fashion
+    /// Compares the contents of \c src and \c dest in a case-insensitive fashion
     static int_type     str_compare_no_case(char_type const* s1, char_type const* s2);
-    /// Comparies the contents of \c src and \c dest up to \c cch characters
+    /// Compares the contents of \c src and \c dest up to \c cch characters
     static int_type     str_n_compare(char_type const* s1, char_type const* s2, size_type cch);
     /// Evaluates the length of \c src
     static size_type    str_len(char_type const* src);
