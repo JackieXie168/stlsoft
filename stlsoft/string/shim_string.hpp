@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     17th September 2006
+ * Updated:     19th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -41,7 +41,7 @@
 /** \file stlsoft/string/shim_string.hpp
  *
  * \brief [C++ only] Definition of the stlsoft::basic_shim_string class
- *  template.
+ *   template.
  *  (\ref group__library__string "String" Library.)
  */
 
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    3
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        30
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -201,6 +201,10 @@ public:
         STLSOFT_ASSERT(m_buffer.size() > 0);
 
         return m_buffer.size() - 1;
+    }
+    static size_type internal_size()
+    {
+        return buffer_type::internal_size();
     }
 
     char_type *data()

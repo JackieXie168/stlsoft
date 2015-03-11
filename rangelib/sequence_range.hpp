@@ -311,7 +311,7 @@ template<   ss_typename_param_k S
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
         ,   ss_typename_param_k T = sequence_range_traits<S, is_const_type<S>::value>   // Determines whether the sequence is const
 #else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-        ,   ss_typename_param_k T = const_sequence_range_traits<S>						// Defaults to a const sequence
+        ,   ss_typename_param_k T = const_sequence_range_traits<S>                      // Defaults to a const sequence
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
         >
 class sequence_range

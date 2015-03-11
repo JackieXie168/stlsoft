@@ -4,7 +4,7 @@
  * Purpose:     Contains the auto_buffer template class.
  *
  * Created:     19th January 2002
- * Updated:     15th September 2006
+ * Updated:     19th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MAJOR       5
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_MINOR       0
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_REVISION    5
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        145
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_BUFFER_EDIT        146
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -281,14 +281,14 @@ struct auto_buffer_internal_size_calculator<ss_char_w_t>
                                     , stlsoft::member_selector(slices + numSlices, &pan_slice_t::len)
                                     , size_t(0));
     char    buff[2048];
-	char    *buffer = (n < 2048) ? &buff[0] : new char[1 + n];
+    char    *buffer = (n < 2048) ? &buff[0] : new char[1 + n];
 
     . . .
 
     if(buffer != &buff[0])
-	{
-	  delete [] buffer;
-	}
+    {
+      delete [] buffer;
+    }
 \endcode
  * But this is onerous manual fiddling, and exception-unsafe. What would be
  * the point, when auto_buffer already does this (safely) for us?
@@ -633,19 +633,25 @@ private:
 public:
     /// \brief Expands or contracts the number of items in the buffer
     ///
-    /// \param cItems The number of items to change in the buffer
-    /// \return Returns \c true if successful. Function failure occurs when sufficient storage for the
-    /// requested items cannot be allocated. In that case, std::bad_alloc will be throw for allocators
-    /// that support it, otherwise the function will return \c false. In either case, the original
-    /// storage and contents of the buffer will remain unchanged.
+    /// \param cItems The number of items to change in the buffer. If 0, the
+    ///   external array (if allocated) will be deallocated.
+    /// \return Returns \c true if successful. Function failure occurs when
+    ///   sufficient storage for the requested items cannot be allocated. In
+    ///   that case, std::bad_alloc will be throw for allocators that
+    ///   support it, otherwise the function will return \c false. In either
+    ///   case, the original storage and contents of the buffer will remain
+    ///   unchanged.
     ///
-    /// \note When reducing the number of elements, the implementation favours speed above memory
-    /// consumption. If the new item size is still larger than the internal storage size
-    /// (\c internal_size()) then the heap allocated block will not be changed (i.e. it will not be
-    /// exchanged for a smaller block).
+    /// \note When reducing the number of elements, the implementation
+    ///   favours speed above memory consumption. If the new item size is
+    ///   still larger than the internal storage size (\c internal_size())
+    ///   then the heap allocated block will not be changed (i.e. it will
+    ///   not be exchanged for a smaller block).
     ///
-    /// \note As from STLSoft version 1.9, the external array is not discarded in favour of the internal
-    /// array when 0 < cItems < internal_size(). Only resize(0) will deallocate the external array.
+    /// \note As from STLSoft version 1.9, the external array is not
+    ///   discarded in favour of the internal array when
+    ///   <code>0 < cItems < internal_size()</code>.
+    ///   Only <code>resize(0)</code> will deallocate the external array.
     ss_bool_t resize(size_type cItems)
     {
         STLSOFT_ASSERT(is_valid());

@@ -4,7 +4,7 @@
  * Purpose:     char_traits classes.
  *
  * Created:     19th November 1998
- * Updated:     13th September 2006
+ * Updated:     20th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     63
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_REVISION 3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_CHAR_TRAITS_EDIT     64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -688,7 +688,7 @@ inline char *stlsoft_char_traits<char>::assign(char *dest, ss_size_t cch, char c
 STLSOFT_TEMPLATE_SPECIALISATION
 inline ss_int_t stlsoft_char_traits<char>::compare(char_type const *s1, char_type const *s2, ss_size_t cch)
 {
-    return memcmp(s1, s2, cch);
+    return ::memcmp(s1, s2, cch);
 }
 
 STLSOFT_TEMPLATE_SPECIALISATION
@@ -698,7 +698,7 @@ inline char const *stlsoft_char_traits<char>::find(char_type const *s, size_type
     __BORLANDC__ < 0x0560
     return static_cast<char const*>(memchr(s, c, cch));
 #else /* ? compiler */
-    void const  *p = memchr(s, c, cch);
+    void const  *p = ::memchr(s, c, cch);
 
     return static_cast<char const*>(p);
 #endif /* compiler */
