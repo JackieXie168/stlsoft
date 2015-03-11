@@ -4,7 +4,7 @@
  * Purpose:     Contains the CList_swap utility function.
  *
  * Created:     15th September 2006
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_MAJOR      1
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_MINOR      0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_REVISION   1
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_EDIT       3
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_LIST_SWAP_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -110,9 +110,14 @@ template <class A>
 class CList_swap_veneer
     : public A
 {
+/// \name Member Types
+/// @{
 public:
     typedef CList_swap_veneer<A>   class_type;
+/// @}
 
+/// \name Operations
+/// @{
 public:
     static void swap(class_type &lhs, class_type &rhs)
     {
@@ -123,12 +128,18 @@ public:
         std_swap(lhs.m_pBlocks, rhs.m_pBlocks);
         std_swap(lhs.m_nBlockSize, rhs.m_nBlockSize);
     }
+/// @}
 };
 
 #ifdef STLSOFT_CF_NAMESPACE_SUPPORT
 } // namespace list_impl
 #endif /* STLSOFT_CF_NAMESPACE_SUPPORT */
 
+/** \brief Swaps the contents of two instances of CList-family 
+ *    containers.
+ *
+ * \ingroup group__library__collections
+ */
 template <class A>
 void CList_swap(A &lhs, A &rhs)
 {

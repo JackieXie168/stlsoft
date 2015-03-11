@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   5
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       26
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       27
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -141,22 +141,19 @@ private:
  * while at the same time acquiring and releasing ownership of the
  * clipboard. The following code acquires access to the clipboard, and sets
  * a string on to it:
-\htmlonly
-<pre>
+\code
   // 1. Set the data on the clipboard
   {
     winstl::clipboard_scope     scope;
 
     scope.set_data("The data");
   }
-</pre>
-\endhtmlonly
+\endcode
  *
  * As long as no other thread/process changes the clipboard contents in the
  * meanwhile, this can then be read back, as follows:
  *
-\htmlonly
-<pre>
+\code
   // 2. Get the data from the clipboard
   {
     winstl::clipboard_scope     scope;
@@ -168,8 +165,7 @@ private:
 
     scope.get_allocator().deallocate(str);
   }
-</pre>
-\endhtmlonly
+\endcode
  *
  * In each case, the lifetime of the
  * \link winstl::clipboard_scope clipboard_scope\endlink is scoped with a

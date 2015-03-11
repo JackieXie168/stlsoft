@@ -4,7 +4,7 @@
  * Purpose:     Simple 'about' dialog, that shell executes hyperlinks.
  *
  * Created:     30th January 2000
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MAJOR      4
 # define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_MINOR      0
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   1
-# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       46
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_REVISION   2
+# define ATLSTL_VER_ATLSTL_WINDOW_HPP_ABOUT_DIALOG_EDIT       48
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -205,7 +205,7 @@ protected:
 
                 // 4. Check whether contains a '.'
                 if( 0 < len &&
-                    NULL != _tcschr(&buffer[0], '.'))
+                    NULL != _tcschr(buffer.data(), '.'))
                 {
                     SHELLEXECUTEINFO    sei;
 
@@ -213,7 +213,7 @@ protected:
                     sei.fMask           =   SEE_MASK_NOCLOSEPROCESS;
                     sei.hwnd            =   *this;
                     sei.lpVerb          =   _T("open");
-                    sei.lpFile          =   &buffer[0];
+                    sei.lpFile          =   buffer.data();
                     sei.lpParameters    =   NULL;
                     sei.lpDirectory     =   NULL;
                     sei.nShow           =   SW_SHOWNORMAL;

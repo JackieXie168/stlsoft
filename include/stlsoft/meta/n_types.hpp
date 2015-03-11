@@ -4,7 +4,7 @@
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     10th January 2007
+ * Updated:     18th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  2
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      114
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  3
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      115
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,29 +75,65 @@ namespace stlsoft
  * Classes
  */
 
+/** \defgroup group__library__meta__n_types N-types
+ * \ingroup group__library__meta
+ * \brief These types are used for making decisions at compile-time. The
+ *   sizes of a given type should not be assumed, but each is guaranteed
+ *   that each type is a different size than all the others.
+ * @{
+ */
+
+
+typedef struct { ss_byte_t ar[1]; }    one_type;
+typedef struct { one_type ar[2];  }    two_type;
+typedef struct { one_type ar[3];  }    three_type;
+typedef struct { one_type ar[4];  }    four_type;
+typedef struct { one_type ar[5];  }    five_type;
+typedef struct { one_type ar[6];  }    six_type;
+typedef struct { one_type ar[7];  }    seven_type;
+typedef struct { one_type ar[8];  }    eight_type;
+typedef struct { one_type ar[9];  }    nine_type;
+typedef struct { one_type ar[10]; }    ten_type;
+typedef struct { one_type ar[11]; }    eleven_type;
+typedef struct { one_type ar[12]; }    twelve_type;
+typedef struct { one_type ar[13]; }    thirteen_type;
+typedef struct { one_type ar[14]; }    fourteen_type;
+typedef struct { one_type ar[15]; }    fifteen_type;
+typedef struct { one_type ar[16]; }    sixteen_type;
+typedef struct { one_type ar[17]; }    seventeen_type;
+typedef struct { one_type ar[18]; }    eighteen_type;
+typedef struct { one_type ar[19]; }    nineteen_type;
+typedef struct { one_type ar[20]; }    twenty_type;
+
+
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-typedef struct { ss_byte_t ar[1]; }     one_type;       //!< A type for which sizeof() yields 1
-typedef struct { ss_byte_t ar[2]; }     two_type;       //!< A type for which sizeof() yields 2
-typedef struct { ss_byte_t ar[3]; }     three_type;     //!< A type for which sizeof() yields 3
-typedef struct { ss_byte_t ar[4]; }     four_type;      //!< A type for which sizeof() yields 4
-typedef struct { ss_byte_t ar[5]; }     five_type;      //!< A type for which sizeof() yields 5
-typedef struct { ss_byte_t ar[6]; }     six_type;       //!< A type for which sizeof() yields 6
-typedef struct { ss_byte_t ar[7]; }     seven_type;     //!< A type for which sizeof() yields 7
-typedef struct { ss_byte_t ar[8]; }     eight_type;     //!< A type for which sizeof() yields 8
-typedef struct { ss_byte_t ar[9]; }     nine_type;      //!< A type for which sizeof() yields 9
-typedef struct { ss_byte_t ar[10]; }    ten_type;       //!< A type for which sizeof() yields 10
-typedef struct { ss_byte_t ar[11]; }    eleven_type;    //!< A type for which sizeof() yields 11
-typedef struct { ss_byte_t ar[12]; }    twelve_type;    //!< A type for which sizeof() yields 12
-typedef struct { ss_byte_t ar[13]; }    thirteen_type;  //!< A type for which sizeof() yields 13
-typedef struct { ss_byte_t ar[14]; }    fourteen_type;  //!< A type for which sizeof() yields 14
-typedef struct { ss_byte_t ar[15]; }    fifteen_type;   //!< A type for which sizeof() yields 15
-typedef struct { ss_byte_t ar[16]; }    sixteen_type;   //!< A type for which sizeof() yields 16
-typedef struct { ss_byte_t ar[17]; }    seventeen_type; //!< A type for which sizeof() yields 17
-typedef struct { ss_byte_t ar[18]; }    eighteen_type;  //!< A type for which sizeof() yields 18
-typedef struct { ss_byte_t ar[19]; }    nineteen_type;  //!< A type for which sizeof() yields 19
+# ifdef STLSOFT_UNITTEST
+inline int stlsoft_meta_n_types_size_checker()
+{
+    STLSOFT_STATIC_ASSERT(sizeof(one_type) < sizeof(two_type));
+    STLSOFT_STATIC_ASSERT(sizeof(two_type) < sizeof(three_type));
+    STLSOFT_STATIC_ASSERT(sizeof(three_type) < sizeof(four_type));
+    STLSOFT_STATIC_ASSERT(sizeof(four_type) < sizeof(five_type));
+    STLSOFT_STATIC_ASSERT(sizeof(five_type) < sizeof(six_type));
+    STLSOFT_STATIC_ASSERT(sizeof(six_type) < sizeof(seven_type));
+    STLSOFT_STATIC_ASSERT(sizeof(seven_type) < sizeof(eight_type));
+    STLSOFT_STATIC_ASSERT(sizeof(eight_type) < sizeof(nine_type));
+    STLSOFT_STATIC_ASSERT(sizeof(nine_type) < sizeof(ten_type));
+    STLSOFT_STATIC_ASSERT(sizeof(ten_type) < sizeof(eleven_type));
+    STLSOFT_STATIC_ASSERT(sizeof(eleven_type) < sizeof(twelve_type));
+    STLSOFT_STATIC_ASSERT(sizeof(twelve_type) < sizeof(thirteen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(thirteen_type) < sizeof(fourteen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(fourteen_type) < sizeof(fifteen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(fifteen_type) < sizeof(sixteen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(sixteen_type) < sizeof(seventeen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(seventeen_type) < sizeof(eighteen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(eighteen_type) < sizeof(nineteen_type));
+    STLSOFT_STATIC_ASSERT(sizeof(nineteen_type) < sizeof(twenty_type));
 
-#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+    return 1;
+}
+# endif /* STLSOFT_UNITTEST */
 
 // Backwards compatiblity
 typedef one_type                        one_t;
@@ -119,8 +155,11 @@ typedef sixteen_type                    sixteen_t;
 typedef seventeen_type                  seventeen_t;
 typedef eighteen_type                   eighteen_t;
 typedef nineteen_type                   nineteen_t;
+typedef twenty_type                     twenty_t;
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** @} */
 
 /** \brief This template is used to synthesise types with specific sizes.
  *
@@ -131,8 +170,6 @@ struct size_type
 {
     ss_byte_t ar[N];
 };
-
-#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

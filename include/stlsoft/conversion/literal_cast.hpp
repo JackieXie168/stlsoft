@@ -4,7 +4,7 @@
  * Purpose:     Compile-time checking for literal conversions.
  *
  * Created:     5th September 2003
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_MINOR      0
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_REVISION   4
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       41
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_LITERAL_CAST_EDIT       42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,12 +129,10 @@ inline T literal_cast()
  * \param T The type to cast to
  * \param V The literal value to be cast
  *
-\htmlonly
-<pre>
-  short s1 = stlsoft::<b>literal_cast</b>&lt;short, 10>();          // Ok: 10 fits into short
-  short s2 = stlsoft::<b>literal_cast</b>&lt;short, 1000000000>();  // Compile error: value too large for short
-</pre>
-\endhtmlonly
+\code
+short s1 = stlsoft::literal_cast<short, 10>();          // Ok: 10 fits into short
+short s2 = stlsoft::literal_cast<short, 1000000000>();  // Compile error: value too large for short
+\endcode
  *
  * \note Thanks to Kevlin Henney (http://www.curbralan.com/) for insights
  *  into the solution.

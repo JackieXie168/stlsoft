@@ -105,7 +105,7 @@ namespace unittest
 
 				std::cout << "String with id 1024: " << str << std::endl;
 
-				fprintf(stdout, "String with id 1024: %.*s\n", str.size(), str.data());
+				fprintf(out, "String with id 1024: %.*s\n", str.size(), str.data());
 			}
 
 			// Documentation example

@@ -5,7 +5,7 @@
  *              for too long.
  *
  * Created:     11th October 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MAJOR       2
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_MINOR       1
 # define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_REVISION    1
-# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        33
+# define STLSOFT_VER_STLSOFT_META_HPP_MEMBER_TRAITS_EDIT        34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,15 +115,13 @@ namespace stlsoft
  * member_traits may be used in the compile-time evaluation of whether a given
  * type has certain members, as follows:
  *
- * \htmlonly
- * <pre>
- *
- *
- *
- *
- *
- * </pre>
- * \endhtmlonly
+\code
+
+
+
+
+
+\endcode
  */
 
 template<ss_typename_param_k T>

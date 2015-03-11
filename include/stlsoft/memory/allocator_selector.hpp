@@ -4,7 +4,7 @@
  * Purpose:     Selects the most appropriate allocator.
  *
  * Created:     20th August 2005
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MAJOR    2
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_MINOR    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_REVISION 1
-# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     21
+# define STLSOFT_VER_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR_EDIT     22
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -175,17 +175,17 @@ namespace stlsoft
  * Although not likely to be necessary, it is available for use in user's
  * class templates, as in:
 \code
-  template &lt;typename T
-           , typename A = typename stlsoft::allocator_selector&lt;T>::allocator_type
-           >
-  class my_buffer
-  {
-  public: // Member types
-    typedef T   value_type;
-    typedef A   allocator_type;
+template< typename T
+        , typename A = typename stlsoft::allocator_selector<T>::allocator_type
+        >
+class my_buffer
+{
+public: // Member types
+  typedef T   value_type;
+  typedef A   allocator_type;
 
-    . . . 
-  };
+  . . . 
+};
 \endcode
  *
  * \ingroup group__library__memory

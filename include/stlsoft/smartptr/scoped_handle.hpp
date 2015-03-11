@@ -5,7 +5,7 @@
  *              resource types.
  *
  * Created:     1st November 1994
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks to:   Adi Shavit, for requesting the indirect functionality
  *
@@ -55,7 +55,7 @@
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MAJOR    5
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_MINOR    2
 # define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_REVISION 3
-# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     656
+# define STLSOFT_VER_STLSOFT_SMARTPTR_HPP_SCOPED_HANDLE_EDIT     657
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -267,37 +267,22 @@ public:
  * and instances are initialised from a resource handle and the address of a
  * (single-parameter) cleanup function, as in:
  *
-\htmlonly
-<pre>
- ::stlsoft::<b>scoped_handle</b>&lt;void*>  h3(::malloc(100), ::free);
-</pre>
-\endhtmlonly
+\code
+ ::stlsoft::scoped_handle<void*>  h3(::malloc(100), ::free);
+\endcode
  *
  * or:
  *
-\htmlonly
-<pre>
- 
- ::stlsoft::<b>scoped_handle</b>&lt;int>    h1(::open("file.ext"), ::close);
-</pre>
-\endhtmlonly
+\code
+ ::stlsoft::scoped_handle<int>    h1(::open("file.ext"), ::close);
+\endcode
  *
  * or:
  *
-\htmlonly
-<pre>
- ::stlsoft::<b>scoped_handle</b>&lt;int>    h1(::open("file.ext"), ::close);
-</pre>
-\endhtmlonly
- *
- * or:
- *
-\htmlonly
-<pre>
+\code
  FILE                             *file = ::fopen("file.ext", "r");
- ::stlsoft::<b>scoped_handle</b>&lt;FILE*>  h2(file, ::fclose);
-</pre>
-\endhtmlonly
+ ::stlsoft::scoped_handle<FILE*>  h2(file, ::fclose);
+\endcode
  *
  * \note This class provides externally-initialised immutable-RAII (see section
  * 3.5 of Imperfect C++; http://imperfectcplusplus.com/). The managed resource

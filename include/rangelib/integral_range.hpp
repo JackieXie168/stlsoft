@@ -4,7 +4,7 @@
  * Purpose:     Integral range class.
  *
  * Created:     4th November 2003
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     44
+# define RANGELIB_VER_RANGELIB_HPP_INTEGRAL_RANGE_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -219,17 +219,13 @@ public:
  * It is categoried as a Notional Range
  *
  * It could be used as follows
- * \htmlonly
- * <code>
- * <pre>
- *   // Create a range of integer values, in the range [-100, 200), in increments of 5
- *   stlsoft::integral_range&lt;int&gt;   r(-100, +100, 5);
- *
- *   // Calculate the total
- *   int total = stlsoft::r_accumulate(r, 0);
- * </pre>
- * </code>
- * \endhtmlonly
+\code
+  // Create a range of integer values, in the range [-100, 200), in increments of 5
+  stlsoft::integral_range<int>   r(-100, +100, 5);
+
+  // Calculate the total
+  int total = stlsoft::r_accumulate(r, 0);
+\endcode
  */
 template<   ss_typename_param_k T
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT

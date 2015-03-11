@@ -4,7 +4,7 @@
  * Purpose:     Contains the module class.
  *
  * Created:     30th October 1997
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks to:   Pablo Aguilar for the idea of a template-based get_symbol().
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MAJOR      6
 # define WINSTL_VER_WINSTL_DL_HPP_MODULE_MINOR      3
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   2
-# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       218
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_REVISION   3
+# define WINSTL_VER_WINSTL_DL_HPP_MODULE_EDIT       220
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -402,7 +402,7 @@ inline module::module(module const &rhs)
         }
         else
         {
-            m_hmodule = load(&buffer[0]);
+            m_hmodule = load(buffer.data());
         }
     }
 }

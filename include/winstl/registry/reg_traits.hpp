@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     10th January 2007
+ * Updated:     16th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     64
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 5
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     65
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -298,7 +298,7 @@ public:
 
     static size_type expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest)
     {
-        return static_cast<size_type>(::ExpandEnvironmentStringsA(src, dest, cch_dest));
+        return static_cast<size_type>(::ExpandEnvironmentStringsA(src, dest, static_cast<DWORD>(cch_dest)));
     }
 
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
@@ -351,7 +351,7 @@ public:
 
     static result_type reg_set_value(hkey_type hkey, char_type const *valueName, ws_dword_t valueType, void const *data, size_type cbData)
     {
-        return ::RegSetValueExA(hkey, valueName, 0, valueType, static_cast<BYTE const*>(data), cbData);
+        return ::RegSetValueExA(hkey, valueName, 0, valueType, static_cast<BYTE const*>(data), static_cast<DWORD>(cbData));
     }
 
     static result_type reg_delete_value(hkey_type hkey, char_type const *valueName)
@@ -475,7 +475,7 @@ public:
 
     static size_type expand_env_strings(char_type const *src, char_type *dest, size_type cch_dest)
     {
-        return static_cast<size_type>(::ExpandEnvironmentStringsW(src, dest, cch_dest));
+        return static_cast<size_type>(::ExpandEnvironmentStringsW(src, dest, static_cast<DWORD>(cch_dest)));
     }
 
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
@@ -528,7 +528,7 @@ public:
 
     static result_type reg_set_value(hkey_type hkey, char_type const *valueName, ws_dword_t valueType, void const *data, size_type cbData)
     {
-        return ::RegSetValueExW(hkey, valueName, 0, valueType, static_cast<BYTE const*>(data), cbData);
+        return ::RegSetValueExW(hkey, valueName, 0, valueType, static_cast<BYTE const*>(data), static_cast<DWORD>(cbData));
     }
 
     static result_type reg_delete_value(hkey_type hkey, char_type const *valueName)

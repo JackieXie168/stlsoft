@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_Message_Block (and ACE_Data_Block) classes.
  *
  * Created:     23rd September 2004
- * Updated:     10th January 2007
+ * Updated:     18th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_REVISION   2
-# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       22
+# define ACESTL_VER_ACESTL_MEMORY_HPP_MESSAGE_BLOCK_FUNCTIONS_EDIT       23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,18 +102,16 @@ namespace acestl_project
  * Usage is extremely simple. Just specify the source (pointer and length), and
  * test for NULL (allocation failure):
  *
-\htmlonly
-<pre>
+\code
 
 ACE_Message_Block *newBlock = acestl::make_copied_Message_Block("Contents", 7);
 
 if(NULL == newBlock)
 {
-  fprintf(stderr, "Allocation failed!\n");
+  std::cerr <<  "Allocation failed!\n";
 }
 
-</pre>
-\endhtmlonly
+\endcode
  *
  */
 inline ACE_Message_Block *make_copied_Message_Block(char const *p, as_size_t n)

@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    5
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        35
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -163,8 +163,7 @@ private:
  * To specify your type being dl_call()-compatible, simply specialise the
  * traits template as follows (for the notional type <code>MyType</code>):
  *
-\htmlonly
-<pre>
+\code
 namespace MyNamespace
 {
   class MyType
@@ -175,13 +174,12 @@ namespace MyNamespace
 namespace unixstl
 {
   template <>
-  struct is_valid_dl_call_arg&lt;MyNamespace::MyType>
+  struct is_valid_dl_call_arg<MyNamespace::MyType>
   {
     enum { value = 1 };
   };
 } // namespace unixstl
-</pre>
-\endhtmlonly
+\endcode
  */
 template<ss_typename_param_k T>
 struct is_valid_dl_call_arg

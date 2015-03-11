@@ -4,7 +4,10 @@
  * Purpose:     Contains the get_ptr access shim.
  *
  * Created:     10th January 2002
- * Updated:     11th January 2007
+ * Updated:     20th January 2007
+ *
+ * Thanks to:   Nevin Liber for spotting a mistake in the get_ptr
+ *              definition.
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MAJOR     4
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     0
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_MINOR     1
 # define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_REVISION  1
-# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      44
+# define STLSOFT_VER_STLSOFT_SHIMS_ATTRIBUTE_GET_PTR_STD_HPP_AUTO_PTR_EDIT      46
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,24 +87,17 @@ namespace stlsoft
  */
 
 #ifndef _STLSOFT_PTR_ACCESS_NO_AUTO_PTR
+
 /* std::auto_ptr */
 /** \brief 
  * \ingroup group__concept__shim__pointer_attribute__get_ptr
  */
 template <ss_typename_param_k T>
-inline T *get_ptr(stlsoft_ns_qual_std(auto_ptr)<T> &p)
+inline T *get_ptr(stlsoft_ns_qual_std(auto_ptr)<T> const &p)
 {
     return p.get();
 }
 
-/** \brief 
- * \ingroup group__concept__shim__pointer_attribute__get_ptr
- */
-template <ss_typename_param_k T>
-inline T const *get_ptr(stlsoft_ns_qual_std(auto_ptr)<T> const &p)
-{
-    return p.get();
-}
 #endif /* _STLSOFT_PTR_ACCESS_NO_AUTO_PTR */
 
 ////////////////////////////////////////////////////////////////////////////

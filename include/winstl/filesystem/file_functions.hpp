@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for file handling
  *
  * Created:     1st January 2005
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MAJOR      2
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_MINOR      3
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_REVISION   7
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       48
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_FILE_FUNCTIONS_EDIT       49
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -135,12 +135,10 @@ inline ws_uint64_t load_text_file_impl(S1 const &fileName, S2 &contents);
  *
  * \return The number of bytes read from the file
  *
-\htmlonly
-<pre>
-  std::string       contents;
-  winstl::uint64_t  numBytes = winstl::<b>load_text_file</b>("mytextfile.ext", contents);
-</pre>
-\endhtmlonly
+\code
+std::string       contents;
+winstl::uint64_t  numBytes = winstl::load_text_file("mytextfile.ext", contents);
+\endcode
  *
  * \remarks The character type of the text file is assumed (and controlled)
  *   to be that of the \c contents parameter. For example, if \c contents is
@@ -367,13 +365,11 @@ void readlines_impl(CH const *p, ss_size_t len, C &container)
  *
  * \returns The \c container reference
  *
-\htmlonly
-<pre>
-  std::vector&lt;std::string>  lines;
+\code
+std::vector<std::string>  lines;
 
-  winstl::<b>readlines</b>("mytextfile.ext", lines);
-</pre>
-\endhtmlonly
+winstl::readlines("mytextfile.ext", lines);
+\endcode
  *
  *
  * \remarks The container type's <code>value_type</code> must provide

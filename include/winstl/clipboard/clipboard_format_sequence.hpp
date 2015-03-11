@@ -4,7 +4,7 @@
  * Purpose:     Enumerates clipboard formats.
  *
  * Created:     11th May 2003
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MAJOR    4
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_MINOR    0
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_REVISION 2
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     27
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_FORMAT_SEQUENCE_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,25 +100,21 @@ namespace winstl_project
  *
  * The class enables the formats currently available on the clipboard to be
  * enumerated, as shown in the following example:
-\htmlonly
-<pre>
+\code
   winstl::clipboard_format_sequence   fmt;
 
   std::copy(fmt.begin(), fmt.end()
           , stlsoft::ostream_iterator<UINT>(std::cout, "\t", "\n"));
-</pre>
-\endhtmlonly
+\endcode
  *
  * On the system on which this documentation was written, this printed the
  * following:
-\htmlonly
-<pre>
+\code
     1
     16
     7
     13
-</pre>
-\endhtmlonly
+\endcode
  *
  * which are
  *  <code>CF_TEXT</code>,

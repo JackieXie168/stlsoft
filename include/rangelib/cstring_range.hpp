@@ -4,7 +4,7 @@
  * Purpose:     Range adaptor for C-strings.
  *
  * Created:     17th May 2004
- * Updated:     6th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MAJOR     2
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_MINOR     3
 # define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_REVISION  3
-# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      32
+# define RANGELIB_VER_RANGELIB_HPP_CSTRING_RANGE_EDIT      33
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -141,17 +141,13 @@ public:
  * It is categoried as a Notional Range
  *
  * It could be used as follows
- * \htmlonly
- * <code>
- * <pre>
- *   // Create a range based on a C-string
- *   stlsoft::cstring_range  r("This is a literal string");
- *
- *   // Count the number of i's in the string
- *   size_t  num_Is = stlsoft::r_count(r, 'i');
- * </pre>
- * </code>
- * \endhtmlonly
+\code
+  // Create a range based on a C-string
+  stlsoft::cstring_range  r("This is a literal string");
+
+  // Count the number of i's in the string
+  size_t  num_Is = stlsoft::r_count(r, 'i');
+\endcode
  */
 template <ss_typename_param_k C>
 class cstring_range

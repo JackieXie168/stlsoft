@@ -4,7 +4,7 @@
  * Purpose:     Enhanced ostream iterator.
  *
  * Created:     16th December 2005
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MAJOR       1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_MINOR       3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        30
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_OSTREAM_ITERATOR_EDIT        31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,25 +106,22 @@ namespace stlsoft
  * For example, the following code indents each entry in the sequence as well
  * as appending a carriage return.
  *
-\htmlonly
-<pre>
+\code
 
-std::vector&lt;int>  ints(10);
+std::vector<int>  ints(10);
 
-{ for(size_t i = 0; i &lt; ints.size(); ++i)
+{ for(size_t i = 0; i < ints.size(); ++i)
 {
   ints[i] = i;
 }}
 
-std::cout &lt;&lt; "Elements:" &lt;&lt; std::endl;
-std::copy(ints.begin(), ints.end(), stlsoft::ostream_iterator&lt;int>(std::cout, "\t", "\n"));
-</pre>
-\endhtmlonly
+std::cout << "Elements:" << std::endl;
+std::copy(ints.begin(), ints.end(), stlsoft::ostream_iterator<int>(std::cout, "\t", "\n"));
+\endcode
  *
  * This gives the following output:
  *
-\htmlonly
-<pre><b>Elements:
+\code
         0
         1
         2
@@ -134,8 +131,7 @@ std::copy(ints.begin(), ints.end(), stlsoft::ostream_iterator&lt;int>(std::cout,
         6
         7
         8
-        9</b></pre>
-\endhtmlonly
+\endcode
  *
  * \param V The value type.
  * \param C The character type. Defaults to <code>char</code>.

@@ -1,5 +1,5 @@
 
-// Updated: 14th July 2006
+// Updated: 18th January 2007
 
 #if !defined(COMSTL_INCL_COMSTL_SHIMS_ACCESS_STRING_HPP_VARIANT)
 # error This file cannot be directly included, and should only be included within comstl/shims/access/string/variant.hpp
@@ -54,9 +54,9 @@ namespace unittest
 			if(0)
 			{
 #ifdef UNICODE
-				::fwprintf(stderr, L"[%s]\n", static_cast<wchar_t const*>(c_str_ptr(var2)));
+				fwprintf(err, L"[%s]\n", static_cast<wchar_t const*>(c_str_ptr(var2)));
 #else /* ? UNICODE */
-				::fprintf(stderr, "[%s]\n", static_cast<char const*>(c_str_ptr(var2)));
+				fprintf(err, "[%s]\n", static_cast<char const*>(c_str_ptr(var2)));
 #endif /* UNICODE */
 			}
 

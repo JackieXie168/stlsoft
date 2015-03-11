@@ -1,5 +1,5 @@
 
-// Updated: 1st June 2006
+// Updated: 18th January 2007
 
 #if !defined(WINSTL_INCL_WINSTL_FILESYSTEM_HPP_FINDFILE_SEQUENCE)
 # error This file cannot be directly included, and should only be included within winstl/filesystem/findfile_sequence.hpp
@@ -55,7 +55,6 @@ namespace unittest
 			HANDLE							hfile;
 
 			// ./ffs-test
-//fprintf(stderr, "Creating directory: %s\n", dir.c_str()); ::Sleep(2 * 1000);
 			if( !::CreateDirectory(dir.c_str(), NULL) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -66,7 +65,6 @@ namespace unittest
 			::lstrcpyA(&subDir[0], dir.c_str());
 			traits_t::ensure_dir_end(&subDir[0]);
 			::lstrcatA(&subDir[0], FFS_DIR0);
-//fprintf(stderr, "Creating directory: %s\n", subDir.c_str());	::Sleep(2 * 1000);
 			if( !::CreateDirectory(subDir.c_str(), NULL) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -76,7 +74,6 @@ namespace unittest
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE00);
-//fprintf(stderr, "Creating file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			if( INVALID_HANDLE_VALUE == (hfile = ::CreateFile(file.c_str(), 0, 0, NULL, CREATE_ALWAYS, 0, NULL)) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -87,7 +84,6 @@ namespace unittest
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE01);
-//fprintf(stderr, "Creating file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			if( INVALID_HANDLE_VALUE == (hfile = ::CreateFile(file.c_str(), 0, 0, NULL, CREATE_ALWAYS, 0, NULL)) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -99,7 +95,6 @@ namespace unittest
 			::lstrcpyA(&subDir[0], dir.c_str());
 			traits_t::ensure_dir_end(&subDir[0]);
 			::lstrcatA(&subDir[0], FFS_DIR1);
-//fprintf(stderr, "Creating directory: %s\n", subDir.c_str());	::Sleep(2 * 1000);
 			if( !::CreateDirectory(subDir.c_str(), NULL) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -109,7 +104,6 @@ namespace unittest
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE10);
-//fprintf(stderr, "Creating file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			if( INVALID_HANDLE_VALUE == (hfile = ::CreateFile(file.c_str(), 0, 0, NULL, CREATE_ALWAYS, 0, NULL)) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -120,7 +114,6 @@ namespace unittest
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE11);
-//fprintf(stderr, "Creating file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			if( INVALID_HANDLE_VALUE == (hfile = ::CreateFile(file.c_str(), 0, 0, NULL, CREATE_ALWAYS, 0, NULL)) &&
 				ERROR_ALREADY_EXISTS != ::GetLastError())
 			{
@@ -143,15 +136,11 @@ namespace unittest
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE10);
-//fprintf(stderr, "Deleting file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			::DeleteFile(file.c_str());
-//fprintf(stderr, "%lu\n", ::GetLastError());	::Sleep(2 * 1000);
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE11);
-//fprintf(stderr, "Deleting file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			::DeleteFile(file.c_str());
-//fprintf(stderr, "Removing directory: %s\n", subDir.c_str());	::Sleep(2 * 1000);
 			::RemoveDirectory(subDir.c_str());
 
 			::lstrcpyA(&subDir[0], dir.c_str());
@@ -159,17 +148,13 @@ namespace unittest
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE00);
-//fprintf(stderr, "Deleting file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			::DeleteFile(file.c_str());
 			::lstrcpyA(&file[0], &subDir[0]);
 			traits_t::ensure_dir_end(&file[0]);
 			::lstrcatA(&file[0], FFS_FILE01);
-//fprintf(stderr, "Deleting file: %s\n", file.c_str()); ::Sleep(2 * 1000);
 			::DeleteFile(file.c_str());
-//fprintf(stderr, "Removing directory: %s\n", subDir.c_str());	::Sleep(2 * 1000);
 			::RemoveDirectory(subDir.c_str());
 
-//fprintf(stderr, "Removing directory: %s\n", dir.c_str()); ::Sleep(2 * 1000);
 			::RemoveDirectory(dir.c_str());
 		}
 
@@ -230,7 +215,6 @@ namespace unittest
 
 				if(0 != ::lstrcmpA(".", (*b).get_filename()))
 				{
-//fprintf(stderr, "get_filename(): \"%s\"\n", (*b).get_filename());
 					r->report("findfile_sequence '.' special-case: (*).get_filename() does not equal \".\"", __LINE__);
 					bSuccess = false;
 				}
@@ -244,11 +228,6 @@ namespace unittest
 				{
 					traits_t::ensure_dir_end(&cwd[0]);
 					traits_t::str_cat(&cwd[0], ".");
-
-//fprintf(stderr, "cwd: 	   \"%p\"\n", cwd.c_str());
-//fprintf(stderr, "get_path(): \"%p\"\n", (*b).get_path());
-//fprintf(stderr, "cwd: 	   \"%s\"\n", cwd.c_str());
-//fprintf(stderr, "get_path(): \"%s\"\n", (*b).get_path());
 
 					if(0 != ::lstrcmpA(cwd.c_str(), (*b).get_path()))
 					{
@@ -270,14 +249,10 @@ namespace unittest
 		// ./ffs-test/dir0.ffs/file00.ffs
 		// ./ffs-test/dir0.ffs/file01.ffs
 
-//fprintf(stderr, "wd: %s\n", wd.c_str());
-
 			basic_file_path_buffer<char>	pattern(wd);
 
 			traits_t::ensure_dir_end(&pattern[0]);
 			traits_t::str_cat(&pattern[0], "./dir0.ffs/./../dir0.ffs/file0?.ffs");
-
-//fprintf(stderr, "pattern: %s\n", pattern.c_str());
 
 			findfile_sequence_a 				ffs(pattern.c_str(), findfile_sequence_a::files);
 			findfile_sequence_a::const_iterator b	=	ffs.begin();
@@ -288,13 +263,13 @@ namespace unittest
 findfile_sequence_a::const_iterator b	=	ffs.begin();
 findfile_sequence_a::const_iterator e	=	ffs.end();
 
-fprintf(stderr, "Enumerating contents of %s (%s)\n", current_directory_a().c_str(), ffs.get_directory());
+fprintf(err, "Enumerating contents of %s (%s)\n", current_directory_a().c_str(), ffs.get_directory());
 
 ::Sleep(2 * 1000);
 
 for(; b != e; ++b)
 {
-	fprintf(stderr, " [%s]\n", (*b).get_path());
+	fprintf(err, " [%s]\n", (*b).get_path());
 }
 
 }
@@ -310,7 +285,6 @@ for(; b != e; ++b)
 
 				if(0 != ::lstrcmpA("file00.ffs", (*b).get_filename()))
 				{
-//fprintf(stderr, "get_filename(): \"%s\"\n", (*b).get_filename());
 					r->report("findfile_sequence <absolute-pattern> case: (*).get_filename() does not equal \"file0?.ffs\"", __LINE__);
 					bSuccess = false;
 				}
@@ -324,7 +298,6 @@ for(; b != e; ++b)
 				{
 					if(0 != ::lstrcmpA("file01.ffs", (*b).get_filename()))
 					{
-	//fprintf(stderr, "get_filename(): \"%s\"\n", (*b).get_filename());
 						r->report("findfile_sequence <absolute-pattern> case: (*).get_filename() does not equal \"file0?.ffs\"", __LINE__);
 						bSuccess = false;
 					}
@@ -366,8 +339,6 @@ for(; b != e; ++b)
 					traits_t::ensure_dir_end(&tempDir[0]);
 					::lstrcatA(&tempDir[0], FFS_TEST);
 
-//fprintf(stderr, "TempPath: %s\n", tempDir.c_str());
-
 					if(ffs_create_test_fs_entries(tempDir))
 					{
 						if(!ffs_test_absolute_pattern_case(tempDir, r))
@@ -392,7 +363,6 @@ for(; b != e; ++b)
 
 								if(0 != ::lstrcmpiA(dir0.c_str(), dir1.c_str()))
 								{
-//fprintf(stderr, "[%s][%s]\n", tempDir.c_str(), ffs.get_directory());
 									r->report("findfile_sequence (explicit directory): get_directory() returns invalid value", __LINE__);
 									bSuccess = false;
 								}
@@ -407,11 +377,8 @@ for(; b != e; ++b)
 								}
 								else
 								{
-//fprintf(stderr, "%s\n", (*b).get_filename());
-
 									if(0 != ::lstrcmpA(FFS_DIRS[i], (*b).get_filename()))
 									{
-//fprintf(stderr, "%d: %s;%s\n", i, FFS_DIRS[i], (*b).get_filename());
 										r->report("findfile_sequence (explicit directory): not expected entry filename", __LINE__);
 										bSuccess = false;
 									}
@@ -423,7 +390,6 @@ for(; b != e; ++b)
 
 									if(0 != ::lstrcmpA(dir2.c_str(), (*b).get_path()))
 									{
-//fprintf(stderr, "%d: %s;%s\n", i, dir2.c_str(), (*b).get_path());
 										r->report("findfile_sequence (explicit directory): not expected entry path", __LINE__);
 										bSuccess = false;
 									}
@@ -466,7 +432,6 @@ for(; b != e; ++b)
 
 									if(0 != ::lstrcmpiA(dir0.c_str(), dir1.c_str()))
 									{
-//fprintf(stderr, "[%s][%s]\n", tempDir.c_str(), ffs.get_directory());
 										r->report("findfile_sequence (implicit directory): get_directory() returns invalid value", __LINE__);
 										bSuccess = false;
 									}
@@ -481,11 +446,8 @@ for(; b != e; ++b)
 									}
 									else
 									{
-//fprintf(stderr, "%s\n", (*b).get_filename());
-
 										if(0 != ::lstrcmpA(FFS_DIRS[i], (*b).get_filename()))
 										{
-//fprintf(stderr, "%d: %s;%s\n", i, FFS_DIRS[i], (*b).get_filename());
 											r->report("findfile_sequence (implicit	directory): not expected entry filename", __LINE__);
 											bSuccess = false;
 										}
@@ -497,7 +459,6 @@ for(; b != e; ++b)
 
 										if(0 != ::lstrcmpA(dir2.c_str(), (*b).get_path()))
 										{
-//fprintf(stderr, "%d: %s;%s\n", i, dir2.c_str(), (*b).get_path());
 											r->report("findfile_sequence (implicit	directory): not expected entry path", __LINE__);
 											bSuccess = false;
 										}
@@ -533,7 +494,6 @@ for(; b != e; ++b)
 								traits_t::ensure_dir_end(&pattern[0]);
 								traits_t::str_cat(&pattern[0], "*.ffs");
 
-//fprintf(stderr, "Searching [%s=%s] with pattern [%s]\n", ".", tempDir.c_str(), pattern.c_str());
 								findfile_sequence_a 				ffs(pattern.c_str(), findfile_sequence_a::files);
 								findfile_sequence_a::const_iterator b	=	ffs.begin();
 								findfile_sequence_a::const_iterator e	=	ffs.end();
@@ -550,7 +510,6 @@ for(; b != e; ++b)
 
 									if(0 != ::lstrcmpiA(dir0.c_str(), dir1.c_str()))
 									{
-//fprintf(stderr, "[%s][%s]\n", tempDir.c_str(), ffs.get_directory());
 										r->report("findfile_sequence (implicit directory): get_directory() returns invalid value", __LINE__);
 										bSuccess = false;
 									}
@@ -565,11 +524,8 @@ for(; b != e; ++b)
 									}
 									else
 									{
-//fprintf(stderr, "%s\n", (*b).get_filename());
-
 										if(0 != ::lstrcmpA(FFS_DIR0_FILES[i], (*b).get_filename()))
 										{
-//fprintf(stderr, "%d: %s;%s\n", i, FFS_DIRS[i], (*b).get_filename());
 											r->report("findfile_sequence (implicit	directory): not expected entry filename", __LINE__);
 											bSuccess = false;
 										}
@@ -582,7 +538,6 @@ for(; b != e; ++b)
 
 										if(0 != ::lstrcmpA(dir2.c_str(), (*b).get_path()))
 										{
-//fprintf(stderr, "%d: %s;%s\n", i, dir2.c_str(), (*b).get_path());
 											r->report("findfile_sequence (implicit	directory): not expected entry path", __LINE__);
 											bSuccess = false;
 										}

@@ -1,5 +1,5 @@
 
-// Updated: 22nd June 2006
+// Updated: 17th January 2007
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_FILESYSTEM_HPP_CURRENT_DIRECTORY_SCOPE)
 # error This file cannot be directly included, and should only be included within unixstl/current_directory_scope.hpp
@@ -26,7 +26,7 @@ namespace unittest
 			{
 				basic_file_path_buffer<char>	sz;
 
-				getcwd(&sz[0], sz.size());
+				::getcwd(&sz[0], sz.size());
 #ifdef _WIN32
 				current_directory_scope cds("\\");
 #else /* ? _WIN32 */

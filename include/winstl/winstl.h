@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       5
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       6
 # define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        158
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -310,6 +310,23 @@
 #endif /* compiler */
 
 /* /////////////////////////////////////////////////////////////////////////
+ * Features
+ */
+
+#ifdef WINSTL_UDATE_DEFINED
+# undef WINSTL_UDATE_DEFINED
+#endif /* WINSTL_UDATE_DEFINED */
+
+#if defined(WINSTL_FORCE_UDATE) || \
+    defined(STLSOFT_COMPILER_IS_BORLAND) || \
+    defined(STLSOFT_COMPILER_IS_DMC) || \
+    defined(STLSOFT_COMPILER_IS_INTEL) || \
+    defined(STLSOFT_COMPILER_IS_MWERKS) || \
+    defined(STLSOFT_COMPILER_IS_MSVC)
+# define WINSTL_UDATE_DEFINED
+#endif /* WINSTL_FORCE_UDATE || compiler */
+
+/* /////////////////////////////////////////////////////////////////////////
  * Debugging
  *
  * The macro winstl_assert provides standard debug-mode assert functionality.
@@ -469,10 +486,9 @@ stlsoft_ns_using(move_lhs_from_rhs)
  *
  * For example, the following code will compile correctly if
  * <code>winstl</code> is suppressed or not:
-\htmlonly
-<pre>
-#include &lt;winstl/error_desc.hpp>
-#include &lt;stdio.h>
+\code
+#include <winstl/error_desc.hpp>
+#include <stdio.h>
 
 int main()
 {
@@ -480,8 +496,7 @@ int main()
 
   return 0;
 }
-</pre>
-\endhtmlonly
+\endcode
  *
  * \remarks These macros are used throughout the <i>implementation</i> of the
  *  STLSoft libraries. However, we do not recommend their use in application

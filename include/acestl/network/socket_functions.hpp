@@ -4,7 +4,7 @@
  * Purpose:     Helper functions for ACE_SOCK (and derived) classes
  *
  * Created:     28th November 2004
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_MAJOR      2
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_MINOR      0
 # define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_REVISION   1
-# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_EDIT       20
+# define ACESTL_VER_ACESTL_NETWORK_HPP_SOCKET_FUNCTIONS_EDIT       21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -102,14 +102,12 @@ namespace acestl_project
  * Usage is simple. Just specify the socket to close and the reactor with which it
  * is registered.
  *
- * \htmlonly
- * <pre>
- *
- * // close and deregister m_upstreamPeer and m_downstreamPeer (both ACE_SOCK_Stream)
- * acestl::close_and_deregister(m_peer, reactor());
- *
- * </pre>
- * \endhtmlonly
+\code
+
+// close and deregister m_upstreamPeer and m_downstreamPeer (both ACE_SOCK_Stream)
+acestl::close_and_deregister(m_peer, reactor());
+
+\endcode
  */
 inline as_bool_t close_and_deregister(ACE_SOCK &sk, ACE_Reactor *reactor)
 {

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes for initialising COM/OLE.
  *
  * Created:     8th February 1999
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks:      To Adi Shavit, for demanding better documentation of COMSTL.
  *
@@ -54,7 +54,7 @@
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MAJOR      3
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_MINOR      2
 # define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_REVISION   6
-# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       75
+# define COMSTL_VER_COMSTL_UTIL_HPP_INITIALISERS_EDIT       76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -186,36 +186,34 @@ typedef stlsoft_ns_qual(null_exception_policy)  ignore_initialisation_exception_
  * It is commonly used within <code>main()</code> (for a CLI program), or
  * <code>WinMain()</code> (for a GUI program). A typical program structure
  * is shown as follows:
-\htmlonly
-<pre>
-  #include <comstl/util/initialisers.hpp>
+\code
+#include <comstl/util/initialisers.hpp>
 
-  #include <stdlib.h>
+#include <stdlib.h>
 
-  static int main_(int argc, char **argv)
+static int main_(int argc, char **argv)
+{
+  . . . // main application functionality
+}
+
+int main(int argc, char **argv)
+{
+  try
   {
-    . . . // main application functionality
-  }
+    comstl::com_init  init; // Initialise the COM libraries
 
-  int main(int argc, char **argv)
+    return main_(argc, argv);
+  }
+  catch(comstl::com_initialisation_exception &x) // COM library initialisation failed
   {
-    try
-    {
-      <b>comstl::com_init</b>  init; // Initialise the COM libraries
-
-      return main_(argc, argv);
-    }
-    catch(<b>comstl::com_initialisation_exception</b> &x) // COM library initialisation failed
-    {
-      return EXIT_FAILURE;
-    }
-    catch(std::exception &x) // other failures from main_()
-    {
-      return EXIT_FAILURE;
-    }
+    return EXIT_FAILURE;
   }
-</pre>
-\endhtmlonly
+  catch(std::exception &x) // other failures from main_()
+  {
+    return EXIT_FAILURE;
+  }
+}
+\endcode
  *
  * In practice, initialisation failure of the COM libraries is unheard of, so
  * you can probably dispense with the specific catch clause shown above, and

@@ -4,7 +4,7 @@
  * Purpose:     Simple class that represents a path.
  *
  * Created:     1st May 1993
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MAJOR    6
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_MINOR    4
 # define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_REVISION 5
-# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     229
+# define WINSTL_VER_WINSTL_FILESYSTEM_HPP_PATH_EDIT     230
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -163,27 +163,23 @@ public:
 public:
     /// \brief Constructs an empty path.
     ///
-    /// \htmlonly
-    /// <pre>
+    /// \code
     /// winstl::path  p;
     ///
     /// assert(0 == p.size());
     /// assert("" == p);
-    /// </pre>
-    /// \endhtmlonly
+    /// \endcode
     basic_path();
     /// \brief Constructs a path from a nul-terminated character string.
     ///
-    /// \htmlonly
-    /// <pre>
+    /// \code
     /// winstl::path  p("C:\\Windows");
     ///
     /// assert(10 == p.size());
     /// assert("C:\\Windows" == p);
     /// assert("C:\\WINDOWS" == p);
     /// assert("c:\\windows" == p);
-    /// </pre>
-    /// \endhtmlonly
+    /// \endcode
     ss_explicit_k basic_path(char_type const *path);
 #ifdef STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT
     /// \brief Constructs a path from a string object.
@@ -196,8 +192,7 @@ public:
     ///  <code>std::string</code>, <code>stlsoft::simple_string</code>,
     ///  <code>winstl::error_desc</code>, and many more
     ///
-    /// \htmlonly
-    /// <pre>
+    /// \code
     /// HWND          hwndParent = . . . 
     /// HWND          hwnd       = winstl::CreateEdit(hwndParent, "C:\\Windows", ES_LEFT, 0, 0, 10, 10, 1001);
     /// winstl::path  p(hwnd);
@@ -206,8 +201,7 @@ public:
     /// assert("C:\\Windows" == p);
     /// assert("C:\\WINDOWS" == p);
     /// assert("c:\\windows" == p);
-    /// </pre>
-    /// \endhtmlonly
+    /// \endcode
     template<ss_typename_param_k S>
     ss_explicit_k basic_path(S const &s)
     {
@@ -219,16 +213,14 @@ public:
 #endif /* STLSOFT_CF_MEMBER_TEMPLATE_CTOR_SUPPORT */
     /// \brief Constructs a path from a slice of a character string.
     ///
-    /// \htmlonly
-    /// <pre>
+    /// \endcode
     /// winstl::path  p("C:\\Windows\\system32", 10);
     ///
     /// assert(10 == p.size());
     /// assert("C:\\Windows" == p);
     /// assert("C:\\WINDOWS" == p);
     /// assert("c:\\windows" == p);
-    /// </pre>
-    /// \endhtmlonly
+    /// \endcode
     basic_path(char_type const *path, size_type cch);
 
 #ifndef STLSOFT_CF_NO_COPY_CTOR_AND_COPY_CTOR_TEMPLATE_OVERLOAD

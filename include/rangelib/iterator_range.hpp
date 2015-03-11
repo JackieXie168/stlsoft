@@ -4,7 +4,7 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     6th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,7 +47,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 4
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     36
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -274,20 +274,16 @@ struct const_pointer_iterator_range_traits
  * It is categoried as an Iterable Range
  *
  * It could be used as follows
- * \htmlonly
- * <code>
- * <pre>
- * template&lt;typename I&gt;
- * void dump_elements(I from, I to)
- * {
- *   for(iterator_range&lt;I&gt; r(from, to); r; ++r)
- *   {
- *     std::cout &lt;&lt; &r; // Dump the current value to stdout
- *   }
- * }
- * </pre>
- * </code>
- * \endhtmlonly
+\code
+template<typename I>
+void dump_elements(I from, I to)
+{
+  for(iterator_range<I> r(from, to); r; ++r)
+  {
+    std::cout << &r; // Dump the current value to stdout
+  }
+}
+\endcode
  */
 template<   ss_typename_param_k I
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT

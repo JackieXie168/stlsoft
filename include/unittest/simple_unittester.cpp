@@ -4,7 +4,7 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     14th January 2007
+ * Updated:     21st January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MAJOR       2
 # define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_MINOR       7
-# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_REVISION    1
-# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_EDIT        24
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_REVISION    2
+# define STLSOFT_VER_UNITTEST_CPP_SIMPLE_UNITTESTER_EDIT        25
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -104,6 +104,15 @@ typedef String                          string_t;
 #  error No other non-std compiler is known
 # endif /* ? compiler */
 #endif /* STLSOFT_CF_std_NAMESPACE */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Globals
+ */
+
+// TODO: put these in a separate implementation file.
+
+FILE	*err	=	stderr;
+FILE	*out	=	stdout;
 
 /* /////////////////////////////////////////////////////////////////////////
  * Classes

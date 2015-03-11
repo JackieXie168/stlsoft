@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL time functions.
  *
  * Created:     2nd September 2005
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   3
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       13
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       14
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -97,12 +97,10 @@ namespace unixstl_project
 
 /** \brief [C, C++] Puts the calling thread to sleep for the given number of
  *   microseconds.
-\htmlonly
-<pre>
+\code
   unixstl__micro_sleep(100000); // Sleep for 0.1 seconds
   unixstl__micro_sleep(100);    // Sleep for 0.1 milliseconds
-</pre>
-\endhtmlonly
+\endcode
  *
  * \param microseconds The number of microseconds to wait
  *
@@ -143,12 +141,10 @@ namespace unixstl
 
 /** \brief [C++ only] Puts the calling thread to sleep for the given number of
  *   microseconds.
-\htmlonly
-<pre>
+\code
   unixstl::micro_sleep(100000); // Sleep for 0.1 seconds
   unixstl::micro_sleep(100);    // Sleep for 0.1 milliseconds
-</pre>
-\endhtmlonly
+\endcode
  *
  * \param microseconds The number of microseconds to wait
  *

@@ -4,7 +4,7 @@
  * Purpose:     Number formatting functions.
  *
  * Created:     28th August 2005
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_MINOR       0
-# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION    3
-# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT        7
+# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_REVISION    4
+# define WINSTL_VER_WINSTL_CONVERSION_NUMBER_HPP_GROUPING_FUNCTIONS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ inline ws_size_t format_thousands_3_impl(   C                   *dest
 
     cch = traits_t::get_locale_info(LOCALE_USER_DEFAULT, LOCALE_SGROUPING, &picture[0], picture.size());
 
-    return stlsoft::format_thousands(dest, cchDest, &picture[0], number);
+    return stlsoft::format_thousands(dest, cchDest, picture.data(), number);
 }
 
 template<typename C>
@@ -141,12 +141,12 @@ inline ws_size_t format_thousands_3_impl(   C                   *dest
 {
     typedef system_traits<C>    traits_t;
 
-    int cch =   traits_t::get_locale_info(LOCALE_USER_DEFAULT, LOCALE_SGROUPING, NULL, 0);
+    int                     cch =   traits_t::get_locale_info(LOCALE_USER_DEFAULT, LOCALE_SGROUPING, NULL, 0);
     stlsoft::auto_buffer<C> picture(1 + cch);
 
     cch = traits_t::get_locale_info(LOCALE_USER_DEFAULT, LOCALE_SGROUPING, &picture[0], picture.size());
 
-    return stlsoft::translate_thousands(dest, cchDest, &picture[0], number);
+    return stlsoft::translate_thousands(dest, cchDest, picture.data(), number);
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */

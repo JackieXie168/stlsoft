@@ -5,7 +5,7 @@
  *              through multiple IDispatch interfaces visible to script clients.
  *
  * Created:     15th May 2006
- * Updated:     13th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MAJOR      2
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_MINOR      1
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_REVISION   1
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       11
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_MULTIPLE_DISPATCH_EDIT       12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -109,34 +109,32 @@ namespace atlstl_project
  * parent class list of a class template that support two dispinterfaces.
  * Consider the <a href = "http://openrj.org/">Open-RJ</a> COM mapping's
  * Field class [IDL]:
-\htmlonly
-<pre>
+\code
   // openrj.com.idl
   [ . . . ]
-  interface <b>IField</b>
+  interface IField
     : IDispatch
   {
-    [propget, id(<b>1</b>), . . .]
+    [propget, id(1), . . .]
     HRESULT Name([out, retval] BSTR *pVal);
-    [propget, id(<b>2</b>), . . .]
+    [propget, id(2), . . .]
     HRESULT Value([out, retval] BSTR *pVal);
   };
 
   [ . . . ]
-  interface <b>IDocumenter</b>
+  interface IDocumenter
     : IDispatch
   {
-    [propget, id(<b>1</b>), . . .]
+    [propget, id(1), . . .]
     HRESULT DocString([out, retval] BSTR *pVal);
   };
 
-  coclass <b>Field</b>
+  coclass Field
   {
-    [default] interface <b>IField</b>;
-    interface <b>IDocumenter</b>;
+    [default] interface IField;
+    interface IDocumenter;
   };
-</pre>
-\endhtmlonly
+\endcode
  * As indicated, it supports two dispinterfaces: <b>IField</b> and
  * <b>IDocumenter</b>. Note that each interface has a property with dispid
  * <b>1</b>.
@@ -145,19 +143,17 @@ namespace atlstl_project
  * single "active" dispinterface. We might envisage the following
  * (C++) class definition for <b>Field</b>:
  * 
-\htmlonly
-<pre>
+\code
   class ATL_NO_VTABLE Field
-    : public CComObjectRootEx&lt;CComSingleThreadModel>
-    , public CComCoClass&lt;Field, &CLSID_Field>
-    , public atlstl::SupportErrorInfoImpl&lt;&IID_IField>
-    , public <b>IDispatchImpl</b>&lt;IField, &IID_IField, &LIBID_OPENRJ_COMLib>
-    , public <b>IDispatchImpl</b>&lt;IDocumenter, &IID_IDocumenter, &LIBID_OPENRJ_COMLib>
+    : public CComObjectRootEx<CComSingleThreadModel>
+    , public CComCoClass<Field, &CLSID_Field>
+    , public atlstl::SupportErrorInfoImpl<&IID_IField>
+    , public IDispatchImpl<IField, &IID_IField, &LIBID_OPENRJ_COMLib>
+    , public IDispatchImpl<IDocumenter, &IID_IDocumenter, &LIBID_OPENRJ_COMLib>
   {
     . . .
   };
-</pre>
-\endhtmlonly
+\endcode
  * Unfortunately, scripting clients, which elicit DISPIDs at runtime via an
  * automation server's <code>IDispatch::GetIDsOfNames()</code> method, will
  * see only those methods and properties from <b>IField</b> in such a case.
@@ -169,18 +165,16 @@ namespace atlstl_project
  * for requested name(s) by querying each interface in turn. It is used with
  * the Field class as follows:
  * 
-\htmlonly
-<pre>
+\code
   class ATL_NO_VTABLE Field
-    : public CComObjectRootEx&lt;CComSingleThreadModel>
-    , public CComCoClass&lt;Field, &CLSID_Field>
-    , public atlstl::SupportErrorInfoImpl&lt;&IID_IField>
-    , public atlstl::<b>IDispatchImpl2</b>&lt;IField, &IID_IField, IDocumenter, &IID_IDocumenter, &LIBID_OPENRJ_COMLib>
+    : public CComObjectRootEx<CComSingleThreadModel>
+    , public CComCoClass<Field, &CLSID_Field>
+    , public atlstl::SupportErrorInfoImpl<&IID_IField>
+    , public atlstl::IDispatchImpl2<IField, &IID_IField, IDocumenter, &IID_IDocumenter, &LIBID_OPENRJ_COMLib>
   {
     . . .
   };
-</pre>
-\endhtmlonly
+\endcode
  *
  * Now all members of all dispinterfaces are visible to scripting clients.
  * Note that the class also handles the case where the dispinterfaces have

@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for IEnumXXXX enumerator interfaces.
  *
  * Created:     17th September 1998
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_MINOR    0
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_REVISION 10
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     231
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_ENUMERATOR_SEQUENCE_EDIT     232
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -151,17 +151,15 @@ namespace comstl_project
  * For example, the following parameterisation defines a sequence operating
  * over an <code>IEnumGUID</code> enumerator instance.
  *
-\htmlonly
-<pre>
-typedef enumerator_sequence&lt;IEnumGUID
+\code
+typedef enumerator_sequence<IEnumGUID
                           , GUID
                           , GUID_policy
                           , GUID const &
-                          , forward_cloning_policy&lt;IEnumGUID&gt;
+                          , forward_cloning_policy<IEnumGUID>
                           , 5
-                          &gt;    enum_sequence_t;
-</pre>
-\endhtmlonly
+                          >    enum_sequence_t;
+\endcode
  *
  * The value type is <code>GUID</code> and it is returned as a reference, as
  * the <code>GUID const&</code> in fact.
@@ -180,16 +178,14 @@ typedef enumerator_sequence&lt;IEnumGUID
  *
  * This would be used as follows:
  *
-\htmlonly
-<pre>
+\code
 void dump_GUID(GUID const &);
 
 LPENUMGUID        *penGUIDs = . . .;      // Create an instance from wherever
 enum_sequence_t   guids(penGUIDs, false); // Eat the reference
 
 std::for_each(guids.begin(), guids.end(), dump_GUID);
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note The iterator instances returned by begin() and end() are valid outside
  * the lifetime of the collection instance from which they are obtained
@@ -566,7 +562,7 @@ public:
                 if(m_refCount < 1)
                 {
 #ifdef STLSOFT_UNITTEST
-                    fprintf(stderr, "invalid reference count (%ld) \n", m_refCount);
+					fprintf(err, "invalid reference count (%ld) \n", m_refCount);
 #endif /* STLSOFT_UNITTEST */
                     return false;
                 }
@@ -577,14 +573,14 @@ public:
                     if(0 != m_acquired)
                     {
 #ifdef STLSOFT_UNITTEST
-                        fprintf(stderr, "m_acquired == %lu when m_quanta == 0\n", m_acquired);
+                        fprintf(err, "m_acquired == %lu when m_quanta == 0\n", m_acquired);
 #endif /* STLSOFT_UNITTEST */
                         return false;
                     }
                     if(0 != m_current)
                     {
 #ifdef STLSOFT_UNITTEST
-                        fprintf(stderr, "m_current == %lu when m_quanta == 0\n", m_current);
+                        fprintf(err, "m_current == %lu when m_quanta == 0\n", m_current);
 #endif /* STLSOFT_UNITTEST */
                         return false;
                     }
@@ -598,21 +594,21 @@ public:
                     if(m_acquired < m_current)
                     {
 #ifdef STLSOFT_UNITTEST
-                        fprintf(stderr, "m_acquired (%lu) not less than m_current (%lu)\n", m_acquired, m_current);
+                        fprintf(err, "m_acquired (%lu) not less than m_current (%lu)\n", m_acquired, m_current);
 #endif /* STLSOFT_UNITTEST */
                         return false;
                     }
                     if(m_quanta < m_current)
                     {
 #ifdef STLSOFT_UNITTEST
-                        fprintf(stderr, "m_quanta (%lu) not less than m_current (%lu)\n", m_quanta, m_current);
+                        fprintf(err, "m_quanta (%lu) not less than m_current (%lu)\n", m_quanta, m_current);
 #endif /* STLSOFT_UNITTEST */
                         return false;
                     }
                     if(m_quanta < m_acquired)
                     {
 #ifdef STLSOFT_UNITTEST
-                        fprintf(stderr, "m_quanta (%lu) not less than m_acquired (%lu)\n", m_quanta, m_acquired);
+                        fprintf(err, "m_quanta (%lu) not less than m_acquired (%lu)\n", m_quanta, m_acquired);
 #endif /* STLSOFT_UNITTEST */
                         return false;
                     }
@@ -928,7 +924,7 @@ private:
         if(NULL == m_root)
         {
 #ifdef STLSOFT_UNITTEST
-            fprintf(stderr, "enumerator_sequence: m_root is NULL\n");
+            fprintf(err, "enumerator_sequence: m_root is NULL\n");
 
             COMSTL_ASSERT(0);
 #endif /* STLSOFT_UNITTEST */

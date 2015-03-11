@@ -1,5 +1,5 @@
 
-// Updated: 14th January 2007
+// Updated: 18th January 2007
 
 #if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR)
 # error This file cannot be directly included, and should only be included within stlsoft/smartptr/ref_ptr.hpp
@@ -390,11 +390,7 @@ namespace unittest
 				RCIs::Derived1	derived;
 				const long		startCount	=	derived.Count();
 
-//fprintf(stderr, "Derived::Count(): %ld\n", derived.Count());
-
 				Derived1_ptr	p1(&derived, true);
-
-//fprintf(stderr, "Derived::Count(): %ld\n", derived.Count());
 
 				if(derived.Count() != startCount + 1)
 				{
@@ -431,11 +427,7 @@ namespace unittest
 				RCIs::Derived1	derived;
 				const long		startCount	=	derived.Count();
 
-//fprintf(stderr, "Derived::Count(): %ld\n", derived.Count());
-
 				Derived1_ptr	p1(&derived, true);
-
-//fprintf(stderr, "Derived::Count(): %ld\n", derived.Count());
 
 				if(derived.Count() != startCount + 1)
 				{

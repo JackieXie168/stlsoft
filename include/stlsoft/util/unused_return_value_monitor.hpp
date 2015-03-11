@@ -4,7 +4,7 @@
  * Purpose:     Basic functionals.
  *
  * Created:     8th June 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MAJOR        4
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_MINOR        0
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_REVISION     1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         39
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_UNUSED_RETURN_VALUE_MONITOR_EDIT         40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,119 +86,64 @@ namespace stlsoft
  *
  * If the value type is a simple type, you can just allow the reference type R to be defaulted, as in:
  *
- * \htmlonly
- * <code>
- * struct int_monitor
- * <br>
- * {
- * <br>
- * public:
- * <br>
- *   void operator ()(void const *instance, int value) const
- * <br>
- *   {
- * <br>
- *     printf("Unused return value %d from object instance %p\n", value, instance);
- * <br>
- *   }
- * <br>
- * };
- * <br>
- *
- * <br>
- * class X
- * <br>
- * {
- * <br>
- * public:
- * <br>
- * &nbsp;&nbsp;unused_return_value_monitor&lt;int, int_monitor&gt;   fn()
- * <br>
- * &nbsp;&nbsp;{
- * <br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return 10; // A copy is taken, but copies of ints usually cost the same as references to ints
- * <br>
- * &nbsp;&nbsp;}
- * <br>
- * };
- * <br>
- * <br>
- * <br>
- * </code>
- * \endhtmlonly
+\code
+struct int_monitor
+{
+public:
+  void operator ()(void const *instance, int value) const
+  {
+    printf("Unused return value %d from object instance %p\n", value, instance);
+  }
+};
+
+class X
+{
+public:
+  unused_return_value_monitor<int, int_monitor>   fn()
+  {
+    return 10; // A copy is taken, but copies of ints usually cost the same as references to ints
+  }
+};
+\endcode
  *
  *
  * Where the return type is a complex type, you can make efficiency savings by using a (C++) reference for the reference type. However,
  * this must only be done when the returned value will persist for the duration of the calling expression.
  *
- * \htmlonly
- * <code>
- * struct string_monitor
- * <br>
- * {
- * <br>
- * public:
- * <br>
- * &nbsp;&nbsp;void operator ()(void const *instance, string const &value) const
- * <br>
- * &nbsp;&nbsp;{
- * <br>
- * &nbsp;&nbsp;&nbsp;&nbsp;printf("Unused return value %s from object instance %p\n", value.c_str(), instance);
- * <br>
- * &nbsp;&nbsp;}
- * <br>
- * };
- * <br>
- *
- * <br>
- * class Y1
- * <br>
- * {
- * <br>
- * public:
- * <br>
- * &nbsp;&nbsp;Y2()
- * <br>
- * &nbsp;&nbsp;&nbsp;&nbsp;: m_str("What's new, Pussycat?")
- * <br>
- * &nbsp;&nbsp;{}
- * <br>
- *
- * <br>
- * public:
- * <br>
- * &nbsp;&nbsp;// Must store return value by value, since the returned value will not persist for the duration of the calling expression
- * <br>
- * &nbsp;&nbsp;unused_return_value_monitor&lt;string, string_monitor&gt; fn_by_value()
- * <br>
- * &nbsp;&nbsp;{
- * <br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return "Hello sailor";
- * <br>
- * &nbsp;&nbsp;}
- * <br>
- *
- * <br>
- * &nbsp;&nbsp;// Must store return value by (const) reference, since the returned value will persist for the duration of the calling expression
- * <br>
- * &nbsp;&nbsp;unused_return_value_monitor&lt;string, string_monitor, string const &&gt; fn_by_ref()
- * <br>
- * &nbsp;&nbsp;{
- * <br>
- * &nbsp;&nbsp;&nbsp;&nbsp;return m_str;
- * <br>
- * &nbsp;&nbsp;}
- * <br>
- *
- * <br>
- * private:
- * <br>
- * &nbsp;&nbsp;string const&nbsp;&nbsp;m_str;
- * <br>
- * };
- * <br>
- * </code>
- * \endhtmlonly
+\code
+struct string_monitor
+{
+public:
+  void operator ()(void const *instance, string const &value) const
+  {
+    printf("Unused return value %s from object instance %p\n", value.c_str(), instance);
+  }
+};
+
+class Y1
+{
+public:
+  Y2()
+    : m_str("What's new, Pussycat?")
+  {}
+
+public:
+  // Must store return value by value, since the returned value will not persist for the duration of the calling expression
+  unused_return_value_monitor<string, string_monitor> fn_by_value()
+  {
+    return "Hello sailor";
+  }
+
+  // Must store return value by (const) reference, since the returned value will persist for the duration of the calling expression
+  unused_return_value_monitor<string, string_monitor, string const &> fn_by_ref()
+  {
+    return m_str;
+  }
+
+private:
+  string const  m_str;
+};
+\endcode
  *
  */
 template<   ss_typename_param_k V

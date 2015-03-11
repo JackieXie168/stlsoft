@@ -1,5 +1,5 @@
 
-// Updated: 30th May 2006
+// Updated: 18th January 2007
 
 #if !defined(UNIXSTL_INCL_UNIXSTL_SYNCH_HPP_PROCESS_MUTEX)
 # error This file cannot be directly included, and should only be included within unixstl/synch/process_mutex.hpp
@@ -30,7 +30,6 @@ namespace unittest
 				mx_r.lock();
 				if(!mx_r.try_lock())
 				{
-//fprintf(stderr, "try_lock: %d %s\n", errno, strerror(errno));
 					r->report("process_mutex (recursive) could not lock recursively ", __LINE__);
 					bSuccess = false;
 				}

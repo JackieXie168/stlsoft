@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     6th January 2007
+ * Updated:     20th January 2007
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -50,7 +50,7 @@
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     56
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -298,11 +298,11 @@ public:
  *
  * It could be used as follows
 \code
-  void dump_elements(std::vector&lt;int&gt; const &numbers)
+  void dump_elements(std::vector<int> const &numbers)
   {
-    for(sequence_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
+    for(sequence_range<std::vector<int> > r(numbers); r; ++r)
     {
-      std::cout &lt;&lt; &r; // Dump the current value to stdout
+      std::cout << &r; // Dump the current value to stdout
     }
   }
 \endcode

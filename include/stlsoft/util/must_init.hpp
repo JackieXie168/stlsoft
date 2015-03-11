@@ -4,7 +4,7 @@
  * Purpose:     Simple class that .
  *
  * Created:     18th June 2006
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MAJOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_MINOR       1
 # define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_REVISION    1
-# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        7
+# define STLSOFT_VER_STLSOFT_UTIL_HPP_MUST_INIT_EDIT        8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,33 +88,27 @@ namespace stlsoft
  *
  * <b>Problem:</b>
  *
-\htmlonly
-<pre>
+\code
   int             i1; // Not initialised. Compiler doesn't care!
 
   int             res = 2 * i1; // Result is undefined
-</pre>
-\endhtmlonly
+\endcode
  *
  * <b>Solution:</b>
  *
-\htmlonly
-<pre>
-  must_init&lt;int>  i1; // Not initialised. Compiler error
+\code
+  must_init<int>  i1; // Not initialised. Compiler error
 
   int             res = 2 * i1.get(); // Result is undefined
-</pre>
-\endhtmlonly
+\endcode
  *
  * The user is required to explicitly initialise <code>i1</code>:
  *
-\htmlonly
-<pre>
-  must_init&lt;int>  i1(0); // Initialised. Everybody's happy
+\code
+  must_init<int>  i1(0); // Initialised. Everybody's happy
 
   int             res = 2 * i1.get(); // Result is undefined
-</pre>
-\endhtmlonly
+\endcode
  */
 
 //STLSOFT_PRAGMA_PACK_PUSH(1)

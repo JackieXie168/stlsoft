@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     15th January 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,7 +57,7 @@
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MAJOR       4
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_MINOR       0
 # define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_REVISION    3
-# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        56
+# define WINSTL_VER_WINSTL_MEMORY_HPP_HEAPWALK_SEQUENCE_EDIT        57
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,36 +125,32 @@ class heapwalk_sequence_const_iterator;
  *
  * The following code illustrates the use of the class to enumerate all
  * currently allocated blocks in the given heap:
-\htmlonly
-<pre>
-  HANDLE                      hHeap = . . . // Handle to an existing heap
-  winstl::<b>heapwalk_sequence</b>   blocks(hHeap);
+\code
+HANDLE                      hHeap = . . . // Handle to an existing heap
+winstl::heapwalk_sequence   blocks(hHeap);
 
-  winstl::heapwalk_sequence::const_iterator   b = blocks.begin();
-  winstl::heapwalk_sequence::const_iterator   e = blocks.end();
+winstl::heapwalk_sequence::const_iterator   b = blocks.begin();
+winstl::heapwalk_sequence::const_iterator   e = blocks.end();
 
-  for(; b != e; ++b)
-  {
-    printf("  Block of size %lu at %p\n", (*b).cbData, (*b).lpData);
-  }
-</pre>
-\endhtmlonly
+for(; b != e; ++b)
+{
+  printf("  Block of size %lu at %p\n", (*b).cbData, (*b).lpData);
+}
+\endcode
  *
  * If you do not specify a heap handle, the sequence uses the
  * process heap, as shown in the following code:
-\htmlonly
-<pre>
-  winstl::<b>heapwalk_sequence</b>   blocks; // Uses process heap
+\code
+winstl::heapwalk_sequence   blocks; // Uses process heap
 
-  winstl::heapwalk_sequence::const_iterator   b = blocks.begin();
-  winstl::heapwalk_sequence::const_iterator   e = blocks.end();
+winstl::heapwalk_sequence::const_iterator   b = blocks.begin();
+winstl::heapwalk_sequence::const_iterator   e = blocks.end();
 
-  for(; b != e; ++b)
-  {
-    printf("  Block of size %lu at %p\n", (*b).cbData, (*b).lpData);
-  }
-</pre>
-\endhtmlonly
+for(; b != e; ++b)
+{
+  printf("  Block of size %lu at %p\n", (*b).cbData, (*b).lpData);
+}
+\endcode
 
  */
 class heapwalk_sequence

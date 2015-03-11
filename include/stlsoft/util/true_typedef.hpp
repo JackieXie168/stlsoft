@@ -4,7 +4,7 @@
  * Purpose:     Contains the true_typedef class template.
  *
  * Created:     16th January 2002
- * Updated:     10th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -91,15 +91,17 @@ namespace stlsoft
  *
  * For example, the following code creates two types based on the \c int type:
  *
- * &nbsp;&nbsp;<code>STLSOFT_GEN_OPAQUE(h_protocol_tt)</code><br>
- * &nbsp;&nbsp;<code>STLSOFT_GEN_OPAQUE(h_port_tt)</code><br>
- * &nbsp;&nbsp;<code>typedef true_typedef<long, h_protocol_tt>  protocol_tt;</code><br>
- * &nbsp;&nbsp;<code>typedef true_typedef<long, h_port_tt>      port_tt;</code><br>
- * <br>
- * &nbsp;&nbsp;<code>protocol_tt pro1(3);    // Ok</code><br>
- * &nbsp;&nbsp;<code>port_tt     prt1(8088); // Ok</code><br>
- * &nbsp;&nbsp;<code>protocol_tt pro2(pro1); // Ok, can copy from another protocol_tt</code><br>
- * &nbsp;&nbsp;<code>port_tt     prt2(pro2); // Error, cannot copy from a protocol_tt</code><br>
+\code
+  STLSOFT_GEN_OPAQUE(h_protocol_tt)
+  STLSOFT_GEN_OPAQUE(h_port_tt)
+  typedef true_typedef<long, h_protocol_tt>  protocol_tt;
+  typedef true_typedef<long, h_port_tt>      port_tt;
+
+  protocol_tt pro1(3);    // Ok
+  port_tt     prt1(8088); // Ok
+  protocol_tt pro2(pro1); // Ok, can copy from another protocol_tt
+  port_tt     prt2(pro2); // Error, cannot copy from a protocol_tt
+\endcode
  *
  *
  * \param T The base type, e.g. \c int, \c std::wstring

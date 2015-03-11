@@ -4,7 +4,7 @@
  * Purpose:     Algorithms for Plain-Old Data types.
  *
  * Created:     17th January 2002
- * Updated:     14th January 2007
+ * Updated:     20th January 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MAJOR       3
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_MINOR       4
 # define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_REVISION    4
-# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        83
+# define STLSOFT_VER_STLSOFT_ALGORITHMS_HPP_POD_EDIT        85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,16 +108,13 @@ namespace stlsoft
  * ::memcpy() to copy elements en bloc, rather than copy assignment of one element
  * at a time.
  *
- * \htmlonly
- * <pre>
- * const int8_t  src_bytes[3] = { -1, 0, +1 };
- * int8_t        dest_bytes[3];
- *
- * pod_copy(&src_bytes[0], &src_bytes[0] + STLSOFT_NUM_ELEMENTS(src_bytes), &dest_bytes[0]);
- * assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
- *
- * </pre>
- * \endhtmlonly
+\code
+  const int8_t  src_bytes[3] = { -1, 0, +1 };
+  int8_t        dest_bytes[3];
+
+  pod_copy(&src_bytes[0], &src_bytes[0] + STLSOFT_NUM_ELEMENTS(src_bytes), &dest_bytes[0]);
+  assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
+\endcode
  *
  * \note The implementation uses static assertions to ensure that the source and
  * destination element types are the same size.
@@ -165,16 +162,13 @@ inline void pod_copy(I *first, I *last, O *dest)
  * This algorithm uses ::memcpy() to copy elements en bloc, rather than
  * copy assignment of one element at a time.
  *
- * \htmlonly
- * <pre>
- * const int8_t  src_bytes[3] = { -1, 0, +1 };
- * int8_t        dest_bytes[3];
- *
- * pod_copy_n(&dest_bytes[0], &src_bytes[0], STLSOFT_NUM_ELEMENTS(src_bytes));
- * assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
- *
- * </pre>
- * \endhtmlonly
+\code
+  const int8_t  src_bytes[3] = { -1, 0, +1 };
+  int8_t        dest_bytes[3];
+
+  pod_copy_n(&dest_bytes[0], &src_bytes[0], STLSOFT_NUM_ELEMENTS(src_bytes));
+  assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
+\endcode
  *
  * \note The implementation uses static assertions to ensure that the source and
  * destination element types are the same size.
@@ -315,16 +309,13 @@ inline void pod_move_n(O *dest, I *src, ss_size_t n)
  * ::memset() for some types to set the range of elements, rather than copy
  * assignment of one element at a time.
  *
- * \htmlonly
- * <pre>
- * const int8_t  src_bytes[3] = { 3, 3, 3 };
- * int8_t        dest_bytes[3];
- *
- * pod_fill_n(&dest_bytes[0], STLSOFT_NUM_ELEMENTS(src_bytes), 3);
- * assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
- *
- * </pre>
- * \endhtmlonly
+\code
+  const int8_t  src_bytes[3] = { 3, 3, 3 };
+  int8_t        dest_bytes[3];
+
+  pod_fill_n(&dest_bytes[0], STLSOFT_NUM_ELEMENTS(src_bytes), 3);
+  assert(0 == memcmp(&src_bytes[0], &dest_bytes[0], sizeof(src_bytes)));
+\endcode
  *
  * The generic overload uses std::fill_n(), so performance is likely to be
  * identical to std::fill_n() in the general case. However, it is overloaded
