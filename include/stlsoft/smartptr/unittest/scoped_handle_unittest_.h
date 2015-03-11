@@ -278,6 +278,8 @@ namespace unittest
 					bSuccess = false;
 				}
 			}
+#else /* ? STLSOFT_CF_STDCALL_SUPPORTED */
+			STLSOFT_SUPPRESS_UNUSED(r);
 # endif /* STLSOFT_CF_STDCALL_SUPPORTED */
 
 #else /* ? compiler */

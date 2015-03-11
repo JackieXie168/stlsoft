@@ -4,11 +4,11 @@
  * Purpose:     WinSTL atomic functions.
  *
  * Created:     23rd October 1997
- * Updated:     6th November 2007
+ * Updated:     3rd May 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -50,8 +50,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MAJOR     4
 # define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_MINOR     3
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  1
-# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      198
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_REVISION  3
+# define WINSTL_VER_WINSTL_SYNCH_H_ATOMIC_FUNCTIONS_EDIT      200
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -81,10 +81,11 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
  * Compatibility
  */
 
-#if !defined(_M_IX86) && \
-    !defined(_M_IA64)
+#if !defined(WINSTL_ARCH_IS_X86) && \
+    !defined(WINSTL_ARCH_IS_IA64) && \
+    !defined(WINSTL_ARCH_IS_X64)
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 
 #ifdef STLSOFT_ATOMIC_CALLCONV
 # undef STLSOFT_ATOMIC_CALLCONV
@@ -104,7 +105,7 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 # endif /* compiler */
 #endif /* STLSOFT_NO_FASTCALL */
 
-#if defined(_M_IX86)
+#if defined(WINSTL_ARCH_IS_X86)
 
 # if defined(STLSOFT_CF_FASTCALL_SUPPORTED) && \
      !defined(STLSOFT_NO_FASTCALL)
@@ -117,7 +118,8 @@ STLSOFT_COMPILER_IS_MWERKS: __MWERKS__<0x3000
 #  error Need to define calling convention
 # endif /* call-conv */
 
-#elif defined(_M_IA64)
+#elif defined(WINSTL_ARCH_IS_IA64) || \
+      defined(WINSTL_ARCH_IS_X64)
 
 #  define WINSTL_ATOMIC_FNS_CALLCONV_IS_CDECL
 #  define WINSTL_ATOMIC_FNS_CALLCONV        __cdecl
@@ -213,13 +215,13 @@ namespace winstl_project
  * Typedefs
  */
 
-#if defined(_M_IX86)
-typedef ws_sint32_t     atomic_int_t;
-#elif defined(_M_IA64)
+#if defined(WINSTL_OS_IS_WIN64)
 typedef ws_sint64_t     atomic_int_t;
+#elif defined(WINSTL_OS_IS_WIN32)
+typedef ws_sint32_t     atomic_int_t;
 #else /* ? arch */
-# error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+# error Not valid for operating systems other than Win32 and Win64
+#endif /* Win32 || Win64 */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Atomic function declarations
@@ -1539,13 +1541,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* /* p
  */
 WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile* pl)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     return STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     return STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 /** \brief 
@@ -1554,13 +1556,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_preincrement(atomic_int_t volatile*
  */
 WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_predecrement(atomic_int_t volatile* pl)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     return STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     return STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 /** \brief 
@@ -1571,13 +1573,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postincrement(atomic_int_t volatile
 {
     atomic_int_t pre = *pl;
 
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     STLSOFT_NS_GLOBAL(InterlockedIncrement64)((LONGLONG*)pl);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 
     return pre;
 }
@@ -1590,13 +1592,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile
 {
     atomic_int_t pre = *pl;
 
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 
     return pre;
 }
@@ -1607,13 +1609,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postdecrement(atomic_int_t volatile
  */
 WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* pl)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     STLSOFT_NS_GLOBAL(InterlockedIncrement)((LPLONG)pl);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     STLSOFT_NS_GLOBAL(InterlockedIncrement64)((LONGLONG*)pl);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 /** \brief 
@@ -1622,13 +1624,13 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_increment(atomic_int_t volatile* pl)
  */
 WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* pl)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     STLSOFT_NS_GLOBAL(InterlockedDecrement)((LPLONG)pl);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     STLSOFT_NS_GLOBAL(InterlockedDecrement64)((LONGLONG*)pl);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 /** \brief 
@@ -1637,13 +1639,13 @@ WINSTL_ATOMIC_FNS_IMPL_(void) atomic_decrement(atomic_int_t volatile* pl)
  */
 WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_write(atomic_int_t volatile* pl, atomic_int_t n)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     return STLSOFT_NS_GLOBAL(InterlockedExchange)((LPLONG)pl, n);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     return STLSOFT_NS_GLOBAL(InterlockedExchange64)((LONGLONG*)pl, n);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 /** \brief 
@@ -1661,13 +1663,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read(atomic_int_t volatile const* p
  */
 WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd(atomic_int_t volatile* pl, atomic_int_t n)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd64)((LONGLONG*)pl, n);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 
@@ -1751,13 +1753,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_up(atomic_int_t volatile const
  */
 WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_up(atomic_int_t volatile* pl, atomic_int_t n)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd64)((LONGLONG*)pl, n);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 /* SMP variants */
@@ -1822,13 +1824,13 @@ WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_read_smp(atomic_int_t volatile cons
  */
 WINSTL_ATOMIC_FNS_IMPL_(atomic_int_t) atomic_postadd_smp(atomic_int_t volatile* pl, atomic_int_t n)
 {
-#if defined(_M_IX86)
+#if defined(WINSTL_OS_IS_WIN32)
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd)((LPLONG)pl, n);
-#elif defined(_M_IA64)
+#elif defined(WINSTL_OS_IS_WIN64)
     return (atomic_int_t)STLSOFT_NS_GLOBAL(InterlockedExchangeAdd64)((LONGLONG*)pl, n);
 #else /* ? arch */
 # error Not valid for processors other than Intel
-#endif /* _M_IX86 || _M_IA64 */
+#endif /* Win32 || Win64 */
 }
 
 #  endif /* STSLSOFT_INLINE_ASM_SUPPORTED */

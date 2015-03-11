@@ -2,11 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  30th April 2008
+; Updated:  3rd May 2008
 
 ============================================================================
 
 
+
+3rd May 2008 - 1.9.37 released
+------------------------------
+
+ * first tranche of changes for Win64 support
 
 30th April 2008 - 1.9.36 released
 ---------------------------------

@@ -46,9 +46,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_H_WINSTL_MAJOR       3
-# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       7
-# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    2
-# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        167
+# define WINSTL_VER_WINSTL_H_WINSTL_MINOR       8
+# define WINSTL_VER_WINSTL_H_WINSTL_REVISION    1
+# define WINSTL_VER_WINSTL_H_WINSTL_EDIT        168
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file winstl/winstl.h
@@ -135,12 +135,13 @@
 # define _WINSTL_VER_1_9_4      0x010904ff  /*!< Version 1.9.4 (with STLSoft 1.9.30) */
 # define _WINSTL_VER_1_9_5      0x010905ff  /*!< Version 1.9.5 (with STLSoft 1.9.31) */
 # define _WINSTL_VER_1_9_6      0x010906ff  /*!< Version 1.9.6 (with STLSoft 1.9.32) */
+# define _WINSTL_VER_1_10_1     0x010a01ff  /*!< Version 1.10.1 (with STLSoft 1.9.37) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _WINSTL_VER_MAJOR       1
-#define _WINSTL_VER_MINOR       9
-#define _WINSTL_VER_REVISION    6
-#define _WINSTL_VER             _WINSTL_VER_1_9_6
+#define _WINSTL_VER_MINOR       10
+#define _WINSTL_VER_REVISION    1
+#define _WINSTL_VER             _WINSTL_VER_1_10_1
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -181,10 +182,57 @@
  * STLSoft version compatibility
  */
 
-#if !defined(_STLSOFT_VER_1_9_1_B41) || \
-    _STLSOFT_VER < _STLSOFT_VER_1_9_1_B41
-# error This version of the WinSTL libraries requires STLSoft version 1.9.1 beta 41, or later
+#if !defined(_STLSOFT_VER) || \
+    _STLSOFT_VER < 0x010925ff
+# error This version of the WinSTL libraries requires STLSoft version 1.9.37, or later
 #endif /* _STLSOFT_VER */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Operating System
+ */
+
+#ifdef WINSTL_OS_IS_WIN32
+# undef WINSTL_OS_IS_WIN32
+#endif /* WINSTL_OS_IS_WIN32 */
+
+#ifdef WINSTL_OS_IS_WIN64
+# undef WINSTL_OS_IS_WIN64
+#endif /* WINSTL_OS_IS_WIN64 */
+
+#if defined(WIN64)
+# define WINSTL_OS_IS_WIN64
+#elif defined(WIN32)
+# define WINSTL_OS_IS_WIN32
+#else /* ? WIN?? */
+# error WinSTL is only compatible with Win32 and Win64
+#endif /* WIN?? */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Architecture
+ */
+
+#ifdef WINSTL_ARCH_IS_X86
+# undef WINSTL_ARCH_IS_X86
+#endif /* WINSTL_ARCH_IS_X86 */
+
+#ifdef WINSTL_ARCH_IS_IA64
+# undef WINSTL_ARCH_IS_IA64
+#endif /* WINSTL_ARCH_IS_IA64 */
+
+#ifdef WINSTL_ARCH_IS_X64
+# undef WINSTL_ARCH_IS_X64
+#endif /* WINSTL_ARCH_IS_X64 */
+
+#if defined(_M_IA64)
+# define WINSTL_ARCH_IS_IA64
+#elif defined(_M_X64) || \
+      defined(_M_AMD64)
+# define WINSTL_ARCH_IS_X64
+#elif defined(_M_IX86)
+# define WINSTL_ARCH_IS_X86
+#else /* ? _M_?? */
+# error WinSTL is only compatible with x86, IA64 and x64 architectures
+#endif /* _M_?? */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Proper C++ casting
