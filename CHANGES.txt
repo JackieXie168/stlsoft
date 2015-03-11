@@ -2,7 +2,7 @@
 STLSoft - Changes
 
 ; Created:  29th March 2002
-; Updated:  25th October 2008
+; Updated:  27th October 2008
 
 ============================================================================
 
@@ -16,6 +16,28 @@ STLSoft - Changes
    *                                    *
    **************************************
 
+
+============================================================================
+
+Changes for 1.9.60 (27th October 2008)
+
+Summary:
+========
+
+ * added stlsoft::apply_const()
+ * added stlsoft/conversion/m2w.hpp
+
+Changes:
+========
+
+ STLSoft:
+ --------
+
+  ~ stlsoft/stlsoft.h:
+     + added stlsoft::apply_const()
+
+  + stlsoft/conversion/m2w.hpp:
+     provides access to stlsoft::m2w converter class
 
 ============================================================================
 

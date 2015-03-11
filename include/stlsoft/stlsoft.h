@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     24th October 2008
+ * Updated:     27th October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,9 +53,9 @@
 /* File version */
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    17
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 18
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     363
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    18
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 1
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     364
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -224,12 +224,13 @@
 # define _STLSOFT_VER_1_9_57    0x010939ff  /*!< Version 1.9.57 (10th Oct 2008) */
 # define _STLSOFT_VER_1_9_58    0x01093aff  /*!< Version 1.9.58 (15th Oct 2008) */
 # define _STLSOFT_VER_1_9_59    0x01093bff  /*!< Version 1.9.59 (24th Oct 2008) */
+# define _STLSOFT_VER_1_9_60    0x01093cff  /*!< Version 1.9.60 (27th Oct 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   59
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_59
+#define _STLSOFT_VER_REVISION   60
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_60
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -2608,24 +2609,32 @@ inline ss_ptrdiff_t ptr_diff(T1 const* p1, T2 const* p2)
  * advice is: <b>Use With Care!</b>
  */
 template <ss_typename_param_k T>
-inline T &remove_const(T const& t)
+inline T& remove_const(T const& t)
 {
-    return const_cast<T &>(t);
+    return const_cast<T&>(t);
+}
+
+/** \brief Adds const-qualifier to an instance.
+ */
+template <ss_typename_param_k T>
+inline T const& apply_const(T& t)
+{
+    return t;
 }
 
 /* Mutable support */
 # ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
 #  ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
-inline T &mutable_access(T &t)
+inline T& mutable_access(T& t)
 #  else /* ? STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
-inline T &mutable_access(T const& t)
+inline T& mutable_access(T const& t)
 #  endif /* STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 {
 #  ifdef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
     return t;
 #  else /* ? STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
-    return const_cast<T &>(t);
+    return const_cast<T&>(t);
 #  endif /* STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
 }
 # endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -2640,12 +2649,12 @@ inline T &mutable_access(T const& t)
 #  endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 
 template <ss_typename_param_k T>
-inline T &move_lhs_from_rhs(stlsoft_define_move_rhs_type(T) t)
+inline T& move_lhs_from_rhs(stlsoft_define_move_rhs_type(T) t)
 {
 #  ifdef STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT
     return t;
 #  else /* ? STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
-    return const_cast<T &>(t);
+    return const_cast<T&>(t);
 #  endif /* STLSOFT_CF_MOVE_CONSTRUCTOR_SUPPORT */
 }
 
