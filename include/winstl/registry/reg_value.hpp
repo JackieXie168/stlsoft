@@ -1,8 +1,8 @@
 /* /////////////////////////////////////////////////////////////////////////
  * File:        winstl/registry/reg_value.hpp
  *
- * Purpose:     Contains the basic_reg_value class template, and ANSI
- *              and Unicode specialisations thereof.
+ * Purpose:     Contains the basic_reg_value class template, and multibyte
+ *              and wide string specialisations thereof.
  *
  * Notes:       The original implementation of the class had the const_iterator
  *              and value_type as nested classes. Unfortunately, Visual C++ 5 &
@@ -10,12 +10,16 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     19th April 2009
+ * Updated:     18th May 2009
  *
- * Thanks:      To Diego Chanoux for spotting a bug in the value_sz() method.
+ * Thanks:      To Diego Chanoux for spotting a defect in the value_sz() method.
  *
  *              To Austin Ziegler for the value_multi_sz() method, and for
  *              fixes to defects evident on x64.
+ *
+ *              To Sam Fisher for spotting the defect in the value_sz() and
+ *              value_multi_sz() methods when accessing a zero-size value that
+ *              has one or more non-zero-sized peer values. Ouch!
  *
  * Home:        http://stlsoft.org/
  *
@@ -62,8 +66,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      103
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  6
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      106
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -137,7 +141,7 @@ namespace winstl_project
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/** \brief Represents a binary registry value
+/** Represents a binary registry value
  *
  * \ingroup group__library__windows_registry
  */
@@ -153,24 +157,24 @@ class reg_blob
                                             ,   CCH_REG_API_AUTO_BUFFER
                                             >               buffer_type;
 public:
-    /// \brief The allocator type
+    /// The allocator type
     typedef A                                               allocator_type;
-    /// \brief The current parameterisation of the type
+    /// The current parameterisation of the type
     typedef reg_blob<A>                                     class_type;
-    /// \brief The value type
+    /// The value type
     typedef ws_byte_t                                       value_type;
-    /// \brief The non-mutable (const) reference type
+    /// The non-mutable (const) reference type
     typedef value_type const&                               const_reference;
-    /// \brief The non-mutable (const) pointer type
+    /// The non-mutable (const) pointer type
     typedef value_type const*                               const_pointer;
-    /// \brief The non-mutating (const) iterator type
+    /// The non-mutating (const) iterator type
     typedef value_type const*                               const_iterator;
-    /// \brief The size type
+    /// The size type
     typedef ws_size_t                                       size_type;
-    /// \brief The difference type
+    /// The difference type
     typedef ws_ptrdiff_t                                    difference_type;
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// \brief The non-mutating (const) reverse iterator type
+    /// The non-mutating (const) reverse iterator type
     typedef const_reverse_iterator_base <   const_iterator
                                         ,   value_type const
                                         ,   const_reference
@@ -183,46 +187,46 @@ public:
 /// \name Construction
 /// @{
 public:
-    /// \brief Default constructor
+    /// Default constructor
     reg_blob();
-    /// \brief Copies the contents of the given pointer.
+    /// Copies the contents of the given pointer.
     ///
     /// \param data Pointer to the bytes to be copied into the instance.
     /// \param n Number of bytes pointed to by \c data.
     reg_blob(value_type const* data, size_type n);
-    /// \brief Copy constructor
+    /// Copy constructor
     reg_blob(class_type const& rhs);
-    /// \brief Destructor
+    /// Destructor
     ~reg_blob() stlsoft_throw_0();
 /// @}
 
 /// \name Attributes
 /// @{
 public:
-    /// \brief Number of bytes in the blob.
+    /// Number of bytes in the blob.
     size_type       size() const;
-    /// \brief Pointer to the first byte in the blob.
+    /// Pointer to the first byte in the blob.
     const_pointer   data() const;
 /// @}
 
 /// \name Iteration
 /// @{
 public:
-    /// \brief Begins the iteration
+    /// Begins the iteration
     ///
     /// \return An iterator representing the start of the sequence
     const_iterator  begin() const;
-    /// \brief Ends the iteration
+    /// Ends the iteration
     ///
     /// \return An iterator representing the end of the sequence
     const_iterator  end() const;
 
 #if defined(STLSOFT_LF_BIDIRECTIONAL_ITERATOR_SUPPORT)
-    /// \brief Begins the reverse iteration
+    /// Begins the reverse iteration
     ///
     /// \return An iterator representing the start of the reverse sequence
     const_reverse_iterator  rbegin() const;
-    /// \brief Ends the reverse iteration
+    /// Ends the reverse iteration
     ///
     /// \return An iterator representing the end of the reverse sequence
     const_reverse_iterator  rend() const;
@@ -242,7 +246,7 @@ private:
 /// @}
 };
 
-/** \brief Represents a registry value, providing methods for accessing the value in different types.
+/** Represents a registry value, providing methods for accessing the value in different types.
  *
  * \ingroup group__library__windows_registry
  *
@@ -267,23 +271,23 @@ class basic_reg_value
 /// \name Member Types
 /// @{
 public:
-    /// \brief The character type
+    /// The character type
     typedef C                                                           char_type;
-    /// \brief The traits type
+    /// The traits type
     typedef T                                                           traits_type;
-    /// \brief The allocator type
+    /// The allocator type
     typedef A                                                           allocator_type;
-    /// \brief The current parameterisation of the type
+    /// The current parameterisation of the type
     typedef basic_reg_value<C, T, A>                                    class_type;
-    /// \brief The size type
+    /// The size type
     typedef ss_typename_type_k traits_type::size_type                   size_type;
-    /// \brief The string type
+    /// The string type
     typedef ss_typename_type_k traits_type::string_type                 string_type;
 #ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
-    /// \brief The string vector type
+    /// The string vector type
     typedef stlsoft_ns_qual_std(vector)<string_type>                    strings_type;
 #endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
-    /// \brief The key type
+    /// The key type
 #if defined(STLSOFT_CF_THROW_BAD_ALLOC) && \
     defined(STLSOFT_COMPILER_IS_MSVC) && \
     _MSC_VER == 1100
@@ -292,7 +296,7 @@ public:
 #else /* ? compiler */
     typedef ss_typename_type_k traits_type::hkey_type                   hkey_type;
 #endif /* compiler */
-    /// \brief The blob type
+    /// The blob type
     typedef reg_blob<A>                                                 blob_type;
 private:
     typedef stlsoft_ns_qual(auto_buffer_old)<   char_type
@@ -308,16 +312,16 @@ private:
                                             ,   CCH_REG_API_AUTO_BUFFER
                                             >                           byte_buffer_type_;
 private:
-    /// \brief The results type of the Registry API
+    /// The results type of the Registry API
     typedef ss_typename_type_k traits_type::result_type                 result_type;
 /// @}
 
 /// \name Construction
 /// @{
 public:
-    /// \brief Default constructor
+    /// Default constructor
     basic_reg_value();
-    /// \brief Copy constructor
+    /// Copy constructor
     basic_reg_value(class_type const& rhs);
 protected:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
@@ -325,25 +329,25 @@ protected:
     friend class basic_reg_key<C, T, A>;
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-    /// \brief Internal constructor, used by basic_reg_key and basic_reg_value_sequence.
+    /// Internal constructor, used by basic_reg_key and basic_reg_value_sequence.
     basic_reg_value(hkey_type hkeyParent, string_type const& value_name)
-        : m_hkey(dup_key_(hkeyParent, KEY_READ))
-        , m_name(value_name)
+        : m_name(value_name)
+        , m_hkey(dup_key_(hkeyParent, KEY_READ))
         , m_type(REG_NONE)
         , m_bTypeRetrieved(ws_false_v)
     {} // Implementation provided here, as otherwise VC5 will not link
 public:
-    /// \brief Destructor
+    /// Destructor
     ~basic_reg_value() stlsoft_throw_0();
 
-    /// \brief Copy assignment operator
+    /// Copy assignment operator
     class_type& operator =(class_type const& rhs);
 /// @}
 
 /// \name Attributes
 /// @{
 public:
-    /// \brief Returns the type of the value
+    /// Returns the type of the value
     ///
     /// \retval REG_NONE No value type
     /// \retval REG_SZ A Unicode nul terminated string
@@ -361,27 +365,27 @@ public:
     /// \retval REG_QWORD_LITTLE_ENDIAN A 64-bit number (same as REG_QWORD)
     ws_dword_t  type() const;
 
-    /// \brief The name of the value
+    /// The name of the value
     string_type name() const;
 
-    /// \brief The registry value in \c REG_SZ form
+    /// The registry value in \c REG_SZ form
     ///
     /// This method does <i>not</i> expand environment strings
     string_type value_sz() const;
-    /// \brief The registry value in \c REG_EXPAND_SZ form
+    /// The registry value in \c REG_EXPAND_SZ form
     ///
     /// This method <i>does</i> expand environment strings
     string_type value_expand_sz() const;
-    /// \brief The registry value as a 32-bit integer
+    /// The registry value as a 32-bit integer
     ws_dword_t  value_dword() const;
-    /// \brief The registry value as a translated (from little-endian) 32-bit integer
+    /// The registry value as a translated (from little-endian) 32-bit integer
     ws_dword_t  value_dword_littleendian() const;
-    /// \brief The registry value as a translated (from big-endian) 32-bit integer
+    /// The registry value as a translated (from big-endian) 32-bit integer
     ws_dword_t  value_dword_bigendian() const;
-    /// \brief The registry value as a binary value
+    /// The registry value as a binary value
     blob_type   value_binary() const;
 #ifndef WINSTL_REG_VALUE_NO_MULTI_SZ
-    /// \brief The registry value in \c REG_MULTI_SZ form
+    /// The registry value in \c REG_MULTI_SZ form
     strings_type value_multi_sz() const;
 #endif /* !WINSTL_REG_VALUE_NO_MULTI_SZ */
 /// @}
@@ -396,25 +400,25 @@ private:
 /// \name Members
 /// @{
 private:
-    hkey_type               m_hkey;             // The parent key of the value
     string_type             m_name;             // The name of the value
+    hkey_type               m_hkey;             // The parent key of the value
     ss_mutable_k ws_dword_t m_type;             // The type of the value
     ss_mutable_k ws_bool_t  m_bTypeRetrieved;   // Facilitates lazy evaluation of the type
 /// @}
 };
 
 /* Typedefs to commonly encountered types. */
-/** \brief Specialisation of the basic_reg_value template for the ANSI character type \c char
+/** Specialisation of the basic_reg_value template for the ANSI character type \c char
  *
  * \ingroup group__library__windows_registry
  */
 typedef basic_reg_value<ws_char_a_t, reg_traits<ws_char_a_t>, processheap_allocator<ws_char_a_t> >  reg_value_a;
-/** \brief Specialisation of the basic_reg_value template for the Unicode character type \c wchar_t
+/** Specialisation of the basic_reg_value template for the Unicode character type \c wchar_t
  *
  * \ingroup group__library__windows_registry
  */
 typedef basic_reg_value<ws_char_w_t, reg_traits<ws_char_w_t>, processheap_allocator<ws_char_w_t> >  reg_value_w;
-/** \brief Specialisation of the basic_reg_value template for the Win32 character type \c TCHAR
+/** Specialisation of the basic_reg_value template for the Win32 character type \c TCHAR
  *
  * \ingroup group__library__windows_registry
  */
@@ -435,15 +439,16 @@ typedef basic_reg_value<TCHAR, reg_traits<TCHAR>, processheap_allocator<TCHAR> >
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_value<C, T, A>::basic_reg_value()
-    : m_hkey(NULL)
+    : m_name()
+    , m_hkey(NULL)
     , m_type(REG_NONE)
     , m_bTypeRetrieved(ws_false_v)
 {}
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_value<C, T, A>::basic_reg_value(class_type const& rhs)
-    : m_hkey(dup_key_(rhs.m_hkey, KEY_READ))
-    , m_name(rhs.m_name)
+    : m_name(rhs.m_name)
+    , m_hkey(dup_key_(rhs.m_hkey, KEY_READ))
     , m_type(rhs.m_type)
     , m_bTypeRetrieved(rhs.m_bTypeRetrieved)
 {}
@@ -451,8 +456,8 @@ inline basic_reg_value<C, T, A>::basic_reg_value(class_type const& rhs)
 #if 0
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
 inline basic_reg_value<C, T, A>::basic_reg_value(basic_reg_value<C, T, A>::hkey_type hkeyParent, basic_reg_value<C, T, A>::string_type const& value_name)
-    : m_hkey(dup_key_(hkeyParent))
-    , m_name(value_name)
+    : m_name(value_name)
+    , m_hkey(dup_key_(hkeyParent))
     , m_type(REG_NONE)
     , m_bTypeRetrieved(ws_false_v)
 {}
@@ -581,7 +586,7 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-    else if(data_size > 0)
+    else if(data_size > 0) // Are there _any_ values have non-zero size
     {
         char_buffer_type_   buffer(1 + data_size);
         ws_dword_t          dw;
@@ -604,7 +609,7 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::string_type basic_reg_va
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
-        else
+        else if(data_size > 0) // We do a second check here because the requested value might have 0-size, and because registry contents can be changed by other processes
         {
             WINSTL_ASSERT(0 != data_size);
 
@@ -774,7 +779,7 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type basic_reg_v
         }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
-    else if(data_size > 0)
+    else if(data_size > 0) // Are there _any_ values have non-zero size
     {
         char_buffer_type_   buffer(1 + data_size);
         ws_dword_t          dw;
@@ -797,7 +802,7 @@ inline ss_typename_type_ret_k basic_reg_value<C, T, A>::strings_type basic_reg_v
             }
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
         }
-        else
+        else if(data_size > 0) // We do a second check here because the requested value might have 0-size, and because registry contents can be changed by other processes
         {
             buffer[data_size / sizeof(char_type)] = 0;
 

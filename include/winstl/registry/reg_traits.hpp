@@ -5,7 +5,7 @@
  *              and Unicode specialisations thereof.
  *
  * Created:     19th January 2002
- * Updated:     15th May 2009
+ * Updated:     19th May 2009
  *
  * Thanks to:   Sam Fisher for requesting reg_delete_tree().
  *
@@ -52,9 +52,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MAJOR    3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 2
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     73
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_MINOR    5
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_REVISION 1
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_TRAITS_EDIT     76
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,7 +96,7 @@ namespace winstl_project
 /* ////////////////////////////////////////////////////////////////////// */
 
 #ifdef STLSOFT_DOCUMENTATION_SKIP_SECTION
-/** \brief Traits for accessing the correct registry functions for a given character type
+/** Traits for accessing the correct registry functions for a given character type
  *
  * \ingroup group__library__windows_registry
  *
@@ -112,35 +112,41 @@ struct reg_traits
 /// \name Member Types
 /// @{
 public:
-    /// \brief The character type
+    /// The character type
     typedef C               char_type;
-    /// \brief The size type
+    /// The size type
     typedef ws_size_t       size_type;
-    /// \brief The difference type
+    /// The difference type
     typedef ws_ptrdiff_t    difference_type;
-    /// \brief The registry key type
+    /// The registry key type
     typedef HKEY            hkey_type;
-    /// \brief The string type
+    /// The string type
     typedef reg_string_t    string_type;        // Placeholder only
-    /// \brief The time type
+    /// The time type
     typedef FILETIME        time_type;
-    /// \brief The API result type (LONG)
+    /// The API result type (LONG)
     typedef LONG           result_type;
 /// @}
 
 /// \name Operations
 /// @{
 public:
-    /// \brief Duplicates a registry key
+    /// Duplicates a registry key
+    ///
+    /// \deprecated Use reg_dup_key() instead
     static hkey_type    key_dup(        hkey_type           hkey
                                     ,   REGSAM              samDesired  =   KEY_ALL_ACCESS
                                     ,   result_type*        result     =   NULL);
-    /// \brief Opens a registry sub-key
+    /// Duplicates a registry key
+    static hkey_type    reg_dup_key(    hkey_type           hkey
+                                    ,   REGSAM              samDesired  =   KEY_ALL_ACCESS
+                                    ,   result_type*        result     =   NULL);
+    /// Opens a registry sub-key
     static result_type  reg_open_key(   hkey_type           hkey,
                                         char_type const*    sub_key_name,
                                         hkey_type*          hkey_result,
                                         REGSAM              samDesired = KEY_ALL_ACCESS);
-    /// \brief Opens a registry sub-key
+    /// Opens a registry sub-key
     static result_type  reg_create_key( hkey_type           hkey,
                                         char_type const*    sub_key_name,
                                         hkey_type*          hkey_result,
@@ -150,22 +156,22 @@ public:
                                         hkey_type*          hkey_result,
                                         ws_bool_t&          bCreated,
                                         REGSAM              samDesired = KEY_ALL_ACCESS);
-    /// \brief Destroys a registry sub-key
+    /// Destroys a registry sub-key
     static result_type  reg_delete_key( hkey_type           hkey,
                                         char_type const*    sub_key_name);
-    /// \brief Queries a registry key value
+    /// Queries a registry key value
     static result_type  reg_query_value(hkey_type           hkey,
                                         char_type const*    valueName,
                                         ws_dword_t&         valueType,
                                         void*               data,
                                         size_type           &cbData);
-    /// \brief Sets the value of the named value.
+    /// Sets the value of the named value.
     static result_type  reg_set_value(  hkey_type           hkey
                                     ,   char_type const*    valueName
                                     ,   ws_dword_t          valueType
                                     ,   void const*         data
                                     ,   size_type           cbData);
-    /// \brief Deletes the named value.
+    /// Deletes the named value.
     static result_type  reg_delete_value(hkey_type          hkey
                                     ,   char_type const*    valueName);
 
@@ -175,7 +181,7 @@ public:
     ,   char_type const*    sub_key_name
     );
 
-    /// \brief Queries a registry key's characteristics
+    /// Queries a registry key's characteristics
     static result_type  reg_query_info( hkey_type       hkey,
                                         char_type*      key_class,
                                         size_type*      cch_key_class,
@@ -187,13 +193,13 @@ public:
                                         size_type*      cb_value_data_max,
                                         size_type*      cb_security_descriptor_max,
                                         time_type*      time_last_write);
-    /// \brief Enumerates a registry key's sub-keys
+    /// Enumerates a registry key's sub-keys
     static result_type  reg_enum_key(   hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type*      key_name,
                                         size_type*      cch_key_name,
                                         time_type*      time_last_write    =   NULL);
-    /// \brief [DEPRECATED] Enumerates a registry key's sub-keys
+    /// [DEPRECATED] Enumerates a registry key's sub-keys
     ///
     /// \deprecated This is deprecated in favour of reg_enum_key(hkey_type, ws_dword_t, char_type*, size_type*, time_type *)
     static result_type  reg_enum_key(   hkey_type       hkey,
@@ -203,7 +209,7 @@ public:
                                         char_type*      key_class,
                                         size_type*      cch_key_class,
                                         time_type*      time_last_write);
-    /// \brief Enumerates a registry key's values
+    /// Enumerates a registry key's values
     static result_type  reg_enum_value( hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type*      valueName,
@@ -211,7 +217,7 @@ public:
                                         ws_dword_t*     valueType,
                                         void*           data,
                                         size_type       &cbData);
-    /// \brief Enumerates a registry key's values
+    /// Enumerates a registry key's values
     static result_type  reg_enum_value( hkey_type       hkey,
                                         ws_dword_t      index,
                                         char_type*      valueName,
@@ -239,6 +245,10 @@ public:
 
 public:
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
+    {
+        return reg_dup_key(hkey, samDesired, result);
+    }
+    static hkey_type reg_dup_key(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
     {
         hkey_type   hkeyDup;
         result_type res = ::RegOpenKeyExA(hkey, "", 0, samDesired, &hkeyDup);
@@ -323,6 +333,12 @@ public:
                                         size_type*      cb_security_descriptor_max,
                                         time_type*      time_last_write)
     {
+        if( NULL == cch_key_class &&
+            NULL != key_class)
+        {
+            return ERROR_INVALID_PARAMETER;
+        }
+
         return ::RegQueryInfoKeyA(hkey, key_class, reinterpret_cast<LPDWORD>(cch_key_class), NULL, reinterpret_cast<LPDWORD>(c_sub_keys), reinterpret_cast<LPDWORD>(cch_sub_key_max), reinterpret_cast<LPDWORD>(cch_key_class_max), reinterpret_cast<LPDWORD>(c_values), reinterpret_cast<LPDWORD>(cch_valueName_max), reinterpret_cast<LPDWORD>(cb_value_data_max), reinterpret_cast<LPDWORD>(cb_security_descriptor_max), time_last_write);
     }
 
@@ -378,7 +394,7 @@ private:
 
         if(NULL == hinst)
         {
-            r = ::GetLastError();
+            r = static_cast<result_type>(::GetLastError());
         }
         else
         {
@@ -392,11 +408,11 @@ private:
 
             if(NULL == u.fp)
             {
-                r = ::GetLastError();
+                r = static_cast<result_type>(::GetLastError());
             }
             else
             {
-                r = (*u.pfn)(a1, a2);
+                r = static_cast<result_type>((*u.pfn)(a1, a2));
             }
 
             ::FreeLibrary(hinst);
@@ -421,6 +437,10 @@ public:
 
 public:
     static hkey_type key_dup(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
+    {
+        return reg_dup_key(hkey, samDesired, result);
+    }
+    static hkey_type reg_dup_key(hkey_type hkey, REGSAM samDesired, result_type *result = NULL)
     {
         hkey_type   hkeyDup;
         result_type res = ::RegOpenKeyExW(hkey, L"", 0, samDesired, &hkeyDup);
@@ -505,6 +525,12 @@ public:
                                         size_type*      cb_security_descriptor_max,
                                         time_type*      time_last_write)
     {
+        if( NULL == cch_key_class &&
+            NULL != key_class)
+        {
+            return ERROR_INVALID_PARAMETER;
+        }
+
         return ::RegQueryInfoKeyW(hkey, key_class, reinterpret_cast<LPDWORD>(cch_key_class), NULL, reinterpret_cast<LPDWORD>(c_sub_keys), reinterpret_cast<LPDWORD>(cch_sub_key_max), reinterpret_cast<LPDWORD>(cch_key_class_max), reinterpret_cast<LPDWORD>(c_values), reinterpret_cast<LPDWORD>(cch_valueName_max), reinterpret_cast<LPDWORD>(cb_value_data_max), reinterpret_cast<LPDWORD>(cb_security_descriptor_max), time_last_write);
     }
 
@@ -560,7 +586,7 @@ private:
 
         if(NULL == hinst)
         {
-            r = ::GetLastError();
+            r = static_cast<result_type>(::GetLastError());
         }
         else
         {
@@ -574,11 +600,11 @@ private:
 
             if(NULL == u.fp)
             {
-                r = ::GetLastError();
+                r = static_cast<result_type>(::GetLastError());
             }
             else
             {
-                r = (*u.pfn)(a1, a2);
+                r = static_cast<result_type>((*u.pfn)(a1, a2));
             }
 
             ::FreeLibrary(hinst);
