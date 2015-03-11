@@ -4,11 +4,11 @@
  * Purpose:     Simple, command-line unit-testing client.
  *
  * Created:     13th May 2004
- * Updated:     10th January 2007
+ * Updated:     8th March 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,15 +51,17 @@
 #ifndef _STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_MAJOR     1
 # define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_MINOR     3
-# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_REVISION  3
-# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_EDIT      18
+# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_REVISION  4
+# define STLSOFT_VER_UNITTEST_H_SIMPLE_UNITTESTER_EDIT      19
 #endif /* !_STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
  */
 
-#include <stlsoft/stlsoft.h>
+#ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
+# include <stlsoft/stlsoft.h>
+#endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
 #ifdef STLSOFT_CF_std_NAMESPACE
 # include <vector>
 #else /* ? STLSOFT_CF_std_NAMESPACE */

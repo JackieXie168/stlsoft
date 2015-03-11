@@ -4,7 +4,7 @@
  * Purpose:     basic_string_view class.
  *
  * Created:     16th October 2004
- * Updated:     6th December 2007
+ * Updated:     17th February 2008
  *
  * Thanks to:   Bjorn Karlsson and Scott Patterson for discussions on various
  *              naming and design issues. Thanks also to Pablo Aguilar for
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2004-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2004-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -55,8 +55,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_MINOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        86
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STRING_VIEW_EDIT        87
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -96,6 +96,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR
 # include <stlsoft/memory/allocator_selector.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_SELECTOR */
+#ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP
+# include <stlsoft/util/std_swap.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_STD_SWAP */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # include <stdexcept>                   // for std::out_of_range
 #endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -1100,9 +1103,9 @@ inline void basic_string_view<C, T, A>::swap(ss_typename_type_k basic_string_vie
 {
     STLSOFT_ASSERT(is_valid());
 
-    std::swap(m_length, rhs.m_length);
-    std::swap(m_base, rhs.m_base);
-    std::swap(m_cstr, rhs.m_cstr);
+    std_swap(m_length, rhs.m_length);
+    std_swap(m_base, rhs.m_base);
+    std_swap(m_cstr, rhs.m_cstr);
 
     STLSOFT_ASSERT(is_valid());
 }
