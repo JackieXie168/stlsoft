@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Visual C++.
  *
  * Created:     7th February 2003
- * Updated:     16th November 2007
+ * Updated:     15th December 2007
  *
  * Thanks:      To Cláudio Albuquerque for working on the
  *              Win64-compatibility.
@@ -63,9 +63,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MAJOR     3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     14
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      97
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_MINOR     15
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_REVISION  1
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MSVC_EDIT      98
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -224,6 +224,13 @@
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* #define STLSOFT_CF_STATIC_ASSERT_RELEASE_OPTIMISATION_SUPPORT */
+
+/* RTTI support */
+#ifdef _CPPRTTI
+# define STLSOFT_CF_RTTI_SUPPORT
+#else /* ? _CPPRTTI */
+ /* Not defined */
+#endif /* _CPPRTTI */
 
 /* Exception support */
 #ifdef _CPPUNWIND

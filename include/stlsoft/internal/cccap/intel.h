@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     6th November 2007
+ * Updated:     15th December 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       14
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       15
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        70
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        71
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -203,6 +203,13 @@
 #define STLSOFT_CF_STATIC_ASSERT_SUPPORT
 
 /* #define STLSOFT_CF_STATIC_ASSERT_RELEASE_OPTIMISATION_SUPPORT */
+
+/* RTTI support */
+#ifdef _CPPRTTI
+# define STLSOFT_CF_RTTI_SUPPORT
+#else /* ? _CPPRTTI */
+ /* Not defined */
+#endif /* _CPPRTTI */
 
 /* Exception support */
 #ifdef _CPPUNWIND

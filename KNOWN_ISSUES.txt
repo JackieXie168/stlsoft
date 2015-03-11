@@ -2,12 +2,12 @@
 STLSoft - Known Issues:
 
 ; Created:  29th March 2002
-; Updated:  10th December 2007
+; Updated:  17th December 2007
 
 ============================================================================
 
 
-STLSoft 1.9.10 Known Issues:
+STLSoft 1.9.11 Known Issues:
 ----------------------------
 
  * There are some problems with GCC 4.0 in compiling the fixed array classes
