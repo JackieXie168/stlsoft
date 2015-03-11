@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/string/slice_functions.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS
-# include <stlsoft/string/slice_functions.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_SLICE_FUNCTIONS */
+#include <stlsoft/string/slice_functions.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

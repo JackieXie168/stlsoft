@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     27th November 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,7 +56,7 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 16
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     285
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     286
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -1584,25 +1584,25 @@ inline void throw_x(X const &x)
  * \brief Indicates that the given function/method throws the named type.
  */
 /** \def stlsoft_throw_2
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the two named types.
  */
 /** \def stlsoft_throw_3
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the three named types.
  */
 /** \def stlsoft_throw_4
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the four named types.
  */
 /** \def stlsoft_throw_5
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the five named types.
  */
 /** \def stlsoft_throw_6
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the six named types.
  */
 /** \def stlsoft_throw_7
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the seven named types.
  */
 /** \def stlsoft_throw_8
- * \brief Indicates that the given function/method throws the named types.
+ * \brief Indicates that the given function/method throws the eight named types.
  */
 
 /* Exception signatures. */

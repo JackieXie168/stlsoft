@@ -4,7 +4,7 @@
  * Purpose:     Inter-process mutex, based on Windows MUTEX.
  *
  * Created:     15th May 2002
- * Updated:     17th October 2006
+ * Updated:     4th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR    4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 4
-# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     46
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR    1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT     47
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ class process_mutex
 public:
 /// @}
     typedef process_mutex   class_type;
-    typedef HANDLE          handle_type;
+    typedef HANDLE          synch_handle_type;
 
 /// \name Construction
 /// @{
@@ -397,6 +397,19 @@ private:
 /* /////////////////////////////////////////////////////////////////////////
  * Control shims
  */
+
+/** \brief Overload of the form of the winstl::get_synch_handle() shim for
+ *    the winstl::process_mutex type.
+ *
+ * \param mx The winstl::process_mutex instance
+ *
+ * \retval The synchronisation handle of \c mx
+ */
+inline HANDLE get_synch_handle(process_mutex &mx)
+{
+	return mx.get();
+}
+
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \

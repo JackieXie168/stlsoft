@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/string/fast_string_concatenator.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR
-# include <stlsoft/string/fast_string_concatenator.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_FAST_STRING_CONCATENATOR */
+#include <stlsoft/string/fast_string_concatenator.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

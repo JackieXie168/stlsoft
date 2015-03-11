@@ -1,5 +1,5 @@
 
-// Updated: 7th July 2006
+// Updated: 6th December 2006
 
 #if !defined(STLSOFT_INCL_STLSOFT_SMARTPTR_HPP_REF_PTR)
 # error This file cannot be directly included, and should only be included within stlsoft/smartptr/ref_ptr.hpp
@@ -15,6 +15,7 @@ namespace unittest
 	{
 		namespace RCIs
 		{
+
 			// This definition extracted from Synesis Software's MIRefCnt.h
 			//
 			// (Licensed under the Synesis Software Standard Public License)
@@ -91,6 +92,73 @@ namespace unittest
 
 		} // namespace RCIs
 
+		namespace RCIs2
+		{
+
+			struct IRefCounter
+			{
+			public:
+				virtual unsigned long	AddRef() = 0;
+				virtual unsigned long	Release() = 0;
+			};
+
+			struct IBase
+				: public IRefCounter
+			{
+			public:
+				virtual void BaseMethod() = 0;
+			};
+
+			struct IDerived
+				: public IBase
+			{
+			public:
+				virtual void DerivedMethod() = 0;
+			};
+
+			class Base
+				: public IBase
+			{
+			public:
+				unsigned long	AddRef()
+				{
+					return 0;
+				}
+				unsigned long	Release()
+				{
+					return 0;
+				}
+			public:
+				void BaseMethod()
+				{
+				}
+			};
+
+			class Derived
+				: public Base
+				, public IDerived
+			{
+			public:
+				unsigned long	AddRef()
+				{
+					return 0;
+				}
+				unsigned long	Release()
+				{
+					return 0;
+				}
+			public:
+				void BaseMethod()
+				{
+				}
+			public:
+				void DerivedMethod()
+				{
+				}
+			};
+
+		} // namespace RCIs2
+
 		ss_bool_t test_stlsoft_ref_ptr_1(unittest_reporter *r)
 		{
 			ss_bool_t				bSuccess	=	true;
@@ -101,6 +169,12 @@ namespace unittest
 			Base_ptr	p2(NULL, false);
 			Base_ptr	p3(NULL, false);
 			Base_ptr	p4(p1);
+			Base_ptr	p5;
+			Base_ptr	p6;
+
+			p5 = p1;
+
+			p6.set(NULL, false);
 
 			if(NULL != p1.get())
 			{
@@ -116,34 +190,56 @@ namespace unittest
 
 			if(p1 != p2)
 			{
-				r->report("Default construction failed", __LINE__);
+				r->report("Conversion construction failed", __LINE__);
 				bSuccess = false;
 			}
 			if(p2 != p1)
 			{
-				r->report("Default construction failed", __LINE__);
+				r->report("Conversion construction failed", __LINE__);
 				bSuccess = false;
 			}
 
 			if(p1 != p3)
 			{
-				r->report("Default construction failed", __LINE__);
+				r->report("Conversion construction failed", __LINE__);
 				bSuccess = false;
 			}
 			if(p3 != p1)
 			{
-				r->report("Default construction failed", __LINE__);
+				r->report("Conversion construction failed", __LINE__);
 				bSuccess = false;
 			}
 
 			if(p1 != p4)
 			{
-				r->report("Default construction failed", __LINE__);
+				r->report("Copy construction failed", __LINE__);
 				bSuccess = false;
 			}
 			if(p4 != p1)
 			{
-				r->report("Default construction failed", __LINE__);
+				r->report("Copy construction failed", __LINE__);
+				bSuccess = false;
+			}
+
+			if(p1 != p5)
+			{
+				r->report("Copy assignment failed", __LINE__);
+				bSuccess = false;
+			}
+			if(p5 != p1)
+			{
+				r->report("Copy assignment failed", __LINE__);
+				bSuccess = false;
+			}
+
+			if(p1 != p6)
+			{
+				r->report("Assignment by set() failed", __LINE__);
+				bSuccess = false;
+			}
+			if(p6 != p1)
+			{
+				r->report("Assignment by set() failed", __LINE__);
 				bSuccess = false;
 			}
 
@@ -157,20 +253,42 @@ namespace unittest
 			typedef ref_ptr<RCIs::Base, RCIs::IRefCounter>		Base_ptr;
 
 			{
-				RCIs::Base	base;
-				const long	startCount	=	base.Count();
-				Base_ptr	p1(&base, false);
-
-				if(base.Count() != startCount)
 				{
-					r->report("Constructor erroneously took a reference when bAddRef was false", __LINE__);
-					bSuccess = false;
+					RCIs::Base	base;
+					const long	startCount	=	base.Count();
+					Base_ptr	p1(&base, false);
+
+					if(base.Count() != startCount)
+					{
+						r->report("Constructor erroneously took a reference when bAddRef was false", __LINE__);
+						bSuccess = false;
+					}
+
+					if(&base != p1.get())
+					{
+						r->report("get() returns invalid value", __LINE__);
+						bSuccess = false;
+					}
 				}
 
-				if(&base != p1.get())
 				{
-					r->report("get() returns invalid value", __LINE__);
-					bSuccess = false;
+					RCIs::Base	base;
+					const long	startCount	=	base.Count();
+					Base_ptr	p1;
+
+					p1.set(&base, false);
+
+					if(base.Count() != startCount)
+					{
+						r->report("Constructor erroneously took a reference when bAddRef was false", __LINE__);
+						bSuccess = false;
+					}
+
+					if(&base != p1.get())
+					{
+						r->report("get() returns invalid value", __LINE__);
+						bSuccess = false;
+					}
 				}
 			}
 
@@ -350,7 +468,6 @@ namespace unittest
 #endif /* compiler */
 			}
 
-
 			return bSuccess;
 		}
 
@@ -438,6 +555,34 @@ namespace unittest
 			return bSuccess;
 		}
 
+		ss_bool_t test_stlsoft_ref_ptr_5(unittest_reporter *r)
+		{
+			ss_bool_t				bSuccess	=	true;
+
+			typedef stlsoft::ref_ptr<RCIs2::Derived, RCIs2::IDerived>			Derived_ptr;
+			typedef stlsoft::ref_ptr<RCIs2::Derived, RCIs2::IBase, RCIs2::Base> Base_ptr;
+
+			Derived_ptr 	d1(new RCIs2::Derived(), false);
+
+			Base_ptr		d2(d1);
+
+			if(d1.get() != d2.get())
+			{
+				r->report("Copy construction failed", __LINE__);
+				bSuccess = false;
+			}
+
+			d1 = d2;
+
+			if(d1.get() != d2.get())
+			{
+				r->report("Copying failed", __LINE__);
+				bSuccess = false;
+			}
+
+			return bSuccess;
+		}
+
 		ss_bool_t test_stlsoft_ref_ptr(unittest_reporter *r)
 		{
 			ss_bool_t				bSuccess	=	true;
@@ -458,6 +603,11 @@ namespace unittest
 			}
 
 			if(!test_stlsoft_ref_ptr_4(r))
+			{
+				bSuccess = false;
+			}
+
+			if(!test_stlsoft_ref_ptr_5(r))
 			{
 				bSuccess = false;
 			}

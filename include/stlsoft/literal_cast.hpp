@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/conversion/literal_cast.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_CONVERSION_HPP_LITERAL_CAST
-# include <stlsoft/conversion/literal_cast.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_CONVERSION_HPP_LITERAL_CAST */
+#include <stlsoft/conversion/literal_cast.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

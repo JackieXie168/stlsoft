@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/performance/performance_counter_scope.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef STLSOFT_INCL_STLSOFT_PERFORMANCE_HPP_PERFORMANCE_COUNTER_SCOPE
-# include <stlsoft/performance/performance_counter_scope.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_PERFORMANCE_HPP_PERFORMANCE_COUNTER_SCOPE */
+#include <stlsoft/performance/performance_counter_scope.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

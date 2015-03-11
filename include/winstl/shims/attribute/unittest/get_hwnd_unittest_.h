@@ -11,13 +11,13 @@ namespace unittest
 {
 	namespace
 	{
-		ss_bool_t test_winstl_window_access(unittest_reporter *r)
+		ss_bool_t test_winstl_shims_attribute_get_hwnd(unittest_reporter *r)
 		{
 			using stlsoft::unittest::unittest_initialiser;
 
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "WinSTL", "shims/attribute/window_access", __FILE__);
+			unittest_initialiser	init(r, "WinSTL", "shims/attribute/get_hwnd", __FILE__);
 
 			HWND	hwndDesktopWindow	=	::GetDesktopWindow();
 
@@ -30,7 +30,7 @@ namespace unittest
 			return bSuccess;
 		}
 
-		unittest_registrar	  unittest_winstl_window_access(test_winstl_window_access);
+		unittest_registrar	  unittest_winstl_shims_attribute_get_hwnd(test_winstl_shims_attribute_get_hwnd);
 	} // anonymous namespace
 
 } // namespace unittest

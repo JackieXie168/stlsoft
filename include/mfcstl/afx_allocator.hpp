@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include mfcstl/memory/afx_allocator.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef MFCSTL_INCL_MFCSTL_MEMORY_HPP_TASK_ALLOCATOR
-# include <mfcstl/memory/afx_allocator.hpp>
-#endif /* !MFCSTL_INCL_MFCSTL_MEMORY_HPP_TASK_ALLOCATOR */
+#include <mfcstl/memory/afx_allocator.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

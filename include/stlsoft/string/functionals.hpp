@@ -4,7 +4,7 @@
  * Purpose:     String function objects
  *
  * Created:     22nd April 2005
- * Updated:     14th July 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MAJOR       2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_MINOR       2
 # define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_REVISION    1
-# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        22
+# define STLSOFT_VER_STLSOFT_STRING_HPP_FUNCTIONALS_EDIT        23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,6 +84,7 @@ STLSOFT_COMPILER_IS_WATCOM:
 # error Now need to write that std_binary_function stuff!!
 #endif /* _STLSOFT_STRING_FUNCTIONALS_NO_STD */
 #include <string.h>
+#include <wchar.h>
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -99,7 +100,7 @@ namespace stlsoft
 #endif /* __SYNSOFT_DBS_COMPILER_SUPPORTS_PRAGMA_MESSAGE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * Functors
+ * Function classes
  */
 
 /** \brief Unary function object that returns a quoted form of its argument, if
@@ -171,7 +172,7 @@ private:
 
 /** \brief \note This is a work-in-progress, and is subject to change in a later release
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__string
  */
 template <ss_typename_param_k C>
 inline string_begins_with_function<C> string_begins_with(C const *prefix)
@@ -180,6 +181,47 @@ inline string_begins_with_function<C> string_begins_with(C const *prefix)
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Predicate Classes
+ */
+
+#if 0
+/** \brief Predicate used to test the equivalence of strings (of
+ *    heterogeneous types).
+ *
+ * \ingroup group__library__string
+ *
+ */
+template<   ss_typename_param_k C
+        >
+// [[synesis:class:function-class:binary-predicate: string_equal]]
+struct string_equal
+    : public stlsoft_ns_qual_std(binary_function)<C const*, C const*, ss_bool_t>
+{
+public:
+    template<   ss_typename_param_k S0
+            ,   ss_typename_param_k S1
+            >
+    ss_bool_t operator ()(S0 const &s0, S1 const &s1) const
+    {
+        return compare_(stlsoft_ns_qual(c_str_data)(s0)
+                    ,   stlsoft_ns_qual(c_str_len)(s0)
+                    ,   stlsoft_ns_qual(c_str_data)(s1)
+                    ,   stlsoft_ns_qual(c_str_len)(s1));
+    }
+
+private:
+    static ss_bool_t compare_(ss_char_a_t const *p0, ss_size_t l0, ss_char_a_t const *p1, ss_size_t l1)
+    {
+        return (l0 != l1) ? false : 0 == ::strncmp(p0, p1, l0);
+    }
+    static ss_bool_t compare_(ss_char_w_t const *p0, ss_size_t l0, ss_char_w_t const *p1, ss_size_t l1)
+    {
+        return (l0 != l1) ? false : 0 == ::wcsncmp(p0, p1, l0);
+    }
+};
+#endif /* 0 */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing

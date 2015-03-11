@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/util/bstr.hpp (originally MOBStr.h/.cpp, ::SynesisCom)
+ * File:        comstl/string/bstr.hpp (originally MOBStr.h/.cpp, ::SynesisCom)
  *
  * Purpose:     bstr class.
  *
  * Created:     20th December 1996
- * Updated:     18th October 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/util/bstr.hpp
+/** \file comstl/string/bstr.hpp
  *
  * \brief [C++ only; requires COM] Definition of the comstl::bstr class.
  *  (\ref group__library__com_utility "COM Utility" Library.)
@@ -51,7 +51,7 @@
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MAJOR       2
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_MINOR       1
 # define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_REVISION    4
-# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        36
+# define _COMSTL_VER_COMSTL_STRING_HPP_BSTR_EDIT        37
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

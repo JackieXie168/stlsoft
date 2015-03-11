@@ -4,7 +4,7 @@
  * Purpose:     STL sequence for COM collection interfaces.
  *
  * Created:     17th September 1998
- * Updated:     18th October 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file comstl/collections/collection_sequence.hpp
-///
-/// STL sequence for COM collection interfaces.
+/** \file comstl/collections/collection_sequence.hpp
+ *
+ * \brief [C++ only] Definition of the comstl::collection_sequence
+ *   collection class template.
+ * (\ref group__library__collections "Collections" Library.)
+ */
 
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE
 #define COMSTL_INCL_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE
@@ -48,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MAJOR    6
 # define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_MINOR    1
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 2
-# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     83
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_REVISION 3
+# define COMSTL_VER_COMSTL_COLLECTIONS_HPP_COLLECTION_SEQUENCE_EDIT     85
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -75,9 +78,9 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES
 # include <comstl/collections/enumeration_policies.hpp>
 #endif /* !COMSTL_INCL_COMSTL_COLLECTIONS_HPP_ENUMERATION_POLICIES */
-#ifndef COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS
-# include <comstl/interface/interface_traits.hpp>
-#endif /* !COMSTL_INCL_COMSTL_INTERFACE_HPP_INTERFACE_TRAITS */
+#ifndef COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS
+# include <comstl/util/interface_traits.hpp>
+#endif /* !COMSTL_INCL_COMSTL_UTIL_HPP_INTERFACE_TRAITS */
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
 # ifndef COMSTL_INCL_COMSTL_ERROR_HPP_EXCEPTIONS
 #  include <comstl/error/exceptions.hpp>
@@ -128,7 +131,7 @@ namespace comstl_project
  * Classes
  */
 
-/** \brief A template for adapting COM enumeration to STL-compatible sequence iteration
+/** \brief A template for adapting COM collections to STL-compatible sequence iteration.
  *
  * \ingroup group__library__collections
  *
@@ -145,18 +148,18 @@ namespace comstl_project
  * For example, the following parameterisation defines a sequence operating
  * over a notional <b>IGUIDCollection</b> collection instance.
  *
- * \htmlonly
- * <table border = 0 cellspacing = 0 cellpadding = 0 >
- *  <tr><td>&nbsp;&nbsp;</td><td><code>typedef collection_sequence</code></td><td><code>&lt;&nbsp;IGUIDCollection</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;IEnumGUID</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;GUID</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;GUID_policy</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;GUID const &</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;forward_cloning_policy&lt;IEnumGUID&gt;</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>,&nbsp;5</code></td></tr>
- *  <tr><td>&nbsp;&nbsp;</td><td><code>&nbsp;</code></td><td><code>&gt;&nbsp;&nbsp;&nbsp;collection_sequence_t;</code></td></tr>
- * </table>
- * \endhtmlonly
+\htmlonly
+<pre>
+typedef collection_sequence&lt;IGUIDCollection
+                          , IEnumGUID
+                          , GUID
+                          , GUID_policy
+                          , GUID const &
+                          , forward_cloning_policy&lt;IEnumGUID&gt;
+                          , 5
+                          &gt;    collection_sequence_t;
+</pre>
+\endhtmlonly
  *
  * The value type is <b>GUID</b> and it is returned as a reference, as
  * the <b>GUID const &</b> in fact.
@@ -168,27 +171,21 @@ namespace comstl_project
  * <a href = "http://sgi.com/tech/stl/ForwardIterator.html">Forward Iterator</a>
  * semantics.
  *
- * And the <b>5</b> indicates that the sequence should grab 5 values at a time,
+ * And the <b>5</b> indicates that the sequence should grab five values at a time,
  * to save round trips to the enumerator.
  *
- * So this would be used like the following:
+ * This would be used as follows:
  *
- * \htmlonly
- * <code>
- * &nbsp;&nbsp;void dump_GUID(GUID const &);
- * <br>
- *
- * <br>
- * &nbsp;&nbsp;IGUIDCollection&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*penGUIDs = . . .;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Create an instance from wherever
- * <br>
- * &nbsp;&nbsp;collection_sequence_t&nbsp;&nbsp;&nbsp;guids(penGUIDs, false); // Eat the reference
- * <br>
- *
- * <br>
- * &nbsp;&nbsp;std::for_each(guids.begin(), guids.end(), dump_GUID);
- * <br>
- * </code>
- * \endhtmlonly
+\htmlonly
+<pre>
+  void dump_GUID(GUID const &);
+
+  IGUIDCollection       *penGUIDs = . . .;      // Create an instance from wherever
+  collection_sequence_t guids(penGUIDs, false); // Eat the reference
+
+  std::for_each(guids.begin(), guids.end(), dump_GUID);
+</pre>
+\endhtmlonly
  *
  * \note The iterator instances returned by begin() and end() are valid outside
  * the lifetime of the collection instance from which they are obtained

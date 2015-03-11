@@ -5,7 +5,7 @@
  *              platform discriminations, and definitions of types.
  *
  * Created:     20th March 2005
- * Updated:     23rd September 2006
+ * Updated:     6th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MAJOR    1
 # define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_MINOR    9
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 4
-# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     24
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_REVISION 5
+# define PLATFORMSTL_VER_PLATFORMSTL_H_PLATFORMSTL_EDIT     25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file platformstl/platformstl.h
@@ -277,59 +277,59 @@ namespace platformstl_project
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 # if defined(PLATFORMSTL_OS_IS_UNIX)
-typedef unixstl_ns_qual(us_char_a_t)        char_a_t;    //!< Ansi char type
-typedef unixstl_ns_qual(us_char_w_t)        char_w_t;    //!< Unicode char type
-typedef unixstl_ns_qual(us_sint8_t)         sint8_t;     //!< 8-bit signed integer
-typedef unixstl_ns_qual(us_uint8_t)         uint8_t;     //!< 8-bit unsigned integer
-typedef unixstl_ns_qual(us_int16_t)         int16_t;     //!< 16-bit integer
-typedef unixstl_ns_qual(us_sint16_t)        sint16_t;    //!< 16-bit signed integer
-typedef unixstl_ns_qual(us_uint16_t)        uint16_t;    //!< 16-bit unsigned integer
-typedef unixstl_ns_qual(us_int32_t)         int32_t;     //!< 32-bit integer
-typedef unixstl_ns_qual(us_sint32_t)        sint32_t;    //!< 32-bit signed integer
-typedef unixstl_ns_qual(us_uint32_t)        uint32_t;    //!< 32-bit unsigned integer
+typedef unixstl_ns_qual(us_char_a_t)        char_a_t;    /*!< Ansi char type */
+typedef unixstl_ns_qual(us_char_w_t)        char_w_t;    /*!< Unicode char type */
+typedef unixstl_ns_qual(us_sint8_t)         sint8_t;     /*!< 8-bit signed integer */
+typedef unixstl_ns_qual(us_uint8_t)         uint8_t;     /*!< 8-bit unsigned integer */
+typedef unixstl_ns_qual(us_int16_t)         int16_t;     /*!< 16-bit integer */
+typedef unixstl_ns_qual(us_sint16_t)        sint16_t;    /*!< 16-bit signed integer */
+typedef unixstl_ns_qual(us_uint16_t)        uint16_t;    /*!< 16-bit unsigned integer */
+typedef unixstl_ns_qual(us_int32_t)         int32_t;     /*!< 32-bit integer */
+typedef unixstl_ns_qual(us_sint32_t)        sint32_t;    /*!< 32-bit signed integer */
+typedef unixstl_ns_qual(us_uint32_t)        uint32_t;    /*!< 32-bit unsigned integer */
 #  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef unixstl_ns_qual(us_int64_t)         int64_t;     //!< 64-bit integer
-typedef unixstl_ns_qual(us_sint64_t)        sint64_t;    //!< 64-bit signed integer
-typedef unixstl_ns_qual(us_uint64_t)        uint64_t;    //!< 64-bit unsigned integer
+typedef unixstl_ns_qual(us_int64_t)         int64_t;     /*!< 64-bit integer */
+typedef unixstl_ns_qual(us_sint64_t)        sint64_t;    /*!< 64-bit signed integer */
+typedef unixstl_ns_qual(us_uint64_t)        uint64_t;    /*!< 64-bit unsigned integer */
 #  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef unixstl_ns_qual(us_int_t)           int_t;       //!< integer
-typedef unixstl_ns_qual(us_sint_t)          sint_t;      //!< signed integer
-typedef unixstl_ns_qual(us_uint_t)          uint_t;      //!< unsigned integer
-typedef unixstl_ns_qual(us_long_t)          long_t;      //!< long
+typedef unixstl_ns_qual(us_int_t)           int_t;       /*!< integer */
+typedef unixstl_ns_qual(us_sint_t)          sint_t;      /*!< signed integer */
+typedef unixstl_ns_qual(us_uint_t)          uint_t;      /*!< unsigned integer */
+typedef unixstl_ns_qual(us_long_t)          long_t;      /*!< long */
 #ifdef __cplusplus
-typedef unixstl_ns_qual(us_bool_t)          bool_t;      //!< bool
+typedef unixstl_ns_qual(us_bool_t)          bool_t;      /*!< bool */
 #endif /* __cplusplus */
-typedef unixstl_ns_qual(us_size_t)          size_t;      //!< size
-typedef unixstl_ns_qual(us_ptrdiff_t)       ptrdiff_t;   //!< ptr diff
-typedef unixstl_ns_qual(us_streampos_t)     streampos_t; //!< streampos
-typedef unixstl_ns_qual(us_streamoff_t)     streamoff_t; //!< streamoff
+typedef unixstl_ns_qual(us_size_t)          size_t;      /*!< size */
+typedef unixstl_ns_qual(us_ptrdiff_t)       ptrdiff_t;   /*!< ptr diff */
+typedef unixstl_ns_qual(us_streampos_t)     streampos_t; /*!< streampos */
+typedef unixstl_ns_qual(us_streamoff_t)     streamoff_t; /*!< streamoff */
 # elif defined(PLATFORMSTL_OS_IS_WIN32)
-typedef winstl_ns_qual(ws_char_a_t)         char_a_t;    //!< Ansi char type
-typedef winstl_ns_qual(ws_char_w_t)         char_w_t;    //!< Unicode char type
-typedef winstl_ns_qual(ws_sint8_t)          sint8_t;     //!< 8-bit signed integer
-typedef winstl_ns_qual(ws_uint8_t)          uint8_t;     //!< 8-bit unsigned integer
-typedef winstl_ns_qual(ws_int16_t)          int16_t;     //!< 16-bit integer
-typedef winstl_ns_qual(ws_sint16_t)         sint16_t;    //!< 16-bit signed integer
-typedef winstl_ns_qual(ws_uint16_t)         uint16_t;    //!< 16-bit unsigned integer
-typedef winstl_ns_qual(ws_int32_t)          int32_t;     //!< 32-bit integer
-typedef winstl_ns_qual(ws_sint32_t)         sint32_t;    //!< 32-bit signed integer
-typedef winstl_ns_qual(ws_uint32_t)         uint32_t;    //!< 32-bit unsigned integer
+typedef winstl_ns_qual(ws_char_a_t)         char_a_t;    /*!< Ansi char type */
+typedef winstl_ns_qual(ws_char_w_t)         char_w_t;    /*!< Unicode char type */
+typedef winstl_ns_qual(ws_sint8_t)          sint8_t;     /*!< 8-bit signed integer */
+typedef winstl_ns_qual(ws_uint8_t)          uint8_t;     /*!< 8-bit unsigned integer */
+typedef winstl_ns_qual(ws_int16_t)          int16_t;     /*!< 16-bit integer */
+typedef winstl_ns_qual(ws_sint16_t)         sint16_t;    /*!< 16-bit signed integer */
+typedef winstl_ns_qual(ws_uint16_t)         uint16_t;    /*!< 16-bit unsigned integer */
+typedef winstl_ns_qual(ws_int32_t)          int32_t;     /*!< 32-bit integer */
+typedef winstl_ns_qual(ws_sint32_t)         sint32_t;    /*!< 32-bit signed integer */
+typedef winstl_ns_qual(ws_uint32_t)         uint32_t;    /*!< 32-bit unsigned integer */
 #  ifdef STLSOFT_CF_64BIT_INT_SUPPORT
-typedef winstl_ns_qual(ws_int64_t)          int64_t;     //!< 64-bit integer
-typedef winstl_ns_qual(ws_sint64_t)         sint64_t;    //!< 64-bit signed integer
-typedef winstl_ns_qual(ws_uint64_t)         uint64_t;    //!< 64-bit unsigned integer
+typedef winstl_ns_qual(ws_int64_t)          int64_t;     /*!< 64-bit integer */
+typedef winstl_ns_qual(ws_sint64_t)         sint64_t;    /*!< 64-bit signed integer */
+typedef winstl_ns_qual(ws_uint64_t)         uint64_t;    /*!< 64-bit unsigned integer */
 #  endif /* STLSOFT_CF_64BIT_INT_SUPPORT */
-typedef winstl_ns_qual(ws_int_t)            int_t;       //!< integer
-typedef winstl_ns_qual(ws_sint_t)           sint_t;      //!< signed integer
-typedef winstl_ns_qual(ws_uint_t)           uint_t;      //!< unsigned integer
-typedef winstl_ns_qual(ws_long_t)           long_t;      //!< long
+typedef winstl_ns_qual(ws_int_t)            int_t;       /*!< integer */
+typedef winstl_ns_qual(ws_sint_t)           sint_t;      /*!< signed integer */
+typedef winstl_ns_qual(ws_uint_t)           uint_t;      /*!< unsigned integer */
+typedef winstl_ns_qual(ws_long_t)           long_t;      /*!< long */
 #ifdef __cplusplus
-typedef winstl_ns_qual(ws_bool_t)           bool_t;      //!< bool
+typedef winstl_ns_qual(ws_bool_t)           bool_t;      /*!< bool */
 #endif /* __cplusplus */
-typedef winstl_ns_qual(ws_size_t)           size_t;      //!< size
-typedef winstl_ns_qual(ws_ptrdiff_t)        ptrdiff_t;   //!< ptr diff
-typedef winstl_ns_qual(ws_streampos_t)      streampos_t; //!< streampos
-typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; //!< streamoff
+typedef winstl_ns_qual(ws_size_t)           size_t;      /*!< size */
+typedef winstl_ns_qual(ws_ptrdiff_t)        ptrdiff_t;   /*!< ptr diff */
+typedef winstl_ns_qual(ws_streampos_t)      streampos_t; /*!< streampos */
+typedef winstl_ns_qual(ws_streamoff_t)      streamoff_t; /*!< streamoff */
 # else /* ? operating system */
 # error Operating system not discriminated. Only UNIX and Win32 are currently recognised by PlatformSTL
 # endif /* operating system */

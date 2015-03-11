@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/system/pid_sequence.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_FINDFILE_SEQUENCE
-# include <winstl/system/pid_sequence.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_FINDFILE_SEQUENCE */
+#include <winstl/system/pid_sequence.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

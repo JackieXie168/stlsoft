@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/system/module_filename.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_SYSTEM_HPP_FINDFILE_SEQUENCE
-# include <winstl/system/module_filename.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYSTEM_HPP_FINDFILE_SEQUENCE */
+#include <winstl/system/module_filename.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]

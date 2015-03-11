@@ -4,7 +4,7 @@
  * Purpose:     COM memory functions.
  *
  * Created:     20th December 2003
- * Updated:     26th July 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -42,7 +42,7 @@
  *
  * \brief [C++ only] Definition of the comstl::method_cast suite of
  *   cast functions.
- * (\reg group__library__conversion "Conversion" Library.)
+ * (\ref group__library__conversion "Conversion" Library.)
  */
 
 #ifndef COMSTL_INCL_COMSTL_CONVERSION_HPP_METHOD_CAST
@@ -52,7 +52,7 @@
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MAJOR     2
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_MINOR     0
 # define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_REVISION  1
-# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      24
+# define COMSTL_VER_COMSTL_CONVERSION_HPP_METHOD_CAST_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

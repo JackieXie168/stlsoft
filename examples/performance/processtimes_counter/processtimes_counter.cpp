@@ -5,7 +5,7 @@
  *              library's processtimes_counter component.
  *
  * Created:     9th June 2006
- * Updated:     11th June 2006
+ * Updated:     15th September 2006
  *
  * www:         http://www.stlsoft.org/
  *
@@ -39,7 +39,7 @@ using std::endl;
 #include <stdio.h>
 #include <stdlib.h> // for EXIT_FAILURE, EXIT_SUCCESS
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */
 
 int main()
 {
@@ -94,4 +94,4 @@ int main()
     return EXIT_SUCCESS;
 }
 
-/* ////////////////////////////////////////////////////////////////////////// */
+/* ////////////////////////////////////////////////////////////////////// */

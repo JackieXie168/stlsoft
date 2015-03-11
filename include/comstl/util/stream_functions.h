@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/stream_functions.h
+ * File:        comstl/util/stream_functions.h
  *
  * Purpose:     Stream functions.
  *
  * Created:     22nd October 2005
- * Updated:     7th July 2006
+ * Updated:     3rd December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file comstl/stream_functions.h
+/** \file comstl/util/stream_functions.h
  *
  * \brief [C++ only; requires COM] COM stream functions.
  *  (\ref group__library__com_utility "COM Utility" Library.)
@@ -51,7 +51,7 @@
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MAJOR    2
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_MINOR    0
 # define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_REVISION 1
-# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     8
+# define COMSTL_VER_COMSTL_UTIL_H_STREAM_FUNCTIONS_EDIT     9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

@@ -4,7 +4,7 @@
  * Purpose:     Semaphore class, based on Win32 kernel semaphore object.
  *
  * Created:     30th May 2006
- * Updated:     18th October 2006
+ * Updated:     4th December 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MAJOR    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    0
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 3
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     7
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_MINOR    1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_REVISION 1
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SEMAPHORE_EDIT     8
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -108,7 +108,7 @@ class semaphore
 {
 public:
     typedef semaphore       class_type;
-    typedef HANDLE          handle_type;
+    typedef HANDLE          synch_handle_type;
     typedef ws_bool_t       bool_type;
     typedef ws_size_t       count_type;
 
@@ -122,7 +122,7 @@ public:
 /// @{
 public:
     /// \brief Conversion constructor
-    semaphore(handle_type sem, bool_type bTakeOwnership)
+    semaphore(synch_handle_type sem, bool_type bTakeOwnership)
         : m_sem(sem)
         , m_maxCount(0)
         , m_bOwnHandle(bTakeOwnership)
@@ -284,12 +284,12 @@ public:
 /// @{
 public:
     /// \brief The underlying kernel object handle
-    handle_type handle()
+    synch_handle_type handle()
     {
         return m_sem;
     }
     /// \brief The underlying kernel object handle
-    handle_type get()
+    synch_handle_type get()
     {
         return m_sem;
     }
@@ -297,12 +297,12 @@ public:
 
 // Implementation
 private:
-    static handle_type create_semaphore_(LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount, ws_char_a_t const *name)
+    static synch_handle_type create_semaphore_(LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount, ws_char_a_t const *name)
     {
         WINSTL_MESSAGE_ASSERT("Maximum semaphore count must be > 0", maxCount > 0);
         WINSTL_ASSERT(initialCount <= maxCount);
 
-        handle_type sem  =   ::CreateSemaphoreA(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
+        synch_handle_type sem  =   ::CreateSemaphoreA(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
 
         if(NULL == sem)
         {
@@ -313,9 +313,9 @@ private:
 
         return sem;
     }
-    static handle_type create_semaphore_(LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount, ws_char_w_t const *name)
+    static synch_handle_type create_semaphore_(LPSECURITY_ATTRIBUTES psa, count_type initialCount, count_type maxCount, ws_char_w_t const *name)
     {
-        handle_type sem  =   ::CreateSemaphoreW(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
+        synch_handle_type sem  =   ::CreateSemaphoreW(psa, static_cast<LONG>(initialCount), static_cast<LONG>(maxCount), name);
 
         if(NULL == sem)
         {
@@ -329,7 +329,7 @@ private:
 
 // Members
 private:
-    handle_type         m_sem;          // The underlying semaphore object
+    synch_handle_type   m_sem;          // The underlying semaphore object
     const count_type    m_maxCount;     // Record of the maximum counter value
     const bool_type     m_bOwnHandle;   // Does the instance own the handle?
 
@@ -342,6 +342,19 @@ private:
 /* /////////////////////////////////////////////////////////////////////////
  * Shims
  */
+
+/** \brief Overload of the form of the winstl::get_synch_handle() shim for
+ *    the winstl::semaphore type.
+ *
+ * \param sem The winstl::semaphore instance
+ *
+ * \retval The synchronisation handle of \c sem
+ */
+inline HANDLE get_synch_handle(semaphore &sem)
+{
+	return sem.get();
+}
+
 
 #ifndef _WINSTL_NO_NAMESPACE
 # if defined(_STLSOFT_NO_NAMESPACE) || \

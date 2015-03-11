@@ -6,9 +6,7 @@
 # pragma message("This file is now obsolete, and will be removed in a future release. Instead include winstl/synch/event.hpp")
 #endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#ifndef WINSTL_INCL_WINSTL_SYNCH_HPP_EVENT
-# include <winstl/synch/event.hpp>
-#endif /* !WINSTL_INCL_WINSTL_SYNCH_HPP_EVENT */
+#include <winstl/synch/event.hpp>
 
 /* Compatibility
 [<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
