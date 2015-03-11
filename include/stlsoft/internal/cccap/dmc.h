@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Digital Mars C/C++.
  *
  * Created:     7th February 2003
- * Updated:     12th March 2007
+ * Updated:     2nd August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      11
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_MINOR      12
 # define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       80
+# define STLSOFT_VER_H_STLSOFT_CCCAP_DMC_EDIT       81
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,6 +105,13 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+
+/* Variadic Macros
+ */
+
+#if __DMC__ >= 0x850
+# define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+#endif /* __DMC__ >= 0x850 */
 
 /* Types:
  */

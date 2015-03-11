@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for unknown compilers.
  *
  * Created:     7th February 2003
- * Updated:     12th March 2007
+ * Updated:     2nd August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MAJOR      3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      9
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_MINOR      10
 # define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_REVISION   1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       54
+# define STLSOFT_VER_H_STLSOFT_CCCAP_UNKNOWN_EDIT       55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,6 +83,11 @@
  */
 
 /* #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT */
+
+/* Variadic Macros
+ */
+
+#define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
 
 /* Types:
  */

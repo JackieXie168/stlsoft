@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Metrowerks CodeWarrior.
  *
  * Created:     7th February 2003
- * Updated:     12th March 2007
+ * Updated:     2nd August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MAJOR       3
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       10
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_MINOR       11
 # define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_REVISION    1
-# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        59
+# define STLSOFT_VER_H_STLSOFT_CCCAP_MWERKS_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,6 +83,15 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+
+/* Variadic Macros
+ */
+
+#if (__MWERKS__ & 0xFF00) >= 0x3000
+# define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+#else /* ? compiler */
+ /* Not defined */
+#endif /* compiler */
 
 /* Types:
  */

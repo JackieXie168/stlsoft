@@ -4,7 +4,7 @@
  * Purpose:     The #undefs for stlsoft/stlsoft.h.
  *
  * Created:     1st December 2003
- * Updated:     13th January 2007
+ * Updated:     2nd August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_MAJOR    2
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    4
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_MINOR    5
 # define STLSOFT_VER_H_STLSOFT__UNDEFS_REVISION 1
-# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     22
+# define STLSOFT_VER_H_STLSOFT__UNDEFS_EDIT     23
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,6 +74,15 @@
  * #undefs
  */
 
+/* Messaging
+ *
+ * Discriminated symbol is STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+ */
+
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# define STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
+
 /* Template support.
  *
  * Discriminated symbol is STLSOFT_CF_TEMPLATE_SUPPORT
@@ -82,6 +91,15 @@
 #ifdef STLSOFT_CF_TEMPLATE_SUPPORT
 # undef STLSOFT_CF_TEMPLATE_SUPPORT
 #endif /* STLSOFT_CF_TEMPLATE_SUPPORT */
+
+/* Variadic Macros
+ *
+ * Discriminated symbol is STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+ */
+
+#ifdef STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+# define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS
+#endif /* STLSOFT_CF_SUPPORTS_VARIADIC_MACROS */
 
 /* Exception signature support.
  *

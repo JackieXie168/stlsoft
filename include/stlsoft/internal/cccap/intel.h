@@ -4,7 +4,7 @@
  * Purpose:     Compiler feature discrimination for Intel C/C++.
  *
  * Created:     7th February 2003
- * Updated:     12th March 2007
+ * Updated:     2nd August 2007
  *
  * Home:        http://stlsoft.org/
  *
@@ -56,9 +56,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MAJOR       3
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       11
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_MINOR       12
 # define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_REVISION    1
-# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        66
+# define  STLSOFT_VER_H_STLSOFT_CCCAP_INTEL_EDIT        67
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,6 +90,11 @@
  */
 
 #define STLSOFT_CF_PRAGMA_ONCE_SUPPORT
+
+/* Variadic Macros
+ */
+
+/* #define STLSOFT_CF_SUPPORTS_VARIADIC_MACROS */
 
 /* Types:
  */
