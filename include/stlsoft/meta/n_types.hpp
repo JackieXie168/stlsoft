@@ -4,11 +4,11 @@
  * Purpose:     Basic support meta types.
  *
  * Created:     19th November 1998
- * Updated:     18th January 2007
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MAJOR     4
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_MINOR     2
 # define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_REVISION  3
-# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      115
+# define STLSOFT_VER_STLSOFT_META_HPP_N_TYPES_EDIT      116
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -84,26 +84,26 @@ namespace stlsoft
  */
 
 
-typedef struct { ss_byte_t ar[1]; }    one_type;
-typedef struct { one_type ar[2];  }    two_type;
-typedef struct { one_type ar[3];  }    three_type;
-typedef struct { one_type ar[4];  }    four_type;
-typedef struct { one_type ar[5];  }    five_type;
-typedef struct { one_type ar[6];  }    six_type;
-typedef struct { one_type ar[7];  }    seven_type;
-typedef struct { one_type ar[8];  }    eight_type;
-typedef struct { one_type ar[9];  }    nine_type;
-typedef struct { one_type ar[10]; }    ten_type;
-typedef struct { one_type ar[11]; }    eleven_type;
-typedef struct { one_type ar[12]; }    twelve_type;
-typedef struct { one_type ar[13]; }    thirteen_type;
-typedef struct { one_type ar[14]; }    fourteen_type;
-typedef struct { one_type ar[15]; }    fifteen_type;
-typedef struct { one_type ar[16]; }    sixteen_type;
-typedef struct { one_type ar[17]; }    seventeen_type;
-typedef struct { one_type ar[18]; }    eighteen_type;
-typedef struct { one_type ar[19]; }    nineteen_type;
-typedef struct { one_type ar[20]; }    twenty_type;
+typedef struct { ss_byte_t ar[1]; }    one_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[2];  }    two_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[3];  }    three_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[4];  }    four_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[5];  }    five_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[6];  }    six_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[7];  }    seven_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[8];  }    eight_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[9];  }    nine_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[10]; }    ten_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[11]; }    eleven_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[12]; }    twelve_type;		/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[13]; }    thirteen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[14]; }    fourteen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[15]; }    fifteen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[16]; }    sixteen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[17]; }    seventeen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[18]; }    eighteen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[19]; }    nineteen_type;	/*!< A distinct type for use in meta-programming */
+typedef struct { one_type ar[20]; }    twenty_type;		/*!< A distinct type for use in meta-programming */
 
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION

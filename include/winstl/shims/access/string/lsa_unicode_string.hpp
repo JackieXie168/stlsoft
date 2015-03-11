@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with Win32 strings.
  *
  * Created:     24th May 2002
- * Updated:     1st June 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MAJOR     4
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_MINOR     1
 # define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_REVISION  3
-# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      112
+# define WINSTL_VER_WINSTL_SHIMS_ACCESS_STRING_HPP_LSA_UNICODE_STRING_EDIT      113
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -126,6 +126,7 @@ class c_str_ptr_LSA_UNICODE_STRING_proxy
 {
     typedef cstring_maker<WCHAR>                string_maker_type;
 public:
+    /// This type
     typedef c_str_ptr_LSA_UNICODE_STRING_proxy  class_type;
 
 // Construction
@@ -199,6 +200,7 @@ class c_str_ptr_null_LSA_UNICODE_STRING_proxy
 {
     typedef cstring_maker<WCHAR>                    string_maker_type;
 public:
+    /// This type
     typedef c_str_ptr_null_LSA_UNICODE_STRING_proxy class_type;
 
 // Construction

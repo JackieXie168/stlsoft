@@ -4,7 +4,7 @@
  * Purpose:     Window function classes and predicates.
  *
  * Created:     19th January 2001
- * Updated:     25th April 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MAJOR      4
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_MINOR      1
 # define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_REVISION   1
-# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       39
+# define WINSTL_VER_WINSTL_FUNCTIONAL_HPP_WINDOW_EDIT       40
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -178,6 +178,7 @@ struct window_show
     : public std::unary_function<HWND, void>
 {
 public:
+    /// This type
     typedef window_show     class_type;
 public:
     ss_explicit_k window_show(ws_bool_t bShow = true)
@@ -218,6 +219,7 @@ struct window_enable
     : public std::unary_function<HWND, void>
 {
 public:
+    /// This type
     typedef window_enable   class_type;
 public:
     ss_explicit_k window_enable(ws_bool_t bEnable = true)

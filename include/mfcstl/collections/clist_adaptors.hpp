@@ -5,7 +5,7 @@
  *              class templates.
  *
  * Created:     1st December 2002
- * Updated:     11th August 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MAJOR     3
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_MINOR     0
 # define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_REVISION  6
-# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      60
+# define MFCSTL_VER_MFCSTL_COLLECTIONS_HPP_CLIST_ADAPTORS_EDIT      61
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -468,6 +468,35 @@ public:
 /// @}
 };
 
+/** \brief Adaptor class, representing an Instance Adaptor over the CList
+ *    family of MFC containers
+ *
+ * \ingroup group__library__collections
+ *
+ * It is used as follows:
+ *
+\code
+  CStringList                          li;
+  mfcstl::CList_iadaptor<CStringList>  lip(li);
+
+  // As an MFC CStringList:
+  li.AddHead("String 1");
+
+  // As an STL container
+  lip.push_back("String 2");
+  std::list<CString>  l;
+  l.push_back("String 3");
+  l.push_back("String 4");
+  lip.insert(lip.begin() + 2, l.begin(), l.end());
+  std::sort(lip.begin(), lip.end());
+\endcode
+ *
+ * \param A The list class, e.g. CObList, CList<long>, etc.
+ *
+ * \note The elements in an adapted list are moved, during insertion / erasure, rather than copied. This
+ *   means that if the elements in the container maintain pointers to their elements, or their peers, then
+ *   they are not suitable for use.
+ */
 template<   ss_typename_param_k A
         ,   ss_typename_param_k T = CList_traits<A>
         >

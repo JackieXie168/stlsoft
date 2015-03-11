@@ -4,11 +4,11 @@
  * Purpose:     Colour constants.
  *
  * Created:     20th February 1999
- * Updated:     14th January 2007
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1999-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1999-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MAJOR      4
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_MINOR      0
 # define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_REVISION   2
-# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       24
+# define WINSTL_VER_WINSTL_WINDOW_H_COLOUR_CONSTANTS_EDIT       25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -88,28 +88,28 @@ namespace winstl_project
  * Constants
  */
 
-const COLORREF  white           =   RGB(255, 255, 255);
-const COLORREF  black           =   RGB(  0,   0,   0);
-const COLORREF  darkBlue        =   RGB(  0,   0, 128);
-const COLORREF  darkGreen       =   RGB(  0, 128,   0);
-const COLORREF  blueGreen       =   RGB(  0, 128, 128);
-const COLORREF  brown           =   RGB(128,   0,   0);
-const COLORREF  olive           =   RGB(128, 128,   0);
-const COLORREF  purple          =   RGB(128,   0, 128);
-const COLORREF  darkGrey        =   RGB(128, 128, 128);
-const COLORREF  lightGrey       =   RGB(192, 192, 192);
-const COLORREF  blue            =   RGB(  0,   0, 255);
-const COLORREF  green           =   RGB(  0, 255,   0);
-const COLORREF  cyan            =   RGB(  0, 255, 255);
-const COLORREF  red             =   RGB(255,   0,   0);
-const COLORREF  yellow          =   RGB(255, 255,   0);
-const COLORREF  magenta         =   RGB(255,   0, 255);
+const COLORREF  white           =   RGB(255, 255, 255); /*!< Colour constant */
+const COLORREF  black           =   RGB(  0,   0,   0); /*!< Colour constant */
+const COLORREF  darkBlue        =   RGB(  0,   0, 128); /*!< Colour constant */
+const COLORREF  darkGreen       =   RGB(  0, 128,   0); /*!< Colour constant */
+const COLORREF  blueGreen       =   RGB(  0, 128, 128); /*!< Colour constant */
+const COLORREF  brown           =   RGB(128,   0,   0); /*!< Colour constant */
+const COLORREF  olive           =   RGB(128, 128,   0); /*!< Colour constant */
+const COLORREF  purple          =   RGB(128,   0, 128); /*!< Colour constant */
+const COLORREF  darkGrey        =   RGB(128, 128, 128); /*!< Colour constant */
+const COLORREF  lightGrey       =   RGB(192, 192, 192); /*!< Colour constant */
+const COLORREF  blue            =   RGB(  0,   0, 255); /*!< Colour constant */
+const COLORREF  green           =   RGB(  0, 255,   0); /*!< Colour constant */
+const COLORREF  cyan            =   RGB(  0, 255, 255); /*!< Colour constant */
+const COLORREF  red             =   RGB(255,   0,   0); /*!< Colour constant */
+const COLORREF  yellow          =   RGB(255, 255,   0); /*!< Colour constant */
+const COLORREF  magenta         =   RGB(255,   0, 255); /*!< Colour constant */
 
-const COLORREF  darkblue        =   RGB(  0,   0, 128);
-const COLORREF  darkgreen       =   RGB(  0, 128,   0);
-const COLORREF  bluegreen       =   RGB(  0, 128, 128);
-const COLORREF  darkgrey        =   RGB(128, 128, 128);
-const COLORREF  lightgrey       =   RGB(192, 192, 192);
+const COLORREF  darkblue        =   RGB(  0,   0, 128); /*!< Colour constant */
+const COLORREF  darkgreen       =   RGB(  0, 128,   0); /*!< Colour constant */
+const COLORREF  bluegreen       =   RGB(  0, 128, 128); /*!< Colour constant */
+const COLORREF  darkgrey        =   RGB(128, 128, 128); /*!< Colour constant */
+const COLORREF  lightgrey       =   RGB(192, 192, 192); /*!< Colour constant */
 
 /* ////////////////////////////////////////////////////////////////////// */
 

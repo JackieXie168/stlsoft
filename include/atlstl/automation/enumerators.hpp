@@ -4,7 +4,7 @@
  * Purpose:     Enumerator classes.
  *
  * Created:     11th November 1998
- * Updated:     9th March 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,7 +54,7 @@
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MAJOR    4
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_MINOR    0
 # define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_REVISION 4
-# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     62
+# define ATLSTL_VER_ATLSTL_AUTOMATION_HPP_ENUMERATORS_EDIT     63
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
@@ -109,6 +109,9 @@ namespace atlstl_project
  * Classes
  */
 
+/** A policy that indicates that values should be copied between internal
+ * and external representations in the enumerator
+ */
 template<   ss_typename_param_k XV  // Enumerator interface value type (External value type)
         ,   ss_typename_param_k IV  // Internal value type
         >
@@ -177,7 +180,9 @@ template<   ss_typename_param_k I                                   //!< Enumera
         ,   ss_typename_param_k I2ETx   =   copy_policy<IV, V>      //!< Internal to external transformation policy
         ,   ss_typename_param_k TM      =   CComObjectThreadModel   //!< Thread model
         >
-class ATL_NO_VTABLE copy_enumerator;
+class ATL_NO_VTABLE copy_enumerator
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+;
 
 // class copy_enumerator_impl
 // [[synesis:class: atlstl::copy_enumerator_impl<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>>]]
@@ -230,10 +235,10 @@ public:
     template<ss_typename_param_k I, ss_typename_param_k F>
     HRESULT Init(I begin, I end, F fn)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         try
         {
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             m_values.clear();
 
             for(; begin != end; ++begin)
@@ -244,7 +249,7 @@ public:
             m_current = m_values.begin();
 
             return S_OK;
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
         catch(std::bad_alloc &)
         {
@@ -254,15 +259,15 @@ public:
         {
             return E_UNEXPECTED;
         }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
     template<ss_typename_param_k I>
     HRESULT Init(I begin, I end)
     {
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         try
         {
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             m_values.clear();
 
             for(; begin != end; ++begin)
@@ -273,7 +278,7 @@ public:
             m_current = m_values.begin();
 
             return S_OK;
-#ifdef STLSOFT_CF_EXCEPTION_SUPPORT
+# ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         }
         catch(std::bad_alloc &)
         {
@@ -283,7 +288,7 @@ public:
         {
             return E_UNEXPECTED;
         }
-#endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
+# endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
     }
 
     size_type       size() const;
@@ -342,13 +347,13 @@ private:
 /// @}
 };
 
-#if defined(STLSOFT_COMPILER_IS_INTEL) || \
-    defined(STLSOFT_COMPILER_IS_MSVC)
-# if _MSC_VER >= 1200
-#  pragma warning(push)
+# if defined(STLSOFT_COMPILER_IS_INTEL) || \
+     defined(STLSOFT_COMPILER_IS_MSVC)
+#  if _MSC_VER >= 1200
+#   pragma warning(push)
+#  endif /* compiler */
+#  pragma warning(disable : 4348)
 # endif /* compiler */
-# pragma warning(disable : 4348)
-#endif /* compiler */
 
 // class copy_enumerator
 // [[synesis:class: atlstl::copy_enumerator<T<I>, IID const*, T<V>, T<IV>, T<I2ETx>, T<TM>>]]
@@ -362,6 +367,7 @@ template<   ss_typename_param_k I                                   // Enumerato
 class ATL_NO_VTABLE copy_enumerator
     : public copy_enumerator_impl<I, piid, V, IV, I2ETx>
     , public CComObjectRootEx<TM>
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 {
 public:
     typedef copy_enumerator<I, piid, V, IV, I2ETx, TM>      class_type;

@@ -2,7 +2,7 @@
 STLSoft - Install
 
 ; Created:  29th March 2002
-; Updated:  27th September 2008
+; Updated:  1st October 2008
 
 ============================================================================
 
@@ -24,7 +24,7 @@ STLSoft - Install
   * Pantheios       http://pantheios.org/
   * recls           http://recls.org/
   * shwild          http://shwild.org/
-  * xContract       http://xcontract.org/ (coming 'Sep 08)
+  * xContract       http://xcontract.org/
   * xCover          http://xcover.org/ (coming 'Sep 08)
   * xTests          http://xtests.org/
 

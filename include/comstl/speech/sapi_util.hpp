@@ -4,7 +4,7 @@
  * Purpose:     Definition of SAPI types and constants.
  *
  * Created:     31st August 2006
- * Updated:     22nd September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MAJOR       1
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_MINOR       0
 # define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_REVISION    3
-# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        3
+# define COMSTL_VER_COMSTL_SPEECH_HPP_SAPI_UTIL_EDIT        4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -114,6 +114,8 @@ namespace comstl_project
 
 #ifndef COMSTL_SPEECH_SAPI_UTIL_USE_MS_SAPI_HEADERS
 
+/** Interface that emulates the vtable of ISpNotifySource
+ */
 struct ISpNotifySource_ : public IUnknown
 {
     virtual void ISpNotifySource_1() = 0;
@@ -125,6 +127,8 @@ struct ISpNotifySource_ : public IUnknown
     virtual void ISpNotifySource_7() = 0;
 };
 
+/** Interface that emulates the vtable of ISpEventSource
+ */
 struct ISpEventSource_ : public ISpNotifySource_
 {
     virtual void ISpEventSource_1() = 0;
@@ -132,6 +136,8 @@ struct ISpEventSource_ : public ISpNotifySource_
     virtual void ISpEventSource_3() = 0;
 };
 
+/** Interface that emulates the vtable of ISpVoice
+ */
 struct ISpVoice_ : public ISpEventSource_
 {
     virtual void ISpVoice_1() = 0;
@@ -171,6 +177,8 @@ struct ISpVoice_ : public ISpEventSource_
     virtual void ISpVoice_25() = 0;
 };
 
+/** Flags that may be passed to comstl::sapi_speak()
+ */
 enum SPEAKFLAGS
 {
     SPF_DEFAULT = 0,

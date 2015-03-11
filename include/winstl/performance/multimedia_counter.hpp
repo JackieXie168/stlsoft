@@ -4,7 +4,7 @@
  * Purpose:     WinSTL multimedia performance counter class.
  *
  * Created:     31st July 2002
- * Updated:     22nd September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_MAJOR     4
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_MINOR     0
 # define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_REVISION  3
-# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_EDIT      40
+# define WINSTL_VER_WINSTL_PERFORMANCE_HPP_MULTIMEDIA_COUNTER_EDIT      41
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -105,6 +105,7 @@ namespace winstl_project
 class multimedia_counter
 {
 public:
+    /// This type
     typedef multimedia_counter  class_type;
 
 private:

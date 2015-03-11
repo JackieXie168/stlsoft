@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     23rd September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     7
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      43
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      44
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,7 +150,9 @@ namespace winstl_project
  * \param name A string literal specifying the dynamically invoked function
  */
 
-#if defined(WINSTL_OS_IS_WIN64)
+#if defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
+# define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)          <appropriate prefix> name
+#elif defined(WINSTL_OS_IS_WIN64)
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)			"cdecl:" name
 #elif defined(WINSTL_OS_IS_WIN32)
 # define WINSTL_DL_CALL_WINx_STDCALL_LITERAL(name)			"stdcall:" name
@@ -280,6 +282,8 @@ private:
 
 namespace calling_convention
 {
+	/** Calling conventions supported by winstl::dl_call()
+	 */
     enum calling_convention
     {
             unknownCallConv     =   -1
@@ -319,6 +323,9 @@ namespace calling_convention
 
 /* ////////////////////////////////////////////////////////////////////// */
 
+/** Anchors the function descriptor specialisations with a common base to
+ * facilitate function descriptor meta-programming selection
+ */
 struct function_descriptor_base
 {
     operator function_descriptor_base const* () const
@@ -327,6 +334,11 @@ struct function_descriptor_base
     }
 };
 
+/** Specifies a compile-time function descriptor
+ *
+ * \param CC The calling convention, one of the \link calling_convention::calling_convention calling_convention\endlink enumerators
+ * \param S The string type
+ */
 template<   int                 CC
         ,   ss_typename_param_k S
         >
@@ -418,7 +430,7 @@ struct is_valid_dl_call_arg
     enum { value = 0 };
 };
 
-/* Internal traits class used by the DL Library.
+/** Internal traits class used by the DL Library.
  *
  * \note This is a struct, rather than a namespace, because namespaces are
  *        open, and we want this to be closed.
@@ -445,9 +457,11 @@ public:
 /// \name Function Descriptor Discrimination
 /// @{
 public:
+	/// Tag that denotes that the function is identified by name
     struct is_not_fd
     {};
 
+	/// Tag that denotes that the function is identified by a function descriptor
     struct is_fd
     {};
 /// @}
@@ -455,9 +469,11 @@ public:
 /// \name Module Discrimination
 /// @{
 public:
+    /// Tag that denotes that the library argument is a handle
     struct library_is_handle
     {};
 
+    /// Tag that denotes that the library argument is not a handle
     struct library_is_not_handle
     {};
 /// @}

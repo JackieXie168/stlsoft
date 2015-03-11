@@ -4,7 +4,7 @@
  * Purpose:     performance_counter class.
  *
  * Created:     16th January 2002
- * Updated:     22nd September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MAJOR      4
 # define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   5
-# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       61
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_REVISION   8
+# define UNIXSTL_VER_UNIXSTL_PERFORMANCE_HPP_PERFORMANCE_COUNTER_EDIT       64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -63,13 +63,10 @@
 # include <unixstl/unixstl.h>
 #endif /* !UNIXSTL_INCL_UNIXSTL_H_UNIXSTL */
 
-#ifdef _WIN32
-# include <winsock2.h>  /* This required to forestall conflicting type definitions of timeval wrt WinSock. */
-#endif /* _WIN32 */
-#ifndef STLSOFT_INCL_H_SYS
-# define STLSOFT_INCL_H_SYS
+#ifndef STLSOFT_INCL_SYS_H_TIME
+# define STLSOFT_INCL_SYS_H_TIME
 # include <sys/time.h>
-#endif /* !STLSOFT_INCL_H_SYS */
+#endif /* !STLSOFT_INCL_SYS_H_TIME */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Namespace
@@ -242,7 +239,7 @@ inline void performance_counter::start()
 {
     measure_(m_start);
 
-    m_end   =   m_start;
+    m_end = m_start;
 }
 
 inline void performance_counter::stop()
@@ -258,7 +255,7 @@ inline void performance_counter::restart()
 
 inline /* static */ performance_counter::epoch_type performance_counter::get_epoch()
 {
-    epoch_type      epoch;
+    epoch_type epoch;
 
     measure_(epoch);
 

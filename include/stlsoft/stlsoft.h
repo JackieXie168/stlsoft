@@ -6,7 +6,7 @@
  *              types.
  *
  * Created:     15th January 2002
- * Updated:     27th September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MAJOR    3
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    17
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 15
-# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     360
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 16
+# define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     361
 #else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
 /* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
@@ -219,13 +219,14 @@
 # define _STLSOFT_VER_1_9_52    0x010934ff  /*!< Version 1.9.52 (11th Sep 2008) */
 # define _STLSOFT_VER_1_9_53    0x010935ff  /*!< Version 1.9.53 (15th Sep 2008) */
 # define _STLSOFT_VER_1_9_54    0x010936ff  /*!< Version 1.9.54 (15th Sep 2008) */
-# define _STLSOFT_VER_1_9_55    0x010937ff  /*!< Version 1.9.54 (23rd Sep 2008) */
+# define _STLSOFT_VER_1_9_55    0x010937ff  /*!< Version 1.9.55 (23rd Sep 2008) */
+# define _STLSOFT_VER_1_9_56    0x010938ff  /*!< Version 1.9.56 (1st Oct 2008) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER_MAJOR      1
 #define _STLSOFT_VER_MINOR      9
-#define _STLSOFT_VER_REVISION   52
-#define _STLSOFT_VER            _STLSOFT_VER_1_9_55
+#define _STLSOFT_VER_REVISION   56
+#define _STLSOFT_VER            _STLSOFT_VER_1_9_56
 
 /* /////////////////////////////////////////////////////////////////////////
  * Basic macros
@@ -2042,28 +2043,28 @@ ss_array_size_struct<N> const& ss_static_array_size(T const (&)[N]);
  */
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
-# define STLSOFT_RAW_OFFSETOF_1(S, M)                                           \
-                                                                                \
-    stlsoft_static_cast(                                                        \
-                                                                                \
-        stlsoft_ns_qual(ss_size_t),                                             \
-                                                                                \
-            stlsoft_reinterpret_cast(                                           \
-                stlsoft_ns_qual(ss_ptrdiff_t),                                  \
-                stlsoft_reinterpret_cast(char const*,                          \
-                    &                                                           \
-                        (   stlsoft_reinterpret_cast(S*, stlsoft_static_cast(char*, 1))      /* Cast 0 to S */   \
-                        + 1)                                /* Add 1 */         \
-                            ->M)                            /* Take M addr */   \
-                )                                                               \
-                -                                                               \
-            stlsoft_reinterpret_cast(                                           \
-                stlsoft_ns_qual(ss_ptrdiff_t),                                  \
-                stlsoft_reinterpret_cast(char const*,                          \
-                        (   stlsoft_reinterpret_cast(S*, stlsoft_static_cast(char*, 1))      /* Cast 0 to S */   \
-                            + 1))                           /* Add 1 */         \
-                )                                                               \
-        )
+# define STLSOFT_RAW_OFFSETOF_1(S, M)         \
+                                              \
+   stlsoft_static_cast(                       \
+                                              \
+    stlsoft_ns_qual(ss_size_t),               \
+                                              \
+     stlsoft_reinterpret_cast(                \
+      stlsoft_ns_qual(ss_ptrdiff_t),          \
+      stlsoft_reinterpret_cast(char const*,   \
+       &                                      \
+        (   stlsoft_reinterpret_cast(S*, stlsoft_static_cast(char*, 1)) /* Cast 0 to S */ \
+        + 1)   /* Add 1 */                    \
+          ->M) /* Take M addr */              \
+      )                                       \
+      -                                       \
+     stlsoft_reinterpret_cast(                \
+      stlsoft_ns_qual(ss_ptrdiff_t),          \
+      stlsoft_reinterpret_cast(char const*,   \
+        ( stlsoft_reinterpret_cast(S*, stlsoft_static_cast(char*, 1)) /* Cast 0 to S */   \
+          + 1)) /* Add 1 */                   \
+      )                                       \
+    )
 
 # define STLSOFT_RAW_OFFSETOF_2(S, M)                                           \
                                                                                 \

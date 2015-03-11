@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     8th March 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 3
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     37
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     38
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,6 +125,11 @@ namespace stlsoft
 
 /** \brief An iterator adaptor that uses a predicate to filter desired
  *    values from the iterator's underlying sequence.
+ *
+ * The design of this component is described in detail in chapter 42 of
+ * <a href="http://extendedstl.com/">Extended STL, volume 1</a>, which is
+ * also available for
+ * <a href="http://www.informit.com/content/images/9780321305503/samplechapter/0321305507_CH42.pdf">free download</a>.
  *
  * \ingroup group__library__iterators
  */

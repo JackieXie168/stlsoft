@@ -4,7 +4,7 @@
  * Purpose:     Definition of stlsoft::read_line() function template.
  *
  * Created:     2nd January 2007
- * Updated:     22nd September 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MAJOR     2
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_MINOR     0
 # define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_REVISION  2
-# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      8
+# define STLSOFT_VER_STLSOFT_FILESYSTEM_HPP_READ_LINE_EDIT      9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -86,11 +86,19 @@ namespace stlsoft
  * Typedefs
  */
 
+/** Flags that moderate the behaviour of the stlsoft::read_line() function
+ *
+ * Each flag causes the stlsoft::read_line() function to recognise exactly
+ * one character sequence as a new line. To recognise combinations, they
+ * must be combined. For example, to recognise both '\n' and "\r\n" as
+ * end-of-line sequences, both recogniseLfAsEOL and recogniseCrLfAsEOL
+ * must be specified.
+ */
 struct read_line_flags
 {
     enum flags_t
     {
-        recogniseCrAsEOL    =   0x0001,
+        recogniseCrAsEOL    =   0x0001,	/*!< Recognises a sole carriage return ('\r') character as a line feed */
         recogniseLfAsEOL    =   0x0002,
         recogniseCrLfAsEOL  =   0x0004,
         recogniseAll        =   (recogniseCrAsEOL | recogniseLfAsEOL | recogniseCrLfAsEOL),

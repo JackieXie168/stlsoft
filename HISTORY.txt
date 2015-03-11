@@ -2,10 +2,16 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  27th September 2008
+; Updated:  1st October 2008
 
 ============================================================================
 
+
+1st October 2008 - 1.9.56 released
+----------------------------------
+
+ * a large number of minor enhancements to the documentation markup
+ * fixes to defects to include guards in UNIXSTL
 
 27th September 2008 - 1.9.55 released
 -------------------------------------

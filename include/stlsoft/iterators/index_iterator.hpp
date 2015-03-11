@@ -4,11 +4,11 @@
  * Purpose:     index_iterator class template.
  *
  * Created:     5th April 2005
- * Updated:     6th November 2007
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -52,7 +52,7 @@
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MAJOR     1
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_MINOR     3
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_REVISION  5
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      23
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_INDEX_ITERATOR_EDIT      24
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -119,6 +119,12 @@ namespace stlsoft
  * Classes
  */
 
+/** An indexed iterator class.
+ *
+ * The implementation of this class template is described in a bonus
+ * chapter on the CD for
+ * <a href="http://extendedstl.com/">Extended STL, volume 1</a>
+ */
 template<   ss_typename_param_k I
         ,   ss_typename_param_k T = adapted_iterator_traits<I>
         >

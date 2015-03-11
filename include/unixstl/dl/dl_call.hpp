@@ -4,11 +4,11 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     22nd March 2007
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1998-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1998-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MAJOR       2
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_MINOR       3
 # define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_REVISION    5
-# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        38
+# define UNIXSTL_VER_UNIXSTL_DL_HPP_DL_CALL_EDIT        39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -187,7 +187,7 @@ struct is_valid_dl_call_arg
     enum { value = 0 };
 };
 
-/* Internal traits class used by the DL Library.
+/** Internal traits class used by the DL Library.
  *
  * \note This is a struct, rather than a namespace, because namespaces are
  *        open, and we want this to be closed.
@@ -241,9 +241,11 @@ public:
 /// \name Module Discrimination
 /// @{
 public:
+    /// Tag that denotes that the library argument is a handle
     struct library_is_handle
     {};
 
+    /// Tag that denotes that the library argument is not a handle
     struct library_is_not_handle
     {};
 /// @}

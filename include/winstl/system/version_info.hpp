@@ -4,7 +4,7 @@
  * Purpose:     Helper for accessing version information.
  *
  * Created:     16th February 1998
- * Updated:     9th March 2008
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MAJOR    5
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_MINOR    2
 # define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_REVISION 6
-# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     121
+# define WINSTL_VER_WINSTL_SYSTEM_HPP_VERSION_INFO_EDIT     122
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -301,6 +301,7 @@ private:
 class VsVar
 {
 public:
+    /// This type
     typedef VsVar   class_type;
 
     /// Represents a language/code-page pair
@@ -333,6 +334,7 @@ private:
 class VsString
 {
 public:
+    /// This type
     typedef VsString    class_type;
 
 public:
@@ -358,7 +360,9 @@ class VsStringTable
     : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
+    /// This type
     typedef VsStringTable   class_type;
+    /// The value type
     typedef VsString        value_type;
 
 public:
@@ -378,7 +382,9 @@ public:
                                             >
     {
     public:
+        /// This type
         typedef const_iterator  class_type;
+        /// The value type
         typedef VsString        value_type;
 
     public:
@@ -418,7 +424,9 @@ class VsVarFileInfo
     : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
+    /// This type
     typedef VsVarFileInfo   class_type;
+	/// The value type
     typedef VsVar           value_type;
 
 public:
@@ -440,6 +448,7 @@ public:
                                             >
     {
     public:
+        /// This type
         typedef const_iterator  class_type;
 
     public:
@@ -479,6 +488,7 @@ class VsStringFileInfo
     : public stlsoft_ns_qual(stl_collection_tag)
 {
 public:
+    /// This type
     typedef VsStringFileInfo    class_type;
     /// The value type
     typedef VsStringTable       value_type;
@@ -545,6 +555,7 @@ class version_info
 private:
     typedef processheap_allocator<ws_byte_t>    allocator_type;
 public:
+    /// This type
     typedef version_info                        class_type;
 
 /// \name Construction

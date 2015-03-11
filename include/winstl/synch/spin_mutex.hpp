@@ -4,14 +4,14 @@
  * Purpose:     Intra-process mutex, based on spin waits.
  *
  * Created:     27th August 1997
- * Updated:     22nd September 2008
+ * Updated:     1st October 2008
  *
  * Thanks:      To Rupert Kittinger, for pointing out that prior
  *              implementation that always yielded was not really "spinning".
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 1997-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 1997-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,7 +54,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MAJOR       4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_MINOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_REVISION    2
-# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        53
+# define WINSTL_VER_WINSTL_SYNCH_HPP_SPIN_MUTEX_EDIT        54
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -345,6 +345,7 @@ struct spin_mutex_lock_traits
 public:
     /// The lockable type
     typedef spin_mutex                lock_type;
+    /// This type
     typedef spin_mutex_lock_traits    class_type;
 
 // Operations

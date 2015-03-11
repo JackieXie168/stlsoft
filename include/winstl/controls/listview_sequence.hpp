@@ -4,7 +4,7 @@
  * Purpose:     Contains the listview_sequence class template.
  *
  * Created:     8th May 2003
- * Updated:     25th April 2008
+ * Updated:     1st October 2008
  *
  * Thanks:      To Pablo Aguilar for making the requisite feature requests.
  *
@@ -53,7 +53,7 @@
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MAJOR     4
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_MINOR     2
 # define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_REVISION  1
-# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      71
+# define WINSTL_VER_WINSTL_CONTROLS_HPP_LISTVIEW_SEQUENCE_EDIT      72
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -283,6 +283,7 @@ public:
         }
 
     public:
+		/// Dereference operator
         value_type operator *() const
         {
             return value_type(m_hwndListView, m_index);
@@ -302,6 +303,7 @@ public:
             return m_index != rhs.m_index;
         }
 
+		/// Pre-increment operator
         class_type& operator ++()
         {
             WINSTL_MESSAGE_ASSERT("Attempting to increment an off-the-end iterator", m_index < ListView_GetItemCount(m_hwndListView));
@@ -321,6 +323,7 @@ public:
             return ret;
         }
 
+		/// Pre-decrement operator
         class_type& operator --()
         {
             WINSTL_MESSAGE_ASSERT("Attempting to decrement an iterator at the start of the sequence", 0 < m_index);

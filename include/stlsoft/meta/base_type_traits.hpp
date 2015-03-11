@@ -4,11 +4,11 @@
  * Purpose:     type traits classes.
  *
  * Created:     24th August 2003
- * Updated:     10th January 2007
+ * Updated:     1st October 2008
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2007, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2008, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_MAJOR    4
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_MINOR    2
 # define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_REVISION 1
-# define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_EDIT     34
+# define STLSOFT_VER_STLSOFT_META_HPP_BASE_TYPE_TRAITS_EDIT     35
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,7 +77,9 @@ namespace stlsoft
 
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
 
-# if defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+#  if defined(STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT)
 template <ss_typename_param_k T>
 struct base_type_traits_array_detector
 {
@@ -91,7 +93,7 @@ struct base_type_traits_array_detector<T[N]>
 {
     enum { value            =   1 };
 };
-# endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
+#  endif /* STLSOFT_CF_STATIC_ARRAY_SIZE_DETERMINATION_SUPPORT */
 
 template <ss_typename_param_k T>
 struct base_type_traits_pointer_detector
@@ -119,6 +121,8 @@ struct base_type_traits_pointer_detector<T const volatile*>
 {
     enum { value            =   1 };
 };
+
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 
 
