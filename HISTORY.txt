@@ -7,6 +7,18 @@ STLSoft - History
 ============================================================================
 
 
+4th June 2012 - 1.9.114 released
+--------------------------------
+
+ * added unixstl::filesystem_traits::is_socket(char_type const*) method
+ * added unixstl::filesystem_traits::is_link(char_type const*) method
+ * added unixstl::filesystem_traits::is_socket(stat_data_type const*) method
+ * added unixstl::filesystem_traits::find_next_path_name_separator() method
+ * added unixstl::filesystem_traits::find_last_path_name_separator() method
+ * unixstl::filesystem_traits::get_full_path_name() now canonicalises '.'/'..'-trailing paths
+ * unixstl::readdir_sequence.hpp now includes directory name in thrown exception
+
+
 4th June 2012 - 1.9.113 released
 --------------------------------
 

@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     27th May 2012
+ * Updated:     4th June 2012
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *              To Nevin Liber for pressing upon me the need to lead by
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  3
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      157
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  5
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      159
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -370,7 +370,7 @@ public:
         ,   files           =   0x0020  /*!< \brief Causes the search to include files */
         ,   noSort          =   0x0100  /*!< \brief Does not sort entries. Corresponds to GLOB_NOSORT. */
         ,   markDirs        =   0x0200  /*!< \brief Mark directories with a trailing path name separator. Corresponds to GLOB_MARK. */
-        ,   absolutePath    =   0x0400  /*!< \brief Return all entries in absolute format */
+        ,   absolutePath    =   0x0400  /*!< \brief Return all entries in absolute format. Ignored when a dots directory is specified as the pattern. Note, absolute paths may not always be in canonical form, e.g. '/user/me/.' if specify ('/user/me', '.', absolutePath), in which case the caller is responsible for obtaining canonical form. */
 
         ,   breakOnError    =   0x0800  /*!< \brief Causes processing to stop on the first filesystem error. Corresponds to GLOB_ERR. */
         ,   noEscape        =   0x1000  /*!< \brief Treats backslashes literally. Corresponds to GLOB_NOESCAPE. */
@@ -595,7 +595,17 @@ private:
     static us_bool_t    is_dots_maybe_slashed_(char_type const* s, us_bool_t* bTwoDots);
 
     // Calls glob() and process the results
+    //
+    // init_glob_()   - handles any directory and/or pattern (where the pattern may contain rel/abs dir)
+    // init_glob_1_() - splits combined path into directory+pattern (which are passed to init_glob_2_())
+    // init_glob_2_() - handles receives properly split directory+pattern (and does test in order to call init_glob_3_())
+    // init_glob_3_() - handles full pattern, with bool indicating whether pattern contains wildcard at leaf
     us_size_t           init_glob_(char_type const* directory, char_type const* pattern);
+    us_size_t           init_glob_1_(size_type bufferSize, char_type* combinedPath);
+    us_size_t           init_glob_2_(char_type const* patternDir, char_type const* pattern0);
+    us_size_t           init_glob_3_(char_type const* pattern, bool isPattern0Wild);
+
+
 /// @}
 
 /// \name Members
@@ -677,7 +687,7 @@ inline glob_sequence::glob_sequence(char_type const* directory, char_type const*
     , m_buffer(1)
 {
 
-    m_cItems = init_glob_(NULL, pattern);
+    m_cItems = init_glob_(directory, pattern);
 
     UNIXSTL_ASSERT(is_valid());
 }
@@ -879,59 +889,142 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
 {
     UNIXSTL_MESSAGE_ASSERT("Null pattern given to glob_sequence", NULL != pattern);
 
+    char_type const* lastSlash = traits_type::find_last_path_name_separator(pattern);
+
+    if(NULL == lastSlash)
+    {
+        // already properly separated
+
+        return init_glob_2_(directory, pattern);
+    }
+    else
+    {
+        if(traits_type::is_path_rooted(pattern))
+        {
+            directory = NULL;
+        }
+
+        basic_file_path_buffer<char_type>   scratch_;   // Scratch buffer for directory + pattern
+
+        size_type                           dirLen  =   (NULL == directory) ? 0u : traits_type::str_len(directory);
+        size_type                           patLen  =   traits_type::str_len(pattern);
+
+        if(0 != dirLen)
+        {
+            traits_type::char_copy(&scratch_[0] + 0, directory, dirLen);
+            scratch_[dirLen] = '\0';
+            dirLen += traits_type::str_len(traits_type::ensure_dir_end(&scratch_[0] + (dirLen - 1))) - 1;
+        }
+
+        traits_type::char_copy(&scratch_[0] + dirLen, pattern, patLen);
+        scratch_[dirLen + patLen] = '\0';
+
+        return init_glob_1_(scratch_.size(), scratch_.data());
+    }
+}
+
+inline us_size_t glob_sequence::init_glob_1_(size_type bufferSize, char_type* combinedPath)
+{
+    char_type const* const lastSlash = traits_type::find_last_path_name_separator(combinedPath);
+
+    UNIXSTL_ASSERT(NULL != lastSlash);
+
+    combinedPath[lastSlash - combinedPath] = '\0';
+
+    char_type const*    directory   =   combinedPath;
+    char_type const*    pattern     =   lastSlash + 1;
+
+    return init_glob_2_(directory, pattern);
+}
+
+inline us_size_t glob_sequence::init_glob_2_(char_type const* directory, char_type const* pattern0)
+{
+    // Preconditions:
+    //
+    // - pattern must not be NULL
+    // - pattern must not contain a path-name separator
+    UNIXSTL_ASSERT(NULL != pattern0);
+    UNIXSTL_ASSERT(NULL == traits_type::str_chr(pattern0, '/'));
+#ifdef _WIN32
+    UNIXSTL_ASSERT(NULL == traits_type::str_chr(pattern0, '\\'));
+#endif /* _WIN32 */
+
     static char_type const s_wildChars[] = { '?', '*', '\0' };
 
-    us_bool_t const                     isPatternWild = (NULL != traits_type::str_pbrk(pattern, s_wildChars));
+    us_bool_t const isPattern0Wild = (NULL != traits_type::str_pbrk(pattern0, s_wildChars));
 
-    us_int_t                            glob_flags  =   0;
-    basic_file_path_buffer<char_type>   scratch_;   // Scratch buffer for directory / pattern
-
-#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
-    if(0 == scratch_.size())
-    {
-        m_base = NULL;
-
-        return 0;
-    }
-#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
-
-    if( NULL == directory &&
-        absolutePath == (m_flags & absolutePath))
-    {
-        static const char_type  s_thisDir[] = { '.', '\0' };
-
-        directory = s_thisDir;
-    }
-
-    // If a directory is given, then ...
     if( NULL != directory &&
-        '\0' != *directory)
+        '\0' != directory[0])
     {
-        us_size_t dirLen;
-
-        // ... optionally turn it into an absolute directory, ...
-        if(absolutePath == (m_flags & absolutePath))
+        if( absolutePath == (m_flags & absolutePath) &&
+            !traits_type::is_path_rooted(directory))
         {
-            dirLen = traits_type::get_full_path_name(directory, scratch_.size(), &scratch_[0]);
+            us_bool_t const isPatternDirWild = (NULL != traits_type::str_pbrk(directory, s_wildChars));
+
+            if(isPatternDirWild)
+            {
+                errno = EINVAL;
+
+                m_base = NULL;
+
+                return 0;
+            }
+            else
+            {
+                basic_file_path_buffer<char_type> scratch2_; // Scratch buffer for absolute path
+
+                size_type absLen = traits_type::get_full_path_name(directory, scratch2_.size(), &scratch2_[0]);
+
+                if(0 == absLen)
+                {
+                    m_base = NULL;
+
+                    return 0;
+                }
+                else
+                {
+                    return init_glob_2_(scratch2_.data(), pattern0);
+                }
+            }
         }
         else
         {
-            dirLen = traits_type::str_len(directory);
+            basic_file_path_buffer<char_type> scratch_;   // Scratch buffer for directory / pattern
 
-            traits_type::char_copy(&scratch_[0], directory, dirLen);
-            scratch_[dirLen] = '\0';
+#ifndef STLSOFT_CF_EXCEPTION_SUPPORT
+            if(0 == scratch_.size())
+            {
+                m_base = NULL;
+
+                return 0;
+            }
+            else
+#endif /* !STLSOFT_CF_EXCEPTION_SUPPORT */
+            {
+                size_type dirLen = traits_type::str_len(directory);
+                size_type patLen = traits_type::str_len(pattern0);
+
+                traits_type::char_copy(&scratch_[0] + 0, directory, dirLen);
+                scratch_[dirLen] = '\0';
+
+                dirLen += traits_type::str_len(traits_type::ensure_dir_end(&scratch_[0] + (dirLen - 1))) - 1;
+
+                traits_type::char_copy(&scratch_[0] + dirLen, pattern0, patLen);
+                scratch_[dirLen + patLen] = '\0';
+
+                return init_glob_3_(scratch_.c_str(), isPattern0Wild);
+            }
         }
-
-        // ... ensure that it has a trailing path name-separator, and ...
-        traits_type::ensure_dir_end(&scratch_[0] + (dirLen ? dirLen - 1 : 0));
-
-        // ... prefix directory onto pattern.
-        size_type scratchLen = traits_type::str_len(scratch_.data());
-        size_type patternLen = traits_type::str_len(pattern);
-        traits_type::char_copy(&scratch_[0] + scratchLen, pattern, patternLen);
-        scratch_[scratchLen + patternLen] = '\0';
-        pattern = scratch_.c_str();
     }
+    else
+    {
+        return init_glob_3_(pattern0, isPattern0Wild);
+    }
+}
+
+inline us_size_t glob_sequence::init_glob_3_(char_type const* pattern, bool isPattern0Wild)
+{
+    us_int_t glob_flags = 0;
 
     if(m_flags & noSort)
     {
@@ -1030,7 +1123,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
         // the processing. At the end we'll call detach(), to "give it"
         // to the glob_sequence instance.
 
-        stlsoft_ns_qual(scoped_handle)<glob_t*>     cleanup(&m_glob, ::globfree);
+        stlsoft_ns_qual(scoped_handle)<glob_t*> cleanup(&m_glob, ::globfree);
 
         char_type** base    =   m_glob.gl_pathv;
         us_size_t   cItems  =   static_cast<us_size_t>(m_glob.gl_pathc);
@@ -1045,7 +1138,7 @@ inline us_size_t glob_sequence::init_glob_(glob_sequence::char_type const* direc
         //     to remove directories
         //
 
-        bool const elidingDots = isPatternWild && (0 == (m_flags & includeDots));
+        bool const elidingDots = isPattern0Wild && (0 == (m_flags & includeDots));
 
 
         if( elidingDots ||                                      // 1

@@ -18,6 +18,46 @@ STLSoft - Changes
 
 ============================================================================
 
+Changes for 1.9.114 (4th June 2012)
+
+Summary:
+========
+
+ * added unixstl::filesystem_traits::is_socket(char_type const*) method
+ * added unixstl::filesystem_traits::is_link(char_type const*) method
+ * added unixstl::filesystem_traits::is_socket(stat_data_type const*) method
+ * added unixstl::filesystem_traits::find_next_path_name_separator() method
+ * added unixstl::filesystem_traits::find_last_path_name_separator() method
+ * unixstl::filesystem_traits::get_full_path_name() now canonicalises '.'/'..'-trailing paths
+ * unixstl::readdir_sequence.hpp now includes directory name in thrown exception
+
+Changes:
+========
+
+ UNIXSTL:
+ ========
+
+ ~ unixstl/filesystem/filesystem_traits.hpp:
+    ~ canonicalised '.' and '..'-trailing paths
+    ~ refactored get_full_path defect() logic
+    ~ fixed defect whereby too much of a source string was being copied over into buffer (leading to a seg-fault on UNIX)
+    + added is_socket(char_type const*)
+    + added is_link(char_type const*)
+    + added is_socket(stat_data_type const*)
+    + added find_next_path_name_separator()
+    + added find_last_path_name_separator()
+
+ ~ unixstl/filesystem/glob_sequence.hpp:
+    ~ refactored way in which patterns and directories are pre-parsed
+
+ ~ unixstl/filesystem/readdir_sequence.hpp:
+    + readdir_sequence_exception now has a Directory property
+    + now includes directory name in thrown exception
+    ~ minor compatibility fixes
+
+
+============================================================================
+
 Changes for 1.9.113 (4th June 2012)
 
 Summary:

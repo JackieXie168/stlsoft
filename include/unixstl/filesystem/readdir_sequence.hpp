@@ -4,7 +4,7 @@
  * Purpose:     readdir_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     20th May 2012
+ * Updated:     4th June 2012
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      5
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      1
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   10
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       131
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      2
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       133
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -150,8 +150,9 @@ class readdir_sequence_exception
 /// \name Types
 /// @{
 public:
-    typedef unix_exception              parent_class_type;
-    typedef readdir_sequence_exception  class_type;
+    typedef unix_exception                  parent_class_type;
+    typedef readdir_sequence_exception      class_type;
+    typedef parent_class_type::string_type  string_type;
 /// @}
 
 /// \name Construction
@@ -159,7 +160,27 @@ public:
 public:
     readdir_sequence_exception(us_char_a_t const* message, us_int_t erno)
         : parent_class_type(message, erno)
+        , Directory()
     {}
+    readdir_sequence_exception(us_char_a_t const* message, us_int_t erno, us_char_a_t const* directory)
+        : parent_class_type(message, erno)
+#if 0
+        , Directory(directory)
+#else /* ? 0 */
+        , Directory(stlsoft::c_str_ptr(directory))
+#endif /* 0 */
+    {}
+    ~readdir_sequence_exception() stlsoft_throw_0()
+    {}
+private:
+    class_type& operator =(class_type const&);
+/// @}
+
+/// \name Fields
+/// @{
+public:
+    /// The name of this field is subject to change in a future revision
+    string_type const   Directory;
 /// @}
 };
 
@@ -219,6 +240,7 @@ public:
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
         ,   sockets         =   0x0000  /*!< CURRENTLY UNSUPPORTED : DO NOT USE! This exists for forward compatibility with STLSoft 1.10 test programs, and is subject to change in the future. A future version will support sockets, but it may not use this enumerator name. */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+        ,   typeMask        =   0x0070
         ,   fullPath        =   0x0100  /*!< \brief Each file entry is presented as a full path relative to the search directory. */
         ,   absolutePath    =   0x0200  /*!< \brief The search directory is converted to an absolute path. */
     };
@@ -491,8 +513,10 @@ inline /* static */ readdir_sequence::flags_type readdir_sequence::validate_flag
 {
     const flags_type    validFlags  =   0
                                     |   includeDots
+                                    |   0
                                     |   directories
                                     |   files
+                                    |   0
                                     |   fullPath
                                     |   absolutePath
                                     |   0;
@@ -528,7 +552,7 @@ inline /* static */ readdir_sequence::string_type readdir_sequence::prepare_dire
         if(0 == n)
         {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-            STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno));
+            STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno, directory));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
             traits_type::char_copy(&path[0], directory, n);
             path[n] = \'0';
@@ -557,7 +581,7 @@ inline readdir_sequence::const_iterator readdir_sequence::begin() const
     if(NULL == dir)
     {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-        STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno));
+        STLSOFT_THROW_X(readdir_sequence_exception("Failed to enumerate directory", errno, m_directory.c_str()));
 #else /* ? STLSOFT_CF_EXCEPTION_SUPPORT */
         return const_iterator();
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
@@ -699,13 +723,17 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
             if(0 != errno)
             {
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-                STLSOFT_THROW_X(readdir_sequence_exception("Partial failure of directory enumeration", errno));
+                m_scratch.resize(m_dirLen);
+
+                STLSOFT_THROW_X(readdir_sequence_exception("Partial failure of directory enumeration", errno, m_scratch.c_str()));
 #endif /* STLSOFT_CF_EXCEPTION_SUPPORT */
             }
         }
         else
         {
             UNIXSTL_ASSERT(NULL != m_entry->d_name);
+
+            // Check for dots
 
             if(0 == (m_flags & includeDots))
             {
@@ -749,7 +777,7 @@ inline readdir_sequence::const_iterator::class_type& readdir_sequence::const_ite
 #ifndef _WIN32
                     // Test for sockets : this version does not support sockets,
                     // but does elide them from the search results.
-                    if(S_IFSOCK == (st.st_mode & S_IFMT))
+                    if(traits_type::is_socket(&st))
                     {
                         continue;
                     }
