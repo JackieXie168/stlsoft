@@ -4,7 +4,7 @@
  * Purpose:     Contains the pod_vector class.
  *
  * Created:     23rd December 2003
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Thanks to:   Chris Newcombe for requesting sufficient enhancements to
  *              auto_buffer such that pod_vector was born.
@@ -41,9 +41,12 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/containers/pod_vector.hpp
-///
-/// Contains the pod_vector class.
+/** \file stlsoft/containers/pod_vector.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::pod_vector container class
+ *   template.
+ *  (\ref group__library__containers "Containers" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_POD_VECTOR
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_POD_VECTOR
@@ -51,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MAJOR       4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_MINOR       1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        59
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_REVISION    3
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_POD_VECTOR_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,7 +114,7 @@ namespace stlsoft
 
 /** \brief Efficient vector class for use with POD types only
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  */
 template<   ss_typename_param_k T
 #if defined(STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT) && \

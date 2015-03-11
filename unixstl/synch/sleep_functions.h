@@ -4,7 +4,7 @@
  * Purpose:     UNIXSTL time functions.
  *
  * Created:     2nd September 2005
- * Updated:     18th June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MAJOR      2
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_MINOR      0
 # define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_REVISION   2
-# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       8
+# define UNIXSTL_VER_UNIXSTL_SYNCH_H_SLEEP_FUNCTIONS_EDIT       9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -91,8 +91,20 @@ namespace unixstl_project
  * Functions
  */
 
-/** \brief Puts the calling thread to sleep for the given numbrt og
+/** \brief [C, C++] Puts the calling thread to sleep for the given number of
  *   microseconds.
+\htmlonly
+<pre>
+  unixstl::micro_sleep(100000); // Sleep for 0.1 seconds
+  unixstl::micro_sleep(100);    // Sleep for 0.1 milliseconds
+</pre>
+\endhtmlonly
+ *
+ * \param microseconds The number of microseconds to wait
+ *
+ * \return A boolean value indicating whether the operation was 
+ *   successful. If not, <code>errno</code> will contain an error code
+ *   representing the reason for failure.
  */
 STLSOFT_INLINE us_bool_t micro_sleep(us_uint_t microseconds)
 {

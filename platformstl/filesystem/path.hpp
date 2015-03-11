@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the path components.
  *
  * Created:     20th March 2005
- * Updated:     22nd June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_REVISION   3
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       18
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_PATH_EDIT       19
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ namespace platformstl_project
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::basic_path

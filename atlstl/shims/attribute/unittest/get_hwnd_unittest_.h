@@ -1,7 +1,7 @@
 
-#if !defined(ATLSTL_INCL_ATLSTL_HPP_WINDOW_ACCESS)
-# error This file cannot be directly included, and should only be included within atlstl/window_access.hpp
-#endif /* !ATLSTL_INCL_ATLSTL_HPP_WINDOW_ACCESS */
+#if !defined(ATLSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND)
+# error This file cannot be directly included, and should only be included within atlstl/shims/attribute/get_hwnd.hpp
+#endif /* !ATLSTL_INCL_SHIMS_ATTRIBUTE_HPP_GET_HWND */
 
 #if !defined(STLSOFT_UNITTEST)
 # error This file cannot be included when not unit-testing STLSoft
@@ -17,7 +17,7 @@ namespace unittest
 
 			ss_bool_t				bSuccess	=	true;
 
-			unittest_initialiser	init(r, "ATLSTL", "window_access", __FILE__);
+			unittest_initialiser	init(r, "ATLSTL", "shims/attribute/window_access", __FILE__);
 
 			HWND	hwndDesktop =	::GetDesktopWindow();
 			CWindow wndDesktop;

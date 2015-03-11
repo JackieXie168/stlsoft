@@ -4,7 +4,7 @@
  * Purpose:     basic_static_string class template.
  *
  * Created:     11th June 1994
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MAJOR    4
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     175
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_MINOR    1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_REVISION 1
+# define STLSOFT_VER_STLSOFT_STRING_HPP_STATIC_STRING_EDIT     176
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -801,62 +801,116 @@ inline void swap(basic_static_string<C, CCH, T> &lhs, basic_static_string<C, CCH
 
 #ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
-/* c_str_ptr_null */
+// c_str_ptr_null
 
-/** \brief Returns the corresponding C-string pointer of \c s, or a null pointer
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_char_a_t const *c_str_ptr_null_a(stlsoft_ns_qual(basic_static_string)<ss_char_a_t, CCH, T> const &s)
+{
+    return (0 != s.length()) ? s.c_str() : NULL;
+}
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_char_w_t const *c_str_ptr_null_w(stlsoft_ns_qual(basic_static_string)<ss_char_w_t, CCH, T> const &s)
+{
+    return (0 != s.length()) ? s.c_str() : NULL;
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for stlsoft::basic_static_string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline C const *c_str_ptr_null(basic_static_string<C, CCH, T> const &s)
+inline C const *c_str_ptr_null(stlsoft_ns_qual(basic_static_string)<C, CCH, T> const &s)
 {
-    return (s.length() == 0) ? 0 : s.c_str();
+    return (0 != s.length()) ? s.c_str() : NULL;
 }
 
-/* c_str_ptr */
+// c_str_ptr
 
-/** \brief Returns the corresponding C-string pointer of \c s
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_char_a_t const *c_str_ptr_a(stlsoft_ns_qual(basic_static_string)<ss_char_a_t, CCH, T> const &s)
+{
+    return s.c_str();
+}
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_char_w_t const *c_str_ptr_w(stlsoft_ns_qual(basic_static_string)<ss_char_w_t, CCH, T> const &s)
+{
+    return s.c_str();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for stlsoft::basic_static_string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline C const *c_str_ptr(basic_static_string<C, CCH, T> const &s)
+inline C const *c_str_ptr(stlsoft_ns_qual(basic_static_string)<C, CCH, T> const &s)
 {
     return s.c_str();
 }
 
-/* c_str_data */
+// c_str_data
 
-/** \brief Returns the corresponding C-string pointer of \c s
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_char_a_t const *c_str_data_a(stlsoft_ns_qual(basic_static_string)<ss_char_a_t, CCH, T> const &s)
+{
+    return s.data();
+}
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_char_w_t const *c_str_data_w(stlsoft_ns_qual(basic_static_string)<ss_char_w_t, CCH, T> const &s)
+{
+    return s.data();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for stlsoft::basic_static_string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline C const *c_str_data(basic_static_string<C, CCH, T> const &s)
+inline C const *c_str_data(stlsoft_ns_qual(basic_static_string)<C, CCH, T> const &s)
 {
     return s.data();
 }
 
-/* c_str_ptr_len */
+// c_str_len
 
-/** \brief Returns the length (in characters) of \c s, <b><i>not</i></b> including the null-terminating character
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_size_t c_str_len_a(stlsoft_ns_qual(basic_static_string)<ss_char_a_t, CCH, T> const &s)
+{
+    return s.length();
+}
+template <ss_size_t CCH, ss_typename_param_k T >
+inline ss_size_t c_str_len_w(stlsoft_ns_qual(basic_static_string)<ss_char_w_t, CCH, T> const &s)
+{
+    return s.length();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for stlsoft::basic_static_string
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_size_t           CCH
         ,   ss_typename_param_k T
         >
-inline ss_size_t c_str_len(basic_static_string<C, CCH, T> const &s)
+inline ss_size_t c_str_len(stlsoft_ns_qual(basic_static_string)<C, CCH, T> const &s)
 {
     return s.length();
 }
@@ -865,12 +919,16 @@ inline ss_size_t c_str_len(basic_static_string<C, CCH, T> const &s)
 
 
 
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for stlsoft::basic_static_string
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<   ss_typename_param_k     S
         ,   ss_typename_param_k     C
         ,   ss_size_t               CCH
         ,   ss_typename_param_k     T
         >
-inline S &operator <<(S & s, basic_static_string<C, CCH, T> const &str)
+inline S &operator <<(S & s, stlsoft_ns_qual(basic_static_string)<C, CCH, T> const &str)
 {
     s << str.c_str();
 

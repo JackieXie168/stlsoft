@@ -4,7 +4,7 @@
  * Purpose:     guid class.
  *
  * Created:     10th May 2000
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MAJOR      4
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      0
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_MINOR      1
 # define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_REVISION   1
-# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       30
+# define _COMSTL_VER_COMSTL_UTIL_HPP_COMSTL_GUID_EDIT       31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -218,6 +218,45 @@ private:
  * String access shims
  */
 
+/** \brief \ref section__concept__shims__string_access__c_str_data for ACE_Time_Value
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(guid const &g)
+{
+    return stlsoft_ns_qual(c_str_data)(g.get());
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline size_t c_str_len_a(guid const &g)
+{
+    return stlsoft_ns_qual(c_str_len_a)(g.get());
+}
+
+inline size_t c_str_len_w(guid const &g)
+{
+    return stlsoft_ns_qual(c_str_len_w)(g.get());
+}
+
+inline size_t c_str_len_o(guid const &g)
+{
+    return stlsoft_ns_qual(c_str_len_o)(g.get());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for ACE_Time_Value
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline size_t c_str_len(guid const &g)
+{
+    return stlsoft_ns_qual(c_str_len)(g.get());
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_a(guid const &g)
 {
     return stlsoft_ns_qual(c_str_ptr_a)(g.get());
@@ -233,10 +272,18 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_o(guid const &g)
     return stlsoft_ns_qual(c_str_ptr_o)(g.get());
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for ACE_Time_Value
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr(guid const &g)
 {
     return stlsoft_ns_qual(c_str_ptr)(g.get());
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_ptr_null_a(guid const &g)
 {
@@ -253,10 +300,18 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_ptr_null_o(guid const &g)
     return stlsoft_ns_qual(c_str_ptr_null_o)(g.get());
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for ACE_Time_Value
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline c_str_ptr_GUID_proxy<TCHAR> c_str_ptr_null(guid const &g)
 {
     return stlsoft_ns_qual(c_str_ptr_null)(g.get());
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
 inline c_str_ptr_GUID_proxy<cs_char_a_t> c_str_data_a(guid const &g)
 {
@@ -273,15 +328,7 @@ inline c_str_ptr_GUID_proxy<cs_char_o_t> c_str_data_o(guid const &g)
     return stlsoft_ns_qual(c_str_data_o)(g.get());
 }
 
-inline c_str_ptr_GUID_proxy<TCHAR> c_str_data(guid const &g)
-{
-    return stlsoft_ns_qual(c_str_data)(g.get());
-}
-
-inline size_t c_str_len(guid const &g)
-{
-    return stlsoft_ns_qual(c_str_len)(g.get());
-}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Operators
@@ -480,25 +527,25 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::comstl::c_str_ptr_null_a;
-using ::comstl::c_str_ptr_null_w;
-using ::comstl::c_str_ptr_null_o;
-using ::comstl::c_str_ptr_null;
-
-using ::comstl::c_str_ptr_a;
-using ::comstl::c_str_ptr_w;
-using ::comstl::c_str_ptr_o;
-using ::comstl::c_str_ptr;
-
+using ::comstl::c_str_data;
 using ::comstl::c_str_data_a;
 using ::comstl::c_str_data_w;
 using ::comstl::c_str_data_o;
-using ::comstl::c_str_data;
 
+using ::comstl::c_str_len;
 using ::comstl::c_str_len_a;
 using ::comstl::c_str_len_w;
 using ::comstl::c_str_len_o;
-using ::comstl::c_str_len;
+
+using ::comstl::c_str_ptr;
+using ::comstl::c_str_ptr_a;
+using ::comstl::c_str_ptr_w;
+using ::comstl::c_str_ptr_o;
+
+using ::comstl::c_str_ptr_null;
+using ::comstl::c_str_ptr_null_a;
+using ::comstl::c_str_ptr_null_w;
+using ::comstl::c_str_ptr_null_o;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

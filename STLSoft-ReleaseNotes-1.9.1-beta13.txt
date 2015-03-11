@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta12
+File:     STLSoft-ReleaseNotes-1.9.1-beta13
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,23 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Date:     8th July 2006
+Date:     12th July 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 13 (12th July 2006)
+
+~ A massive amount of refactoring of the string access shims and their
+  documentation.
+
+~ unixstl::module / winstl::module get_handle() method removed, replaced
+  with get_module_handle()
+
+~ unixstl::process_mutex now throws exceptions (when compiled with
+  exception-handling on) if any of the PThreads methods fail.
 
 
 ============================================================================

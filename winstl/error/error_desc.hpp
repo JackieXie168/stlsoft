@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       1
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       2
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        59
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        60
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -129,7 +129,7 @@ namespace winstl_project
 </pre>
 \endhtmlonly
  *
- * \note Naturally, \ref group__concepts__string_access_shims "String Access
+ * \note Naturally, \ref group__concepts__shims__string_access "String Access
  *  Shim" functions <b>c_str_ptr</b>, <b>c_str_data</b>, <b>c_str_len</b>
  *  are defined for the class template, so it may be manipulated
  *  generically. (This is very handy when used with the
@@ -415,14 +415,14 @@ inline ss_typename_type_k basic_error_desc<C, T>::size_type basic_error_desc<C, 
 
 #ifndef STLSOFT_CF_TEMPLATE_SHIMS_NOT_SUPPORTED
 
-/** \brief Returns the corresponding C-string pointer of \c e
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for winstl::basic_error_desc
  *
- * \ingroup group__library__error
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline C const *c_str_ptr_null(basic_error_desc<C, T> const &e)
+inline C const *c_str_ptr_null(winstl_ns_qual(basic_error_desc)<C, T> const &e)
 {
     C const *p  =   e;
 
@@ -430,14 +430,14 @@ inline C const *c_str_ptr_null(basic_error_desc<C, T> const &e)
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_ptr_null_a(basic_error_desc<ws_char_a_t, T> const &e)
+inline ws_char_a_t const *c_str_ptr_null_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const &e)
 {
     ws_char_a_t const *p  =   e;
 
     return ('\0' != *e) ? p : NULL;
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_ptr_null_w(basic_error_desc<ws_char_w_t, T> const &e)
+inline ws_char_w_t const *c_str_ptr_null_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const &e)
 {
     ws_char_w_t const *p  =   e;
 
@@ -445,84 +445,104 @@ inline ws_char_w_t const *c_str_ptr_null_w(basic_error_desc<ws_char_w_t, T> cons
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Returns the corresponding C-string pointer of \c e
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for winstl::basic_error_desc
  *
- * \ingroup group__library__error
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline C const *c_str_ptr(basic_error_desc<C, T> const &e)
+inline C const *c_str_ptr(winstl_ns_qual(basic_error_desc)<C, T> const &e)
 {
     return e.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_ptr_a(basic_error_desc<ws_char_a_t, T> const &e)
+inline ws_char_a_t const *c_str_ptr_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const &e)
 {
     return e.c_str();
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_ptr_w(basic_error_desc<ws_char_w_t, T> const &e)
+inline ws_char_w_t const *c_str_ptr_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const &e)
 {
     return e.c_str();
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Returns the corresponding C-string pointer of \c e
+/** \brief \ref section__concept__shims__string_access__c_str_data for winstl::basic_error_desc
  *
- * \ingroup group__library__error
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline C const *c_str_data(basic_error_desc<C, T> const &e)
+inline C const *c_str_data(winstl_ns_qual(basic_error_desc)<C, T> const &e)
 {
     return e.c_str();
 }
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 template <ss_typename_param_k T>
-inline ws_char_a_t const *c_str_data_a(basic_error_desc<ws_char_a_t, T> const &e)
+inline ws_char_a_t const *c_str_data_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const &e)
 {
     return e.c_str();
 }
 template <ss_typename_param_k T>
-inline ws_char_w_t const *c_str_data_w(basic_error_desc<ws_char_w_t, T> const &e)
+inline ws_char_w_t const *c_str_data_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const &e)
 {
     return e.c_str();
 }
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Overload of the \ref group__concept__shim__c_str_len "c_str_len" String Attribute Shim.
+/** \brief \ref section__concept__shims__string_access__c_str_len for winstl::basic_error_desc
  *
- * \ingroup group__library__error
+ * \ingroup group__concept__shims__string_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline ws_size_t c_str_len(basic_error_desc<C, T> const &e)
+inline ws_size_t c_str_len(winstl_ns_qual(basic_error_desc)<C, T> const &e)
 {
     return e.length();
 }
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+template<   ss_typename_param_k T
+        >
+inline ws_size_t c_str_len_a(winstl_ns_qual(basic_error_desc)<ws_char_a_t, T> const &e)
+{
+    return e.length();
+}
+template<   ss_typename_param_k T
+        >
+inline ws_size_t c_str_len_w(winstl_ns_qual(basic_error_desc)<ws_char_w_t, T> const &e)
+{
+    return e.length();
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \brief Returns the corresponding C-string pointer of \c e
+
+/** \brief \ref section__concept__shims__pointer_access__get_ptr for winstl::basic_error_desc
  *
- * \ingroup group__library__error
+ * \ingroup group__concept__shims__pointer_access
  */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline C const *get_ptr(basic_error_desc<C, T> const &e)
+inline C const *get_ptr(winstl_ns_qual(basic_error_desc)<C, T> const &e)
 {
     return e;
 }
 
+
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for winstl::basic_error_desc
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         ,   ss_typename_param_k T
         >
-inline S &operator <<(S &s, basic_error_desc<C, T> const &e)
+inline S &operator <<(S &s, winstl_ns_qual(basic_error_desc)<C, T> const &e)
 {
     s << e.get_description();
 
@@ -567,19 +587,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::winstl::c_str_ptr_null;
-using ::winstl::c_str_ptr_null_a;
-using ::winstl::c_str_ptr_null_w;
-
-using ::winstl::c_str_ptr;
-using ::winstl::c_str_ptr_a;
-using ::winstl::c_str_ptr_w;
-
 using ::winstl::c_str_data;
 using ::winstl::c_str_data_a;
 using ::winstl::c_str_data_w;
 
 using ::winstl::c_str_len;
+using ::winstl::c_str_len_a;
+using ::winstl::c_str_len_w;
+
+using ::winstl::c_str_ptr;
+using ::winstl::c_str_ptr_a;
+using ::winstl::c_str_ptr_w;
+
+using ::winstl::c_str_ptr_null;
+using ::winstl::c_str_ptr_null_a;
+using ::winstl::c_str_ptr_null_w;
 
 using ::winstl::get_ptr;
 

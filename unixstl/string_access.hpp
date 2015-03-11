@@ -4,7 +4,7 @@
  * Purpose:     Support for the STLSoft string access shims for UNIX types.
  *
  * Created:     11th January 2003
- * Updated:     7th July 2006
+ * Updated:     12th July 2006
  *
  * Thanks:      To Carlos Santander Bernal, for providing feedback from Mac
  *              builds
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MAJOR    3
-# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MINOR    1
-# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_REVISION 4
-# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_EDIT     42
+# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_MINOR    2
+# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_REVISION 3
+# define UNIXSTL_VER_UNIXSTL_HPP_STRING_ACCESS_EDIT     45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -90,127 +90,47 @@ namespace unixstl_project
 #endif /* !_UNIXSTL_NO_NAMESPACE */
 
 /* /////////////////////////////////////////////////////////////////////////
- * c_str_ptr_null
- *
- * This can be applied to an expression, and the return value is either a
- * pointer to the character string or NULL.
- */
-
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr_null(struct dirent const *d)
-{
-    return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
-}
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr_null_a(struct dirent const *d)
-{
-    return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
-}
-
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr_null(struct dirent const &d)
-{
-    return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
-}
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d, or NULL if \c d is empty
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr_null_a(struct dirent const &d)
-{
-    return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
-}
-
-/* /////////////////////////////////////////////////////////////////////////
- * c_str_ptr
- *
- * This can be applied to an expression, and the return value is either a
- * pointer to the character string or to an empty string.
- */
-
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr(struct dirent const *d)
-{
-    return (NULL == d) ? "" : d->d_name;
-}
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr_a(struct dirent const *d)
-{
-    return (NULL == d) ? "" : d->d_name;
-}
-
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr(struct dirent const &d)
-{
-    return d.d_name;
-}
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-inline us_char_a_t const *c_str_ptr_a(struct dirent const &d)
-{
-    return d.d_name;
-}
-
-/* /////////////////////////////////////////////////////////////////////////
  * c_str_data
  *
  * This can be applied to an expression, and the return value is either a
  * pointer to the character string or to an empty string.
  */
 
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+/** \brief \ref section__concept__shims__string_access__c_str_data for struct dirent
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline us_char_a_t const *c_str_data(struct dirent const *d)
 {
     return (NULL == d) ? "" : d->d_name;
 }
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline us_char_a_t const *c_str_data_a(struct dirent const *d)
 {
     return (NULL == d) ? "" : d->d_name;
 }
 
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for struct dirent
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline us_char_a_t const *c_str_data(struct dirent const &d)
 {
     return d.d_name;
 }
-/** \brief Returns the corresponding C-string pointer of the dirent structure \c d
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
 inline us_char_a_t const *c_str_data_a(struct dirent const &d)
 {
     return d.d_name;
 }
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
@@ -219,23 +139,123 @@ inline us_char_a_t const *c_str_data_a(struct dirent const &d)
  * characters in the character string in the expression.
  */
 
-/** \brief Returns the length (in characters) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
+/** \brief \ref section__concept__shims__string_access__c_str_len for struct dirent
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline us_size_t c_str_len(struct dirent const *d)
 {
-    return stlsoft_ns_qual(c_str_len)(c_str_ptr(d));
+    return stlsoft_ns_qual(c_str_len)(c_str_data(d));
 }
 
-/** \brief Returns the length (in characters) of the dirent structure \c d, <b><i>not</i></b> including the null-terminating character
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline us_size_t c_str_len_a(struct dirent const *d)
+{
+    return c_str_len(d);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for struct dirent
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline us_size_t c_str_len(struct dirent const &d)
 {
-    return stlsoft_ns_qual(c_str_len)(c_str_ptr(d));
+    return stlsoft_ns_qual(c_str_len)(c_str_data(d));
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline us_size_t c_str_len_a(struct dirent const &d)
+{
+    return c_str_len(d);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * c_str_ptr
+ *
+ * This can be applied to an expression, and the return value is either a
+ * pointer to the character string or to an empty string.
+ */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for struct dirent
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline us_char_a_t const *c_str_ptr(struct dirent const *d)
+{
+    return (NULL == d) ? "" : d->d_name;
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline us_char_a_t const *c_str_ptr_a(struct dirent const *d)
+{
+    return (NULL == d) ? "" : d->d_name;
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for struct dirent
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline us_char_a_t const *c_str_ptr(struct dirent const &d)
+{
+    return d.d_name;
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline us_char_a_t const *c_str_ptr_a(struct dirent const &d)
+{
+    return d.d_name;
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * c_str_ptr_null
+ *
+ * This can be applied to an expression, and the return value is either a
+ * pointer to the character string or NULL.
+ */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for struct dirent
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline us_char_a_t const *c_str_ptr_null(struct dirent const *d)
+{
+    return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline us_char_a_t const *c_str_ptr_null_a(struct dirent const *d)
+{
+    return (NULL == d || 0 == d->d_name[0]) ? static_cast<us_char_a_t const*>(NULL) : d->d_name;
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for struct dirent
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline us_char_a_t const *c_str_ptr_null(struct dirent const &d)
+{
+    return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
+}
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline us_char_a_t const *c_str_ptr_null_a(struct dirent const &d)
+{
+    return 0 == d.d_name[0] ? static_cast<us_char_a_t const*>(NULL) : d.d_name;
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -273,17 +293,21 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::unixstl::c_str_ptr_null;
-
-using ::unixstl::c_str_ptr;
-using ::unixstl::c_str_ptr_a;
-//using ::unixstl::c_str_ptr_w;
-
 using ::unixstl::c_str_data;
 using ::unixstl::c_str_data_a;
 //using ::unixstl::c_str_data_w;
 
 using ::unixstl::c_str_len;
+using ::unixstl::c_str_len_a;
+//using ::unixstl::c_str_len_w;
+
+using ::unixstl::c_str_ptr;
+using ::unixstl::c_str_ptr_a;
+//using ::unixstl::c_str_ptr_w;
+
+using ::unixstl::c_str_ptr_null;
+using ::unixstl::c_str_ptr_null_a;
+//using ::unixstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

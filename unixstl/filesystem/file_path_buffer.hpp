@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_file_path_buffer template class.
  *
  * Created:     24th May 2004
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -50,9 +50,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MAJOR      4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      0
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   4
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       49
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_MINOR      1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_REVISION   1
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_FILE_PATH_BUFFER_EDIT       50
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -383,80 +383,130 @@ inline void swap(basic_file_path_buffer<C, A> &lhs, basic_file_path_buffer<C, A>
  * Shims
  */
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k A
-        >
-inline C const *c_str_ptr_null(basic_file_path_buffer<C, A> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
-}
-template<   ss_typename_param_k A
-        >
-inline us_char_a_t const *c_str_ptr_null_a(basic_file_path_buffer<us_char_a_t, A> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
-}
-template<   ss_typename_param_k A
-        >
-inline us_char_w_t const *c_str_ptr_null_w(basic_file_path_buffer<us_char_w_t, A> const &b)
-{
-    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
-}
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-template<   ss_typename_param_k C
-        ,   ss_typename_param_k A
-        >
-inline C const *c_str_ptr(basic_file_path_buffer<C, A> const &b)
+template <ss_typename_param_k A>
+inline us_char_a_t const *c_str_data_a(unixstl_ns_qual(basic_file_path_buffer)<us_char_a_t, A> const &b)
 {
     return b.c_str();
 }
-template<   ss_typename_param_k A
-        >
-inline us_char_a_t const *c_str_ptr_a(basic_file_path_buffer<us_char_a_t, A> const &b)
-{
-    return b.c_str();
-}
-template<   ss_typename_param_k A
-        >
-inline us_char_w_t const *c_str_ptr_w(basic_file_path_buffer<us_char_w_t, A> const &b)
+template <ss_typename_param_k A>
+inline us_char_w_t const *c_str_data_w(unixstl_ns_qual(basic_file_path_buffer)<us_char_w_t, A> const &b)
 {
     return b.c_str();
 }
 
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for unixstl::basic_file_path_buffer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline C const *c_str_data(basic_file_path_buffer<C, A> const &b)
-{
-    return b.c_str();
-}
-template<   ss_typename_param_k A
-        >
-inline us_char_a_t const *c_str_data_a(basic_file_path_buffer<us_char_a_t, A> const &b)
-{
-    return b.c_str();
-}
-template<   ss_typename_param_k A
-        >
-inline us_char_w_t const *c_str_data_w(basic_file_path_buffer<us_char_w_t, A> const &b)
+inline C const *c_str_data(unixstl_ns_qual(basic_file_path_buffer)<C, A> const &b)
 {
     return b.c_str();
 }
 
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k A>
+inline us_size_t c_str_len_a(unixstl_ns_qual(basic_file_path_buffer)<us_char_a_t, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_len_a)(b.c_str());
+}
+template <ss_typename_param_k A>
+inline us_size_t c_str_len_w(unixstl_ns_qual(basic_file_path_buffer)<us_char_w_t, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_len_w)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for unixstl::basic_file_path_buffer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 template<   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline us_size_t c_str_len(basic_file_path_buffer<C, A> const &b)
+inline us_size_t c_str_len(unixstl_ns_qual(basic_file_path_buffer)<C, A> const &b)
 {
     return stlsoft_ns_qual(c_str_len)(b.c_str());
 }
 
 
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k A>
+inline us_char_a_t const *c_str_ptr_a(unixstl_ns_qual(basic_file_path_buffer)<us_char_a_t, A> const &b)
+{
+    return b.c_str();
+}
+template <ss_typename_param_k A>
+inline us_char_w_t const *c_str_ptr_w(unixstl_ns_qual(basic_file_path_buffer)<us_char_w_t, A> const &b)
+{
+    return b.c_str();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for unixstl::basic_file_path_buffer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k A
+        >
+inline C const *c_str_ptr(unixstl_ns_qual(basic_file_path_buffer)<C, A> const &b)
+{
+    return b.c_str();
+}
+
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+template <ss_typename_param_k A>
+inline us_char_a_t const *c_str_ptr_null_a(unixstl_ns_qual(basic_file_path_buffer)<us_char_a_t, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+template <ss_typename_param_k A>
+inline us_char_w_t const *c_str_ptr_null_w(unixstl_ns_qual(basic_file_path_buffer)<us_char_w_t, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for unixstl::basic_file_path_buffer
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+template<   ss_typename_param_k C
+        ,   ss_typename_param_k A
+        >
+inline C const *c_str_ptr_null(unixstl_ns_qual(basic_file_path_buffer)<C, A> const &b)
+{
+    return stlsoft_ns_qual(c_str_ptr_null)(b.c_str());
+}
+
+
+
+
+/** \brief \ref group__concept__shims__stream_insertion "stream insertion shim" for unixstl::basic_file_path_buffer
+ *
+ * \ingroup group__concept__shims__stream_insertion
+ */
 template<   ss_typename_param_k S
         ,   ss_typename_param_k C
         ,   ss_typename_param_k A
         >
-inline S &operator <<(S & s, basic_file_path_buffer<C, A> const &b)
+inline S &operator <<(S & s, unixstl_ns_qual(basic_file_path_buffer)<C, A> const &b)
 {
     s << b.c_str();
 

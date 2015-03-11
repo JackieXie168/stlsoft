@@ -4,7 +4,7 @@
  * Purpose:     Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
  *
  * Created:     4th August 1998
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/containers/fixed_array.hpp
-///
-/// Contains the fixed_array_1d, fixed_array_2d, fixed_array_3d, fixed_array_4d template classes.
+/** \file stlsoft/containers/fixed_array.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::fixed_array_1d,
+ *    stlsoft::fixed_array_2d, stlsoft::fixed_array_3d, and
+ *    stlsoft::fixed_array_4d multidimensional array class templates.
+ *  (\ref group__library__containers "Containers" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY
@@ -48,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MAJOR      4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_MINOR      1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       162
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_REVISION   2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_FIXED_ARRAY_EDIT       163
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -153,10 +157,9 @@ class fixed_array_5d;
  * Classes
  */
 
-// class fixed_array_1d
 /** \brief 1 dimensional fixed array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param A The allocator type
@@ -173,6 +176,7 @@ template<   ss_typename_param_k T
         ,   ss_typename_param_k R
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
+// class fixed_array_1d
 class fixed_array_1d
     : protected A
     , public stl_collection_tag
@@ -300,10 +304,9 @@ private:
     class_type const &operator =(class_type const &rhs);
 };
 
-// class fixed_array_2d
 /** \brief 2 dimensional fixed array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param A The allocator type
@@ -320,6 +323,7 @@ template<   ss_typename_param_k T
         ,   ss_bool_t           R
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
+// class fixed_array_2d
 class fixed_array_2d
     : protected A
     , public stl_collection_tag
@@ -453,10 +457,9 @@ private:
     class_type const &operator =(class_type const &rhs);
 };
 
-// class fixed_array_3d
 /** \brief 3 dimensional fixed array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param A The allocator type
@@ -473,6 +476,7 @@ template<   ss_typename_param_k T
         ,   ss_bool_t           R
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
+// class fixed_array_3d
 class fixed_array_3d
     : protected A
     , public stl_collection_tag
@@ -606,11 +610,9 @@ private:
     class_type const &operator =(class_type const &rhs);
 };
 
-
-// class fixed_array_4d
 /** \brief 4 dimensional fixed array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param A The allocator type
@@ -627,6 +629,7 @@ template<   ss_typename_param_k T
         ,   ss_bool_t           R
 #endif /* STLSOFT_CF_TEMPLATE_CLASS_DEFAULT_CLASS_ARGUMENT_SUPPORT */
         >
+// class fixed_array_4d
 class fixed_array_4d
     : protected A
     , public stl_collection_tag

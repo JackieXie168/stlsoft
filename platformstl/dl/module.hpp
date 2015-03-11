@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the module components.
  *
  * Created:     20th March 2005
- * Updated:     14th June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MAJOR    2
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_MINOR    0
 # define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_REVISION 2
-# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     11
+# define PLATFORMSTL_VER_PLATFORMSTL_DL_HPP_MODULE_EDIT     13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -100,10 +100,12 @@ namespace platformstl_project
 
     /** \brief Class for manipulating dynamically loaded libraries.
      *
+     * \ingroup group__library__dl
+     *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+	 * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::module

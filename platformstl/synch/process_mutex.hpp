@@ -4,7 +4,7 @@
  * Purpose:     Definition of the process_mutex type.
  *
  * Created:     20th March 2005
- * Updated:     12th June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       12
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_PROCESS_MUTEX_EDIT       13
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ namespace platformstl_project
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::process_mutex
@@ -111,8 +111,50 @@ namespace platformstl_project
      * platforms it resolves to the winstl::process_mutex class. It is not
      * defined for other platforms.
      */
-    class process_mutex
-    {};
+class process_mutex
+{
+/// \name Member Types
+/// @{
+public:
+#if defined(PLATFORMSTL_OS_IS_UNIX)
+    typedef pthread_mutex_t *handle_type;
+#elif defined(PLATFORMSTL_OS_IS_WIN32)
+    typedef HANDLE          handle_type;
+#else /* ? OS */
+# error Operating system not discriminated
+#endif /* OS */
+    typedef process_mutex   class_type;
+/// @}
+
+/// \name Construction
+/// @{
+public:
+    /// \brief Constructs a mutex object
+    process_mutex();
+    /// \brief Destroys a mutex object
+    ~process_mutex();
+/// @}
+
+/// \name Operations
+/// @{
+public:
+    /// \brief Acquires a lock on the mutex, pending the thread until the lock is aquired
+    void lock();
+    /// \brief Attempts to lock the mutex
+    ///
+    /// \return <b>true</b> if the mutex was aquired, or <b>false</b> if not
+    bool try_lock();
+    /// \brief Releases an aquired lock on the mutex
+    void unlock();
+/// @}
+
+/// \name Accessors
+/// @{
+public:
+    /// \brief The underlying kernel object handle
+    handle_type get();
+/// @}
+};
 
 #elif defined(PLATFORMSTL_OS_IS_UNIX)
 

@@ -4,7 +4,7 @@
  * Purpose:     Control Panel module/applet manipulation classes.
  *
  * Created:     1st April 2006
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MAJOR    1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_MINOR    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 6
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     9
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_REVISION 7
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_APPLET_MODULE_EDIT     10
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -727,7 +727,7 @@ inline void applet_module::init_(int flags, HWND hwndParent)
     {
         m_flags =   flags;
         m_hwnd  =   hwndParent;
-        m_hinst =   m_module.get_handle();
+        m_hinst =   m_module.get_module_handle();
 
         size_type numApplets  =   control_panel_get_count(m_pfn, m_hwnd);
 

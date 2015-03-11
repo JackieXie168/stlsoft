@@ -4,7 +4,7 @@
  * Purpose:     Invocation of functions in dynamic libraries.
  *
  * Created:     sometime in 1998
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -49,9 +49,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MAJOR     2
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     0
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  3
-# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      23
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_MINOR     1
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_REVISION  1
+# define WINSTL_VER_WINSTL_DL_HPP_DL_CALL_EDIT      25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -125,7 +125,7 @@ namespace winstl_project
 /** \brief Exception thrown when an entry point cannot be located in a
  *   dynamic library.
  *
- * \ingroup group__library__dl
+ * \ingroup group__library__dl__exceptions
  */
 class missing_entry_point_exception
     : public windows_exception
@@ -173,7 +173,7 @@ private:
 
 /** \brief Exception thrown when a calling convention specifier is invalid.
  *
- * \ingroup group__library__dl
+ * \ingroup group__library__dl__exceptions
  */
 class invalid_calling_convention_exception
     : public windows_exception
@@ -276,13 +276,6 @@ namespace calling_convention
 
 /* ////////////////////////////////////////////////////////////////////// */
 
-/** 
- *
- * \note This class must *not* be used in a non-temporary context
- *
- * \ingroup group__library__dl
- */
-
 struct function_descriptor_base
 {
     operator function_descriptor_base const *() const
@@ -349,8 +342,9 @@ inline function_descriptor<0, S> fn_desc(int cc, S const &functionName)
  * Traits
  */
 
-/** \brief Traits type that provides a mechanism for declaring specific
- *   types to be compatible with dl_call.
+/** \brief Traits class that provides a mechanism for declaring specific
+ *   (e.g. aggregate and user-defined) types to be compatible with
+ *   \link winstl::dl_call dl_call()\endlink.
  *
  * \ingroup group__library__dl
  *
@@ -377,16 +371,13 @@ namespace winstl
 </pre>
 \endhtmlonly
  */
-
 template<ss_typename_param_k T>
 struct is_valid_dl_call_arg
 {
     enum { value = 0 };
 };
 
-/** \brief Traits class used by the \ref group__library__dl.
- *
- * \ingroup group__library__dl
+/* Internal traits class used by the \ref group__library__dl.
  *
  * \note This is a struct, rather than a namespace, because namespaces are
  *        open, and we want this to be closed.
@@ -3493,7 +3484,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd);
 }
 
 
@@ -3524,7 +3515,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0);
 }
 
 
@@ -3555,7 +3546,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1);
 }
 
 
@@ -3586,7 +3577,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2);
 }
 
 
@@ -3617,7 +3608,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3);
 }
 
 
@@ -3648,7 +3639,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4);
 }
 
 
@@ -3679,7 +3670,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5);
 }
 
 
@@ -3710,7 +3701,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6);
 }
 
 
@@ -3741,7 +3732,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7);
 }
 
 
@@ -3772,7 +3763,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8);
 }
 
 
@@ -3803,7 +3794,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9);
 }
 
 
@@ -3834,7 +3825,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10);
 }
 
 
@@ -3865,7 +3856,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11);
 }
 
 
@@ -3896,7 +3887,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12);
 }
 
 
@@ -3927,7 +3918,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13);
 }
 
 
@@ -3958,7 +3949,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14);
 }
 
 
@@ -3989,7 +3980,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15);
 }
 
 
@@ -4020,7 +4011,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16);
 }
 
 
@@ -4051,7 +4042,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17);
 }
 
 
@@ -4082,7 +4073,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18);
 }
 
 
@@ -4113,7 +4104,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19);
 }
 
 
@@ -4144,7 +4135,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20);
 }
 
 
@@ -4175,7 +4166,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21);
 }
 
 
@@ -4206,7 +4197,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22);
 }
 
 
@@ -4237,7 +4228,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23);
 }
 
 
@@ -4268,7 +4259,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24);
 }
 
 
@@ -4299,7 +4290,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25);
 }
 
 
@@ -4330,7 +4321,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26);
 }
 
 
@@ -4361,7 +4352,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27);
 }
 
 
@@ -4392,7 +4383,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28);
 }
 
 
@@ -4423,7 +4414,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29);
 }
 
 
@@ -4454,7 +4445,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30);
 }
 
 
@@ -4485,7 +4476,7 @@ template< ss_typename_param_k R
         >
 inline R dl_call_MOD(dl_call_traits::library_is_not_handle, S const &library, FD const &fd, A0 a0, A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, A6 a6, A7 a7, A8 a8, A9 a9, A10 a10, A11 a11, A12 a12, A13 a13, A14 a14, A15 a15, A16 a16, A17 a17, A18 a18, A19 a19, A20 a20, A21 a21, A22 a22, A23 a23, A24 a24, A25 a25, A26 a26, A27 a27, A28 a28, A29 a29, A30 a30, A31 a31)
 {
-  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
+  return dl_call_MOD<R>(dl_call_traits::library_is_handle(), dl_call_traits::module_wrapper_type(stlsoft::c_str_ptr(library)).get_module_handle(), fd, a0, a1, a2, a3, a4, a5, a6, a7, a8, a9, a10, a11, a12, a13, a14, a15, a16, a17, a18, a19, a20, a21, a22, a23, a24, a25, a26, a27, a28, a29, a30, a31);
 }
 
 //[<[STLSOFT-AUTO:DL_CALL-MODULES:END]>]

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with OLE/COM strings.
  *
  * Created:     27th May 2002
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,8 +47,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MAJOR      3
 # define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_MINOR      2
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   5
-# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       87
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_REVISION   6
+# define ATLSTL_VER_ATLSTL_HPP_STRING_ACCESS_EDIT       88
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -265,6 +265,7 @@ protected:
  */
 
 #ifdef __ATLWIN_H__
+
 inline as_bool_t operator ==(LPCTSTR lhs, c_str_ptr_null_CWindow_proxy const &rhs)
 {
     return lhs == static_cast<LPCTSTR>(rhs);
@@ -284,6 +285,7 @@ inline as_bool_t operator !=(c_str_ptr_null_CWindow_proxy const &lhs, LPCTSTR rh
 {
     return static_cast<LPCTSTR>(lhs) != rhs;
 }
+
 #endif /* __ATLWIN_H__ */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -291,6 +293,7 @@ inline as_bool_t operator !=(c_str_ptr_null_CWindow_proxy const &lhs, LPCTSTR rh
  */
 
 #ifdef __ATLWIN_H__
+
 template<ss_typename_param_k S>
 inline S &operator <<(S & s, c_str_ptr_null_CWindow_proxy const &shim)
 {
@@ -306,6 +309,7 @@ inline S &operator <<(S & s, c_str_ptr_CWindow_proxy const &shim)
 
     return s;
 }
+
 #endif /* __ATLWIN_H__ */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -316,43 +320,48 @@ inline S &operator <<(S & s, c_str_ptr_CWindow_proxy const &shim)
  */
 
 /* CWindow */
+
 #ifdef __ATLWIN_H__
-/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CWindow
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline c_str_ptr_null_CWindow_proxy c_str_ptr_null(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr_null_CWindow_proxy(w);
 }
-/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-# ifdef UNICODE
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#  ifdef UNICODE
 inline c_str_ptr_null_CWindow_proxy c_str_ptr_null_w(atlstl_ns_qual_atl(CWindow) const &w)
-# else /* ? UNICODE */
+#  else /* ? UNICODE */
 inline c_str_ptr_null_CWindow_proxy c_str_ptr_null_a(atlstl_ns_qual_atl(CWindow) const &w)
-# endif /* UNICODE */
+#  endif /* UNICODE */
 {
     return c_str_ptr_null(w);
 }
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
-/** \brief Returns the corresponding C-string pointer of the CComBSTR \c s, or a null pointer
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CComBSTR
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCOLESTR c_str_ptr_null(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     /* NULL is a valid BSTR value, so may return that */
     return s.m_str;
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline LPCOLESTR c_str_ptr_null_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_ptr_null(s);
 }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_ptr
@@ -362,43 +371,48 @@ inline LPCOLESTR c_str_ptr_null_w(atlstl_ns_qual_atl(CComBSTR) const &s)
  */
 
 /* CWindow */
+
 #ifdef __ATLWIN_H__
-/** \brief Returns the corresponding C-string pointer of the text of the CWindow \c w
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CWindow
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline c_str_ptr_CWindow_proxy c_str_ptr(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr_CWindow_proxy(w);
 }
-/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-# ifdef UNICODE
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#  ifdef UNICODE
 inline c_str_ptr_CWindow_proxy c_str_ptr_w(atlstl_ns_qual_atl(CWindow) const &w)
-# else /* ? UNICODE */
+#  else /* ? UNICODE */
 inline c_str_ptr_CWindow_proxy c_str_ptr_a(atlstl_ns_qual_atl(CWindow) const &w)
-# endif /* UNICODE */
+#  endif /* UNICODE */
 {
     return c_str_ptr(w);
 }
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
-/** \brief Returns the corresponding C-string pointer of the CComBSTR \c s
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CComBSTR
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCOLESTR c_str_ptr(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     /* NULL is a valid BSTR value, so check for that */
     return (s.m_str != 0) ? s.m_str : L"";
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_ptr(s);
 }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_data
@@ -408,70 +422,94 @@ inline LPCOLESTR c_str_ptr_w(atlstl_ns_qual_atl(CComBSTR) const &s)
  */
 
 /* CWindow */
+
 #ifdef __ATLWIN_H__
-/** \brief Returns the corresponding possibly un-terminated C-string pointer of the text of the CWindow \c w
+/** \brief \ref section__concept__shims__string_access__c_str_data for CWindow
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline c_str_ptr_CWindow_proxy c_str_data(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return c_str_ptr(w);
 }
-/** \brief Returns the corresponding C-string pointer of the CWindow \c w, or a null pointer
- *
- * \ingroup group__library__<<LIBRARY-ID>>
- */
-# ifdef UNICODE
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#  ifdef UNICODE
 inline c_str_ptr_CWindow_proxy c_str_data_w(atlstl_ns_qual_atl(CWindow) const &w)
-# else /* ? UNICODE */
+#  else /* ? UNICODE */
 inline c_str_ptr_CWindow_proxy c_str_data_a(atlstl_ns_qual_atl(CWindow) const &w)
-# endif /* UNICODE */
+#  endif /* UNICODE */
 {
     return c_str_data(w);
 }
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* __ATLWIN_H__ */
 
-/** \brief Returns the corresponding possibly un-terminated C-string pointer of the CComBSTR \c s
+/** \brief \ref section__concept__shims__string_access__c_str_data for CComBSTR
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCOLESTR c_str_data(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_ptr(s);
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 inline LPCOLESTR c_str_data_w(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return c_str_data(s);
 }
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
  * c_str_len
  *
- * This can be applied to an expression, and the return value is the number of
- * characters in the character string in the expression.
+ * This can be applied to an expression, and the return value is the number
+ * of characters in the character string in the expression.
  */
 
 /* CWindow */
+
 #ifdef __ATLWIN_H__
-/** \brief Returns the length (in characters) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for CWindow
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline as_size_t c_str_len(atlstl_ns_qual_atl(CWindow) const &w)
 {
     return static_cast<as_size_t>(w.GetWindowTextLength());
 }
+
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#  ifdef UNICODE
+inline as_size_t c_str_len_w(atlstl_ns_qual_atl(CWindow) const &w)
+#  else /* ? UNICODE */
+inline as_size_t c_str_len_a(atlstl_ns_qual_atl(CWindow) const &w)
+#  endif /* UNICODE */
+{
+    return c_str_len(w);
+}
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 #endif /* __ATLWIN_H__ */
 
 /* CComBSTR */
-/** \brief Returns the length (in characters) of the CComBSTR \c s, <b><i>not</i></b> including the null-terminating character
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for CComBSTR
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline as_size_t c_str_len(atlstl_ns_qual_atl(CComBSTR) const &s)
 {
     return s.Length();
 }
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+inline as_size_t c_str_len_w(atlstl_ns_qual_atl(CComBSTR) const &s)
+{
+    return c_str_len(s);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 ////////////////////////////////////////////////////////////////////////////
 // Unit-testing
@@ -509,20 +547,6 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::atlstl::c_str_ptr_null;
-#if defined(__ATLWIN_H__) && \
-    !defined(UNICODE)
-using ::atlstl::c_str_ptr_null_a;
-#endif /* __ATLWIN_H__ && !UNICODE*/
-using ::atlstl::c_str_ptr_null_w;
-
-using ::atlstl::c_str_ptr;
-#if defined(__ATLWIN_H__) && \
-    !defined(UNICODE)
-using ::atlstl::c_str_ptr_a;
-#endif /* __ATLWIN_H__ && !UNICODE*/
-using ::atlstl::c_str_ptr_w;
-
 using ::atlstl::c_str_data;
 #if defined(__ATLWIN_H__) && \
     !defined(UNICODE)
@@ -531,6 +555,25 @@ using ::atlstl::c_str_data_a;
 using ::atlstl::c_str_data_w;
 
 using ::atlstl::c_str_len;
+#if defined(__ATLWIN_H__) && \
+    !defined(UNICODE)
+using ::atlstl::c_str_len_a;
+#endif /* __ATLWIN_H__ && !UNICODE*/
+using ::atlstl::c_str_len_w;
+
+using ::atlstl::c_str_ptr;
+#if defined(__ATLWIN_H__) && \
+    !defined(UNICODE)
+using ::atlstl::c_str_ptr_a;
+#endif /* __ATLWIN_H__ && !UNICODE*/
+using ::atlstl::c_str_ptr_w;
+
+using ::atlstl::c_str_ptr_null;
+#if defined(__ATLWIN_H__) && \
+    !defined(UNICODE)
+using ::atlstl::c_str_ptr_null_a;
+#endif /* __ATLWIN_H__ && !UNICODE*/
+using ::atlstl::c_str_ptr_null_w;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

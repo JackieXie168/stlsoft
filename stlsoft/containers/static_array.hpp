@@ -4,7 +4,7 @@
  * Purpose:     Statically sized multidimensional class template.
  *
  * Created:     4th August 1998
- * Updated:     7th July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file stlsoft/containers/static_array.hpp
-///
-/// Statically sized multidimensional class template.
+/** \file stlsoft/containers/static_array.hpp
+ *
+ * \brief [C++ only] Definition of the stlsoft::static_array_1d,
+ *    stlsoft::static_array_2d, stlsoft::static_array_3d, and
+ *    stlsoft::static_array_4d multidimensional array class templates.
+ *  (\ref group__library__containers "Containers" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY
 #define STLSOFT_INCL_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY
@@ -48,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MAJOR     4
 # define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_MINOR     1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  1
-# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      166
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_REVISION  2
+# define STLSOFT_VER_STLSOFT_CONTAINERS_HPP_STATIC_ARRAY_EDIT      167
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -177,7 +181,7 @@ class static_array_5d;
 // class static_array_1d
 /** \brief 1 dimensional static array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param N0 The first dimension extent
@@ -313,7 +317,7 @@ private:
 // class static_array_2d
 /** \brief 2 dimensional static array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param N0 The first dimension extent
@@ -460,7 +464,7 @@ private:
 // class static_array_3d
 /** \brief 3 dimensional static array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param N0 The first dimension extent
@@ -611,7 +615,7 @@ private:
 // class static_array_4d
 /** \brief 4 dimensional static array
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__library__containers
  *
  * \param T The value type
  * \param N0 The first dimension extent

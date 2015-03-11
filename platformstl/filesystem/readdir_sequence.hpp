@@ -4,7 +4,7 @@
  * Purpose:     Platform header for the readdir_sequence components.
  *
  * Created:     29th April 2006
- * Updated:     12th June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,7 +53,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       3
+# define PLATFORMSTL_VER_PLATFORMSTL_FILESYSTEM_HPP_READDIR_SEQUENCE_EDIT       4
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -111,7 +111,7 @@ namespace platformstl_project
      * of another file-system enumeration type, e.g.
      * winstl::basic_findfile_sequence. For UNIX compilation, it
      * resolves to unixstl::readdir_sequence, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      */
     class readdir_sequence

@@ -4,7 +4,7 @@
  * Purpose:     Contains classes and functions for dealing with MFC strings.
  *
  * Created:     24th May 2002
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -47,9 +47,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MAJOR      3
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      3
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   4
-# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       76
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_MINOR      4
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_REVISION   1
+# define MFCSTL_VER_MFCSTL_HPP_STRING_ACCESS_EDIT       77
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -455,59 +455,71 @@ inline S &operator <<(S & s, c_str_ptr_CWnd_proxy const &shim)
  */
 
 /* CWnd */
-/** \brief Returns the corresponding C-string pointer of the CWnd \c w, or a null pointer
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CWnd
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CWnd &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CWnd const &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CWnd &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(CWnd const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CWnd &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CWnd const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr_null(w);
 }
 
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CListBox &w)
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CListBox
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CListBox const &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CListBox &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(CListBox const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListBox &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CListBox const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr_null(w);
 }
 
 #ifdef __AFXCMN_H__
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CListCtrl &w)
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CListCtrl
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CListCtrl const &w)
 {
     return c_str_ptr_null_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CListCtrl &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(CListCtrl const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListCtrl &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CListCtrl const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr_null(w);
 }
 
 # ifdef __AFXCVIEW_H__
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(const CListView &w)
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CListView
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null(CListView const &w)
 {
     return c_str_ptr_null(w.GetListCtrl());
 }
 #if defined(UNICODE)
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(const CListView &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_w(CListView const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListView &w)
+inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(CListView const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr_null(w);
@@ -516,9 +528,9 @@ inline c_str_ptr_null_CWnd_proxy c_str_ptr_null_a(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/** \brief Returns the corresponding C-string pointer of the CString \c s, or a null pointer
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for CString
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCTSTR c_str_ptr_null(const CString &s)
 {
@@ -544,59 +556,71 @@ inline LPCTSTR c_str_ptr_null_w(const CString &s)
  */
 
 /* CWnd */
-/** \brief Returns the corresponding C-string pointer of the CWnd \c w
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CWnd
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
-inline c_str_ptr_CWnd_proxy c_str_ptr(const CWnd &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr(CWnd const &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CWnd &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(CWnd const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CWnd &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(CWnd const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr(w);
 }
 
-inline c_str_ptr_CWnd_proxy c_str_ptr(const CListBox &w)
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CListBox
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_CWnd_proxy c_str_ptr(CListBox const &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CListBox &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(CListBox const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListBox &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(CListBox const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr(w);
 }
 
 #ifdef __AFXCMN_H__
-inline c_str_ptr_CWnd_proxy c_str_ptr(const CListCtrl &w)
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CListCtrl
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_CWnd_proxy c_str_ptr(CListCtrl const &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CListCtrl &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(CListCtrl const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListCtrl &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(CListCtrl const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr(w);
 }
 
 # ifdef __AFXCVIEW_H__
-inline c_str_ptr_CWnd_proxy c_str_ptr(const CListView &w)
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CListView
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_CWnd_proxy c_str_ptr(CListView const &w)
 {
     return c_str_ptr(w.GetListCtrl());
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_ptr_w(const CListView &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_w(CListView const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListView &w)
+inline c_str_ptr_CWnd_proxy c_str_ptr_a(CListView const &w)
 #endif /* UNICODE */
 {
     return c_str_ptr(w);
@@ -605,9 +629,9 @@ inline c_str_ptr_CWnd_proxy c_str_ptr_a(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/** \brief Returns the corresponding C-string pointer of the CString \c s
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for CString
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCTSTR c_str_ptr(const CString &s)
 {
@@ -633,59 +657,71 @@ inline LPCTSTR c_str_ptr_a(const CString &s)
  */
 
 /* CWnd */
-/** \brief Returns the corresponding C-string pointer of the CWnd \c w
+/** \brief \ref section__concept__shims__string_access__c_str_data for CWnd
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
-inline c_str_ptr_CWnd_proxy c_str_data(const CWnd &w)
+inline c_str_ptr_CWnd_proxy c_str_data(CWnd const &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_data_w(const CWnd &w)
+inline c_str_ptr_CWnd_proxy c_str_data_w(CWnd const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_data_a(const CWnd &w)
+inline c_str_ptr_CWnd_proxy c_str_data_a(CWnd const &w)
 #endif /* UNICODE */
 {
     return c_str_data(w);
 }
 
-inline c_str_ptr_CWnd_proxy c_str_data(const CListBox &w)
+/** \brief \ref section__concept__shims__string_access__c_str_data for CListBox
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_CWnd_proxy c_str_data(CListBox const &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_data_w(const CListBox &w)
+inline c_str_ptr_CWnd_proxy c_str_data_w(CListBox const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_data_a(const CListBox &w)
+inline c_str_ptr_CWnd_proxy c_str_data_a(CListBox const &w)
 #endif /* UNICODE */
 {
     return c_str_data(w);
 }
 
 #ifdef __AFXCMN_H__
-inline c_str_ptr_CWnd_proxy c_str_data(const CListCtrl &w)
+/** \brief \ref section__concept__shims__string_access__c_str_data for CListCtrl
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_CWnd_proxy c_str_data(CListCtrl const &w)
 {
     return c_str_ptr_CWnd_proxy(w);
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_data_w(const CListCtrl &w)
+inline c_str_ptr_CWnd_proxy c_str_data_w(CListCtrl const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_data_a(const CListCtrl &w)
+inline c_str_ptr_CWnd_proxy c_str_data_a(CListCtrl const &w)
 #endif /* UNICODE */
 {
     return c_str_data(w);
 }
 
 # ifdef __AFXCVIEW_H__
-inline c_str_ptr_CWnd_proxy c_str_data(const CListView &w)
+/** \brief \ref section__concept__shims__string_access__c_str_data for CListView
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline c_str_ptr_CWnd_proxy c_str_data(CListView const &w)
 {
     return c_str_data(w.GetListCtrl());
 }
 #if defined(UNICODE)
-inline c_str_ptr_CWnd_proxy c_str_data_w(const CListView &w)
+inline c_str_ptr_CWnd_proxy c_str_data_w(CListView const &w)
 #else /* ? UNICODE */
-inline c_str_ptr_CWnd_proxy c_str_data_a(const CListView &w)
+inline c_str_ptr_CWnd_proxy c_str_data_a(CListView const &w)
 #endif /* UNICODE */
 {
     return c_str_data(w);
@@ -694,9 +730,9 @@ inline c_str_ptr_CWnd_proxy c_str_data_a(const CListView &w)
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/** \brief Returns the corresponding C-string pointer of the CString \c s
+/** \brief \ref section__concept__shims__string_access__c_str_data for CString
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline LPCTSTR c_str_data(const CString &s)
 {
@@ -722,38 +758,93 @@ inline LPCTSTR c_str_data_a(const CString &s)
  */
 
 /* CWnd */
-/** \brief Returns the length (in characters) of the contents of the window \c w, <b><i>not</i></b> including the null-terminating character
+/** \brief \ref section__concept__shims__string_access__c_str_len for CWnd
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
-inline ms_size_t c_str_len(const CWnd &w)
+inline ms_size_t c_str_len(CWnd const &w)
 {
     return GetWindowTextLength__(w);
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef UNICODE
+inline ms_size_t c_str_len_w(CWnd const &w)
+# else /* ? UNICODE */
+inline ms_size_t c_str_len_a(CWnd const &w)
+# endif /* UNICODE */
+{
+    return c_str_len(w);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-inline ms_size_t c_str_len(const CListBox &w)
+/** \brief \ref section__concept__shims__string_access__c_str_len for CListBox
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline ms_size_t c_str_len(CListBox const &w)
 {
     return GetWindowTextLength__(w);
 }
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+# ifdef UNICODE
+inline ms_size_t c_str_len_w(CListBox const &w)
+# else /* ? UNICODE */
+inline ms_size_t c_str_len_a(CListBox const &w)
+# endif /* UNICODE */
+{
+    return c_str_len(w);
+}
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 #ifdef __AFXCMN_H__
+/** \brief \ref section__concept__shims__string_access__c_str_len for CListCtrl
+ *
+ * \ingroup group__concept__shims__string_access
+ */
 inline ms_size_t c_str_len(const CListCtrl &w)
 {
     return GetWindowTextLength__(w);
 }
+# ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#  ifdef UNICODE
+inline ms_size_t c_str_len_w(CListCtrl const &w)
+#  else /* ? UNICODE */
+inline ms_size_t c_str_len_a(CListCtrl const &w)
+#  endif /* UNICODE */
+{
+    return c_str_len(w);
+}
+# endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 
 # ifdef __AFXCVIEW_H__
-inline ms_size_t c_str_len(const CListView &w)
+/** \brief \ref section__concept__shims__string_access__c_str_len for CListView
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline ms_size_t c_str_len(CListView const &w)
 {
     return c_str_len(w.GetListCtrl());
 }
+#  ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+#   ifdef UNICODE
+inline ms_size_t c_str_len_w(CListView const &w)
+#   else /* ? UNICODE */
+inline ms_size_t c_str_len_a(CListView const &w)
+#   endif /* UNICODE */
+{
+    return c_str_len(w);
+}
+#  endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
 # endif /* __AFXCVIEW_H__ */
 #endif /* __AFXCMN_H__ */
 
 /* CString */
-/** \brief Returns the length (in characters) of the CString \c s, <b><i>not</i></b> including the null-terminating character
+/** \brief \ref section__concept__shims__string_access__c_str_len for CString
  *
- * \ingroup group__library__<<LIBRARY-ID>>
+ * \ingroup group__concept__shims__string_access
  */
 inline ms_size_t c_str_len(const CString &s)
 {
@@ -796,11 +887,18 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::mfcstl::c_str_ptr_null;
+using ::mfcstl::c_str_data;
 #if defined(UNICODE)
-using ::mfcstl::c_str_ptr_null_w;
+using ::mfcstl::c_str_data_w;
 #else /* ? UNICODE */
-using ::mfcstl::c_str_ptr_null_a;
+using ::mfcstl::c_str_data_a;
+#endif /* UNICODE */
+
+using ::mfcstl::c_str_len;
+#if defined(UNICODE)
+using ::mfcstl::c_str_len_w;
+#else /* ? UNICODE */
+using ::mfcstl::c_str_len_a;
 #endif /* UNICODE */
 
 using ::mfcstl::c_str_ptr;
@@ -810,14 +908,12 @@ using ::mfcstl::c_str_ptr_w;
 using ::mfcstl::c_str_ptr_a;
 #endif /* UNICODE */
 
-using ::mfcstl::c_str_data;
+using ::mfcstl::c_str_ptr_null;
 #if defined(UNICODE)
-using ::mfcstl::c_str_data_w;
+using ::mfcstl::c_str_ptr_null_w;
 #else /* ? UNICODE */
-using ::mfcstl::c_str_data_a;
+using ::mfcstl::c_str_ptr_null_a;
 #endif /* UNICODE */
-
-using ::mfcstl::c_str_len;
 
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \

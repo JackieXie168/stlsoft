@@ -5,7 +5,7 @@
  *              and platform discriminations, and definitions of types.
  *
  * Created:     15th January 2002
- * Updated:     3rd July 2006
+ * Updated:     10th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -57,6 +57,8 @@
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_MINOR    5
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_REVISION 7
 # define STLSOFT_VER_STLSOFT_H_STLSOFT_EDIT     276
+#else /* ? STLSOFT_DOCUMENTATION_SKIP_SECTION */
+/* # include "./internal/doxygen_defs.h" */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /** \file stlsoft/stlsoft.h
@@ -153,7 +155,8 @@
 # define _STLSOFT_VER_1_8_7     0x00010807  /*!< Version 1.8.7 */
 # define _STLSOFT_VER_1_8_8     0x00010808  /*!< Version 1.8.8 */
 # define _STLSOFT_VER_1_8_9     0x00010809  /*!< Version 1.8.9 */
-# define _STLSOFT_VER_1_9_1     0x00010901  /*!< Version 1.9.1 (12th Dec 2005) */
+# define _STLSOFT_VER_1_9_1_B13 0x0109010d  /*!< Version 1.9.1 beta 13 (10th July 2006) */
+# define _STLSOFT_VER_1_9_1     0x010901ff  /*!< Version 1.9.1 (12th Dec 2005) */
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 #define _STLSOFT_VER            _STLSOFT_VER_1_9_1
@@ -1049,7 +1052,8 @@ namespace stlsoft
  * \brief Declares a using directive (with respect to <b>stlsoft</b>) if STLSoft is using namespaces or, if not, does nothing
  */
 
-#ifndef _STLSOFT_NO_NAMESPACE
+#if !defined(_STLSOFT_NO_NAMESPACE) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define stlsoft_ns_qual(x)          ::stlsoft::x
 # define stlsoft_ns_using(x)         using ::stlsoft::x;
 #else /* ? _STLSOFT_NO_NAMESPACE */
@@ -1065,7 +1069,8 @@ namespace stlsoft
  * \brief Declares a using directive (with respect to <b>std</b>) if STLSoft is being translated in the context of the standard library being within the <b>std</b> namespace or, if not, does nothing
  */
 
-#ifdef STLSOFT_CF_std_NAMESPACE
+#if defined(STLSOFT_CF_std_NAMESPACE) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define stlsoft_ns_qual_std(x)      ::std::x
 # define stlsoft_ns_qual_std_(x)     std::x
 # define stlsoft_ns_using_std(x)     using ::std::x;
@@ -1078,7 +1083,8 @@ namespace stlsoft
  * \brief Qualifies <b>X</b> with <b>::</b> if compiling C++, otherwise just resolves to X
  */
 
-#if defined(__cplusplus)
+#if defined(__cplusplus) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
 # define STLSOFT_NS_GLOBAL(x)       ::x
 #else /* ? __cplusplus */
 # define STLSOFT_NS_GLOBAL(x)       x
@@ -1097,7 +1103,8 @@ namespace stlsoft
 
 /* ptrdiff_t
  */
-#ifndef _STLSOFT_NO_STD_INCLUDES
+#if !defined(_STLSOFT_NO_STD_INCLUDES) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
  typedef ptrdiff_t                  ss_ptrdiff_pr_t_;   /* ptr diff */
 #else /* ? _STLSOFT_NO_STD_INCLUDES */
  typedef int                        ss_ptrdiff_pr_t_;   /* ptr diff */
@@ -1105,7 +1112,8 @@ namespace stlsoft
 
 /* size_t
  */
-#ifndef _STLSOFT_NO_STD_INCLUDES
+#if !defined(_STLSOFT_NO_STD_INCLUDES) || \
+    defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)
  typedef size_t                     ss_size_pr_t_;      /* size */
 #else /* ? _STLSOFT_NO_STD_INCLUDES */
  typedef unsigned int               ss_size_pr_t_;      /* size */

@@ -4,7 +4,7 @@
  * Purpose:     errorinfo_desc class for accessing description from the COM error.
  *
  * Created:     19th December 2002
- * Updated:     7th July 2006
+ * Updated:     9th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,9 +51,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MAJOR       0
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       4
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_MINOR       5
 # define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_REVISION    1
-# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        16
+# define COMSTL_VER_COMSTL_ERROR_HPP_ERRORINFO_DESC_EDIT        17
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -275,89 +275,119 @@ protected:
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 
-inline cs_size_t c_str_len_a(errorinfo_desc const &eid)
-{
-    return eid.length();
-}
-
-inline cs_size_t c_str_len_w(errorinfo_desc const &eid)
-{
-    return eid.length();
-}
-
-inline cs_size_t c_str_len_o(errorinfo_desc const &eid)
-{
-    return eid.length();
-}
-
-inline cs_size_t c_str_len(errorinfo_desc const &eid)
-{
-    return eid.length();
-}
-
-
-
-inline cs_char_a_t const *c_str_ptr_a(errorinfo_desc const &eid)
+inline cs_char_a_t const *c_str_data_a(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str_a();
 }
 
-inline cs_char_w_t const *c_str_ptr_w(errorinfo_desc const &eid)
+inline cs_char_w_t const *c_str_data_w(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str_w();
 }
 
-inline cs_char_o_t const *c_str_ptr_o(errorinfo_desc const &eid)
+inline cs_char_o_t const *c_str_data_o(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str_w();
 }
 
-inline LPCTSTR c_str_ptr(errorinfo_desc const &eid)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_data for errorinfo_desc
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCTSTR c_str_data(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str();
 }
 
-inline cs_char_a_t const *c_str_data_a(errorinfo_desc const &eid)
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline cs_size_t c_str_len_a(comstl_ns_qual(errorinfo_desc) const &eid)
+{
+    return eid.length();
+}
+
+inline cs_size_t c_str_len_w(comstl_ns_qual(errorinfo_desc) const &eid)
+{
+    return eid.length();
+}
+
+inline cs_size_t c_str_len_o(comstl_ns_qual(errorinfo_desc) const &eid)
+{
+    return eid.length();
+}
+
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_len for errorinfo_desc
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline cs_size_t c_str_len(comstl_ns_qual(errorinfo_desc) const &eid)
+{
+    return eid.length();
+}
+
+
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline cs_char_a_t const *c_str_ptr_a(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str_a();
 }
 
-inline cs_char_w_t const *c_str_data_w(errorinfo_desc const &eid)
+inline cs_char_w_t const *c_str_ptr_w(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str_w();
 }
 
-inline cs_char_o_t const *c_str_data_o(errorinfo_desc const &eid)
+inline cs_char_o_t const *c_str_ptr_o(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str_w();
 }
 
-inline LPCTSTR c_str_data(errorinfo_desc const &eid)
+#endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr for errorinfo_desc
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCTSTR c_str_ptr(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return eid.c_str();
 }
 
-inline cs_char_a_t const *c_str_ptr_null_a(errorinfo_desc const &eid)
+
+#ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
+
+inline cs_char_a_t const *c_str_ptr_null_a(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return (0 != eid.length()) ? eid.c_str_a() : NULL;
 }
 
-inline cs_char_w_t const *c_str_ptr_null_w(errorinfo_desc const &eid)
+inline cs_char_w_t const *c_str_ptr_null_w(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return (0 != eid.length()) ? eid.c_str_w() : NULL;
 }
 
-inline cs_char_o_t const *c_str_ptr_null_o(errorinfo_desc const &eid)
+inline cs_char_o_t const *c_str_ptr_null_o(comstl_ns_qual(errorinfo_desc) const &eid)
 {
     return (0 != eid.length()) ? eid.c_str_w() : NULL;
-}
-
-inline LPCTSTR c_str_ptr_null(errorinfo_desc const &eid)
-{
-    return (0 != eid.length()) ? eid.c_str() : NULL;
 }
 
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/** \brief \ref section__concept__shims__string_access__c_str_ptr_null for errorinfo_desc
+ *
+ * \ingroup group__concept__shims__string_access
+ */
+inline LPCTSTR c_str_ptr_null(comstl_ns_qual(errorinfo_desc) const &eid)
+{
+    return (0 != eid.length()) ? eid.c_str() : NULL;
+}
 
 /* ////////////////////////////////////////////////////////////////////// */
 
@@ -388,25 +418,25 @@ namespace stlsoft
 /* There is no stlsoft namespace, so must define in the global namespace */
 # endif /* !_STLSOFT_NO_NAMESPACE */
 
-using ::comstl::c_str_ptr_null_a;
-using ::comstl::c_str_ptr_null_w;
-using ::comstl::c_str_ptr_null_o;
-using ::comstl::c_str_ptr_null;
-
-using ::comstl::c_str_ptr_a;
-using ::comstl::c_str_ptr_w;
-using ::comstl::c_str_ptr_o;
-using ::comstl::c_str_ptr;
-
+using ::comstl::c_str_data;
 using ::comstl::c_str_data_a;
 using ::comstl::c_str_data_w;
 using ::comstl::c_str_data_o;
-using ::comstl::c_str_data;
 
+using ::comstl::c_str_len;
 using ::comstl::c_str_len_a;
 using ::comstl::c_str_len_w;
 using ::comstl::c_str_len_o;
-using ::comstl::c_str_len;
+
+using ::comstl::c_str_ptr;
+using ::comstl::c_str_ptr_a;
+using ::comstl::c_str_ptr_w;
+using ::comstl::c_str_ptr_o;
+
+using ::comstl::c_str_ptr_null;
+using ::comstl::c_str_ptr_null_a;
+using ::comstl::c_str_ptr_null_w;
+using ::comstl::c_str_ptr_null_o;
 
 # if !defined(_STLSOFT_NO_NAMESPACE) && \
      !defined(STLSOFT_DOCUMENTATION_SKIP_SECTION)

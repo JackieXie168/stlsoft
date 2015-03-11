@@ -4,7 +4,7 @@
  * Purpose:     Platform header for directory manipulation functions.
  *
  * Created:     30th May 2006
- * Updated:     12th June 2006
+ * Updated:     11th July 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,7 +52,7 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MAJOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_MINOR      0
 # define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_REVISION   1
-# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       4
+# define PLATFORMSTL_VER_PLATFORMSTL_SYNCH_HPP_SEMAPHORE_EDIT       5
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ namespace platformstl_project
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it
      * resolves to the appropriate type for the given platform, relying on
-     * \ref group__principle__intersecting_structural_conformance "Intersecting Structural Conformance"
+     * \ref section__principle__conformance__intersecting_structural_conformance "Intersecting Structural Conformance"
      * of the resolved platform-specific types.
      *
      * When compiling on UNIX platforms, the platformstl::semaphore
