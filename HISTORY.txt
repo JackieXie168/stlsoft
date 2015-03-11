@@ -2,9 +2,15 @@
 STLSoft - History
 
 ; Created:  29th March 2002
-; Updated:  17th January 2009
+; Updated:  19th January 2009
 
 ============================================================================
+
+
+19th January 2009 - 1.9.68 released
+-----------------------------------
+
+ * fix defect, and updated docs, for stlsoft::must_init utility class template
 
 
 17th January 2009 - 1.9.67 released
