@@ -4,7 +4,7 @@
  * Purpose:     unix_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     16th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,16 @@
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_MINOR     1
 # define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      38
+# define UNIXSTL_VER_UNIXSTL_ERROR_HPP_EXCEPTIONS_EDIT      39
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -98,7 +106,7 @@ namespace unixstl_project
  * Classes
  */
 
-/** \brief Exception class for general Windows operating system failures
+/** \brief General exception class for UNIX operating system failures.
  *
  * \ingroup group__library__error
  *

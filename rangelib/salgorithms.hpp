@@ -4,7 +4,7 @@
  * Purpose:     Range-adapted Sequence algorithms.
  *
  * Created:     19th July 2005
- * Updated:     10th June 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -68,8 +68,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MAJOR     1
 # define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_MINOR     1
-# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  1
-# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      11
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_REVISION  2
+# define RANGELIB_VER_RANGELIB_HPP_SALGORITHMS_EDIT      12
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -98,9 +98,12 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 # include <rangelib/sequence_range.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_SEQUENCE_RANGE */
 #if defined(STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT)
-# ifndef STLSOFT_INCL_STLSOFT_HPP_META
-#  include <stlsoft/meta.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR
+#  include <stlsoft/meta/detector/has_const_iterator.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_CONST_ITERATOR */
+# ifndef STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR
+#  include <stlsoft/meta/detector/has_iterator.hpp>
+# endif /* !STLSOFT_INCL_STLSOFT_META_DETECTOR_HPP_HAS_ITERATOR */
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
 
 /* /////////////////////////////////////////////////////////////////////////

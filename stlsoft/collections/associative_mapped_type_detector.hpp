@@ -4,7 +4,7 @@
  * Purpose:     Definition of the associative_mapped_type_detector type.
  *
  * Created:     26th February 2005
- * Updated:     15th July 2006
+ * Updated:     17th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -48,8 +48,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MAJOR     2
 # define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_MINOR     1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  1
-# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      20
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_REVISION  2
+# define STLSOFT_VER_STLSOFT_COLLECTIONS_HPP_ASSOCIATIVE_MAPPED_TYPE_DETECTOR_EDIT      21
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,14 +74,12 @@ STLSOFT_COMPILER_IS_MSVC: _MSC_VER<1310
 #ifndef STLSOFT_INCL_STLSOFT_H_STLSOFT
 # include <stlsoft/stlsoft.h>
 #endif /* !STLSOFT_INCL_STLSOFT_H_STLSOFT */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
-
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
 # error This file is not compatible with compilers that do not support member type detection
 #endif /* !STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-
 #ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_MAPPED_TYPE
 # include <stlsoft/meta/typefixer/mapped_type.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_MAPPED_TYPE */

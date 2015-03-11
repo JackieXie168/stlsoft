@@ -4,7 +4,7 @@
  * Purpose:     Sequence container range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     15th July 2006
+ * Updated:     16th September 2006
  *
  * Thanks:      To Luoyi (whom I could not thank by email), for pointing out
  *              some gaps with the sequence_range
@@ -49,8 +49,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_MINOR    12
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 1
-# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     54
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_REVISION 2
+# define RANGELIB_VER_RANGELIB_HPP_SEQUENCE_RANGE_EDIT     55
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -77,9 +77,12 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS
 # include <rangelib/operator_adaptors.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_OPERATOR_ADAPTORS */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE
+# include <stlsoft/meta/is_const_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE */
 #ifdef STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED
 # ifndef STLSOFT_INCL_STLSOFT_META_TYPEFIXER_HPP_DIFFERENCE_TYPE
 #  include <stlsoft/meta/typefixer/difference_type.hpp>
@@ -294,25 +297,21 @@ public:
  * It is categoried as an Iterable Range
  *
  * It could be used as follows
- * \htmlonly
- * <code>
- * <pre>
- * void dump_elements(std::vector&lt;int&gt; const &numbers)
- * {
- *   for(sequence_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
- *   {
- *     std::cout &lt;&lt; &r; // Dump the current value to stdout
- *   }
- * }
- * </pre>
- * </code>
- * \endhtmlonly
+\code
+  void dump_elements(std::vector&lt;int&gt; const &numbers)
+  {
+    for(sequence_range&lt;std::vector&lt;int&gt; &gt; r(numbers); r; ++r)
+    {
+      std::cout &lt;&lt; &r; // Dump the current value to stdout
+    }
+  }
+\endcode
  */
 template<   ss_typename_param_k S
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
-        ,   ss_typename_param_k T = sequence_range_traits<S, is_const<S>::value>    // Determines whether the sequence is const
+        ,   ss_typename_param_k T = sequence_range_traits<S, is_const_type<S>::value>   // Determines whether the sequence is const
 #else /* ? STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
-        ,   ss_typename_param_k T = const_sequence_range_traits<S>                  // Defaults to a const sequence
+        ,   ss_typename_param_k T = const_sequence_range_traits<S>						// Defaults to a const sequence
 #endif /* STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED */
         >
 class sequence_range

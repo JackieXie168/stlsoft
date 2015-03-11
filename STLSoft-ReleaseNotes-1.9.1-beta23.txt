@@ -1,6 +1,6 @@
 ============================================================================
 
-File:     STLSoft-ReleaseNotes-1.9.1-beta22
+File:     STLSoft-ReleaseNotes-1.9.1-beta23
 
 Purpose:  Release notes for beta release of STLSoft.
 
@@ -11,9 +11,33 @@ Author:   Matthew Wilson, Synesis Software Pty Ltd.
 
 www:      http://www.stlsoft.org/
 
-Updated:  13th September 2006
+Updated:  17th September 2006
 
 ============================================================================
+
+
+============================================================================
+
+Changes for 1.9.1 beta 23 (17th September 2006):
+
+
+NOTE: Please check out the updated documentation at http://stlsoft.org/doc-1.9
+
+
+Additions:
+==========
+
++ mfcstl/collections/clist_adaptors.hpp: mfcstl::CList_iadaptor replaces the
+  old mfcstl::list_adaptor class template.
+
+Changes:
+========
+
+~ a whole load more directory changes. Very few now remain, and 1.9.1 proper
+  is very close.
+
+
+
 
 
 ============================================================================

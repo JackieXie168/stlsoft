@@ -5,7 +5,7 @@
  *              values from the iterator's underlying sequence.
  *
  * Created:     9th July 2004
- * Updated:     7th July 2006
+ * Updated:     17th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MAJOR    4
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_MINOR    2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     29
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_REVISION 3
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_FILTER_ITERATOR_EDIT     30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -83,6 +83,12 @@ STLSOFT_COMPILER_IS_WATCOM:
 #  include <stlsoft/iterators/adapted_iterator_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_ITERATOR_HPP_ADAPTED_ITERATOR_TRAITS */
 #endif /* !STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_META_YESNO
+# include <stlsoft/meta/yesno.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_META_YESNO */
+#ifndef STLSOFT_INCL_STLSOFT_HPP_META_IS_POINTER_TYPE
+# include <stlsoft/meta/is_pointer_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_HPP_META_IS_POINTER_TYPE */
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS
 #include <stlsoft/util/std/iterator_category_limiters.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_STD_HPP_ITERATOR_CATEGORY_LIMITERS */

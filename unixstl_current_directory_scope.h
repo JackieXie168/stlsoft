@@ -7,5 +7,6 @@
 #include <unixstl/filesystem/current_directory_scope.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

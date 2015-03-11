@@ -4,7 +4,7 @@
  * Purpose:     Converts a Win32 error code to a printable string.
  *
  * Created:     13th July 2003
- * Updated:     25th August 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -52,8 +52,16 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_MINOR       3
 # define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_REVISION    2
-# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        63
+# define WINSTL_VER_WINSTL_ERROR_HPP_ERROR_DESC_EDIT        64
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -104,8 +112,7 @@ namespace winstl_project
  * \ingroup group__library__error
  *
  * Consider the following example:
-\htmlonly
-<pre>
+\code
   winstl::error_desc_a  ed1(ERROR_ACCESS_DENIED);
   winstl::error_desc_w  ed2(ERROR_ACCESS_DENIED);
   winstl::error_desc    ed3(ERROR_ACCESS_DENIED);
@@ -113,21 +120,18 @@ namespace winstl_project
   assert(0 == ::strcmp("Access is denied", ed1.c_str()));
   assert(0 == ::wcscmp(L"Access is denied", ed2.c_str()));
   assert(0 == ::_tcscmp(_T("Access is denied"), ed3.c_str()));
-</pre>
-\endhtmlonly
+\endcode
  *
  * By default, the strings are looked up from the Windows system DLLs. To
  * use a specific message-string DLL, simply specify this as the second
  * argument to the constructor, as in (assuming <b>MyCustomDll.DLL</b> maps
  * <code>ERROR_ACCESS_DENIED</code> to <code>"No Access!"</code>):
  *
-\htmlonly
-<pre>
+\code
   winstl::error_desc_a  ed1(ERROR_ACCESS_DENIED, "MyCustomDll.DLL");
 
   assert(0 == ::strcmp("No Access!", ed1.c_str()));
-</pre>
-\endhtmlonly
+\endcode
  *
  * \note Naturally, \ref group__concepts__shims__string_access "String Access
  *  Shim" functions <b>c_str_ptr</b>, <b>c_str_data</b>, <b>c_str_len</b>

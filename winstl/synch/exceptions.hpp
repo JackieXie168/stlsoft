@@ -4,7 +4,7 @@
  * Purpose:     Synchronisation API exception(s).
  *
  * Created:     30th May 2006
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,16 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_MINOR       1
 # define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        5
+# define WINSTL_VER_WINSTL_SYNCH_HPP_EXCEPTIONS_EDIT        6
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -92,7 +100,7 @@ namespace winstl_project
  */
 
 /** \brief Root exception thrown by the 
- *   \ref group__library__synch "Synchronisation" library.
+ *    \ref group__library__synch "Synchronisation" library.
  */
 class synchronisation_exception
     : public windows_exception

@@ -5,7 +5,7 @@
  *              classes.
  *
  * Created:     1st November 1994
- * Updated:     7th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,6 +55,14 @@
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_REVISION    1
 # define STLSOFT_VER_STLSOFT_MEMORY_HPP_AUTO_DESTRUCTOR_EDIT        62
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -115,10 +123,15 @@ class return_value_array_destructor;
  * Classes
  */
 
-/** \brief Acts as a proxy for the movement of pointers between the
- *   auto_/return_value_ destructor classes.
+/** \brief A simple proxy class that supports the movement of pointers
+ *    between the various destructor classes.
  *
  * \ingroup group__library__memory
+ *
+ * \see stlsoft::auto_destructor |
+ *      stlsoft::return_value_destructor |
+ *      stlsoft::auto_array_destructor |
+ *      stlsoft::return_value_array_destructor
  */
 template<   ss_typename_param_k T
         ,   ss_typename_param_k U
@@ -140,6 +153,48 @@ struct move_proxy
  * \ingroup group__library__memory
  *
  * \param T The value type
+ *
+ * A heap-allocated resource to be managed is placed into an instance of
+ * \link stlsoft::auto_destructor auto_destructor\endlink
+ * in its constructor, as in:
+\code
+  {
+    stlsoft::auto_destructor<MyClass>  adi(new MyClass(1, 2));
+
+    . . .
+  } // The MyClass instance is deleted here
+\endcode
+ *
+ * The horrendous, and widely lamented, problems with
+ * <code>std::auto_ptr</code> are avoided by proscribing copy
+ * operations. Hence:
+\code
+    stlsoft::auto_destructor<MyClass>  adi(new MyClass(1, 2));
+    stlsoft::auto_destructor<MyClass>  adi2(adi); // Compile error!
+\endcode
+ *
+ * But resources can be returned out of
+ * \link stlsoft::auto_destructor auto_destructor\endlink
+ * instances from functions by virtue of
+ * \link stlsoft::return_value_destructor return_value_destructor\endlink,
+ * as in:
+ *
+\code
+  stlsoft::return_value_destructor<MyClass> f(int i, int j)
+  {
+    stlsoft::auto_destructor<MyClass>  adi(new MyClass(i, j));
+
+    . . .
+  } // The MyClass instance is deleted here
+
+  stlsoft::auto_destructor<MyClass>  adi2 = f(1, 2);
+\endcode
+ *
+ * In this way, the resource is completely safely managed, without there
+ * being any unfortunate side-effects (as is the case with
+ * <code>std::auto_ptr</code>).
+ *
+ * \see stlsoft::return_value_destructor
  */
 template <ss_typename_param_k T>
 class auto_destructor
@@ -252,6 +307,20 @@ private:
  * \ingroup group__library__memory
  *
  * \param T The value type
+ *
+ * A detailed explanation of the use of resource management is given for
+ * stlsoft::auto_destructor. The same explanation applies directly to
+ * auto_array_destructor, substituting
+ * \link stlsoft::auto_array_destructor auto_array_destructor\endlink
+ * for
+ * \link stlsoft::auto_destructor auto_destructor\endlink,
+ * \link stlsoft::return_value_destructor return_value_destructor\endlink
+ * for
+ * \link stlsoft::return_value_array_destructor return_value_array_destructor\endlink,
+ * and
+ * vector <code>new</code> for scalar <code>new</code>.
+ *
+ * \see stlsoft::return_value_array_destructor
  */
 template <ss_typename_param_k T>
 class auto_array_destructor
@@ -365,6 +434,8 @@ private:
  * \ingroup group__library__memory
  *
  * \param T The value type
+ *
+ * \see stlsoft::auto_destructor
  */
 template <ss_typename_param_k T>
 class return_value_destructor
@@ -466,6 +537,8 @@ private:
  * \ingroup group__library__memory
  *
  * \param T The value type
+ *
+ * \see stlsoft::auto_array_destructor
  */
 template <ss_typename_param_k T>
 class return_value_array_destructor

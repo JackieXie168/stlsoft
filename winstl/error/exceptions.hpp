@@ -4,7 +4,7 @@
  * Purpose:     windows_exception class, and its policy class
  *
  * Created:     19th June 2004
- * Updated:     19th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,7 +38,7 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/** \file unixstl/error/exceptions.hpp
+/** \file winstl/error/exceptions.hpp
  *
  * \brief [C++ only] Definition of the winstl::windows_exception and
  *   winstl::resource_exception exception classes, and the
@@ -54,8 +54,16 @@
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MAJOR       4
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_MINOR       2
 # define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        42
+# define WINSTL_VER_WINSTL_ERROR_HPP_EXCEPTIONS_EDIT        43
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -100,7 +108,7 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Exception class for general Windows operating system failures
+/** \brief General exception class for Windows operating system failures.
  *
  * \ingroup group__library__error
  *
@@ -257,10 +265,12 @@ private:
 /// @}
 };
 
-/** \brief Exception thrown by the clipboard_scope class
+/** \brief Indicates that a resource could not be located.
  *
  * \ingroup group__library__error
  *
+ * \see winstl::applet_module |
+ *      winstl::basic_resource_string
  */
 class resource_exception
     : public windows_exception

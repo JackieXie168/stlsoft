@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        comstl/memory/functions.h (formerly comstl/memory_functions.h, comstl_memory_functions.h; originally MOMemory.h/.c, ::SynesisCom)
+ * File:        comstl/memory/functions.h (formerly comstl/memory_functions.h; originally MOMemory.h/.c, ::SynesisCom)
  *
  * Purpose:     COM memory functions.
  *
  * Created:     2nd March 1996
- * Updated:     18th June 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,16 @@
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MAJOR     4
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_MINOR     0
 # define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_REVISION  3
-# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      41
+# define COMSTL_VER_COMSTL_MEMORY_H_FUNCTIONS_EDIT      42
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -91,15 +99,17 @@ namespace comstl_project
 /* CoTaskMemGetSize, CoTaskMemDidAlloc & CoTaskMemHeapMinimise
  */
 
-/** \brief Gives the size of a memory block
+/** \brief [C, C++] Gives the size of a memory block
  *
  * \ingroup group__library__memory
  *
  * This function returns the size of a memory block relative to the COM task
- * alloctor, as per IMalloc::GetSize()
+ * alloctor, as per <code>IMalloc::GetSize()</code>
  *
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
+ *
+ * \note This function is C-compatible
  */
 STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
 {
@@ -120,18 +130,20 @@ STLSOFT_INLINE cs_size_t comstl__CoTaskMemGetSize(void *pv)
     return ulRet;
 }
 
-/** \brief Determines allocation ownership of a memory block
+/** \brief [C, C++] Determines allocation ownership of a memory block
  *
  * \ingroup group__library__memory
  *
  * This function returns a value indicating whether a memory block was allocated
- * by the COM task allocator, as per IMalloc::DidAlloc()
+ * by the COM task allocator, as per <code>IMalloc::DidAlloc()</code>
  *
  * \param pv Pointer to the memory block
  * \return Result indicating ownership
  * \retval 1 The memory block was allocated by the task allocator
  * \retval 0 The memory block was <i>not</i> allocated by the task allocator
  * \retval -1 CoTaskMemDidAlloc() cannot determine whether the memory block was allocated by the task allocator
+ *
+ * \note This function is C-compatible
  */
 STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
 {
@@ -152,13 +164,15 @@ STLSOFT_INLINE cs_sint_t comstl__CoTaskMemDidAlloc(void *pv)
     return iRet;
 }
 
-/** \brief Minimises the heap
+/** \brief [C, C++] Minimises the heap
  *
  * \ingroup group__library__memory
  *
  * This function minimises the heap as much as possible by releasing unused
  * memory to the operating system, coalescing adjacent free blocks and
- * committing free pages, as as per IMalloc::HeapMinimize().
+ * committing free pages, as as per <code>IMalloc::HeapMinimize()</code>.
+ *
+ * \note This function is C-compatible
  */
 STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
 {
@@ -182,7 +196,7 @@ STLSOFT_INLINE void comstl__CoTaskMemHeapMinimise(void)
  * \ingroup group__library__memory
  *
  * This function returns the size of a memory block relative to the COM task
- * alloctor, as per IMalloc::GetSize()
+ * alloctor, as per <code>IMalloc::GetSize()</code>
  *
  * \param pv Pointer to the memory block
  * \return The size of the memory block (in bytes)
@@ -197,7 +211,7 @@ inline cs_size_t CoTaskMemGetSize(void *pv)
  * \ingroup group__library__memory
  *
  * This function returns a value indicating whether a memory block was allocated
- * by the COM task allocator, as per IMalloc::DidAlloc()
+ * by the COM task allocator, as per <code>IMalloc::DidAlloc()</code>
  *
  * \param pv Pointer to the memory block
  * \return Result indicating ownership
@@ -216,7 +230,7 @@ inline cs_sint_t CoTaskMemDidAlloc(void *pv)
  *
  * This function minimises the heap as much as possible by releasing unused
  * memory to the operating system, coalescing adjacent free blocks and
- * committing free pages, as as per IMalloc::HeapMinimize().
+ * committing free pages, as as per <code>IMalloc::HeapMinimize()</code>.
  */
 inline void CoTaskMemHeapMinimise()
 {
@@ -229,7 +243,7 @@ inline void CoTaskMemHeapMinimise()
  *
  * This function minimises the heap as much as possible by releasing unused
  * memory to the operating system, coalescing adjacent free blocks and
- * committing free pages, as as per IMalloc::HeapMinimize().
+ * committing free pages, as as per <code>IMalloc::HeapMinimize()</code>.
  */
 inline void CoTaskMemHeapMinimize()
 {

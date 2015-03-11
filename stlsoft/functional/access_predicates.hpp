@@ -1,10 +1,10 @@
 /* /////////////////////////////////////////////////////////////////////////
- * File:        functional/access_predicates.hpp (originally stlsoft/access_predicates.hpp)
+ * File:        stlsoft/functional/access_predicates.hpp (originally stlsoft/access_predicates.hpp)
  *
  * Purpose:     Predicates that use access shims to generalise use.
  *
  * Created:     7th November 2004
- * Updated:     14th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,9 +38,11 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
-/// \file functional/access_predicates.hpp
-///
-/// Predicates that use access shims to generalise use.
+/** \file stlsoft/functional/access_predicates.hpp
+ *
+ * \brief [C++ only] Predicates that use access shims to generalise use.
+ * (\ref group__library__functional "Functional" Library.)
+ */
 
 #ifndef STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES
 #define STLSOFT_INCL_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES
@@ -49,7 +51,7 @@
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES_MAJOR    2
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES_MINOR    0
 # define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES_REVISION 1
-# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES_EDIT     17
+# define STLSOFT_VER_STLSOFT_FUNCTIONAL_HPP_ACCESS_PREDICATES_EDIT     18
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////

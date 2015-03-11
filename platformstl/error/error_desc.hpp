@@ -4,7 +4,7 @@
  * Purpose:     Error .
  *
  * Created:     20th March 2005
- * Updated:     18th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -38,6 +38,13 @@
  * ////////////////////////////////////////////////////////////////////// */
 
 
+/** \file platformstl/error/error_desc.hpp
+ *
+ * \brief [C++ only] Definition of the platformstl::basic_error_desc class
+ *  template.
+ *  (\ref group__library__error "Error" Library.)
+ */
+
 #ifndef PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_ERROR_DESC
 #define PLATFORMSTL_INCL_PLATFORMSTL_ERROR_HPP_ERROR_DESC
 
@@ -46,14 +53,15 @@
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MAJOR      2
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_MINOR      1
 # define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_REVISION   2
-# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT       15
+# define PLATFORMSTL_VER_PLATFORMSTL_ERROR_HPP_ERROR_DESC_EDIT       16
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
-/** \file platformstl/error/error_desc.hpp
- *
- * \brief [C++ only] Definition of the platformstl::basic_error_desc class
- *  template.
- *  (\ref group__library__error "Error" Library.)
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -101,7 +109,7 @@ namespace platformstl_project
 
     /** \brief Class used for composing and decomposing file-system paths.
      *
-     * \ingroup group__library__file_system
+     * \ingroup group__library__error
      *
      * The class is not actually defined in the
      * \link ::platformstl platformstl\endlink namespace. Rather, it

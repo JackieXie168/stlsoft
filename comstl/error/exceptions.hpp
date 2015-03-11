@@ -4,7 +4,7 @@
  * Purpose:     COM-related exception classes, and their policy classes
  *
  * Created:     8th December 2004
- * Updated:     31st July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,8 +55,16 @@
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MAJOR       2
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_MINOR       0
 # define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_REVISION    2
-# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        30
+# define COMSTL_VER_COMSTL_ERROR_HPP_EXCEPTIONS_EDIT        32
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -98,7 +106,7 @@ namespace comstl_project
  * Classes
  */
 
-/** \brief Exception class for general COM-related failures
+/** \brief General exception class for COM-related failures.
  *
  * \ingroup group__library__error
  *
@@ -179,10 +187,12 @@ private:
 /// @}
 };
 
-/** \brief The exception type thrown by safearray_sequence on variant type mismatches
+/** \brief Indicates variant type mismatches.
  *
  * \ingroup group__library__error
  *
+ * \remarks This is thrown by comstl::safearray_sequence on variant type
+ *   mismatches.
  */
 class variant_type_exception
     : public com_exception

@@ -4,7 +4,7 @@
  * Purpose:     Control Panel Library exception classes.
  *
  * Created:     1st April 2006
- * Updated:     16th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -55,7 +55,7 @@
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MAJOR       1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_MINOR       1
 # define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_REVISION    1
-# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        8
+# define WINSTL_VER_WINSTL_CONTROL_PANEL_HPP_EXCEPTIONS_EDIT        9
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -67,6 +67,7 @@
 [Incompatibilies-start]
 STLSOFT_COMPILER_IS_GCC:     __GNUC__ < 3 || (__GNUC__ == 3 && __GNUC_MINOR__ < 3)
 [Incompatibilies-end]
+[DocumentationStatus:Ready]
  */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -106,8 +107,9 @@ namespace winstl_project
  * Classes
  */
 
-/** \brief Exception thrown by the \ref group__library__windows_control_panel "Windows Control Panel"
- *  library.
+/** \brief Exception thrown by the 
+ *     \ref group__library__windows_control_panel "Windows Control Panel"
+ *     library.
  *
  * \ingroup group__library__windows_control_panel
  */
@@ -132,8 +134,8 @@ public:
 /// @}
 };
 
-/** \brief Exception thrown by the \ref group__library__windows_control_panel "Windows Control Panel"
- *  library.
+/** \brief Indicates that the control panel entry point cannot be found in
+ *    the control panel library.
  *
  * \ingroup group__library__windows_control_panel
  */

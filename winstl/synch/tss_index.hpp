@@ -4,7 +4,7 @@
  * Purpose:     Wrapper class for Win32 TSS key.
  *
  * Created:     20th January 1999
- * Updated:     7th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,7 +51,7 @@
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MAJOR    4
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_MINOR    0
 # define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_REVISION 1
-# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     27
+# define WINSTL_VER_WINSTL_SYNCH_HPP_TSS_INDEX_EDIT     28
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -94,7 +94,7 @@ namespace winstl_project
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-/** \brief Thrown to indicate a failure to allocate a TSS key.
+/** \brief Indicates that a TSS key cannot be allocated.
  *
  * \note This exception indicates an irrecoverable condition.
  *

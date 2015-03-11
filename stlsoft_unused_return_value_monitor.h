@@ -7,6 +7,7 @@
 #include <stlsoft/unused_return_value_monitor.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

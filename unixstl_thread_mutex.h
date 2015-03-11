@@ -7,5 +7,6 @@
 #include <unixstl/synch/thread_mutex.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

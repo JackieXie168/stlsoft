@@ -1,9 +1,12 @@
-/** \file stlsoft/meta.hpp Redirects inclusion to stlsoft_meta.h. This will be changed in a subsequent release, such that this file will contain the component definitions, and stlsoft_meta.h will contain redirect */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-#define STLSOFT_INCL_STLSOFT_HPP_META
+#include <stlsoft/stlsoft.h>
 
-#ifndef STLSOFT_INCL_H_STLSOFT_META
-# include <stlsoft_meta.h>
-#endif /* !STLSOFT_INCL_H_STLSOFT_META */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/obsolete/meta.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#include <stlsoft/obsolete/meta.hpp>
+
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/

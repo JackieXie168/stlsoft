@@ -7,6 +7,7 @@
 #include <stlsoft/meta/typefixer/pointer.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

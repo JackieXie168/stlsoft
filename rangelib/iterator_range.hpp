@@ -4,7 +4,7 @@
  * Purpose:     Iterator range adaptor.
  *
  * Created:     4th November 2003
- * Updated:     7th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -46,8 +46,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MAJOR    2
 # define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_MINOR    6
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 2
-# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     33
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_REVISION 3
+# define RANGELIB_VER_RANGELIB_HPP_ITERATOR_RANGE_EDIT     34
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -82,9 +82,9 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL
 # include <stlsoft/util/operator_bool.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_UTIL_HPP_OPERATOR_BOOL */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
 #ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 # include <stlsoft/meta/base_type_traits.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
@@ -291,7 +291,7 @@ struct const_pointer_iterator_range_traits
  */
 template<   ss_typename_param_k I
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-        ,   ss_typename_param_k T = iterator_range_traits<I, is_const<I>::value>    // Determines whether the iterator is const
+        ,   ss_typename_param_k T = iterator_range_traits<I, is_const_type<I>::value>   // Determines whether the iterator is const
 #else /* ? STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */
         ,   ss_typename_param_k T
 #endif /* STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT */

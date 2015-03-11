@@ -4,7 +4,7 @@
  * Purpose:     glob_sequence class.
  *
  * Created:     15th January 2002
- * Updated:     7th July 2006
+ * Updated:     15th September 2006
  *
  * Thanks:      To Carlos Santander Bernal for helping with Mac compatibility.
  *
@@ -53,7 +53,7 @@
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MAJOR     5
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_MINOR     0
 # define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_REVISION  2
-# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      122
+# define UNIXSTL_VER_UNIXSTL_FILESYSTEM_HPP_GLOB_SEQUENCE_EDIT      123
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -173,7 +173,7 @@ namespace unixstl_project
  */
 
 #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
-/** \brief The exception-type thrown by the \link glob_sequence unixstl::glob_sequence\endlink.
+/** \brief The exception-type thrown by unixstl::glob_sequence
  *
  * \ingroup group__library__file_system
  */

@@ -4,7 +4,7 @@
  * Purpose:     member_selector_iterator class.
  *
  * Created:     7th April 2005
- * Updated:     8th September 2006
+ * Updated:     17th September 2006
  *
  * Thanks to:   Felix Gartsman for spotting a bug in (lack of) operator <()
  *              when building Pantheios.
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MAJOR       2
 # define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_MINOR       4
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    2
-# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        44
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_REVISION    3
+# define STLSOFT_VER_STLSOFT_ITERATORS_HPP_MEMBER_SELECTOR_ITERATOR_EDIT        45
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -78,10 +78,13 @@ STLSOFT_COMPILER_IS_WATCOM:
 #ifndef STLSOFT_INCL_STLSOFT_HPP_ITERATOR
 # include <stlsoft/iterator.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_ITERATOR */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE
+# include <stlsoft/meta/is_const_type.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_IS_CONST_TYPE */
 #ifdef STLSOFT_CF_TEMPLATE_PARTIAL_SPECIALISATION_SUPPORT
-# ifndef STLSOFT_INCL_STLSOFT_HPP_META
-#  include <stlsoft/meta.hpp>
-# endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS
 #  include <stlsoft/meta/base_type_traits.hpp>
 # endif /* !STLSOFT_INCL_STLSOFT_META_HPP_BASE_TYPE_TRAITS */
@@ -510,16 +513,16 @@ public:
 
 // Solution 1:
 //
-//  + is_const<iterator_traits<I>::value_type>
+//  + is_const_type<iterator_traits<I>::value_type>
 //
 //  - some libraries do not make define, for iterator_traits<T const*>, value_type as const T, but just T
 //  - doesn't cater for case where the member M is constant, even if iterator is mutable (e.g. C* not C const*)
 //
 // Solution 2:
 //
-//  + is_const<iterator_traits<I>::value_type> ||
+//  + is_const_type<iterator_traits<I>::value_type> ||
 //    base_type_traits<typename std::iterator_traits<I>::pointer>::is_const ||
-//    is_const<M>
+//    is_const_type<M>
 //
 //  - at this point we move into msi_traits
 //
@@ -557,10 +560,10 @@ inline ss_typename_type_k msi_traits<I, C, M>::type member_selector(I it, M C::*
 #if !defined(STLSOFT_COMPILER_IS_DMC) && \
     (   !defined(STLSOFT_CF_STD_LIBRARY_IS_DINKUMWARE_VC) || \
         STLSOFT_CF_STD_LIBRARY_DINKUMWARE_VC_VERSION >= STLSOFT_CF_DINKUMWARE_VC_VERSION_7_1)
-    STLSOFT_STATIC_ASSERT((int)is_const<ss_typename_type_k std::iterator_traits<I>::value_type>::value == (int)base_type_traits<ss_typename_type_k std::iterator_traits<I>::value_type>::is_const);
+    STLSOFT_STATIC_ASSERT((int)is_const_type<ss_typename_type_k std::iterator_traits<I>::value_type>::value == (int)base_type_traits<ss_typename_type_k std::iterator_traits<I>::value_type>::is_const);
 #endif /* !compiler */
 
-//    STLSOFT_STATIC_ASSERT(is_const<iterator_t::value_type>::value == 1);
+//    STLSOFT_STATIC_ASSERT(is_const_type<iterator_t::value_type>::value == 1);
 
     return iterator_t(it, member);
 }

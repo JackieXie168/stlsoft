@@ -7,6 +7,7 @@
 #include <stlsoft/obsolete/conversion_veneer.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 

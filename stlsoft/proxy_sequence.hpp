@@ -1,23 +1,12 @@
-/** \file stlsoft/proxy_sequence.hpp Redirects inclusion to stlsoft_proxy_sequence.h. This will be changed in a subsequent release, such that this file will contain the component definitions, and stlsoft_proxy_sequence.h will contain redirect */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_PROXY_SEQUENCE
-#define STLSOFT_INCL_STLSOFT_HPP_PROXY_SEQUENCE
+#include <stlsoft/stlsoft.h>
 
-/* /////////////////////////////////////////////////////////////////////////
- * Compatibility
- */
+#ifdef STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT
+# pragma message("This file is now obsolete, and will be removed in a future release. Instead include stlsoft/obsolete/proxy_sequence.hpp")
+#endif /* STLSOFT_CF_PRAGMA_MESSAGE_SUPPORT */
 
-/*
-[Incompatibilies-start]
-STLSOFT_COMPILER_IS_WATCOM:
-[Incompatibilies-end]
- */
+#include <stlsoft/obsolete/proxy_sequence.hpp>
 
-/* /////////////////////////////////////////////////////////////////////////
- * Includes
- */
-
-#ifndef STLSOFT_INCL_H_STLSOFT_PROXY_SEQUENCE
-# include <stlsoft_proxy_sequence.h>
-#endif /* !STLSOFT_INCL_H_STLSOFT_PROXY_SEQUENCE */
-
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_PROXY_SEQUENCE */
+/* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
+[<[STLSOFT-AUTO:NO-UNITTEST]>]
+*/

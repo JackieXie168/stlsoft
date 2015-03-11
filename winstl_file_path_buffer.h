@@ -7,5 +7,6 @@
 #include <winstl/filesystem/file_path_buffer.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */

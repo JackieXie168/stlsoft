@@ -4,7 +4,7 @@
  * Purpose:     Contains the internet_exception class.
  *
  * Created:     25th April 2004
- * Updated:     16th July 2006
+ * Updated:     15th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -53,8 +53,16 @@
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MAJOR     4
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_MINOR     0
 # define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_REVISION  1
-# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_EDIT      30
+# define INETSTL_VER_INETSTL_ERROR_HPP_EXCEPTIONS_EDIT      31
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
+
+/* /////////////////////////////////////////////////////////////////////////
+ * Compatibility
+ */
+
+/*
+[DocumentationStatus:Ready]
+ */
 
 /* /////////////////////////////////////////////////////////////////////////
  * Includes
@@ -100,7 +108,7 @@ namespace inetstl_project
  * Classes
  */
 
-/** \brief Exception class for general Windows operating system failures
+/** \brief General exception class for internet-related failures.
  *
  * \ingroup group__library__error
  *

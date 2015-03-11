@@ -5,7 +5,7 @@
  *              non_mutating_operator_adaptor classes.
  *
  * Created:     4th November 2003
- * Updated:     7th July 2006
+ * Updated:     16th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MAJOR       1
 # define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_MINOR       5
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    3
-# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        24
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_REVISION    4
+# define RANGELIB_VER_RANGELIB_HPP_OPERATOR_ADAPTORS_EDIT        25
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -73,9 +73,12 @@ STLSOFT_COMPILER_IS_MWERKS:   (__MWERKS__ & 0xFF00) < 0x3000
 #ifndef RANGELIB_INCL_RANGELIB_HPP_RANGELIB
 # include <rangelib/rangelib.hpp>
 #endif /* !RANGELIB_INCL_RANGELIB_HPP_RANGELIB */
-#ifndef STLSOFT_INCL_STLSOFT_HPP_META
-# include <stlsoft/meta.hpp>
-#endif /* !STLSOFT_INCL_STLSOFT_HPP_META */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES
+# include <stlsoft/meta/capabilities.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_CAPABILITIES */
+#ifndef STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF
+# include <stlsoft/meta/select_first_type_if.hpp>
+#endif /* !STLSOFT_INCL_STLSOFT_META_HPP_SELECT_FIRST_TYPE_IF */
 #if defined(STLSOFT_CF_HAS_MEMBER_TYPE_SUPPORTED)
 # ifndef STLSOFT_INCL_STLSOFT_META_HPP_MEMBER_TRAITS
 #  include <stlsoft/meta/member_traits.hpp>
@@ -317,7 +320,7 @@ private:
 
 public:
     /// The mutating (non-const) operator adaptor type
-    typedef ss_typename_type_k select_first_type_if<   ss_typename_type_k fixer_mutating_operator_adaptor<R, T, HAS_MEMBER_ITERATOR>::type
+    typedef ss_typename_type_k select_first_type_if<ss_typename_type_k fixer_mutating_operator_adaptor<R, T, HAS_MEMBER_ITERATOR>::type
                                                 ,   non_mutating_operator_adaptor<R, T>
                                                 ,   HAS_MEMBER_ITERATOR
                                                 >::type             type;

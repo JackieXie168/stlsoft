@@ -4,7 +4,7 @@
  * Purpose:     Contains the basic_shim_string template class.
  *
  * Created:     9th July 2004
- * Updated:     7th July 2006
+ * Updated:     17th September 2006
  *
  * Home:        http://stlsoft.org/
  *
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MAJOR       3
 # define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_MINOR       0
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    2
-# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        29
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_REVISION    3
+# define STLSOFT_VER_STLSOFT_STRING_HPP_SHIM_STRING_EDIT        30
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -72,7 +72,7 @@
 # include <stlsoft/memory/auto_buffer.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_MEMORY_AUTO_BUFFER */
 #ifndef STLSOFT_INCL_STLSOFT_HPP_META_YESNO
-# include <stlsoft/meta/yesno.hpp>          // for yes_type, no_type
+# include <stlsoft/meta/yesno.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_HPP_META_YESNO */
 
 #if defined(STLSOFT_COMPILER_IS_MSVC) && \

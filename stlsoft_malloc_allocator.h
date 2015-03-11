@@ -7,6 +7,7 @@
 #include <stlsoft/memory/malloc_allocator.hpp>
 
 /* Compatibility
+[<[STLSOFT-AUTO:NO-DOCFILELABEL]>]
 [<[STLSOFT-AUTO:NO-UNITTEST]>]
 */
 
