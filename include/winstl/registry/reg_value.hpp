@@ -10,7 +10,7 @@
  *              regretably now implemented as independent classes.
  *
  * Created:     19th January 2002
- * Updated:     10th August 2009
+ * Updated:     4th November 2015
  *
  * Thanks:      To Diego Chanoux for spotting a defect in the value_sz() method.
  *
@@ -23,7 +23,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2002-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2002-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -65,9 +65,9 @@
 
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MAJOR     3
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     4
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  6
-# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      107
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_MINOR     5
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_REVISION  2
+# define WINSTL_VER_WINSTL_REGISTRY_HPP_REG_VALUE_EDIT      109
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -197,7 +197,7 @@ public:
     /// Copy constructor
     reg_blob(class_type const& rhs);
     /// Destructor
-    ~reg_blob() stlsoft_throw_0();
+    ~reg_blob() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Attributes
@@ -338,7 +338,7 @@ protected:
     {} // Implementation provided here, as otherwise VC5 will not link
 public:
     /// Destructor
-    ~basic_reg_value() stlsoft_throw_0();
+    ~basic_reg_value() STLSOFT_NOEXCEPT;
 
     /// Copy assignment operator
     class_type& operator =(class_type const& rhs);
@@ -464,7 +464,7 @@ inline basic_reg_value<C, T, A>::basic_reg_value(basic_reg_value<C, T, A>::hkey_
 #endif /* 0 */
 
 template <ss_typename_param_k C, ss_typename_param_k T, ss_typename_param_k A>
-inline basic_reg_value<C, T, A>::~basic_reg_value() stlsoft_throw_0()
+inline basic_reg_value<C, T, A>::~basic_reg_value() STLSOFT_NOEXCEPT
 {
     if(m_hkey != NULL)
     {
@@ -497,13 +497,13 @@ inline ws_dword_t basic_reg_value<C, T, A>::get_type_() const
     {
         size_type   data_size = 0;
 
-#ifndef STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT
+#ifndef STLSOFT_CF_mutable_KEYWORD_SUPPORT
         /* A little-known trick, but a useful one for dealing with translators
          * lacking mutable support whilst disturbing code to the minimum degree.
          */
-        ws_dword_t  &m_type             =   const_cast<ws_dword_t &>(this->m_type);
-        ws_bool_t   &m_bTypeRetrieved   =   const_cast<ws_bool_t &>(this->m_bTypeRetrieved);
-#endif /* STLSOFT_CF_MUTABLE_KEYWORD_SUPPORT */
+        ws_dword_t&  m_type             =   const_cast<ws_dword_t &>(this->m_type);
+        ws_bool_t&   m_bTypeRetrieved   =   const_cast<ws_bool_t &>(this->m_bTypeRetrieved);
+#endif /* STLSOFT_CF_mutable_KEYWORD_SUPPORT */
 
         if(0 == traits_type::reg_query_value(m_hkey, m_name.c_str(), m_type, NULL, data_size))
         {
@@ -858,7 +858,7 @@ inline reg_blob<A>::reg_blob(ss_typename_type_k reg_blob<A>::class_type const& r
 }
 
 template<ss_typename_param_k A>
-inline reg_blob<A>::~reg_blob() stlsoft_throw_0()
+inline reg_blob<A>::~reg_blob() STLSOFT_NOEXCEPT
 {}
 
 template<ss_typename_param_k A>

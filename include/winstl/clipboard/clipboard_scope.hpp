@@ -4,7 +4,7 @@
  * Purpose:     Clipboard scoping and facade class.
  *
  * Created:     26th May 2005
- * Updated:     10th August 2009
+ * Updated:     4th November 2015
  *
  * Thanks:      To Martin Moene for reporting the problem with the data type
  *              in set_data_or_deallocate_and_throw_(), and for calling for
@@ -12,7 +12,7 @@
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2005-2009, Matthew Wilson and Synesis Software
+ * Copyright (c) 2005-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -54,8 +54,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MAJOR      2
 # define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_MINOR      0
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   7
-# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       34
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_REVISION   8
+# define WINSTL_VER_WINSTL_CLIPBOARD_HPP_CLIPBOARD_SCOPE_EDIT       36
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -74,6 +74,9 @@
 #ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE
 # include <stlsoft/memory/allocator_base.hpp>       // for STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT
 #endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_BASE */
+#ifndef STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES
+# include <stlsoft/memory/allocator_features.hpp>   // for STLSOFT_LF_ALLOCATOR_ALLOCATE_HAS_HINT
+#endif /* !STLSOFT_INCL_STLSOFT_MEMORY_HPP_ALLOCATOR_FEATURES */
 #ifndef STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS
 # include <stlsoft/string/cstring_functions.hpp>
 #endif /* !STLSOFT_INCL_STLSOFT_STRING_HPP_CSTRING_FUNCTIONS */
@@ -203,7 +206,7 @@ public:
     ///  May be NULL, in which case the current thread owns the clipboard.
     ss_explicit_k clipboard_scope(HWND hwndOwner = NULL) stlsoft_throw_1(clipboard_scope_exception);
     /// \brief Gives up ownership of the clipboard.
-    ~clipboard_scope() stlsoft_throw_0();
+    ~clipboard_scope() STLSOFT_NOEXCEPT;
 /// @}
 
 /// \name Attributes
@@ -290,10 +293,17 @@ public:
 /// \name Members
 /// @{
 private:
-    template<   ss_typename_param_k A
-            ,   ss_typename_param_k T
-            >
-    void set_data_or_deallocate_and_throw_(UINT fmt, T* memory, A& ator) stlsoft_throw_1(clipboard_scope_exception)
+    template<
+        ss_typename_param_k A
+    ,   ss_typename_param_k T
+    >
+    void
+    set_data_or_deallocate_and_throw_(
+        UINT    fmt
+    ,   T*      memory
+    ,   size_t  n
+    ,   A&      ator
+    ) stlsoft_throw_1(clipboard_scope_exception)
     {
     #ifdef STLSOFT_CF_EXCEPTION_SUPPORT
         try
@@ -306,7 +316,13 @@ private:
         }
         catch(...)
         {
+#ifdef STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT
+            ator.deallocate(memory, n);
+#else /* ? STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT */
+            STLSOFT_SUPPRESS_UNUSED(n);
+
             ator.deallocate(memory);
+#endif /* STLSOFT_LF_ALLOCATOR_DEALLOCATE_HAS_COUNT */
 
             throw;
         }
@@ -349,7 +365,7 @@ inline clipboard_scope::clipboard_scope(HWND hwndOwner /* = NULL */) stlsoft_thr
     }
 }
 
-inline clipboard_scope::~clipboard_scope() stlsoft_throw_0()
+inline clipboard_scope::~clipboard_scope() STLSOFT_NOEXCEPT
 {
     ::CloseClipboard();
 }
@@ -402,9 +418,10 @@ inline void clipboard_scope::set_data(char const* str) stlsoft_throw_1(clipboard
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     global_allocator<char>                  ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    char*                                   memory = stlsoft_ns_qual(string_dup)(str, ator);
+    size_t                                  n;
+    char*                                   memory = stlsoft_ns_qual(string_dup)(str, ator, &n);
 
-    set_data_or_deallocate_and_throw_(CF_TEXT, memory, ator);
+    set_data_or_deallocate_and_throw_(CF_TEXT, memory, n, ator);
 }
 
 inline void clipboard_scope::set_data(char const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception)
@@ -416,7 +433,7 @@ inline void clipboard_scope::set_data(char const* str, ws_size_t n) stlsoft_thro
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     char*                                   memory = stlsoft_ns_qual(string_dup)(str, n, ator);
 
-    set_data_or_deallocate_and_throw_(CF_TEXT, memory, ator);
+    set_data_or_deallocate_and_throw_(CF_TEXT, memory, n, ator);
 }
 
 inline void clipboard_scope::set_data(wchar_t const* str) stlsoft_throw_1(clipboard_scope_exception)
@@ -426,9 +443,10 @@ inline void clipboard_scope::set_data(wchar_t const* str) stlsoft_throw_1(clipbo
 #else /* ? STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     global_allocator<wchar_t>               ator;
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
-    wchar_t*                                memory = stlsoft_ns_qual(string_dup)(str, ator);
+    size_t                                  n;
+    wchar_t*                                memory = stlsoft_ns_qual(string_dup)(str, ator, &n);
 
-    set_data_or_deallocate_and_throw_(CF_UNICODETEXT, memory, ator);
+    set_data_or_deallocate_and_throw_(CF_UNICODETEXT, memory, n, ator);
 }
 
 inline void clipboard_scope::set_data(wchar_t const* str, ws_size_t n) stlsoft_throw_1(clipboard_scope_exception)
@@ -440,7 +458,7 @@ inline void clipboard_scope::set_data(wchar_t const* str, ws_size_t n) stlsoft_t
 #endif /* STLSOFT_LF_ALLOCATOR_REBIND_SUPPORT */
     wchar_t*                                memory = stlsoft_ns_qual(string_dup)(str, n, ator);
 
-    set_data_or_deallocate_and_throw_(CF_UNICODETEXT, memory, ator);
+    set_data_or_deallocate_and_throw_(CF_UNICODETEXT, memory, n, ator);
 }
 
 inline void clipboard_scope::set_data(HBITMAP hBmp) stlsoft_throw_1(clipboard_scope_exception)
