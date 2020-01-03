@@ -4,11 +4,11 @@
  * Purpose:     Character-encoding scheme interconversion components.
  *
  * Created:     31st May 2003
- * Updated:     29th January 2011
+ * Updated:     25th September 2015
  *
  * Home:        http://stlsoft.org/
  *
- * Copyright (c) 2003-2011, Matthew Wilson and Synesis Software
+ * Copyright (c) 2003-2015, Matthew Wilson and Synesis Software
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -51,8 +51,8 @@
 #ifndef STLSOFT_DOCUMENTATION_SKIP_SECTION
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MAJOR    5
 # define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_MINOR    2
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 1
-# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     95
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_REVISION 2
+# define STLSOFT_VER_STLSOFT_CONVERSION_HPP_CHAR_CONVERSIONS_EDIT     96
 #endif /* !STLSOFT_DOCUMENTATION_SKIP_SECTION */
 
 /* /////////////////////////////////////////////////////////////////////////
@@ -265,7 +265,10 @@ public:
 /// \name Not to be implemented
 /// @{
 private:
-# if defined(STLSOFT_COMPILER_IS_GCC)
+# if 0 || \
+     defined(STLSOFT_COMPILER_IS_GCC) || \
+     defined(STLSOFT_COMPILER_IS_CLANG) || \
+     0
 public:
     multibyte2wide(multibyte2wide const& rhs)
         : parent_class_type(rhs.parent_class_type::size())
@@ -423,7 +426,10 @@ public:
 /// \name Not to be implemented
 /// @{
 private:
-# if defined(STLSOFT_COMPILER_IS_GCC)
+# if 0 || \
+     defined(STLSOFT_COMPILER_IS_GCC) || \
+     defined(STLSOFT_COMPILER_IS_CLANG) || \
+     0
 public:
     wide2multibyte(wide2multibyte const& rhs)
         : parent_class_type(rhs.parent_class_type::size())
